@@ -1,0 +1,1 @@
+// Componente que funje de contenedor del resto de la pantalla
