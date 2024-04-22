@@ -1,0 +1,1 @@
+// Contenedor que muestra las estadísticas históricas del agente que está atendiendo
