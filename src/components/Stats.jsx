@@ -2,7 +2,14 @@
 
 const Stats = (props) => {
     return (
-        <div></div>
+        <div className="stats">
+            <div className="stats-div">
+
+            </div>
+            <div className="stats-div">
+                
+            </div>
+        </div>
     );
 }
 
