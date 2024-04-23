@@ -1,17 +1,24 @@
-.stats{
+.stats {
     display: flex;
     flex-direction: column;
-    margin: 10px 10px;
+    height: 100vh; /* Asegura que el contenedor .stats ocupe toda la altura de la ventana */
 }
 
-.titulo{
-    font-style: bold;
+.titulo {
+    font-weight: bold;
     border: 5px solid black;
 }
 
-.stats-div{
+.stats-div {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1; /* Esto hará que .stats-div ocupe todo el espacio restante */
+}
+
+.sentiment-div, .prom-div {
+    flex: 1; /* Cada uno toma la mitad del espacio disponible en .stats-div */
     display: flex;
     flex-direction: column;
     border: 1px solid #000;
-    column-gap: 38px;
+    padding: 10px; 
 }
