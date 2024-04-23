@@ -16,12 +16,12 @@
 }
 
 .botones {
-    color: blue;
     border: 1px solid #000;
-}
-
-.btnSupervisor {
-    color: red;
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+    justify-content: center;
+    
 }
 
 .solucionTarjetaProblema {

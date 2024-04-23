@@ -9,13 +9,16 @@ const Timer = () => {
   const [time, setTime] = useState(0);
 
   // state to check stopwatch running or not
-  const [isRunning, setIsRunning] = useState(false);
+  const [isRunning, setIsRunning] = useState(true);
 
   useEffect(() => {
     let intervalId;
     if (isRunning) {
       // setting time from 0 to 1 every 10 milisecond using javascript setInterval method
       intervalId = setInterval(() => setTime(time + 1), 10);
+      if (time === 1000){
+        setIsRunning(false)
+      }
     }
     return () => clearInterval(intervalId);
   }, [isRunning, time]);
@@ -33,14 +36,15 @@ const Timer = () => {
   const milliseconds = time % 100;
 
   // Method to start and stop timer
-  const startAndStop = () => {
-    setIsRunning(!isRunning);
-  };
+  // const startAndStop = () => {
+  //   setIsRunning(!isRunning);
+  // };
 
   // Method to reset timer back to 0
-  const reset = () => {
-    setTime(0);
-  };
+  // const reset = () => {
+  //   setTime(0);
+  // };
+
   return (
     <div className="stopwatch-container">
       <p className="stopwatch-time">
@@ -49,12 +53,12 @@ const Timer = () => {
         {milliseconds.toString().padStart(2, "0")}
       </p>
       <div className="stopwatch-buttons">
-        <button className="stopwatch-button" onClick={startAndStop}>
+        {/* <button className="stopwatch-button" onClick={startAndStop}>
           {isRunning ? "Stop" : "Start"}
-        </button>
-        <button className="stopwatch-button" onClick={reset}>
+        </button> */}
+        {/* <button className="stopwatch-button" onClick={reset}>
           Reset
-        </button>
+        </button> */}
       </div>
     </div>
   );
