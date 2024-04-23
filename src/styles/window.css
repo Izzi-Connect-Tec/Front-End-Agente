@@ -1,11 +1,11 @@
 .window{
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
 }
 
 .titulo{
     font-style: bold;
-    border: 1px solid black;
+    border: 10px solid black;
 }
 
 .stats{
