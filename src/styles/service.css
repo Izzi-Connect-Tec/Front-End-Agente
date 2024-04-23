@@ -1,34 +1,35 @@
 .service {
     display: flex;
     flex-direction: column;
+    height: 100vh; /* Ocupa toda la altura de la pantalla */
 }
 
-.titulo{
-    font-style: bold;
+.titulo {
+    font-weight: bold;
     border: 5px solid black;
 }
 
+.service-div {
+    display: flex;
+    flex-grow: 1; /* Para que ocupe todo el espacio disponible */
+    flex-direction: column;
+}
+
 .tarjetaProblema {
+    flex-grow: 3; /* Ocupa el 75% del espacio disponible */
     display: flex;
     flex-direction: column;
     border: 1px solid #000;
-    column-gap: 38px;
+    gap: 20px; /* Espacio entre elementos */
+    padding: 20px; /* Añade un poco de espacio interior */
 }
 
 .botones {
-    border: 1px solid #000;
+    flex-grow: 1; /* Ocupa el 25% restante del espacio disponible */
     display: flex;
-    flex-direction: row;
-    gap: 2rem;
-    justify-content: center;
-    
+    flex-direction: column;
+    gap: 20px; /* Espacio entre botones */
+    border: 1px solid #000;
+    padding: 10px; /* Añade un poco de espacio interior */
 }
 
-.solucionTarjetaProblema {
-    display: flex;
-    flex-direction: row;
-    margin: auto;
-    gap: 1.5rem;
-    margin-top: 2rem;
-    margin-bottom: 2rem;
-}

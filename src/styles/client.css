@@ -1,4 +1,17 @@
-.titulo{
-    font-style: bold;
+.client-container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh; /* Asegura que el contenedor ocupe toda la altura de la ventana */
+}
+
+.titulo {
+    font-weight: bold;
     border: 5px solid black;
+}
+
+.client-div {
+    flex-grow: 1; /* Permite que client-div ocupe todo el espacio restante */
+    overflow-y: auto; /* Permite el desplazamiento si el contenido excede la altura disponible */
+    padding: 10px;
+    border: 1px solid #000; /* Estilo opcional para el borde */
 }

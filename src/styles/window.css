@@ -1,21 +1,11 @@
 .window{
     display: flex;
     flex-direction: row;
+    min-height: 100vh;
+
 }
 
-.stats{
-    margin: 10px 10px;
+.window > div {
+    flex: 1; 
+    margin: 5px;
 }
-
-.client{
-    margin: 10px 10px;
-}
-
-.service{
-    margin: 10px 10px;
-}
-
-.solutions{
-    margin: 10px 10px;
-}
-
