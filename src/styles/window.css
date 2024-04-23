@@ -3,11 +3,6 @@
     flex-direction: row;
 }
 
-.titulo{
-    font-style: bold;
-    border: 10px solid black;
-}
-
 .stats{
     margin: 10px 10px;
 }

@@ -2,7 +2,11 @@
 
 const Client = (props) => {
     return (
-        <div></div>
+        <div>
+            <div className="titulo">
+                <h2>Cliente</h2>
+            </div>
+        </div>
     );
 }
 
