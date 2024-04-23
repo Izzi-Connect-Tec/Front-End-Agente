@@ -1,0 +1,21 @@
+.service {
+    display: flex;
+    flex-direction: column;
+}
+
+.tarjetaProblema {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #000;
+    border-radius: 10px;
+}
+
+.botones {
+    color: blue;
+    border: 1px solid #000;
+    border-radius: 10px;
+}
+
+.btnSupervisor {
+    color: red;
+}
