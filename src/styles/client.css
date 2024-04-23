@@ -2,3 +2,10 @@
     font-style: bold;
     border: 5px solid black;
 }
+
+.client-div{
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #000;
+    column-gap: 38px;
+}
