@@ -1,0 +1,26 @@
+.window{
+    display: flex;
+    flex-direction: column;
+}
+
+.titulo{
+    font-style: bold;
+    border: 1px solid black;
+}
+
+.stats{
+    margin: 10px 10px;
+}
+
+.client{
+    margin: 10px 10px;
+}
+
+.service{
+    margin: 10px 10px;
+}
+
+.solutions{
+    margin: 10px 10px;
+}
+
