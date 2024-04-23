@@ -1,9 +1,17 @@
 .stats{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     margin: 10px 10px;
+}
+
+.titulo{
+    font-style: bold;
+    border: 5px solid black;
 }
 
 .stats-div{
     display: flex;
+    flex-direction: column;
+    border: 1px solid #000;
+    border-radius: 10px;
 }

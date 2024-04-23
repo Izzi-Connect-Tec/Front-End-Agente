@@ -2,7 +2,11 @@
 
 const Solutions = (props) => {
     return (
-        <div></div>
+        <div>
+            <div className="titulo">
+                <h2>Soluciones</h2>
+            </div>
+        </div>
     );
 }
 
