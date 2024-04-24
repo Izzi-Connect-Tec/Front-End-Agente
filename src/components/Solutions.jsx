@@ -7,7 +7,7 @@ import Button from "@mui/material/Button";
 const Solutions = (props) => {
   return (
     <div className="solutions">
-      <div className="title">
+      <div className="titulo">
         <h2>Soluciones</h2>
       </div>
       <div className="solutions-div">

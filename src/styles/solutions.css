@@ -4,9 +4,9 @@
     height: 100vh; /* Ocupa toda la altura de la pantalla */
 }
 
-.title{
+.titulo{
     font-style: bold;
-    border: 5px solid black;
+    border: 2px solid black;
 }
 
 .solutions-div {

@@ -13,13 +13,12 @@ const Service = (props) => {
       <div className="service-div">
         <div className="tarjetaProblema">
           <Card variant="outlined">
-            <h2>Problema</h2>
+            <p className="problemas">Problema</p>
             <p>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam vel
               leo ac nulla accumsan sollicitudin. Donec pellentesque nisl et
               nunc malesuada sollicitudin. Integer pharetra iaculis elit, vel
-              dictum tortor vehicula ac. Phasellus sagittis erat sed dolor
-              pellentesque pellentesque
+              dictum tortor vehicula ac.
             </p>
           </Card>
           <div className="solucionTarjetaProblema">
