@@ -6,12 +6,16 @@
 
 .titulo {
     font-weight: bold;
-    border: 2px solid black;
 }
 
 .client-div {
     flex-grow: 1; /* Permite que client-div ocupe todo el espacio restante */
     overflow-y: auto; /* Permite el desplazamiento si el contenido excede la altura disponible */
     padding: 10px;
-    border: 1px solid #000; /* Estilo opcional para el borde */
+    border-radius: 20px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-left: 5px;
+    margin-right: 5px;
+    background-color: dimgrey;
 }
