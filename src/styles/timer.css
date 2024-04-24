@@ -4,6 +4,11 @@
     font-size: 20px;
 }
 
+.stopwatch-container{
+    margin-top: 1px;
+    margin-bottom: 0;
+}
+
 .stopwatch-buttons {
     display: flex;
     justify-content: center;

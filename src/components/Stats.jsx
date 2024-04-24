@@ -12,24 +12,29 @@ const Stats = (props) => {
       </div>
       <div className="stats-div">
         <div className="sentiment-div">
-          <text>Sentimiento en la llamada.</text>
+          <p>Llamada en curso</p>
+          <div text-align="center">
+            <Timer />
+          </div>
+          <p>Sentimiento en la llamada actual.</p>
           <LinearProgress variant="determinate" value={60} />
-          <text>Llamada en curso</text>
-          <Timer />
-          <text>Cantidad llamadas en el día:</text>
-          <text>5</text>
+          <p>Cantidad llamadas en el día:<br/>
+          5</p>
         </div>
         <div className="prom-div">
-          <text>Calificación promedio: 4.5</text>
-          <Rating
-            name="half-rating-read"
-            defaultValue={4.5}
-            precision={0.5}
-            readOnly
-          />
-          <text>Promedio de sentimiento en llamada.</text>
+          <p>Calificación promedio: 4.5</p>
+          <div text-align="center">
+            <Rating 
+              name="half-rating-read"
+              defaultValue={4.5}
+              precision={0.5}
+              readOnly
+            />
+          </div>
+          <p>Promedio de sentimiento en llamada.</p>
           <LinearProgress variant="determinate" value={60} />
-          <text>Promedio de tiempo de atención.</text>
+          <p>Promedio de tiempo de atención:<br/>
+          9 min 20 seg</p>
         </div>
       </div>
     </div>
