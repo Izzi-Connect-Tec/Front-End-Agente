@@ -16,7 +16,7 @@ const Solutions = (props) => {
           <TextSolution solution="Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa." />
         </div>
         <div className="botones-solutions">
-          <Button style={{ backgroundColor: '#FFCE00', color: 'black' }} variant="outlined">
+          <Button style={{ backgroundColor: '#FFCE00', color: 'black' }} variant="contained" size="large">
             Terminar llamada
           </Button>
         </div>

@@ -29,10 +29,26 @@ const Service = (props) => {
             />
           </div>
         </div>
-        <div className="botones">
-          <Button variant="contained">Ayuda soporte</Button>
-          <Button variant="contained">Reporte</Button>
-          <Button variant="contained" color="error">
+        <div className="botones-service">
+          <Button
+            style={{ backgroundColor: "#D7006D", color: "white" }}
+            variant="contained"
+            size="large"
+          >
+            Ayuda soporte
+          </Button>
+          <Button
+            style={{ backgroundColor: "#D7006D", color: "white" }}
+            variant="contained"
+            size="large"
+          >
+            Reporte
+          </Button>
+          <Button
+            style={{ backgroundColor: "#D7006D", color: "white" }}
+            variant="contained"
+            size="large"
+          >
             Ayuda supervisor
           </Button>
         </div>
