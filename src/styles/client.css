@@ -4,13 +4,20 @@
     height: 100vh; /* Asegura que el contenedor ocupe toda la altura de la ventana */
 }
 
-.titulo {
+.titulo-cliente {
     font-weight: bold;
+    background-color: #EC6907;
+    border-radius: 20px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-left: 5px;
+    margin-right: 5px;
 }
 
 .client-div {
-    flex-grow: 1; /* Permite que client-div ocupe todo el espacio restante */
-    overflow-y: auto; /* Permite el desplazamiento si el contenido excede la altura disponible */
+    flex: 1; /* Cada uno toma la mitad del espacio disponible en .stats-div */
+    display: flex;
+    flex-direction: column;
     padding: 10px;
     border-radius: 20px;
     margin-top: 5px;

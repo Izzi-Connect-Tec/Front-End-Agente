@@ -7,7 +7,7 @@ import Button from "@mui/material/Button";
 const Solutions = (props) => {
   return (
     <div className="solutions">
-      <div className="titulo">
+      <div className="titulo-soluciones">
         <h2>Soluciones</h2>
       </div>
       <div className="solutions-div">
@@ -15,9 +15,9 @@ const Solutions = (props) => {
           <TextSolution solution="Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa." />
           <TextSolution solution="Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa." />
         </div>
-        <div className="botones">
-          <Button variant="outlined" color="error">
-            TErminar llamada
+        <div className="botones-solutions">
+          <Button style={{ backgroundColor: '#FFCE00', color: 'black' }} variant="outlined">
+            Terminar llamada
           </Button>
         </div>
       </div>

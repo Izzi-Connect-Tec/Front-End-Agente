@@ -6,11 +6,12 @@
     margin-bottom: 10px;
     margin-left: 10px;
     margin-right: 10px;
-    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-family: 'Century Gothic';
 }
 
 body{
-    background-color: #898989;
+    background-color: #FFF;
+    color: #FFF;
 }
 
 .window > div {

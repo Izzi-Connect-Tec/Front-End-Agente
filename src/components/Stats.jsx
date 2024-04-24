@@ -7,7 +7,7 @@ import Timer from "./Timer";
 const Stats = (props) => {
   return (
     <div className="stats">
-      <div className="titulo">
+      <div className="titulo-stats">
         <h2>Estadísticas</h2>
       </div>
       <div className="stats-div">

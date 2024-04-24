@@ -7,7 +7,7 @@ import TextField from "@mui/material/TextField";
 const Service = (props) => {
   return (
     <div className="service">
-      <div className="titulo">
+      <div className="titulo-service">
         <h2>Servicio</h2>
       </div>
       <div className="service-div">
@@ -30,9 +30,9 @@ const Service = (props) => {
           </div>
         </div>
         <div className="botones">
-          <Button variant="outlined">Ayuda soporte</Button>
-          <Button variant="outlined">Reporte</Button>
-          <Button variant="outlined" color="error">
+          <Button variant="contained">Ayuda soporte</Button>
+          <Button variant="contained">Reporte</Button>
+          <Button variant="contained" color="error">
             Ayuda supervisor
           </Button>
         </div>

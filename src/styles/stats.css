@@ -4,9 +4,9 @@
     height: 100vh; /* Asegura que el contenedor .stats ocupe toda la altura de la ventana */
 }
 
-.titulo {
+.titulo-stats {
     font-weight: bold;
-    background-color: rgb(237, 142, 83);
+    background-color: #EC6907;
     border-radius: 20px;
     margin-top: 5px;
     margin-bottom: 5px;
