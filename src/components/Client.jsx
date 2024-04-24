@@ -4,7 +4,7 @@ import "../styles/client.css"
 const Client = (props) => {
     return (
         <div className="client-container">
-            <div className="titulo">
+            <div className="titulo-cliente">
                 <h2>Cliente</h2>
             </div>
             <div className="client-div">
