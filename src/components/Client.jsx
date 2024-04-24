@@ -1,5 +1,7 @@
 // Container with the description and information of the client
 import "../styles/client.css"
+import FolderList from "./HistorialCliente";
+
 
 const Client = (props) => {
     return (
@@ -11,12 +13,13 @@ const Client = (props) => {
                 <p>Nombre: Joahan Lecona</p>
                 <p>Localidad: Atizapan de Zaragoza</p>
                 <p>Plan contratado: Izzi Basic $150</p>
-                <p>Historial de atención:</p>
-                <ul>
+                <h2>Historial de atención:</h2>
+                {/* <ul>
                     <li>Problemas con internet.</li>
                     <li>Sin señal</li>
                     <li>Problemas con internet.</li>
-                </ul>
+                </ul> */}
+                <FolderList/>
             </div>
         </div>
     );
