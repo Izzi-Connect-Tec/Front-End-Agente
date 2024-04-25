@@ -20,7 +20,10 @@ const Solutions = (props) => {
           <TextSolution/>
         </div>
         <div className="botones-solutions">
-          <Button style={{ backgroundColor: '#FFCE00', color: 'black' }} variant="contained" size="large">
+        <Button style={{ backgroundColor: '#FFCE00', color: 'black' }} variant="contained">
+            Poner en espera
+          </Button>
+          <Button style={{ backgroundColor: '#FFCE00', color: 'black' }} variant="contained">
             Terminar llamada
           </Button>
         </div>
