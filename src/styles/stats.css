@@ -1,6 +1,7 @@
 .stats {
     display: flex;
     flex-direction: column;
+    color: black;
     height: 100vh; /* Asegura que el contenedor .stats ocupe toda la altura de la ventana */
 }
 
@@ -30,5 +31,6 @@
     margin-bottom: 5px;
     margin-left: 5px;
     margin-right: 5px;
-    background-color: dimgrey;
+    border: 3px solid #EC6907;
+    align-items: center;
 }
