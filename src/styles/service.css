@@ -56,3 +56,21 @@
     border: 3px solid #D7006D;
 }
 
+
+.demo {
+      /* Estilos base del botón */
+  background-color: #007bff;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease; /* Transición suave */
+
+  /* Estilos para el efecto hover */
+}
+
+/* Increase the specificity */
+.demo:hover {
+    background-color: white;
+  }
