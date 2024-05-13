@@ -8,9 +8,6 @@ import Solutions from "./Solutions";
 const Window = (props) => {
     return (
         <div className="window">
-            <div className="stats">
-                <Stats/>
-            </div>
             <div className="client">
                 <Client/>
             </div>

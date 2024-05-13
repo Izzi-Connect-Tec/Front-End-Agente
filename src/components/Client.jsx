@@ -1,6 +1,7 @@
 // Container with the description and information of the client
 import "../styles/client.css";
 import FolderList from "./HistorialCliente";
+import Stats from "./Stats";
 
 const Client = (props) => {
   return (
@@ -12,6 +13,9 @@ const Client = (props) => {
         <p>Nombre: Joahan Lecona</p>
         <p>Localidad: Atizapan de Zaragoza</p>
         <p>Plan contratado: Izzi Basic $150</p>
+      </div>
+      <div>
+        <Stats/>
       </div>
       <div className="historial-div">
         <FolderList />

@@ -3,6 +3,8 @@ import "../styles/service.css";
 import Button from "@mui/material/Button";
 import Card from "@mui/material/Card";
 import TextField from "@mui/material/TextField";
+import FormDialog from "./Reporte";
+
 
 const Service = (props) => {
   return (
@@ -31,26 +33,40 @@ const Service = (props) => {
         </div>
         <div className="botones-service">
           <Button
-            style={{ backgroundColor: "#D7006D", color: "white" }}
             variant="contained"
             size="large"
+            sx = {{
+                backgroundColor: "#D7006D",
+                color: "white",
+                transition: 'background-color 0.3s ease, color 0.3s ease',
+                '&:hover': {
+                    background:'white',
+                    color: '#D7006D',
+                    border: '2px solid #D7006D',
+                    transition: 'background-color 0.3s ease, color 0.3s ease'
+                },
+            }}
           >
             Ayuda soporte
           </Button>
           <Button
-            style={{ backgroundColor: "#D7006D", color: "white" }}
-            variant="contained"
-            size="large"
-          >
-            Reporte
-          </Button>
-          <Button
-            style={{ backgroundColor: "#D7006D", color: "white" }}
+            sx = {{
+              backgroundColor: "#D7006D",
+              color: "white",
+              transition: 'background-color 0.3s ease, color 0.3s ease',
+              '&:hover': {
+                  background:'white',
+                  color: '#D7006D',
+                  border: '2px solid #D7006D',
+                  transition: 'background-color 0.3s ease, color 0.3s ease'
+              },
+            }}
             variant="contained"
             size="large"
           >
             Ayuda supervisor
           </Button>
+          <FormDialog/>
         </div>
       </div>
     </div>
