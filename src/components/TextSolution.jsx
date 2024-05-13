@@ -15,18 +15,15 @@ export const TextSolution = () => {
     <Box
       elevation={2}
       sx={{
-        display: "flex",
-        flexWrap: "wrap",
-        gap: "10px",
         "& > :not(style)": {
           m: 1,
-          width: 300,
-          height: 110,
+          width: '100%',
+          height: 'auto',
         },
       }}
     >
       <Item key={1} elevation={10}>
-        Reiniciar el módem con la configuración del manual determinada no sé qué más decir aquí jajaja
+        Reiniciar el módem con la configuración del manual determinada no sé qué más decir aquí jajajavsddd
       </Item>
     </Box>
   );

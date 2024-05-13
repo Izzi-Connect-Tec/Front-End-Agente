@@ -7,7 +7,7 @@
 .titulo-soluciones{
     font-style: bold;
     font-weight: bold;
-    background-color: #FFCE00;
+    background-image: linear-gradient(0deg, rgba(193, 156, 11, 1) 0%, rgba(255, 206, 0, 1) 100%);
     border-radius: 20px;
     margin-top: 5px;
     margin-bottom: 5px;
