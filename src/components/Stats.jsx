@@ -25,11 +25,7 @@ const Stats = (props) => {
     <div className="stats">
       <div className="stats-div">
         <div className="sentiment-div">
-          <p>Llamada en curso</p>
-          <div text-align="center">
-            <Timer />
-          </div>
-          <p>Sentimiento en la llamada actual.</p>
+          <p style={{backgroundColor: "black"}}>Sentimiento en la llamada actual.</p>
           <GradientCircularProgress variant="determinate" value={90} />
         </div>
       </div>
