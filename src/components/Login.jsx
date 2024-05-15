@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import "../styles/login.css";
 import giphy from "../elements/pinkdots.gif";
 import logo from "../elements/izziN.png";
 
 const Login = () => {
+  const navigate = useNavigate();
   const [showLogin, setShowLogin] = useState(false);
   const [gifLoaded, setGifLoaded] = useState(false);
   const [username, setUsername] = useState("");
@@ -22,6 +24,12 @@ const Login = () => {
     };
     img.src = giphy;
   }, []);
+
+  const handleLogin = (e) => {
+    e.preventDefault();
+    // Aquí va lo de verificación
+    navigate("/window");
+  };
 
   return (
     <div className="login-container">
@@ -42,7 +50,7 @@ const Login = () => {
         </div>
         <p className="txt">Ingrese sus credenciales para accesar.</p>
         <div className="formdiv">
-          <form className="form" align="center">
+          <form className="form" align="center" onSubmit={handleLogin}>
             <input
               className="input"
               type="text"
