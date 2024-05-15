@@ -22,6 +22,8 @@
   display: flex;
   flex-grow: 1; /* Para que ocupe todo el espacio disponible */
   flex-direction: column;
+  justify-content: end;
+  color: white;
 }
 
 .tarjetaProblema {
@@ -33,6 +35,8 @@
   border-radius: 20px;
   margin: 5px;
   border: 3px solid #d7006d;
+  overflow: auto;
+  
 }
 
 .problemas {
