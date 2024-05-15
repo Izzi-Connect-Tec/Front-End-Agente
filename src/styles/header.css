@@ -18,7 +18,7 @@ body {
   flex-direction: row;
 }
 
-.logo {
+.logoH {
   width: 100px;
 }
 
@@ -27,7 +27,7 @@ body {
   font-weight: bold;
 }
 
-.button {
+.buttonH {
   width: 150px;
   height: 40px;
   background: transparent;
@@ -44,7 +44,7 @@ body {
   font-weight: bold;
 }
 
-.button:hover {
+.buttonH:hover {
   text-align: center;
   color: #ffff;
   background-color: #ffffff33;

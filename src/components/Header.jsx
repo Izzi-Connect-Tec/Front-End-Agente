@@ -6,12 +6,12 @@ import { RiLogoutCircleRLine } from "react-icons/ri";
 const Header = (props) => {
   return (
     <header className="header">
-      <img src={logo} alt="Company Logo" className="logo" />
+      <img src={logo} alt="Company Logo" className="logoH" />
       <div className="divB"></div>
       <div>
         <nav>
-          <button className="button">Estadísticas</button>
-          <button className="button">Llamada</button>
+          <button className="buttonH">Estadísticas</button>
+          <button className="buttonH">Llamada</button>
         </nav>
       </div>
       <div>
