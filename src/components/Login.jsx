@@ -6,6 +6,8 @@ import logo from "../elements/izziN.png";
 const Login = () => {
   const [showLogin, setShowLogin] = useState(false);
   const [gifLoaded, setGifLoaded] = useState(false);
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
 
   useEffect(() => {
     setTimeout(() => {
@@ -42,28 +44,30 @@ const Login = () => {
         <div className="formdiv">
           <form className="form" align="center">
             <input
-              align="center"
               className="input"
               type="text"
               placeholder="Usuario"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
               disabled={!showLogin || !gifLoaded}
             />
             <input
-              align="center"
               className="input"
               type="password"
               placeholder="Contraseña"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
               disabled={!showLogin || !gifLoaded}
-            /><button
-            className="button"
-            type="submit"
-            disabled={!showLogin || !gifLoaded}
-          >
-            Iniciar Sesión
-          </button>
+            />
+            <button
+              className="button"
+              type="submit"
+              disabled={!showLogin || !gifLoaded}
+            >
+              Iniciar Sesión
+            </button>
           </form>
         </div>
-        
       </div>
     </div>
   );

@@ -61,7 +61,6 @@
 .formdiv {
   display: flex;
   justify-content: center;
-  /* Eliminar align-items: center; */
 }
 
 .button {
@@ -80,7 +79,6 @@
   color: rgb(255, 255, 255);
   cursor: pointer;
   text-align: center;
-  /* Centrar horizontalmente el botón */
   margin: 0 auto;
 }
 
