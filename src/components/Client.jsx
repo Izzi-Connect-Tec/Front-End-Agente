@@ -5,18 +5,14 @@ import TextField from "@mui/material/TextField";
 
 const Client = (props) => {
   return (
-    <div className="client-container">
+    <div className="client">
       <div className="titulo-cliente">
         <h2>Cliente</h2>
       </div>
       <div className="client-div">
-      <div className="solucionTarjetaProblema">
-            <TextField
-              id="outlined-basic"
-              label="Solucion"
-              variant="outlined"
-            />
-          </div>
+        <div className="solucionTarjetaProblema">
+          <TextField id="outlined-basic" label="Solucion" variant="outlined" />
+        </div>
         <p>Nombre: Joahan Lecona</p>
         <p>Localidad: Atizapan de Zaragoza</p>
         <p>Plan contratado: Izzi Basic $150</p>
