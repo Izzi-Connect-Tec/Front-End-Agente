@@ -34,9 +34,6 @@ const Solutions = (props) => {
           {data.map ((solution) => (
             <TextSolution key={solution.id} tituloSolucion={solution.name}/>
           ))}
-          <TextSolution/>
-          <TextSolution/>
-          <TextSolution/>
         </div>
         <div className="botones-solutions">
           <FormDialog/>

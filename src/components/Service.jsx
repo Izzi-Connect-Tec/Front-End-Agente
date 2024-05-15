@@ -13,15 +13,12 @@ const Service = (props) => {
         <h2>Servicio</h2>
       </div>
       <div className="service-div">
-        <EmbedConnect/>
         <div className="tarjetaProblema">
+          <EmbedConnect/>
           <Card variant="outlined">
             <p className="problemas">Problema</p>
             <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam vel
-              leo ac nulla accumsan sollicitudin. Donec pellentesque nisl et
-              nunc malesuada sollicitudin. Integer pharetra iaculis elit, vel
-              dictum tortor vehicula ac.
+              No tengo conexión a internet.
             </p>
           </Card>
           <div>
