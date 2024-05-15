@@ -11,14 +11,14 @@ const Window = (props) => {
     <div>
       <Header />
       <div className="window">
+      <div className="solutions">
+          <Solutions />
+        </div>
         <div className="client">
           <Client />
         </div>
         <div className="service">
           <Service />
-        </div>
-        <div className="solutions">
-          <Solutions />
         </div>
       </div>
     </div>

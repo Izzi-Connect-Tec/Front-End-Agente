@@ -12,6 +12,7 @@ import Step from '@mui/material/Step';
 import StepLabel from '@mui/material/StepLabel';
 import { useState } from "react";
 import Typography from '@mui/material/Typography';
+import {motion} from 'framer-motion';
 
 //MOVERLO A DIFERENTES COMPONENTES
 
@@ -23,7 +24,7 @@ const Item = styled(Paper)(({ theme }) => ({
   height: "auto", // Ajusta la altura para que se ajuste al contenido
 }));
 
-export const TextSolution = () => {
+export const TextSolution = ({id, tituloSolucion}) => {
 
   const [open, setOpen] = useState(false);
 
@@ -85,6 +86,7 @@ export const TextSolution = () => {
 
   return (
     <div>
+      <motion.div initial={{opacity: 0}} animate={{opacity:1}} whileHover={{ scale: 1.05 }}>
       <Box
         onClick={handleClickOpen}
         elevation={2}
@@ -108,9 +110,10 @@ export const TextSolution = () => {
         }}
       >
         <Item key={1} elevation={10}>
-          Reiniciar el módem con la opción de botón manual de reset.
+          {tituloSolucion}
         </Item>
       </Box>
+      </motion.div>
       <Dialog
       open={open}
       onClose={handleClose}
