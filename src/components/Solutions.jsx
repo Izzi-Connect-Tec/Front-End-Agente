@@ -2,7 +2,11 @@
 
 import {TextSolution} from "./TextSolution";
 import "../styles/solutions.css";
+import Button from "@mui/material/Button";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import FormDialog from "./Reporte";
+
 
 const data = [
   {
@@ -24,6 +28,22 @@ const data = [
 
 
 const Solutions = (props) => {
+
+  const [show, setShow] = useState(false);
+  const [info, setinfo] = useState();
+
+  const variants = {
+    visible: {
+      scale: 1.5,
+      boxShadow: "10px 10px 0 rgba(0, 0, 0, 0.2)",
+      y: -50,
+      x: -100,
+      cursor: "pointer",
+      transition: { duration: 1, type: "spring" },
+    },
+    hidden: { scale: 1, opacity: 0 },
+  };
+
   return (
     <div className="solutions">
       <div className="titulo-soluciones">
