@@ -55,7 +55,7 @@ import '../styles/calificacion.css';
 import Card from 'react-bootstrap/Card';
 import StarRating from './StarRating';
 import ProfilePhoto from './ProfilePicture'; 
-import izziImage from '../styles/izzi.jpeg';
+import izziImage from '../elements/izzi.jpeg';
 import AgentRankingChart from './AgentRankingChart'; // Importamos el componente de la gráfica
 import Header from './Header';
 
