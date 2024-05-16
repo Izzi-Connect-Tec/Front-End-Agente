@@ -1,4 +1,3 @@
-import React from "react";
 import "../styles/header.css";
 import logo from "../elements/izziN.png";
 import { RiLogoutCircleRLine } from "react-icons/ri";
