@@ -8,7 +8,7 @@ import WarningIcon from '@mui/icons-material/Warning';
 
 export default function FolderList() {
   return (
-    <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
+    <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper', fontfamily: "futura" }}>
         <h2>HISTORIAL DE ATENCION:</h2>
       <ListItem>
         <ListItemAvatar>

@@ -1,0 +1,64 @@
+body {
+  font-family: "Century Gothic", "Futura";
+}
+
+.header {
+  background: linear-gradient(
+    90deg,
+    rgb(209, 32, 115) 0.41%,
+    rgb(226, 108, 163) 40.68%,
+    rgb(234, 168, 121) 64.12%,
+    rgb(255, 137, 53) 97.82%
+  );
+  padding: 10px 20px;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+}
+
+.logoH {
+  width: 100px;
+}
+
+.divB {
+  margin-left: 500px;
+  font-weight: bold;
+}
+
+.buttonH {
+  width: 150px;
+  height: 40px;
+  background: transparent;
+  border: 0;
+  border-radius: 15px;
+  line-height: 10px;
+  padding: 10px 10px 10px 10px;
+  appearance: none;
+  color: rgb(255, 255, 255);
+  cursor: pointer;
+  text-align: center;
+  margin: 0px;
+  font-family: "Century Gothic", "Futura";
+  font-weight: bold;
+}
+
+.buttonH:hover {
+  text-align: center;
+  color: #ffff;
+  background-color: #ffffff33;
+}
+
+.logOut {
+  font-size: 1.4rem;
+  background-color: transparent;
+  border: 0;
+  color: aliceblue;
+  cursor: pointer;
+  margin-top: 5px;
+}
+
+.bienv {
+  color: #ffffff;
+}
