@@ -4,7 +4,9 @@ import Window from './components/Window';
 import Login from './components/Login';
 import Calificacion from './components/Calificacion';
 
-function App() {
+
+function App() { 
+
   return (
     <Router>
       <div className="App">
