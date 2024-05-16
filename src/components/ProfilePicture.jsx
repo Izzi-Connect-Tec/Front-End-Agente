@@ -1,6 +1,7 @@
 //Intento de poner la foto de perfil del agente
 
 import izziImage from '../styles/izzi.jpeg';
+
 const ProfilePhoto = ({ photoUrl }) => {
   //dummy
   const defaultPhotoUrl = izziImage;

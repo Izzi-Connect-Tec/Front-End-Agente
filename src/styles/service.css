@@ -1,64 +1,64 @@
 .service {
-    display: flex;
-    flex-direction: column;
-    height: 100vh; /* Ocupa toda la altura de la pantalla */
+  flex: 1; /* Ocupa todo el espacio disponible */
+  display: flex;
+  flex-direction: column;
+  color: black;
+  height: 100%;
+  width: 100%;
 }
 
 .titulo-service {
-    font-weight: bold;
-    background-color: #D7006D;
-    border-radius: 20px;
-    margin-top: 5px;
-    margin-bottom: 5px;
-    margin-left: 5px;
-    margin-right: 5px;
+  font-weight: bold;
+  background-image: linear-gradient(
+    0deg,
+    rgba(153, 0, 77, 1) 0%,
+    rgba(215, 0, 109, 1) 100%
+  );
+  border-radius: 20px;
+  margin: 5px;
 }
 
 .service-div {
-    display: flex;
-    flex-grow: 1; /* Para que ocupe todo el espacio disponible */
-    flex-direction: column;
-    
+  display: flex;
+  flex-grow: 1; /* Para que ocupe todo el espacio disponible */
+  flex-direction: column;
+  justify-content: end;
+  color: white;
 }
 
 .tarjetaProblema {
-    flex-grow: 3; /* Ocupa el 75% del espacio disponible */
-    display: flex;
-    flex-direction: column;
-    gap: 20px; /* Espacio entre elementos */
-    padding: 20px; /* Añade un poco de espacio interior */
-    border-radius: 20px;
-    margin-top: 5px;
-    margin-bottom: 5px;
-    margin-left: 5px;
-    margin-right: 5px;
-    border: 3px solid #D7006D;
+  flex-grow: 3; /* Ocupa el 75% del espacio disponible */
+  display: flex;
+  flex-direction: column;
+  gap: 20px; /* Espacio entre elementos */
+  padding: 20px; /* Añade un poco de espacio interior */
+  border-radius: 20px;
+  margin: 5px;
+  border: 3px solid #d7006d;
+  overflow: auto;
+  
 }
 
-.problemas{
-    font-size: 20px;
-    font-style: bold;
-    font-weight: bold;
+.problemas {
+  font-size: 20px;
+  font-style: bold;
+  font-weight: bold;
 }
 
 .botones-service {
-    flex-grow: 1; /* Ocupa el 25% restante del espacio disponible */
-    display: flex;
-    flex-direction: column;
-    gap: 20px; /* Espacio entre botones */
-    padding: 10px; /* Añade un poco de espacio interior */
-    border-radius: 20px;
-    margin-top: 5px;
-    margin-bottom: 5px;
-    margin-left: 5px;
-    margin-right: 5px;
-    justify-content: center;
-    border: 3px solid #D7006D;
+  flex-grow: 1; /* Ocupa el 25% restante del espacio disponible */
+  display: flex;
+  flex-direction: column;
+  gap: 20px; /* Espacio entre botones */
+  padding: 10px; /* Añade un poco de espacio interior */
+  border-radius: 20px;
+  margin: 5px;
+  border: 3px solid #d7006d;
+  justify-content: center;
 }
 
-
 .demo {
-      /* Estilos base del botón */
+  /* Estilos base del botón */
   background-color: #007bff;
   color: white;
   padding: 10px 20px;
@@ -66,11 +66,9 @@
   border: none;
   cursor: pointer;
   transition: background-color 0.3s ease; /* Transición suave */
-
-  /* Estilos para el efecto hover */
 }
 
 /* Increase the specificity */
 .demo:hover {
-    background-color: white;
-  }
+  background-color: white;
+}

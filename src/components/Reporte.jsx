@@ -6,6 +6,10 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
+import BasicSelect from './Prioridad';
+import Alert from '@mui/material/Alert';
+import CheckIcon from '@mui/icons-material/Check';
+
 
 export default function FormDialog() {
   const [open, setOpen] = React.useState(false);
@@ -17,6 +21,14 @@ export default function FormDialog() {
   const handleClose = () => {
     setOpen(false);
   };
+
+  const alert = () => {
+    return (
+      <Alert icon={<CheckIcon fontSize="inherit" />} severity="success">
+      Here is a gentle confirmation that your action was successful.
+      </Alert>
+    );
+  }
 
   return (
     <React.Fragment>
@@ -63,7 +75,7 @@ export default function FormDialog() {
             required
             margin="dense"
             id="name"
-            name="email"
+            // name="email"
             label="Descripción del reporte"
             type="text"
             fullWidth
@@ -71,21 +83,12 @@ export default function FormDialog() {
           />
         </DialogContent>
         <DialogContent>
-          <TextField
-            autoFocus
-            required
-            margin="dense"
-            id="name"
-            name="email"
-            label="No se"
-            type="text"
-            fullWidth
-            variant="standard"
-          />
+          <BasicSelect/>
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Cancelar</Button>
           <Button type="submit">Enviar</Button>
+          {alert()}
         </DialogActions>
       </Dialog>
     </React.Fragment>
