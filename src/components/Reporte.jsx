@@ -7,11 +7,13 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import BasicSelect from './Prioridad';
-import Alert from '@mui/material/Alert';
-import CheckIcon from '@mui/icons-material/Check';
+import { useAlertToggleContext } from '../Providers/AlertContext';
 
 
 export default function FormDialog() {
+
+  const toggleAlert = useAlertToggleContext();
+
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
@@ -22,13 +24,6 @@ export default function FormDialog() {
     setOpen(false);
   };
 
-  const alert = () => {
-    return (
-      <Alert icon={<CheckIcon fontSize="inherit" />} severity="success">
-      Here is a gentle confirmation that your action was successful.
-      </Alert>
-    );
-  }
 
   return (
     <React.Fragment>
@@ -87,8 +82,7 @@ export default function FormDialog() {
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Cancelar</Button>
-          <Button type="submit">Enviar</Button>
-          {alert()}
+          <Button onClick={() => toggleAlert(true)} type="submit">Enviar</Button>
         </DialogActions>
       </Dialog>
     </React.Fragment>
