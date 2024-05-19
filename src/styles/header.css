@@ -42,6 +42,7 @@ body {
   margin: 0px;
   font-family: "Century Gothic", "Futura";
   font-weight: bold;
+  transition: color, background-color 0.3s;
 }
 
 .buttonH:hover {

@@ -76,21 +76,23 @@
 
 ////////////
 
+import { useUserContext } from "../Providers/UserContext";
 import "../styles/client.css";
 import FolderList from "./HistorialCliente";
 import TextField from "@mui/material/TextField";
 import { useState, useCallback, useEffect, useRef } from "react";
 
+
+
 const Client = (props) => {
-  const entradaCliente = useRef();
+
+  const user = useUserContext();
+
+
 
   const [cliente, setCliente] = useState(""); // Valor inicial para cliente
   const [url, setUrl] = useState(""); // Valor inicial para url
   const [usuarioData, setUsuarioData] = useState(null);
-
-  const consultarCliente = () => {
-    setCliente(entradaCliente.current.value);
-  };
 
   const descargar = useCallback(async () => {
     try {
@@ -104,12 +106,20 @@ const Client = (props) => {
     }
   }, [url]);
 
+  //Mejorar lógica
+
   useEffect(() => {
-    if (cliente !== "") { // Asegurar que cliente no esté vacío antes de descargar
+    if (cliente !== "" && cliente !== null) { // Asegurar que cliente no esté vacío antes de descargar
       setUrl(`http://44.209.22.101:8080/cliente/consultarCliente/${cliente}`);
       descargar();
     }
   }, [cliente, descargar]);
+
+  useEffect(() => {
+    if(user !== null){
+      setCliente(user.name)
+    }
+  }, [user])
 
   const DatosClienteEncontrados = () => {
     return (
@@ -129,8 +139,6 @@ const Client = (props) => {
       </div>
       <div className="client-div">
         <div className="solucionTarjetaProblema">
-          <TextField id="outlined-basic" label="Solucion" variant="outlined" inputRef={entradaCliente} />
-          <button onClick={consultarCliente}>Entregar</button> {/* Llamada directa a consultarCliente */}
         </div>
         {usuarioData ? 
         <div>

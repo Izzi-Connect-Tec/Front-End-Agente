@@ -60,6 +60,7 @@ import AgentRankingChart from './AgentRankingChart'; // Importamos el componente
 import Header from './Header';
 
 const Calificacion = () => {
+
   // Dummy data
   const data = [
     { title: 'Calificación promedio', value: 5, rank: '#1 Joahan' },

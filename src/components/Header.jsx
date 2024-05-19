@@ -2,6 +2,9 @@ import "../styles/header.css";
 import logo from "../elements/izziN.png";
 import { RiLogoutCircleRLine } from "react-icons/ri";
 import { useNavigate } from "react-router-dom";
+import AccessibleBadges from "./Notificaciones";
+import TemporaryDrawer from "./NotificacionesBarra";
+
 
 const Header = (props) => {
   const navigate = useNavigate();
@@ -34,6 +37,9 @@ const Header = (props) => {
         <nav>
           <button className="buttonH" onClick={handleStats}>Estadísticas</button>
           <button className="buttonH" onClick={handleCall}>Llamada</button>
+          <button className="logOut">
+          <TemporaryDrawer/>
+          </button>
         </nav>
       </div>
       <div>
