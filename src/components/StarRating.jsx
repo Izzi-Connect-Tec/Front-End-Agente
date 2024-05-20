@@ -1,6 +1,7 @@
 //Para las estrellas de la calificación promedio del agente
 import { faStar, faStarHalfAlt } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import '../styles/starRating.css';
 
 const StarRating = ({ rating }) => {
   const stars = [];
@@ -17,7 +18,7 @@ const StarRating = ({ rating }) => {
     }
   }
 
-  return <div>{stars}</div>;
+  return <div className="star-rating">{stars}</div>;
 };
 
 export default StarRating;

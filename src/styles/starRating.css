@@ -1,0 +1,17 @@
+.star-rating {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 30px;
+    height: 100%;
+    margin-top: 25%;
+
+  }
+  
+  @media (orientation: portrait) {
+    .star-rating {
+      font-size: 15px; 
+      margin-top: 15%;
+      margin-bottom: 35%;
+    }
+  }
