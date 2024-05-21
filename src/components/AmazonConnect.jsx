@@ -1,79 +1,36 @@
-// import React, { useEffect, useRef } from 'react';
-// import "amazon-connect-streams";
-
-// const AmazonConnectCCP = () => {
-  
-//   const containerDiv = useRef(null);
-
-//   useEffect(() => {
-    
-//     const script = document.createElement('script');
-//     script.src = "https://izzibucket.s3.amazonaws.com/connect-streams-min.js";
-//     script.async = true;
-//     document.body.appendChild(script);
-
-//     script.onload = () => {
-//         const instanceURL = "https://izzi-team.my.connect.aws/ccp-v2/";
-//         connect.core.initCCP(containerDiv.current, {
-//           ccpUrl: instanceURL,
-//           loginPopup: true,
-//           loginPopupAutoClose: true,
-//           loginOptions: {
-//             autoClose: true,
-//             height: 600,
-//             width: 400,
-//             top: 0,
-//             left: 0,
-//           },
-//           region: "us-east-1",
-//           softphone: {
-//             allowFramedSoftphone: true,
-//             disableRingtone: false,
-//             ringtoneUrl: "./ringtone.mp3",
-//           },
-//           pageOptions: {
-//             enableAudioDeviceSettings: false,
-//             enablePhoneTypeSettings: true,
-//           },
-//           ccpAckTimeout: 5000,
-//           ccpSynTimeout: 3000,
-//           ccpLoadTimeout: 10000,
-//         });
-//     };
-
-//     // return () => {
-//     //   document.body.removeChild(script);
-//     // };
-//   }, []);
-
-//   return <div ref={containerDiv} style={{ width: '300px', height: '400px' }} />;
-// };
-
-// export default AmazonConnectCCP;
-
-///////////
-
 import "amazon-connect-streams";
-import { useEffect, React, useState } from "react";
-import { useUserToggleContext } from "../Providers/UserContext";
+import { useEffect, React } from "react";
+import { useUserContext } from "../Providers/AmazonContext";
 
 
 const EmbedConnect = (props) => {
 
-  const cambiaLogin = useUserToggleContext();
+  const datos = {"IdEmpleado":"2"}
 
-  const [data, setData] = useState(null);
+  const [,idCliente,,reiniciarCliente] = useUserContext();
 
-  useEffect( () => {
-    if (data) {
-      cambiaLogin(data.Tel.value)
+  const actualizarLlamada = async () => {
+    try{
+      let config = {
+        method: 'PUT',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        mode: 'cors',
+        body: JSON.stringify(datos)
+      }
+      // let res = await fetch('http://44.209.22.101:8080/llamada/actualizarLlamada/IdLlamada1', config) 
+      let res = await fetch('http://localhost:8080/llamada/actualizarLlamada/IdLlamada1', config) 
+      console.log(res)
+    } catch (error) {
+      console.log(error)
     }
-  }, [data])
+    }
+    
 
 
   //Variables to assing the call id and the status of the call
-  
-
   // Code to embed the Amazon Connect CCP
   useEffect(() => {
     const container = document.getElementById("ccp");
@@ -115,12 +72,19 @@ const EmbedConnect = (props) => {
         // console.log(cid);
         var attributeMap = contact.getAttributes();
         console.log(attributeMap);
-        setData(attributeMap);
+        idCliente(attributeMap.Tel.value)
+        actualizarLlamada();
+      });
+      contact.onEnded(function(contact) {
+        reiniciarCliente();
       });
     });
 
-    
-    
+    /* global connect */
+    connect.agent(function(agent) {
+      var help = agent.getConfiguration().username;
+      console.log(`AGENTE : ${help}`);
+    });
     
   }, []);
 

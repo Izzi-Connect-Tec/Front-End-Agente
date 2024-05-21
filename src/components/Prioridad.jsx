@@ -5,11 +5,12 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 
-export default function BasicSelect() {
-  const [age, setAge] = React.useState('');
+export default function BasicSelect({ onPrioridadChange }) {
+  const [prioridad, setPrioridad] = React.useState('');
 
   const handleChange = (event) => {
-    setAge(event.target.value);
+    setPrioridad(event.target.value);
+    onPrioridadChange(event.target.value);
   };
 
   return (
@@ -19,13 +20,13 @@ export default function BasicSelect() {
         <Select
           labelId="demo-simple-select-label"
           id="demo-simple-select"
-          value={age}
+          value={prioridad}
           label="Prioridad"
           onChange={handleChange}
         >
-          <MenuItem value={10}>Baja</MenuItem>
-          <MenuItem value={20}>Media</MenuItem>
-          <MenuItem value={30}>Alta</MenuItem>
+          <MenuItem value="baja">Baja</MenuItem>
+          <MenuItem value="media">Media</MenuItem>
+          <MenuItem value="alta">Alta</MenuItem>
         </Select>
       </FormControl>
     </Box>
