@@ -61,29 +61,29 @@ import Header from './Header';
 import { useState, useEffect } from 'react';
 
 const Calificacion = () => {
-  const [DataCalifProm, setDataCalifProm] = useState(2);
+  const [DataCalifProm, setDataCalifProm] = useState(2.5);
   const [DataLlamadasDia, setDataLlamadasDia] = useState(7);
   const [DataPromLlamadas, setDataPromLlamadas] = useState(3.5);
 
   useEffect(() => {
+    let id = 2;
     const fetchData = async () => {
-      try {
-        let id = 2;
-        const responseCalif = await fetch(`/consultarCalifEmpleado/${id}`);
-        const dataCalif = await responseCalif.json();
-        setDataCalifProm(dataCalif);
+      fetch(`44.209.22.101:8080/consultarPromCalifEmpleado/${id}`)
+      .then(response => response.json())
+      .then(DataCalifProm => setDataCalifProm(DataCalifProm.))
 
-        const responseLlamadas = await fetch(`/consultarLlamadasEmpleado/${id}`);
-        const dataLlamadas = await responseLlamadas.json();
-        setDataLlamadasDia(dataLlamadas);
-  
-        const responsePromedio = await fetch(`/consultarPromLlamadasEmpleado/${id}`);
-        const dataPromedio = await responsePromedio.json();
-        setDataPromLlamadas(dataPromedio);
-      } catch (error) {
-        console.error('Error fetching data:', error);
-      }
-    }
+      const responseCalif = await fetch(`/consultarPromCalifEmpleado/${id}`);
+      const dataCalif = await responseCalif.json();
+      setDataCalifProm(dataCalif);
+
+      const responseLlamadas = await fetch(`/consultarLlamadasEmpleado/${id}`);
+      const dataLlamadas = await responseLlamadas.json();
+      setDataLlamadasDia(dataLlamadas);
+
+      const responsePromedio = await fetch(`/consultarPromLlamadasEmpleado/${id}`);
+      const dataPromedio = await responsePromedio.json();
+      setDataPromLlamadas(dataPromedio);
+    } 
     fetchData();
   }, []);
 
