@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react';
 import '../styles/calificacion.css';
 import Card from 'react-bootstrap/Card';
 import StarRating from './StarRating';
@@ -7,26 +8,28 @@ import Charts from './Charts';
 import Header from './Header';
 
 const Calificacion = () => {
-  // Dummy data
-  const data = [
-    { title: 'Calificación promedio', value: 5, rank: '#1 Joahan' },
-    { title: 'Cantidad de llamadas en el día', value: '10', rank: '#1 Pepo' },
-    { title: 'Promedio de tiempo en llamada', value: '7', rank: '#1 Alfy' },
-    { title: 'Cantidad de llamadas en el día', value: 4, rank: '#1 Benny' } 
-  ];
+  const [data, setData] = useState([]);
+  const [durationData, setDurationData] = useState([]);
 
-  // Dummy data for call duration
-  const durationData = [
-    { month: 'Enero', duration: 5 },
-    { month: 'Febrero', duration: 6 },
-    { month: 'Marzo', duration: 7 },
-    { month: 'Abril', duration: 5 },
-    { month: 'Mayo', duration: 6 },
-  ];
+  useEffect(() => {
+    // para hacer fetch
+    setData([
+      { title: 'Calificación promedio', value: 5, rank: '#1 Joahan' },
+      { title: 'Cantidad de llamadas en el día', value: '10', rank: '#1 Pepo' },
+      { title: 'Promedio de tiempo en llamada', value: '7', rank: '#1 Alfy' },
+      { title: 'Cantidad de llamadas en el día', value: 4, rank: '#1 Benny' } 
+    ]);
 
-  // Colores de izzi
+    setDurationData([
+      { month: 'Enero', duration: 5 },
+      { month: 'Febrero', duration: 6 },
+      { month: 'Marzo', duration: 7 },
+      { month: 'Abril', duration: 5 },
+      { month: 'Mayo', duration: 6 },
+    ]);
+  }, []);
+
   const colors = ['#00BCB4', '#D7006D', '#FFCE00', '#EC6907'];
-
   const profilePhotoUrl = izziImage;
 
   return (
@@ -42,10 +45,10 @@ const Calificacion = () => {
             >
               <Card.Body>
                 <div className="card-content">
-                  <div className="card-title">{data[3].title}</div>
-                  <div className="card-value">{data[3].value}</div>
+                  <div className="card-title">{data[3]?.title}</div>
+                  <div className="card-value">{data[3]?.value}</div>
                 </div>
-                <div className="card-rank">{data[3].rank}</div> 
+                <div className="card-rank">{data[3]?.rank}</div> 
               </Card.Body>
             </Card>
           </div>
