@@ -27,7 +27,7 @@ const EmbedConnect = (props) => {
       console.log(error)
     }
     }
-    
+
 
 
   //Variables to assing the call id and the status of the call

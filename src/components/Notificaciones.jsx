@@ -1,6 +1,8 @@
 import IconButton from '@mui/material/IconButton';
 import Badge from '@mui/material/Badge';
 import NotificationsActiveIcon from '@mui/icons-material/NotificationsActive';
+import { useContext } from 'react';
+import NotificationContext from './NotificationContext';
 
 function notificationsLabel(count) {
   if (count === 0) {
@@ -12,13 +14,14 @@ function notificationsLabel(count) {
   return `${count} notifications`;
 }
 
+export default function AccessibleBadges({ onClick }) {
+  const notifications = useContext(NotificationContext);
 
-export default function AccessibleBadges({onClick}) {
-    return (
-      <IconButton aria-label={notificationsLabel(100)} onClick={onClick}>
-        <Badge badgeContent={4} color="secondary">
-          <NotificationsActiveIcon  sx={{ color: "white"}} />
-        </Badge>
-      </IconButton>
-    );
-  }
+  return (
+    <IconButton aria-label={notificationsLabel(notifications)} onClick={onClick}>
+      <Badge badgeContent={notifications} color="secondary">
+        <NotificationsActiveIcon sx={{ color: "white" }} />
+      </Badge>
+    </IconButton>
+  );
+}
