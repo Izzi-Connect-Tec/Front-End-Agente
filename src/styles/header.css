@@ -28,7 +28,9 @@ body {
 
 .divB {
   font-weight: bold;
-  margin-right: 30%;
+  margin-right: 50%;
+  display:block;
+  color: white;
 }
 
 .buttonH {
@@ -97,7 +99,7 @@ body {
       transition: all .5s ease;
   }
   .header-nav.isActive{
-      height: 20vh;
+      height: 15vh;
       opacity: 1;
   }
   .buttonH{

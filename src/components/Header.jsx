@@ -35,29 +35,29 @@ const Header = (props) => {
     navigate("/window");
   };
 
-  function muestraReloj() {
-    var fechaHora = new Date();
-    var horas = fechaHora.getHours();
-    var minutos = fechaHora.getMinutes();
-    var segundos = fechaHora.getSeconds();
+  // function muestraReloj() {
+  //   var fechaHora = new Date();
+  //   var horas = fechaHora.getHours();
+  //   var minutos = fechaHora.getMinutes();
+  //   var segundos = fechaHora.getSeconds();
 
-    if (horas < 10) {
-      horas = "0" + horas;
-    }
-    if (minutos < 10) {
-      minutos = "0" + minutos;
-    }
-    if (segundos < 10) {
-      segundos = "0" + segundos;
-    }
+  //   if (horas < 10) {
+  //     horas = "0" + horas;
+  //   }
+  //   if (minutos < 10) {
+  //     minutos = "0" + minutos;
+  //   }
+  //   if (segundos < 10) {
+  //     segundos = "0" + segundos;
+  //   }
 
-    document.getElementById("reloj").innerHTML =
-      horas + ":" + minutos + ":" + segundos;
-  }
+  //   document.getElementById("reloj").innerHTML =
+  //     horas + ":" + minutos + ":" + segundos;
+  // }
 
-  window.onload = function () {
-    setInterval(muestraReloj, 1000);
-  };
+  // window.onload = function () {
+  //   setInterval(muestraReloj, 1000);
+  // };
 
   return (
     <header className="header">
@@ -67,7 +67,7 @@ const Header = (props) => {
         className="logoH"
         onClick={handleReturn}
       />
-      <div className="divB" id="reloj"></div>
+      <div className="divB"></div>
       <div>
         <nav className={`header-nav ${menu ? "isActive" : ""}`}>
           <button className="buttonH" onClick={handleStats}>
