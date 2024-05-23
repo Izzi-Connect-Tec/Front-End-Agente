@@ -2,7 +2,7 @@ import React from 'react';
 import '../styles/notification.css';
 import { TiDelete } from "react-icons/ti";
 
-const Notificacion = (props) => {
+const Notification = (props) => {
     return (
         <div className="not-container">
             <div>
@@ -18,5 +18,5 @@ const Notificacion = (props) => {
     );
 }
 
-export default Notificacion;
+export default Notification;
 
