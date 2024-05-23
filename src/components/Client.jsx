@@ -86,15 +86,18 @@ import { useState, useCallback, useEffect } from "react";
 
 const Client = (props) => {
 
-  const [usuario,,datosCliente,] = useUserContext();
+  const [reportesCliente, setReportesCliente] = useState();
 
-  const [url, setUrl] = useState(null); // Valor inicial para url
+  const [usuario,,datosCliente,,] = useUserContext();
 
+  const [urlDatos, setUrlDatos] = useState(null); // Valor inicial para url\
 
-const descargar = useCallback(async () => {
+  const [urlReportes, setUrlReportes] = useState(null); // Valor inicial para url
+
+const descargarDatosCliente = useCallback(async () => {
     try {
       console.log("Descargando datos");
-      const response = await fetch(url);
+      const response = await fetch(urlDatos);
       if (!response.ok) {
         throw new Error('La solicitud no pudo completarse con éxito');
       }
@@ -103,19 +106,37 @@ const descargar = useCallback(async () => {
     } catch (error) {
         console.log(error);
     }
-}, [url]);
+}, [urlDatos]);
+
+
+const descargarReportesCliente = useCallback(async () => {
+  try {
+    console.log("Descargando Reportes");
+    const response = await fetch(urlReportes);
+    if (!response.ok) {
+      throw new Error('La solicitud no pudo completarse con éxito');
+    }
+    const data = await response.json();
+    console.log(data)
+    setReportesCliente(data)
+  } catch (error) {
+      console.log(error);
+  }
+}, [urlReportes]);
 
   //Mejorar lógica
   //PRegunat por el useCallBack
 
   useEffect(() => {
-    descargar();
-  }, [descargar]);
+    descargarDatosCliente();
+    descargarReportesCliente();
+  }, [descargarDatosCliente]);
 
   useEffect(() => {
     if(usuario.Celular){
-      // setUrl(`http://44.209.22.101:8080/cliente/consultarCliente/${usuario.Celular}`);
-      setUrl(`http://localhost:8080/cliente/consultarCliente/${usuario.Celular}`);
+      setUrlDatos(`http://44.209.22.101:8080/cliente/consultarCliente/${usuario.Celular}`);
+      setUrlReportes(`http://44.209.22.101:8080/reporte/reportesCliente/${usuario.Celular}`)
+      // setUrl(`http://localhost:8080/cliente/consultarCliente/${usuario.Celular}`);
     }
   }, [usuario.Celular])
 
@@ -140,8 +161,8 @@ const descargar = useCallback(async () => {
         </div>
         {usuario.Nombre ? 
         <div>
-            <DatosClienteEncontrados /> 
-            <FolderList />
+          <DatosClienteEncontrados />
+          {reportesCliente && <FolderList historiaCliente={reportesCliente}/> }
         </div>
         : <h1>Sin cliente</h1>}
       </div>

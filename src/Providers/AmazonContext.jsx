@@ -17,6 +17,8 @@ export const useUserContext = () => {
 
 export const UserProvider = ({ children }) => {
 
+    //USUARIO
+
     const defaultUser = {
         Celular: null,
         Nombre: null,
@@ -48,9 +50,20 @@ export const UserProvider = ({ children }) => {
     };
 
 
+    //AGENTE
+
+    const defaultAgent = {
+        IdEmpleado: 2,
+        Nombre: null,
+        ApellidoP: null,
+        ApellidoM: null,
+        //usuario?
+    }
+
+    const [agent, setAgent] = useState(defaultAgent);
 
     return (
-        <UserContext.Provider value={[user, idCliente, datosCliente, reiniciarCliente]}>
+        <UserContext.Provider value={[user, idCliente, datosCliente, reiniciarCliente, agent]}>
             {children}
         </UserContext.Provider>
     );

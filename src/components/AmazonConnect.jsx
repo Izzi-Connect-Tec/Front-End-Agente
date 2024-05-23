@@ -1,27 +1,32 @@
 import "amazon-connect-streams";
-import { useEffect, React } from "react";
+import { useEffect, React, useState } from "react";
 import { useUserContext } from "../Providers/AmazonContext";
+import { useLlamadaContext } from "../Providers/LlamadaContext";
 
 
 const EmbedConnect = (props) => {
 
-  const datos = {"IdEmpleado":"2"}
+  const [call, callData, restartCall] = useLlamadaContext();
 
-  const [,idCliente,,reiniciarCliente] = useUserContext();
+  const [, idCliente,, reiniciarCliente, agent] = useUserContext();
 
+  //Callback??
   const actualizarLlamada = async () => {
     try{
+      //Pasarlo a la funcion de actualizar llamada
+      const datos = {id: call.IdLlamada,
+        IdEmpleado: agent.IdEmpleado}
+      console.log(datos)
       let config = {
         method: 'PUT',
         headers: {
           'Accept': 'application/json',
           'Content-Type': 'application/json'
         },
-        mode: 'cors',
         body: JSON.stringify(datos)
       }
-      // let res = await fetch('http://44.209.22.101:8080/llamada/actualizarLlamada/IdLlamada1', config) 
-      let res = await fetch('http://localhost:8080/llamada/actualizarLlamada/IdLlamada1', config) 
+      let res = await fetch("http://44.209.22.101:8080/llamada/actualizarLlamada", config) 
+      // let res = await fetch(`http://localhost:8080/llamada/actualizarLlamada/${call.IdLlamada}`, config) 
       console.log(res)
     } catch (error) {
       console.log(error)
@@ -72,11 +77,12 @@ const EmbedConnect = (props) => {
         // console.log(cid);
         var attributeMap = contact.getAttributes();
         console.log(attributeMap);
+        callData({IdLlamada: attributeMap.Call.value, TipoLlamada: attributeMap.Concept.value, DescripcionLlamada: attributeMap.Notes.value})
         idCliente(attributeMap.Tel.value)
-        actualizarLlamada();
       });
       contact.onEnded(function(contact) {
         reiniciarCliente();
+        restartCall();
       });
     });
 
@@ -87,6 +93,13 @@ const EmbedConnect = (props) => {
     });
     
   }, []);
+
+
+  useEffect(() => {
+    if (call.IdLlamada){
+      actualizarLlamada()
+    }
+  }, [call])
 
   return <div id="ccp" style={{ width: "300px", height: "350px" }}></div>;
 };

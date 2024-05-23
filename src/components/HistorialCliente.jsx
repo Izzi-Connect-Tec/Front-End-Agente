@@ -6,34 +6,66 @@ import ListItemAvatar from '@mui/material/ListItemAvatar';
 import Avatar from '@mui/material/Avatar';
 import WarningIcon from '@mui/icons-material/Warning';
 
-export default function FolderList() {
+export default function FolderList({historiaCliente}) {
+
   return (
-    <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper', fontfamily: "futura" }}>
-        <h2>HISTORIAL DE ATENCION:</h2>
-      <ListItem>
-        <ListItemAvatar>
-          <Avatar>
-            <WarningIcon />
-          </Avatar>
-        </ListItemAvatar>
-        <ListItemText primary="Problemas con internet" secondary="Jan 9, 2014" />
-      </ListItem>
-      <ListItem>
-        <ListItemAvatar>
-          <Avatar>
-            <WarningIcon />
-          </Avatar>
-        </ListItemAvatar>
-        <ListItemText primary="Sin señal" secondary="Jan 7, 2014" />
-      </ListItem>
-      <ListItem>
-        <ListItemAvatar>
-          <Avatar>
-            <WarningIcon />
-          </Avatar>
-        </ListItemAvatar>
-        <ListItemText primary="Problemas con internet" secondary="July 20, 2014" />
-      </ListItem>
-    </List>
+
+    <section>
+
+<h2>HISTORIAL DE ATENCION:</h2>
+
+{historiaCliente.map((reporte, index) => (
+  <List
+  key={reporte.IdReporte || index}
+  sx={{
+    width: "100%",
+    maxWidth: 360,
+    bgcolor: "background.paper",
+    fontfamily: "futura",
+  }}
+>
+  <ListItem>
+    <ListItemAvatar>
+      <Avatar>
+        <WarningIcon />
+      </Avatar>
+    </ListItemAvatar>
+    <ListItemText
+      primary= {reporte.Descripcion}
+      secondary= {reporte.FechaHora}
+    />
+  </ListItem>
+</List>
+)) }
+
+    </section>
+
+    // <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper', fontfamily: "futura" }}>
+    //     <h2>HISTORIAL DE ATENCION:</h2>
+    //   <ListItem>
+    //     <ListItemAvatar>
+    //       <Avatar>
+    //         <WarningIcon />
+    //       </Avatar>
+    //     </ListItemAvatar>
+    //     <ListItemText primary="Problemas con internet" secondary="Jan 9, 2014" />
+    //   </ListItem>
+    //   <ListItem>
+    //     <ListItemAvatar>
+    //       <Avatar>
+    //         <WarningIcon />
+    //       </Avatar>
+    //     </ListItemAvatar>
+    //     <ListItemText primary="Sin señal" secondary="Jan 7, 2014" />
+    //   </ListItem>
+    //   <ListItem>
+    //     <ListItemAvatar>
+    //       <Avatar>
+    //         <WarningIcon />
+    //       </Avatar>
+    //     </ListItemAvatar>
+    //     <ListItemText primary="Problemas con internet" secondary="July 20, 2014" />
+    //   </ListItem>
+    // </List>
   );
 }

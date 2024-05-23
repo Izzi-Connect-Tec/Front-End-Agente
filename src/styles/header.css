@@ -28,13 +28,13 @@ body {
 
 .divB {
   font-weight: bold;
-  margin-right: 50%;
+  margin-right: 55%;
   display:block;
   color: white;
 }
 
 .buttonH {
-  width: 150px;
+  width: 131.5px;
   height: 40px;
   background: transparent;
   border: 0;
@@ -82,7 +82,7 @@ body {
 
 
 
-@media screen and (max-width: 900px){
+@media screen and (max-width: 1100px){
 
   .hamburguer{
     display: flex;
