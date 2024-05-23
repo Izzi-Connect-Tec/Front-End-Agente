@@ -57,7 +57,7 @@ const Solutions = (props) => {
         </div>
         <div className="botones-solutions">
           <FormDialog/>
-          <FormDialog/>
+          {/* <FormDialog/> //Poner que es para tecnico */}
         </div>
       </div>
     </div>

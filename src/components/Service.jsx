@@ -27,9 +27,10 @@ const Service = (props) => {
               <p className="problemas">Problema</p>
               <p>{call.DescripcionLlamada}</p>
             </Card>
-            <div>
+            {/* <div>
               <Stats/>
-            </div>
+              //Es
+            </div> */}
           </section>
           }
         </div>
