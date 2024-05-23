@@ -70,7 +70,7 @@ const Calificacion = () => {
     const fetchData = async () => {
       fetch(`44.209.22.101:8080/consultarPromCalifEmpleado/${id}`)
       .then(response => response.json())
-      .then(DataCalifProm => setDataCalifProm(DataCalifProm.))
+      .then(DataCalifProm => setDataCalifProm(DataCalifProm))
 
       const responseCalif = await fetch(`/consultarPromCalifEmpleado/${id}`);
       const dataCalif = await responseCalif.json();
