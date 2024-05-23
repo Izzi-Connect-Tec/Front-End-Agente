@@ -4,7 +4,7 @@ import Drawer from "@mui/material/Drawer";
 import List from "@mui/material/List";
 import Divider from "@mui/material/Divider";
 import AccessibleBadges from "./Notificaciones";
-import Notificacion from "./Notificacion";
+import Notification from "./Notification";
 import "../styles/notificacionesBarra.css";
 import NotificationContext from "./NotificationContext";
 
@@ -36,7 +36,7 @@ export default function TemporaryDrawer() {
   };
 
   const DrawerList = (
-    <Box sx={{ width: 400 }} role="presentation" onClick={toggleDrawer(false)}>
+    <Box sx={{ width: 400 }} role="presentation">
       <div className="bdia-agente"><p>¡Buen día Joahan Javier Garcia Fernandez!</p></div>
       
       <Divider />
@@ -44,7 +44,7 @@ export default function TemporaryDrawer() {
         {notifications.length !== 0 ? (
           notifications.map((notification, index) => {
             return (
-              <Notificacion
+              <Notification
                 key={index}
                 descripcion={notification.description}
                 remitente={notification.sender}
@@ -53,7 +53,7 @@ export default function TemporaryDrawer() {
             );
           })
         ) : (
-          <div className="tarea-contenedor">No hay notificaciones</div>
+          <div className="no-notifications">No hay notificaciones</div>
         )}
       </List>
     </Box>
