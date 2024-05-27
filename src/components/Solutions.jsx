@@ -1,12 +1,12 @@
 // Contenedor que despliega las soluciones en forma de lista para ser seleccionados
 
-import {TextSolution} from "./TextSolution";
+//import {TextSolution} from "./TextSolution";
 import "../styles/solutions.css";
 // import Button from "@mui/material/Button";
 // import { useState } from "react";
 // import { motion, AnimatePresence } from "framer-motion";
 import FormDialog from "./Reporte";
-
+import SolutionCard from "./SolutionCard";
 
 const data = [
   {
@@ -21,14 +21,10 @@ const data = [
   {
     id: 3,
     name: "Checar indicadores led del módem",
-  }
+  },
 ];
 
-
-
-
 const Solutions = (props) => {
-
   // const [show, setShow] = useState(false);
   // const [info, setinfo] = useState();
 
@@ -51,13 +47,14 @@ const Solutions = (props) => {
       </div>
       <div className="solutions-div">
         <div className="possible-solutions">
-          {data.map ((solution) => (
-            <TextSolution key={solution.id} tituloSolucion={solution.name}/>
+          {data.map((solution) => (
+            // <TextSolution key={solution.id} tituloSolucion={solution.name}/>
+            <SolutionCard key={solution.id} tituloSolucion={solution.name} />
           ))}
         </div>
         <div className="botones-solutions">
           <FormDialog/>
-          {/* <FormDialog/> //Poner que es para tecnico */}
+          <FormDialog/>
         </div>
       </div>
     </div>
