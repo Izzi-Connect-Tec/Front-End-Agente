@@ -68,7 +68,7 @@ const EmbedConnect = (props) => {
     if (data) {
       cambiaLogin(data.Tel.value)
     }
-  }, [data])
+  }, [data, cambiaLogin]);
 
 
   //Variables to assing the call id and the status of the call

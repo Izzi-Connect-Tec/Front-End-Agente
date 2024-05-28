@@ -22,9 +22,15 @@ body {
   width: 100px;
 }
 
+.logoH:hover {
+  cursor: pointer;
+}
+
 .divB {
-  margin-left: 500px;
   font-weight: bold;
+  margin-right: 50%;
+  display:block;
+  color: white;
 }
 
 .buttonH {
@@ -60,6 +66,43 @@ body {
   margin-top: 5px;
 }
 
+.hamburguer{
+  font-size: 1.4rem;
+  background-color: transparent;
+  border: 0;
+  color: aliceblue;
+  cursor: pointer;
+  margin-top: 5px;
+  display: none;
+}
+
 .bienv {
   color: #ffffff;
+}
+
+
+
+@media screen and (max-width: 900px){
+
+  .hamburguer{
+    display: flex;
+  }
+  .header-nav{
+      width:100%;
+      display: flex;
+      flex-flow: column nowrap;
+      justify-content: center;
+      align-items: center;
+      height:0vh;
+      opacity: 0;
+      overflow: hidden;
+      transition: all .5s ease;
+  }
+  .header-nav.isActive{
+      height: 15vh;
+      opacity: 1;
+  }
+  .buttonH{
+      flex-direction: row;
+  }
 }

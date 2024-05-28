@@ -1,24 +1,35 @@
-import IconButton from '@mui/material/IconButton';
-import Badge from '@mui/material/Badge';
-import NotificationsActiveIcon from '@mui/icons-material/NotificationsActive';
+import IconButton from "@mui/material/IconButton";
+import Badge from "@mui/material/Badge";
+import NotificationsActiveIcon from "@mui/icons-material/NotificationsActive";
+import { useContext } from "react";
+import NotificationContext from "../Providers/NotificationContext";
 
 function notificationsLabel(count) {
   if (count === 0) {
-    return 'no notifications';
+    return "no notifications";
   }
   if (count > 99) {
-    return 'more than 99 notifications';
+    return "more than 99 notifications";
   }
   return `${count} notifications`;
 }
 
+export default function AccessibleBadges({ onClick }) {
+  const notifications = useContext(NotificationContext);
 
-export default function AccessibleBadges({onClick}) {
-    return (
-      <IconButton aria-label={notificationsLabel(100)} onClick={onClick}>
-        <Badge badgeContent={4} color="secondary">
-          <NotificationsActiveIcon  sx={{ color: "white"}} />
-        </Badge>
-      </IconButton>
-    );
-  }
+  return (
+    <IconButton
+      aria-label={notificationsLabel(notifications)}
+      onClick={onClick}
+      sx={{
+        "&:hover": {
+          background: "#ffffff33",
+        },
+      }}
+    >
+      <Badge badgeContent={notifications} color="secondary">
+        <NotificationsActiveIcon sx={{ color: "white" }} />
+      </Badge>
+    </IconButton>
+  );
+}
