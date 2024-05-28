@@ -1,3 +1,6 @@
+// Autor: Karla Cruz, Joahan García
+// Componente de la barra de notificaciones
+
 import React, { useState } from "react";
 import Box from "@mui/material/Box";
 import Drawer from "@mui/material/Drawer";
@@ -9,6 +12,7 @@ import "../styles/notificacionesBarra.css";
 import NotificationContext from "../Providers/NotificationContext";
 
 export default function TemporaryDrawer() {
+  // Dummies
   const initialData = [
     { description: "This is notification one", sender: "Leo" },
     { description: "This is notification two", sender: "Bris" },
@@ -18,23 +22,28 @@ export default function TemporaryDrawer() {
     { description: "This is notification six, test with longer text, aaaaaa hello hello test test", sender: "Kari" }
   ];
 
-  const [notifications, setNotifications] = useState(initialData);
-  const [open, setOpen] = useState(false);
+  const [notifications, setNotifications] = useState(initialData); // Estado para las notificaciones
+  const [open, setOpen] = useState(false); // Estado para abrir y cerrar el drawer
 
+  // Función para manejar el clic en el badge
   const handleBadgeClick = () => {
     console.log("Hiciste clic en el badge");
-    toggleDrawer(true)();
+    toggleDrawer(true)(); // Abrir el drawer
   };
 
+  // Función para abrir y cerrar el drawer
   const toggleDrawer = (newOpen) => () => {
     console.log("FUI TOCADO");
-    setOpen(newOpen);
+    setOpen(newOpen); // Cambiar el estado del drawer
   };
 
+  // Función para manejar el borrado de notificaciones
   const handleDelete = (index) => {
-    setNotifications(notifications.filter((_, i) => i !== index));
+    setNotifications(notifications.filter((_, i) => i !== index)); // Filtrar las notificaciones
   };
 
+  // Contenido del drawer
+  // Utiliza el componente de notificación para mostrar las notificaciones
   const DrawerList = (
     <Box sx={{ width: 400 }} role="presentation">
       <div className="bdia-agente"><p>¡Buen día Joahan Javier Garcia Fernandez!</p></div>

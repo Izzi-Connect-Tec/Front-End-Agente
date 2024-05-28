@@ -1,3 +1,6 @@
+// Autor: Karla Cruz
+// Componente que muestra los pasos para la solución seleccionada; es una ventana modal y se despliega al dar clic en una solución
+
 import { useState, useEffect } from "react";
 import { IoClose } from "react-icons/io5";
 import { PiSmileyBold } from "react-icons/pi";
