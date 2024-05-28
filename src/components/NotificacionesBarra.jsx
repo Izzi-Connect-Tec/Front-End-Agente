@@ -6,7 +6,7 @@ import Divider from "@mui/material/Divider";
 import AccessibleBadges from "./Notificaciones";
 import Notification from "./Notification";
 import "../styles/notificacionesBarra.css";
-import NotificationContext from "./NotificationContext";
+import NotificationContext from "../Providers/NotificationContext";
 
 export default function TemporaryDrawer() {
   const initialData = [
