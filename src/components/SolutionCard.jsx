@@ -1,3 +1,6 @@
+// Autor: Karla Cruz
+// Componente de la tarjeta de solución individual, es una tarjeta por solución
+
 import "../styles/solutionCard.css";
 import { useState } from "react";
 import StepsCard from "./StepsCard";

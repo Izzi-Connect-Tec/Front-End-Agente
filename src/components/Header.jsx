@@ -1,38 +1,45 @@
+// Autor: Karla Cruz
+// Componente de la barra de navegación
+
 import "../styles/header.css";
 import logo from "../elements/izziN.png";
 import { RiLogoutCircleRLine } from "react-icons/ri";
 import { useNavigate } from "react-router-dom";
-//import AccessibleBadges from "./Notificaciones";
 import TemporaryDrawer from "./NotificacionesBarra";
 import { IoMenu } from "react-icons/io5";
 import { useState } from "react";
 
 const Header = (props) => {
-  const navigate = useNavigate();
-  const [menu, setMenu] = useState(false);
+  const navigate = useNavigate(); // Hook para navegar entre rutas
+  const [menu, setMenu] = useState(false); // Estado para el menú
 
+  // Función para mostrar/ocultar el menú
   const toggleMenu = () => {
-    setMenu(!menu);
+    setMenu(!menu); // Mostrar/ocultar menú
   };
 
+  // Función para cerrar sesión
   const handleLogOut = (e) => {
-    e.preventDefault();
-    navigate("/");
+    e.preventDefault(); // Prevenir el comportamiento por defecto
+    navigate("/"); // Navegar a la ruta de inicio
   };
 
+  // Función para navegar a la ruta de estadísticas
   const handleStats = (e) => {
-    e.preventDefault();
-    navigate("/calificacion");
+    e.preventDefault(); // Prevenir el comportamiento por defecto
+    navigate("/calificacion"); // Navegar a la ruta de estadísticas
   };
 
+  // Función para navegar a la ruta de inicio
   const handleReturn = (e) => {
-    e.preventDefault();
-    navigate("/window");
+    e.preventDefault(); // Prevenir el comportamiento por defecto
+    navigate("/window"); // Navegar a la ruta de inicio
   };
 
+  // Función para navegar a la ruta de llamada
   const handleCall = (e) => {
-    e.preventDefault();
-    navigate("/window");
+    e.preventDefault(); // Prevenir el comportamiento por defecto
+    navigate("/window"); // Navegar a la ruta de llamada
   };
 
   return (
