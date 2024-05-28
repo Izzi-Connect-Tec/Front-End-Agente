@@ -108,7 +108,7 @@ const Client = (props) => {
 
   //Mejorar lógica
 
-  useEffect(() => {
+  useEffect(() => { // Descargar datos cuando cambie el cliente
     if (cliente !== "" && cliente !== null) { // Asegurar que cliente no esté vacío antes de descargar
       setUrl(`http://44.209.22.101:8080/cliente/consultarCliente/${cliente}`);
       descargar();
