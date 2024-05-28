@@ -1,5 +1,5 @@
 // Autor: Karla Cruz
-// Proveedor de contexto de las notificaciones para dos componentes.
+// Proveedor de contexto de las notificaciones
 
 import { createContext } from 'react';
 
