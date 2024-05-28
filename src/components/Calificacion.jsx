@@ -54,19 +54,45 @@
 import '../styles/calificacion.css';
 import Card from 'react-bootstrap/Card';
 import StarRating from './StarRating';
-import ProfilePhoto from './ProfilePicture'; 
+import ProfilePhoto from './ProfilePicture';
 import izziImage from '../elements/izzi.jpeg';
 import AgentRankingChart from './AgentRankingChart'; // Importamos el componente de la gráfica
 import Header from './Header';
+import { useState, useEffect } from 'react';
 
 const Calificacion = () => {
+  const [DataCalifProm, setDataCalifProm] = useState(2.5);
+  const [DataLlamadasDia, setDataLlamadasDia] = useState(7);
+  const [DataPromLlamadas, setDataPromLlamadas] = useState(3.5);
+
+  useEffect(() => {
+    let id = 2;
+    const fetchData = async () => {
+      fetch(`44.209.22.101:8080/consultarPromCalifEmpleado/${id}`)
+      .then(response => response.json())
+      .then(DataCalifProm => setDataCalifProm(DataCalifProm))
+
+      const responseCalif = await fetch(`/consultarPromCalifEmpleado/${id}`);
+      const dataCalif = await responseCalif.json();
+      setDataCalifProm(dataCalif);
+
+      const responseLlamadas = await fetch(`/consultarLlamadasEmpleado/${id}`);
+      const dataLlamadas = await responseLlamadas.json();
+      setDataLlamadasDia(dataLlamadas);
+
+      const responsePromedio = await fetch(`/consultarPromLlamadasEmpleado/${id}`);
+      const dataPromedio = await responsePromedio.json();
+      setDataPromLlamadas(dataPromedio);
+    } 
+    fetchData();
+  }, []);
 
   // Dummy data
   const data = [
-    { title: 'Calificación promedio', value: 5, rank: '#1 Joahan' },
-    { title: 'Cantidad de llamadas en el día', value: '10', rank: '#1 Pepo' },
-    { title: 'Promedio de tiempo en llamada', value: '7', rank: '#1 Alfy' },
-    { title: 'Cantidad de llamadas en el día', value: 4, rank: '#1 Benny' } 
+    { title: 'Calificación promedio', value: DataCalifProm, rank: '#1 Joahan' },
+    { title: 'Cantidad de llamadas en el día', value: DataLlamadasDia, rank: '#1 Pepo' },
+    { title: 'Promedio de tiempo en llamada', value: DataPromLlamadas, rank: '#1 Alfy' },
+    { title: 'Cantidad de llamadas en el día', value: 4, rank: '#1 Benny' }
   ];
 
   // Colores de izzi
@@ -91,7 +117,7 @@ const Calificacion = () => {
               <Card.Body>
                 <div className="card-content">
                   <div className="card-title">{title}</div>
-                  {index === 0 ? ( 
+                  {index === 0 ? (
                     <div className="card-value">
                       <StarRating rating={value} />
                     </div>
