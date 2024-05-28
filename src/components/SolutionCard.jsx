@@ -1,21 +1,21 @@
 import "../styles/solutionCard.css";
 import { useState } from "react";
 import StepsCard from "./StepsCard";
-import solutionsData from "./solutionData";
 
 const SolutionCard = (props) => {
-  const [steps, setSteps] = useState(false);
+  const [steps, setSteps] = useState(false); // Estado para mostrar los pasos
   const [blocked, setBlocked] = useState(false); // Estado para bloquear la solución
 
+  // Función para mostrar los pasos
   const Toggle = () => {
-    if (!blocked) {
-      setSteps(!steps);
+    if (!blocked) { // Si la solución no está bloqueada
+      setSteps(!steps); // Mostrar los pasos
     }
   };
-  const solution = solutionsData.find(
-    (solution) => solution.IdSolucion === props.solutionId
-  );
 
+  const solution = props.solution; // Usar la solución pasada por props
+
+  // Función para bloquear la solución
   const handleBlock = () => {
     setBlocked(true); // Función para bloquear la solución
     setSteps(false); // Cerrar el modal
