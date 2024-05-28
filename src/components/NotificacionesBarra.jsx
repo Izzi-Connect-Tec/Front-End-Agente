@@ -39,7 +39,7 @@ export default function TemporaryDrawer() {
 
   // Función para manejar el borrado de notificaciones
   const handleDelete = (index) => {
-    setNotifications(notifications.filter((_, i) => i !== index)); // Filtrar las notificaciones
+    setNotifications(notifications.filter((_, i) => i !== index)); // Filtrar las notificaciones para borrar la seleccionada
   };
 
   // Contenido del drawer
