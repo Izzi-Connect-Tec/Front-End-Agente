@@ -1,17 +1,25 @@
 import "amazon-connect-streams";
-import { useEffect, React, useState } from "react";
+import { useEffect, React, useState, useCallback } from "react";
 import { useUserContext } from "../Providers/AmazonContext";
 import { useLlamadaContext } from "../Providers/LlamadaContext";
+import { useLogInContext } from "../Providers/LogInContext";
 
 
 const EmbedConnect = (props) => {
 
-  const [call, callData, restartCall] = useLlamadaContext();
+  //Agent
+  const [agent,,] = useLogInContext(); 
 
-  const [, idCliente,, reiniciarCliente, agent] = useUserContext();
+  //Call
+  const [call, callData, restartCall] = useLlamadaContext();
+  const [stateCall, setStateCall] = useState(false);
+
+  //Client
+  const [, idCliente,, reiniciarCliente,] = useUserContext();
+
 
   //Callback??
-  const actualizarLlamada = async () => {
+  const actualizarLlamada = useCallback(async () => {
     try{
       //Pasarlo a la funcion de actualizar llamada
       const datos = {id: call.IdLlamada,
@@ -31,7 +39,33 @@ const EmbedConnect = (props) => {
     } catch (error) {
       console.log(error)
     }
+    },[call.IdLlamada, agent.IdEmpleado])
+
+      //Callback??
+  const actualizarLlamadaFinalizada = useCallback(async () => {
+    try{
+      //Pasarlo a la funcion de actualizar llamada
+      const datos = {
+        id: call.IdLlamada,
+        duracion: "27",
+        estado: false
+      }
+      console.log("DATOS LLAMADA FINALIZADA" , datos)
+      let config = {
+        method: 'PUT',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(datos)
+      }
+      let res = await fetch("http://10.48.64.4:8080/llamada/actualizarLlamadaFinalizada", config) 
+      // let res = await fetch(`http://localhost:8080/llamada/actualizarLlamada/${call.IdLlamada}`, config) 
+      console.log(res)
+    } catch (error) {
+      console.log(error)
     }
+    },[call.IdLlamada])
 
 
 
@@ -75,14 +109,14 @@ const EmbedConnect = (props) => {
       contact.onConnected(async function (contact) {
         // let cid = contact.getContactId();
         // console.log(cid);
+        setStateCall(true)
         var attributeMap = contact.getAttributes();
         console.log(attributeMap);
         callData({IdLlamada: attributeMap.Call.value, TipoLlamada: attributeMap.Concept.value, DescripcionLlamada: attributeMap.Notes.value})
         idCliente(attributeMap.Tel.value)
       });
       contact.onEnded(function(contact) {
-        reiniciarCliente();
-        restartCall();
+        setStateCall(false)
       });
     });
 
@@ -99,7 +133,15 @@ const EmbedConnect = (props) => {
     if (call.IdLlamada){
       actualizarLlamada()
     }
-  }, [call])
+  }, [call, actualizarLlamada])
+
+  useEffect(() => {
+    if (!stateCall && call.IdLlamada){
+      actualizarLlamadaFinalizada();
+      reiniciarCliente();
+      restartCall();
+    }
+  }, [stateCall, actualizarLlamadaFinalizada])
 
   return <div id="ccp" style={{ width: "300px", height: "350px" }}></div>;
 };
