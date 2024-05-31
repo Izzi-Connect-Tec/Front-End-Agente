@@ -18,6 +18,9 @@ const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
+  const [errorAut, setErrorAut] = useState(false)
+
+
   useEffect(() => {
     setTimeout(() => {
       setShowLogin(true);
@@ -54,10 +57,12 @@ const Login = () => {
         body: JSON.stringify(datos)
       }
       // let res = await fetch("http://localhost:8080/auth/signin", config)
-      let res = await fetch("http://10.48.64.4:8080/auth/signin", config)
+      let res = await fetch("http://44.209.22.101:8080/auth/signin", config)
 
       if (!res.ok) {
+        setErrorAut(true)
         throw new Error('La solicitud no pudo completarse con éxito');
+        
       }
 
       const data = await res.json();
@@ -86,11 +91,12 @@ const Login = () => {
           <img className="logo" src={logo} alt="logoIzziConnect"></img>
         </div>
         <p className="txt">Ingrese sus credenciales para accesar.</p>
+        {errorAut && <p className="error">Usuario o contraseña incorrectos</p>}
         <div className="formdiv">
           <form className="form" align="center" onSubmit={handleLogin}>
             <input
               className="input"
-              type="text"
+              type="email"
               placeholder="Usuario"
               value={username}
               onChange={(e) => setUsername(e.target.value)}

@@ -17,7 +17,6 @@ const EmbedConnect = (props) => {
   //Client
   const [, idCliente,, reiniciarCliente,] = useUserContext();
 
-
   //Callback??
   const actualizarLlamada = useCallback(async () => {
     try{
@@ -59,7 +58,7 @@ const EmbedConnect = (props) => {
         },
         body: JSON.stringify(datos)
       }
-      let res = await fetch("http://10.48.64.4:8080/llamada/actualizarLlamadaFinalizada", config) 
+      let res = await fetch("http://44.209.22.101:8080/llamada/actualizarLlamadaFinalizada", config) 
       // let res = await fetch(`http://localhost:8080/llamada/actualizarLlamada/${call.IdLlamada}`, config) 
       console.log(res)
     } catch (error) {
@@ -130,13 +129,17 @@ const EmbedConnect = (props) => {
 
 
   useEffect(() => {
+    console.log("USE EFFECT 2");
     if (call.IdLlamada){
+      console.log("Actualice la llamada");
       actualizarLlamada()
     }
   }, [call, actualizarLlamada])
 
   useEffect(() => {
-    if (!stateCall && call.IdLlamada){
+    console.log("USE EFFECT 3");
+    if (!stateCall && call.IdLlamada!=null){
+      console.log("Actualice la llamada finalizada");
       actualizarLlamadaFinalizada();
       reiniciarCliente();
       restartCall();
