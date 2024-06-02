@@ -17,7 +17,7 @@ const Calificacion = () => {
       { title: 'Calificación promedio', value: 5, rank: '#1 Joahan' },
       { title: 'Cantidad de llamadas en el día', value: '10', rank: '#1 Pepo' },
       { title: 'Promedio de tiempo en llamada', value: '7', rank: '#1 Alfy' },
-      { title: 'Cantidad de llamadas en el día', value: 4, rank: '#1 Benny' } 
+      { title: 'Cantidad de soluciones nuevas propuestas', value: 4, rank: '#1 Benny' } 
     ]);
 
     setDurationData([
@@ -31,13 +31,15 @@ const Calificacion = () => {
 
   const colors = ['#00BCB4', '#D7006D', '#FFCE00', '#EC6907'];
   const profilePhotoUrl = izziImage;
+  const agentName = "Maximiliano Lecona";
+  const agentId = 1234;
 
   return (
     <div className="calificacion-page">
       <Header />
       <div className="calificacion-content">
         <div className="profile-container">
-          <ProfilePhoto photoUrl={profilePhotoUrl} />
+          <ProfilePhoto photoUrl={profilePhotoUrl} name={agentName} id={agentId} />
           <div className="orange-card-container">
             <Card
               style={{ backgroundColor: colors[3] }}
@@ -58,7 +60,7 @@ const Calificacion = () => {
             <Card
               key={index}
               style={{ backgroundColor: colors[index] }}
-              className={`card mb-2 ${index === 3 ? 'blue-card' : ''} ${index < 3 ? 'colored-card' : ''}`}
+              className={`card mb-2 ${index === 0 ? 'blue-card' : ''} ${index === 1 ? 'pink-card' : ''} ${index === 2 ? 'yellow-card' : ''} ${index < 3 ? 'colored-card' : ''}`}
             >
               <Card.Body>
                 <div className="card-content">
@@ -78,6 +80,35 @@ const Calificacion = () => {
         </div>
         <div className="chart-container">
           <Charts agentData={data.slice(0, 3)} durationData={durationData} />
+        </div>
+      </div>
+      {/* Tarjetitas de hasta abajo */}
+      <div className="custom-container">
+        <div className="custom-row">
+          <div className="custom-col">
+            <div className="custom-card card-primary">
+              <div className="custom-card-header">Agente con mejor calificación</div>
+              <div className="custom-card-body">
+                <h5 className="custom-card-title">Esteban Miranda</h5>
+              </div>
+            </div>
+          </div>
+          <div className="custom-col">
+            <div className="custom-card card-secondary">
+              <div className="custom-card-header">Agente con más llamadas en el día</div>
+              <div className="custom-card-body">
+                <h5 className="custom-card-title">Pinky Dinky Doo</h5>
+              </div>
+            </div>
+          </div>
+          <div className="custom-col">
+            <div className="custom-card card-tertiary">
+              <div className="custom-card-header">Agente más veloz atendiendo llamadas</div>
+              <div className="custom-card-body">
+                <h5 className="custom-card-title">Iker Casanova</h5>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>

@@ -1,16 +1,11 @@
-//Intento de poner la foto de perfil del agente
-
 import izziImage from '../styles/izzi.jpeg';
-
-const ProfilePhoto = ({ photoUrl }) => {
-  //dummy
+const ProfilePhoto = ({ photoUrl, name}) => {
   const defaultPhotoUrl = izziImage;
-
   return (
-    <div className="profile-container">
-      <img src={photoUrl || defaultPhotoUrl} alt="Profile" />
-    </div>
+    <figure className="figure profile-container">
+      <img src={photoUrl || defaultPhotoUrl} className="figure-img img-fluid rounded" alt="Profile" />
+      <figcaption className="figure-caption">{name}</figcaption>
+    </figure>
   );
 };
-
 export default ProfilePhoto;

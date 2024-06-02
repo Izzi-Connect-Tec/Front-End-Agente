@@ -7,11 +7,20 @@
     margin-top: 25%;
 
   }
+
+  @media (orientation: landscape) {
+    .star-rating {
+      font-size: 30px; 
+      margin-top: 15%;
+      margin-bottom: 12%;
+    }
+  }
   
   @media (orientation: portrait) {
     .star-rating {
-      font-size: 15px; 
-      margin-top: 15%;
-      margin-bottom: 35%;
+      font-size: 20px; 
+      margin-top: 10%;
+      margin-bottom: 5%;
     }
   }
+ 

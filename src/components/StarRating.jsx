@@ -3,7 +3,7 @@ import { faStar, faStarHalfAlt } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import '../styles/starRating.css';
 
-const StarRating = ({ rating }) => {
+const StarRating = ({ rating, marginTop }) => {
   const stars = [];
   const filledStars = Math.floor(rating);
   const hasHalfStar = rating % 1 !== 0;
@@ -18,7 +18,7 @@ const StarRating = ({ rating }) => {
     }
   }
 
-  return <div className="star-rating">{stars}</div>;
+  return <div className="star-rating" style={{ marginTop: marginTop }}>{stars}</div>;
 };
 
 export default StarRating;
