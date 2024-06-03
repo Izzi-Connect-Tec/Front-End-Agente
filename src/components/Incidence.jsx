@@ -6,13 +6,19 @@ import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
-import BasicSelect from "./Prioridad";
 import { useAlertToggleContext } from "../Providers/AlertContext";
+import dayjs from "dayjs";
+import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
+import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import { DatePicker } from "@mui/x-date-pickers/DatePicker";
+import { TimePicker } from "@mui/x-date-pickers/TimePicker";
 
-export default function FormDialog() {
+export default function IncidenceForm() {
   const toggleAlert = useAlertToggleContext();
 
   const [open, setOpen] = React.useState(false);
+  const [value, setValue] = React.useState(dayjs());
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -42,7 +48,7 @@ export default function FormDialog() {
         variant="contained"
         size="large"
       >
-        Reporte
+        Incidencia
       </Button>
       <Dialog
         open={open}
@@ -65,14 +71,14 @@ export default function FormDialog() {
             fontWeight: "bold",
           }}
         >
-          Reporte
+          Incidencia
         </DialogTitle>
         <DialogContent>
           <DialogContentText
             sx={{ fontFamily: ["Century Gothic", "Futura"].join(",") }}
           >
-            Se debe de hacer un reporte debido a una falla que no se podia
-            arreglar
+            Debido a una falla reportada que no se puede resolver, un técnico
+            debe atender el asunto.
           </DialogContentText>
           <TextField
             sx={{
@@ -91,7 +97,7 @@ export default function FormDialog() {
             margin="dense"
             id="name"
             // name="email"
-            label="Descripción del reporte"
+            label="Descripción de la incidencia"
             type="text"
             fullWidth
             variant="standard"
@@ -107,9 +113,91 @@ export default function FormDialog() {
             }}
           />
         </DialogContent>
+        
         <DialogContent>
-          <BasicSelect />
+          <LocalizationProvider dateAdapter={AdapterDayjs}>
+            <DemoContainer components={["DatePicker", "TimePicker"]}>
+              <DatePicker
+                sx={{
+                  "& .MuiInputBase-root": {
+                    fontFamily: ["Century Gothic", "Futura"].join(","),
+                  },
+                  "& .MuiOutlinedInput-root": {
+                    "&.Mui-focused fieldset": {
+                      borderColor: "#D7006D",
+                    },
+                  },
+                  "& .MuiInputLabel-root": {
+                    fontFamily: ["Century Gothic", "Futura"].join(","),
+                  },
+                  "& .MuiInputLabel-root.Mui-focused": {
+                    color: "#D7006D",
+                  },
+                  "& .MuiPickerStaticWrapper-content .Mui-selected": {
+                    backgroundColor: "#D7006D",
+                  },
+                }}
+                componentsProps={{
+                  textField: {
+                    InputProps: {
+                      style: {
+                        fontFamily: ["Century Gothic", "Futura"].join(","),
+                      },
+                    },
+                    InputLabelProps: {
+                      style: {
+                        fontFamily: ["Century Gothic", "Futura"].join(","),
+                      },
+                    },
+                  },
+                }}
+                label="Fecha"
+                format="DD/MM/YYYY"
+                value={value}
+                onChange={(newValue) => setValue(newValue)}
+              />
+              <TimePicker
+                sx={{
+                  "& .MuiInputBase-root": {
+                    fontFamily: ["Century Gothic", "Futura"].join(","),
+                  },
+                  "& .MuiOutlinedInput-root": {
+                    "&.Mui-focused fieldset": {
+                      borderColor: "#D7006D",
+                    },
+                  },
+                  "& .MuiInputLabel-root": {
+                    fontFamily: ["Century Gothic", "Futura"].join(","),
+                  },
+                  "& .MuiInputLabel-root.Mui-focused": {
+                    color: "#D7006D",
+                  },
+                  "& .MuiPickerStaticWrapper-content .Mui-selected": {
+                    backgroundColor: "#D7006D",
+                  },
+                }}
+                componentsProps={{
+                  textField: {
+                    InputProps: {
+                      style: {
+                        fontFamily: ["Century Gothic", "Futura"].join(","),
+                      },
+                    },
+                    InputLabelProps: {
+                      style: {
+                        fontFamily: ["Century Gothic", "Futura"].join(","),
+                      },
+                    },
+                  },
+                }}
+                label="Hora"
+                value={value}
+                onChange={(newValue) => setValue(newValue)}
+              />
+            </DemoContainer>
+          </LocalizationProvider>
         </DialogContent>
+
         <DialogActions>
           <Button
             sx={{
