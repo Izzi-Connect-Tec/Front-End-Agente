@@ -38,8 +38,8 @@ const Solutions = () => {
           ))}
         </div>
         <div className="botones-solutions">
-          <FormDialog />
-          <FormDialog />
+          <FormDialog/>
+          <FormDialog/>
         </div>
       </div>
     </div>
