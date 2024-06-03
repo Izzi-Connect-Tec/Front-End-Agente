@@ -6,6 +6,7 @@ import "../styles/solutions.css";
 import FormDialog from "./Reporte";
 import SolutionCard from "./SolutionCard";
 import axios from "axios";
+import IncidenceForm from "./Incidence";
 
 const Solutions = () => {
   const [solutionsData, setSolutionsData] = useState([]); // Estado para los datos de las soluciones
@@ -43,7 +44,7 @@ const Solutions = () => {
         </div>
         <div className="botones-solutions">
           <FormDialog />
-          <FormDialog />
+          <IncidenceForm />
         </div>
       </div>
     </div>
