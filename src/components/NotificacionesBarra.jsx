@@ -10,12 +10,12 @@ import NotificationContext from "../Providers/NotificationContext";
 
 export default function TemporaryDrawer() {
   const initialData = [
-    { description: "This is notification one", sender: "Leo" },
-    { description: "This is notification two", sender: "Bris" },
-    { description: "This is notification three", sender: "Javi" },
-    { description: "This is notification four", sender: "Javi" },
-    { description: "This is notification five", sender: "Leo" },
-    { description: "This is notification six, test with longer text, aaaaaa hello hello test test", sender: "Kari" }
+    { titulo: "TITLE 1", description: "This is notification one", sender: "Leo" },
+    { titulo: "TITLE 2", description: "This is notification two", sender: "Bris" },
+    { titulo: "TITLE 3", description: "This is notification three", sender: "Javi" },
+    { titulo: "TITLE 4", description: "This is notification four", sender: "Javi" },
+    { titulo: "TITLE 5", description: "This is notification five", sender: "Leo" },
+    { titulo: "TITLE 6 ", description: "This is notification six, test with longer text, aaaaaa hello hello test test", sender: "Kari" }
   ];
 
   const [notifications, setNotifications] = useState(initialData);
@@ -46,6 +46,7 @@ export default function TemporaryDrawer() {
             return (
               <Notification
                 key={index}
+                titulo={notification.titulo}
                 descripcion={notification.description}
                 remitente={notification.sender}
                 onDelete={() => handleDelete(index)}

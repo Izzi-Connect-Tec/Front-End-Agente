@@ -8,6 +8,9 @@ const Notification = (props) => {
             <div>
                 <TiDelete className='not-del' onClick={props.onDelete} />
             </div>
+            <div className='not-title'>
+                <h1>{props.titulo}</h1>
+            </div>
             <div className='not-description'>
                 <p>{props.descripcion}</p>
             </div>
