@@ -1,0 +1,74 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.container {
+    width: 40vw;
+    height: 30vh;
+    margin: 5vh auto; /* Center the container NUEVO*/ 
+    border-radius: 12px;
+    background-color: rgba(17, 25, 40, 0.75);
+    backdrop-filter: blur(19px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.125);
+    display: flex;
+    flex-direction: column;
+}
+
+.center {
+    padding: 20px;
+    flex: 1; /* Make this element grow and take available space */
+    overflow-y: auto; /* Ensure vertical scrolling */
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.message {
+    max-width: 70%;
+    display: flex;
+    gap: 20px;
+    align-items: center; /* Center items vertically */
+}
+
+.message img {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.message .texts {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.message .texts p {
+    padding: 20px;
+    background-color: rgba(17, 25, 40, 0.3);
+    border-radius: 10px;
+}
+
+.message .texts span {
+    font-size: 13px;
+}
+
+.message .texts img {
+    width: 100%;
+    height: 300%;
+    border-radius: 10px;
+    object-fit: cover;
+}
+
+/* Estilo para los mensajes propios */
+.message.own {
+    flex-direction: row-reverse; /* Reversa la dirección de los elementos */
+    align-self: flex-end;
+}
+
+.message.own .texts p {
+    background-color: #5183fe;
+}

@@ -7,6 +7,7 @@ import EmbedConnect from "./AmazonConnect";
 import { useEffect } from "react";
 import { useUserContext } from "../Providers/AmazonContext";
 import { useLlamadaContext } from "../Providers/LlamadaContext";
+import { Sentiment } from "./Sentiment";
 
 
 const Service = (props) => {
@@ -21,6 +22,7 @@ const Service = (props) => {
       <div className="service-div">
         <div className="tarjetaProblema">
           <EmbedConnect/>
+          <Sentiment/>
           {call.IdLlamada && 
           <section>
             <Card variant="outlined">

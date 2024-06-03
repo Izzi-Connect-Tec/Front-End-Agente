@@ -35,10 +35,10 @@ const Login = () => {
     img.src = giphy;
   }, []);
 
-  useEffect( () => {
-    // Aquí va lo de verificación
-    navigate("/window");
-  }, [agent.Nombre, navigate])
+  // useEffect( () => {
+  //   // Aquí va lo de verificación
+  //   navigate("/window");
+  // }, [agent.Nombre, navigate])
 
   const handleLogin = async (e) => {
     e.preventDefault();
