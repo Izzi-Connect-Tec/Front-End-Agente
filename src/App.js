@@ -26,17 +26,17 @@ function App() {
     //     </Routes>
     //   </div>
     // </Router>
-  //   <Router>
-  //   <div className="App">
-  //     <Routes>
-  //       <Route path="/" element={<Login />} />
-  //       <Route path="/window" element={<Window />} />
-  //       <Route path="/calificacion" element={<Calificacion/>}/>
-  //     </Routes>
-  //   </div>
-  // </Router>
+    <Router>
+    <div className="App">
+      <Routes>
+        <Route path="/" element={<Login />} />
+        <Route path="/window" element={<Window />} />
+        <Route path="/calificacion" element={<Calificacion/>}/>
+      </Routes>
+    </div>
+  </Router>
     // <button onClick={getActiveCalls}></button>
-    <Sentiment/>
+    // <Sentiment/>
   );
 }
 

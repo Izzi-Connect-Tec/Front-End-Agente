@@ -2,7 +2,7 @@
 // import "../styles/stats.css";
 //import LinearProgress from "@mui/material/LinearProgress";
 import CircularProgress from '@mui/material/CircularProgress';
-import Timer from "./Timer";
+//import Timer from "./Timer";
 
 function GradientCircularProgress() {
   return (

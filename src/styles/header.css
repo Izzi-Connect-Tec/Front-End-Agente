@@ -2,15 +2,17 @@ body {
   font-family: "Century Gothic", "Futura";
 }
 
+
+
 .header {
   background: linear-gradient(
     90deg,
-    rgb(209, 32, 115) 0.41%,
-    rgb(226, 108, 163) 40.68%,
-    rgb(234, 168, 121) 64.12%,
-    rgb(255, 137, 53) 97.82%
+    rgb(255, 137, 53) 0.41%,
+    rgb(234, 168, 121) 40.68%,
+    rgb(226, 108, 163) 64.12%,
+    rgb(209, 32, 115) 97.82%
   );
-  padding: 10px 20px;
+  padding: 5px 10px;
   color: white;
   display: flex;
   justify-content: space-between;
@@ -19,7 +21,7 @@ body {
 }
 
 .logoH {
-  width: 100px;
+  width: 70px;
 }
 
 .logoH:hover {
@@ -28,27 +30,27 @@ body {
 
 .divB {
   font-weight: bold;
-  margin-right: 55%;
+  margin-right: 65%;
   display:block;
   color: white;
 }
 
 .buttonH {
-  width: 131.5px;
-  height: 40px;
+  width: 110px;
+  height: 35px;
   background: transparent;
   border: 0;
-  border-radius: 15px;
+  border-radius: 10px;
   line-height: 10px;
-  padding: 10px 10px 10px 10px;
-  appearance: none;
+  padding: 1px 1px 1px 1px;
+  appearance: auto;
   color: rgb(255, 255, 255);
   cursor: pointer;
   text-align: center;
   margin: 0px;
   font-family: "Century Gothic", "Futura";
-  font-weight: bold;
-  transition: color, background-color 0.3s;
+  
+  transition: color, background-color 0.2s;
 }
 
 .buttonH:hover {
@@ -63,7 +65,7 @@ body {
   border: 0;
   color: aliceblue;
   cursor: pointer;
-  margin-top: 5px;
+  margin-right: 0.8rem;
 }
 
 .hamburguer{

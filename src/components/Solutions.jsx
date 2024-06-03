@@ -1,44 +1,35 @@
-// Contenedor que despliega las soluciones en forma de lista para ser seleccionados
+// Autor: Karla Cruz
+// Componente que despliega las soluciones disponibles dependiendo del problema con el que se esté trabajando\
 
-//import {TextSolution} from "./TextSolution";
+import React, { useEffect, useState } from "react";
 import "../styles/solutions.css";
-// import Button from "@mui/material/Button";
-// import { useState } from "react";
-// import { motion, AnimatePresence } from "framer-motion";
 import FormDialog from "./Reporte";
 import SolutionCard from "./SolutionCard";
+import axios from "axios";
+import IncidenceForm from "./Incidence";
+import { useLlamadaContext } from "../Providers/LlamadaContext";
 
-const data = [
-  {
-    id: 1,
-    name: "Reiniciar el módem",
-    dec: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Suscipit, molestiae.",
-  },
-  {
-    id: 2,
-    name: "Checar las conexiones del módem",
-  },
-  {
-    id: 3,
-    name: "Checar indicadores led del módem",
-  },
-];
+const Solutions = () => {
 
-const Solutions = (props) => {
-  // const [show, setShow] = useState(false);
-  // const [info, setinfo] = useState();
+  const [call,,] = useLlamadaContext();
 
-  // const variants = {
-  //   visible: {
-  //     scale: 1.5,
-  //     boxShadow: "10px 10px 0 rgba(0, 0, 0, 0.2)",
-  //     y: -50,
-  //     x: -100,
-  //     cursor: "pointer",
-  //     transition: { duration: 1, type: "spring" },
-  //   },
-  //   hidden: { scale: 1, opacity: 0 },
-  // };
+  const [solutionsData, setSolutionsData] = useState([]); // Estado para los datos de las soluciones
+
+  // Función para obtener las soluciones
+  const fetchSolutions = async () => {
+    try {
+      // El api puede ser internet, telefonia o television
+      const response = await axios.get(`http://44.209.22.101:8080/llamada/consultarSolucion/${call.TipoLlamada}`); // Hacer la petición al API
+      setSolutionsData(response.data); // Guardar los datos en el estado
+    } catch (error) {
+      console.error("Error al obtener datos del API:", error); // Mostrar error en consola
+    }
+  };
+
+  // Obtener las soluciones al cargar el componente
+  useEffect(() => {
+    fetchSolutions(); // Obtener las soluciones
+  }, [call.TipoLlamada]);
 
   return (
     <div className="solutions">
@@ -47,14 +38,25 @@ const Solutions = (props) => {
       </div>
       <div className="solutions-div">
         <div className="possible-solutions">
-          {data.map((solution) => (
-            // <TextSolution key={solution.id} tituloSolucion={solution.name}/>
-            <SolutionCard key={solution.id} tituloSolucion={solution.name} />
-          ))}
+          { call.TipoLlamada && solutionsData.map((solution) => (
+            <SolutionCard
+              key={solution.IdSolucion}
+              solution={solution}
+              tituloSolucion={solution.Nombre}
+            />
+          ))
+          }
+          {/* {solutionsData.map((solution) => (
+            <SolutionCard
+              key={solution.IdSolucion}
+              solution={solution}
+              tituloSolucion={solution.Nombre}
+            />
+          ))} */}
         </div>
         <div className="botones-solutions">
-          <FormDialog/>
-          <FormDialog/>
+          <FormDialog />
+          <IncidenceForm />
         </div>
       </div>
     </div>

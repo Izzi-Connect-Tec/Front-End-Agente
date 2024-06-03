@@ -1,3 +1,6 @@
+// Autor: Karla Cruz
+// Componente individual de notificación, se muestra en la barra de notificaciones
+
 import React from 'react';
 import '../styles/notification.css';
 import { TiDelete } from "react-icons/ti";
