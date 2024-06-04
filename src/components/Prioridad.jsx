@@ -18,7 +18,7 @@ export default function BasicSelect({ onPrioridadChange }) {
     <Box sx={{ minWidth: 120 }}>
       <FormControl fullWidth>
         <InputLabel
-          sx={{ fontFamily: ["Century Gothic", "Futura"].join(",") }}
+          sx={{ fontFamily: ["Century Gothic", "Futura"].join(","),}}
           id="demo-simple-select-label"
         >
           Prioridad

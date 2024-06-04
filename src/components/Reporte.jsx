@@ -233,7 +233,7 @@ export default function FormDialog() {
           <DialogContentText
             sx={{ fontFamily: ["Century Gothic", "Futura"].join(",") }}
           >
-            Se debe se hacer un reporte debido a una falla que no se podia
+            Se debe de hacer un reporte debido a una falla que no se podia
             arreglar
           </DialogContentText>
           <TextField

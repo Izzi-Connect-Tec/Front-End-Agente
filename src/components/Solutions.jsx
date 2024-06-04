@@ -1,8 +1,12 @@
+// Autor: Karla Cruz
+// Componente que despliega las soluciones disponibles dependiendo del problema con el que se esté trabajando\
+
 import React, { useEffect, useState } from "react";
 import "../styles/solutions.css";
 import FormDialog from "./Reporte";
 import SolutionCard from "./SolutionCard";
-import axios from "axios"; // Importa Axios
+import axios from "axios";
+import IncidenceForm from "./Incidence";
 
 const Solutions = () => {
   const [solutionsData, setSolutionsData] = useState([]); // Estado para los datos de las soluciones
@@ -10,6 +14,7 @@ const Solutions = () => {
   // Función para obtener las soluciones
   const fetchSolutions = async () => {
     try {
+      // El api puede ser internet, telefonia o television
       const response = await axios.get("http://44.209.22.101:8080/llamada/consultarSolucion/internet"); // Hacer la petición al API
       setSolutionsData(response.data); // Guardar los datos en el estado
     } catch (error) {
@@ -38,8 +43,8 @@ const Solutions = () => {
           ))}
         </div>
         <div className="botones-solutions">
-          <FormDialog/>
-          <FormDialog/>
+          <FormDialog />
+          <IncidenceForm />
         </div>
       </div>
     </div>
