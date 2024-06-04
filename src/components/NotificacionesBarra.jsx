@@ -15,7 +15,7 @@ export default function TemporaryDrawer() {
     { titulo: "TITLE 3", description: "This is notification three", sender: "Javi" },
     { titulo: "TITLE 4", description: "This is notification four", sender: "Javi" },
     { titulo: "TITLE 5", description: "This is notification five", sender: "Leo" },
-    { titulo: "TITLE 6 ", description: "This is notification six, test with longer text, aaaaaa hello hello test test", sender: "Kari" }
+    { titulo: "TITLE 6 ", description: "This is notification six, test with longer text, aaaaaa hello hello test test", sender: "Kari" },
   ];
 
   const [notifications, setNotifications] = useState(initialData);
