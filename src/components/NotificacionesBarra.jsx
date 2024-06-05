@@ -29,7 +29,7 @@ export default function TemporaryDrawer() {
   const [open, setOpen] = useState(false); // Estado para abrir y cerrar el drawer
 
 
-  const fecha = "2024-06-04"
+  const fecha = "2024-06-05"
 
   useEffect(() => {
     // Inicialmente cargar datos
@@ -47,9 +47,15 @@ export default function TemporaryDrawer() {
       setNotifications(notificacionesGlobales);
     });
 
+    socket.on("notificacion_empleado", (notificacionEmpleado) => {
+      console.log("Notificacion del empleado recibida:", notificacionEmpleado);
+      setNotifications(notificacionEmpleado);
+    });
+
     // Limpiar el socket al desmontar el componente
     return () => {
       socket.off("notificacion_global");
+      socket.off("notificacion_empleado");
       console.log("Socket limpiado");
     };
   }, []);
