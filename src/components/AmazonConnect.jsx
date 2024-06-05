@@ -1,66 +1,74 @@
-// import React, { useEffect, useRef } from 'react';
-// import "amazon-connect-streams";
-
-// const AmazonConnectCCP = () => {
-  
-//   const containerDiv = useRef(null);
-
-//   useEffect(() => {
-    
-//     const script = document.createElement('script');
-//     script.src = "https://izzibucket.s3.amazonaws.com/connect-streams-min.js";
-//     script.async = true;
-//     document.body.appendChild(script);
-
-//     script.onload = () => {
-//         const instanceURL = "https://izzi-team.my.connect.aws/ccp-v2/";
-//         connect.core.initCCP(containerDiv.current, {
-//           ccpUrl: instanceURL,
-//           loginPopup: true,
-//           loginPopupAutoClose: true,
-//           loginOptions: {
-//             autoClose: true,
-//             height: 600,
-//             width: 400,
-//             top: 0,
-//             left: 0,
-//           },
-//           region: "us-east-1",
-//           softphone: {
-//             allowFramedSoftphone: true,
-//             disableRingtone: false,
-//             ringtoneUrl: "./ringtone.mp3",
-//           },
-//           pageOptions: {
-//             enableAudioDeviceSettings: false,
-//             enablePhoneTypeSettings: true,
-//           },
-//           ccpAckTimeout: 5000,
-//           ccpSynTimeout: 3000,
-//           ccpLoadTimeout: 10000,
-//         });
-//     };
-
-//     // return () => {
-//     //   document.body.removeChild(script);
-//     // };
-//   }, []);
-
-//   return <div ref={containerDiv} style={{ width: '300px', height: '400px' }} />;
-// };
-
-// export default AmazonConnectCCP;
-
-///////////
-
 import "amazon-connect-streams";
-import { useEffect, React } from "react";
+import { useEffect, React, useState, useCallback } from "react";
+import { useUserContext } from "../Providers/AmazonContext";
+import { useLlamadaContext } from "../Providers/LlamadaContext";
+import { useLogInContext } from "../Providers/LogInContext";
 
 
 const EmbedConnect = (props) => {
-  //Variables to assing the call id and the status of the call
-  
 
+  //Agent
+  const [agent,,] = useLogInContext(); 
+
+  //Call
+  const [call, callData, restartCall] = useLlamadaContext();
+  const [stateCall, setStateCall] = useState(false);
+
+  //Client
+  const [, idCliente,, reiniciarCliente,] = useUserContext();
+
+  //Callback??
+  const actualizarLlamada = useCallback(async () => {
+    try{
+      //Pasarlo a la funcion de actualizar llamada
+      const datos = {id: call.IdLlamada,
+        IdEmpleado: agent.IdEmpleado}
+      console.log(datos)
+      let config = {
+        method: 'PUT',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(datos)
+      }
+      let res = await fetch("http://44.209.22.101:8080/llamada/actualizarLlamada", config) 
+      // let res = await fetch(`http://localhost:8080/llamada/actualizarLlamada/${call.IdLlamada}`, config) 
+      console.log(res)
+    } catch (error) {
+      console.log(error)
+    }
+    },[call.IdLlamada, agent.IdEmpleado])
+
+      //Callback??
+  const actualizarLlamadaFinalizada = useCallback(async () => {
+    try{
+      //Pasarlo a la funcion de actualizar llamada
+      const datos = {
+        id: call.IdLlamada,
+        duracion: "27",
+        estado: false
+      }
+      console.log("DATOS LLAMADA FINALIZADA" , datos)
+      let config = {
+        method: 'PUT',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(datos)
+      }
+      let res = await fetch("http://44.209.22.101:8080/llamada/actualizarLlamadaFinalizada", config) 
+      // let res = await fetch(`http://localhost:8080/llamada/actualizarLlamada/${call.IdLlamada}`, config) 
+      console.log(res)
+    } catch (error) {
+      console.log(error)
+    }
+    },[call.IdLlamada])
+
+
+
+  //Variables to assing the call id and the status of the call
   // Code to embed the Amazon Connect CCP
   useEffect(() => {
     const container = document.getElementById("ccp");
@@ -96,20 +104,49 @@ const EmbedConnect = (props) => {
 
     // Code to be executed once a call starts
     // eslint-disable-next-line no-undef
-    // connect.contact(function (contact) {
-    //   contact.onConnected(async function (contact) {
-    //     cid = contact.getContactId();
-    //     console.log(cid);
-    //     var attributeMap = contact.getAttributes();
-    //     console.log(attributeMap);
-    //   });
-    // });
+    connect.contact(function (contact) {
+      contact.onConnected(async function (contact) {
+        // let cid = contact.getContactId();
+        // console.log(cid);
+        setStateCall(true)
+        var attributeMap = contact.getAttributes();
+        console.log(attributeMap);
+        callData({IdLlamada: attributeMap.Call.value, TipoLlamada: attributeMap.Concept.value, DescripcionLlamada: attributeMap.Notes.value})
+        idCliente(attributeMap.Tel.value)
+      });
+      contact.onEnded(function(contact) {
+        setStateCall(false)
+      });
+    });
 
-    
+    /* global connect */
+    connect.agent(function(agent) {
+      var help = agent.getConfiguration().username;
+      console.log(`AGENTE : ${help}`);
+    });
     
   }, []);
 
-  return <div id="ccp" style={{ width: "400px", height: "450px" }}></div>;
+
+  useEffect(() => {
+    console.log("USE EFFECT 2");
+    if (call.IdLlamada){
+      console.log("Actualice la llamada");
+      actualizarLlamada()
+    }
+  }, [call, actualizarLlamada])
+
+  useEffect(() => {
+    console.log("USE EFFECT 3");
+    if (!stateCall && call.IdLlamada!=null){
+      console.log("Actualice la llamada finalizada");
+      actualizarLlamadaFinalizada();
+      reiniciarCliente();
+      restartCall();
+    }
+  }, [stateCall, actualizarLlamadaFinalizada])
+
+  return <div id="ccp" style={{ width: "300px", height: "350px" }}></div>;
 };
 
 export default EmbedConnect;

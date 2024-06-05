@@ -2,15 +2,17 @@ body {
   font-family: "Century Gothic", "Futura";
 }
 
+
+
 .header {
   background: linear-gradient(
     90deg,
-    rgb(209, 32, 115) 0.41%,
-    rgb(226, 108, 163) 40.68%,
-    rgb(234, 168, 121) 64.12%,
-    rgb(255, 137, 53) 97.82%
+    rgb(255, 137, 53) 0.41%,
+    rgb(234, 168, 121) 40.68%,
+    rgb(226, 108, 163) 64.12%,
+    rgb(209, 32, 115) 97.82%
   );
-  padding: 10px 20px;
+  padding: 5px 10px;
   color: white;
   display: flex;
   justify-content: space-between;
@@ -19,12 +21,18 @@ body {
 }
 
 .logoH {
-  width: 100px;
+  width: 70px;
+}
+
+.logoH:hover {
+  cursor: pointer;
 }
 
 .divB {
-  margin-left: 500px;
   font-weight: bold;
+  margin-right: 65%;
+  display:block;
+  color: white;
 }
 
 .buttonH {
@@ -32,16 +40,17 @@ body {
   height: 40px;
   background: transparent;
   border: 0;
-  border-radius: 15px;
+  border-radius: 10px;
   line-height: 10px;
-  padding: 10px 10px 10px 10px;
-  appearance: none;
+  padding: 1px 1px 1px 1px;
+  appearance: auto;
   color: rgb(255, 255, 255);
   cursor: pointer;
   text-align: center;
   margin: 0px;
   font-family: "Century Gothic", "Futura";
-  font-weight: bold;
+  
+  transition: color, background-color 0.2s;
 }
 
 .buttonH:hover {
@@ -56,9 +65,46 @@ body {
   border: 0;
   color: aliceblue;
   cursor: pointer;
+  margin-right: 0.8rem;
+}
+
+.hamburguer{
+  font-size: 1.4rem;
+  background-color: transparent;
+  border: 0;
+  color: aliceblue;
+  cursor: pointer;
   margin-top: 5px;
+  display: none;
 }
 
 .bienv {
   color: #ffffff;
+}
+
+
+
+@media screen and (max-width: 1100px){
+
+  .hamburguer{
+    display: flex;
+  }
+  .header-nav{
+      width:100%;
+      display: flex;
+      flex-flow: column nowrap;
+      justify-content: center;
+      align-items: center;
+      height:0vh;
+      opacity: 0;
+      overflow: hidden;
+      transition: all .5s ease;
+  }
+  .header-nav.isActive{
+      height: 15vh;
+      opacity: 1;
+  }
+  .buttonH{
+      flex-direction: row;
+  }
 }

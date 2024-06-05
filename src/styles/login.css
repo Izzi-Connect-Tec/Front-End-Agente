@@ -21,6 +21,10 @@
   font-size: 30px;
 }
 
+.error {
+  color: red;
+}
+
 .background-gif {
   position: absolute;
   top: 0;

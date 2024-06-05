@@ -610,14 +610,15 @@
 
 // export default Calificacion;
 //con las nuevas gráficas (con librería)
-import { useState, useEffect } from 'react';
 import '../styles/calificacion.css';
 import Card from 'react-bootstrap/Card';
 import StarRating from './StarRating';
-import ProfilePhoto from './ProfilePicture'; 
+import ProfilePhoto from './ProfilePicture';
 import izziImage from '../elements/izzi.jpeg';
 import Charts from './Charts';
+// import AgentRankingChart from './AgentRankingChart'; // Importamos el componente de la gráfica
 import Header from './Header';
+import { useState, useEffect } from 'react';
 
 const Calificacion = () => {
   const [data, setData] = useState([]);
@@ -677,7 +678,7 @@ const Calificacion = () => {
               <Card.Body>
                 <div className="card-content">
                   <div className="card-title">{title}</div>
-                  {index === 0 ? ( 
+                  {index === 0 ? (
                     <div className="card-value">
                       <StarRating rating={value} />
                     </div>
