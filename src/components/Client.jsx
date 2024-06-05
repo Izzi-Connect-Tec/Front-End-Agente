@@ -4,8 +4,11 @@ import FolderList from "./HistorialCliente";
 //import TextField from "@mui/material/TextField";
 import { useState, useCallback, useEffect } from "react";
 import { useUserContext } from "../Providers/AmazonContext";
-import Chatbox from "./Chatbox";
-
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import CallIcon from '@mui/icons-material/Call';
+import EmailIcon from '@mui/icons-material/Email';
+import PlaceIcon from '@mui/icons-material/Place';
+import ReceiptLongIcon from '@mui/icons-material/ReceiptLong';
 
 
 const Client = (props) => {
@@ -67,12 +70,49 @@ const descargarReportesCliente = useCallback(async () => {
 
   const DatosClienteEncontrados = () => {
     return (
+      // <div>
+      //   <p>Contrato: {usuario.Celular}</p>
+      //   <p>Nombre: {usuario.Nombre} {usuario.ApellidoP} {usuario.ApellidoM}</p>
+      //   <p>Localidad: {usuario.IdZona}</p>
+      //   <p>Plan contratado: Izzi Basic $150</p>
+      // </div>
       <div>
-        <p>Contrato: {usuario.Celular}</p>
-        <p>Nombre: {usuario.Nombre} {usuario.ApellidoP} {usuario.ApellidoM}</p>
-        <p>Localidad: {usuario.IdZona}</p>
-        <p>Plan contratado: Izzi Basic $150</p>
-      </div>
+        <div className="dataClient">
+          <AccountCircleIcon/>
+          <div className="client">
+            <p className="label">Joahan Garcia Fernandez</p>
+            <p className="info">Hombre, 25 años</p>
+          </div>
+        </div>
+        <div className="dataClient">
+          <CallIcon/>
+          <div className="client">
+            <p className="label">Número</p>
+            <p className="info">+525584016051</p>
+          </div>
+        </div>
+        <div className="dataClient">
+          <EmailIcon/>
+          <div className="client">
+            <p className="label">Email</p>
+            <p className="info">joahan@hotmail.com</p>
+          </div>
+        </div>
+        <div className="dataClient">
+          <PlaceIcon/>
+          <div className="client">
+            <p className="label">Localidad</p>
+            <p className="info">Atizapan</p>
+          </div>
+        </div>
+        <div className="dataClient">
+          <ReceiptLongIcon/>
+          <div className="client">
+            <p className="label">Plan actual</p>
+            <p className="info">Izzi Basic $150</p>
+          </div>
+        </div>
+    </div>
     );
   };
 
@@ -82,7 +122,7 @@ const descargarReportesCliente = useCallback(async () => {
         <h2>Cliente</h2>
       </div>
       <div className="client-div">
-      {/* <Chatbox nombreCliente = {"Joahan"} nombreAgente = {"Maxito"} id = {"c9e70e8d-441f-4b80-9efa-9f7f907da0a0"}/> */}
+      <DatosClienteEncontrados />
         <div className="solucionTarjetaProblema">
         </div>
         {usuario.Nombre ? 

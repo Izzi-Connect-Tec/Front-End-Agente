@@ -1,15 +1,16 @@
-* {
+/* * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-}
+} */
 
 .container {
     width: 40vw;
-    height: 30vh;
+    height: 55vh;
     margin: 5vh auto; /* Center the container NUEVO*/ 
     border-radius: 12px;
-    background-color: rgba(17, 25, 40, 0.75);
+    /* background-color: rgba(17, 25, 40, 0.75); */
+    background-color: rgba(209, 213, 219, 0.75);
     backdrop-filter: blur(19px) saturate(180%);
     border: 1px solid rgba(255, 255, 255, 0.125);
     display: flex;
@@ -26,18 +27,12 @@
 }
 
 .message {
-    max-width: 70%;
+    max-width: 80%;
     display: flex;
     gap: 20px;
     align-items: center; /* Center items vertically */
 }
 
-.message img {
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    object-fit: cover;
-}
 
 .message .texts {
     flex: 1;
@@ -72,3 +67,39 @@
 .message.own .texts p {
     background-color: #5183fe;
 }
+
+
+.titlee {
+    font-size: 14px;
+    font-weight: bold;
+    text-align: left;
+    color: #333;
+    overflow-wrap: break-word;
+    margin-top: 20px;
+  }
+  
+.titlee-agent {
+    font-size: 14px;
+    font-weight: bold;
+    text-align: right;
+    color: #333;
+    overflow: hidden;
+    padding-top: 20px;
+  }
+
+.message .icon {
+    font-size: 45px;
+    object-fit: cover;
+  }
+  
+.message .icon.red {
+    color: red;
+  }
+  
+.message .icon.green {
+    color: green;
+  }
+  
+.message .icon.blue {
+    color: blue;
+  }

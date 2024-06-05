@@ -30,3 +30,36 @@
   border: 3px solid #00bcb4;
   align-items: center;
 }
+
+.dataClient {
+  display: flex;
+  flex-direction: row;
+  align-items: center; /* Alinea los elementos verticalmente al centro */
+  gap: 5px; /* Ajusta el valor según sea necesario */
+  margin-top: 20px;
+}
+
+.dataClient p {
+  margin: 0; /* Elimina el margen predeterminado */
+  margin-right: auto; /* Elimina el padding predeterminado */
+  margin-top: 3px;
+}
+
+.client {
+  display: flex;
+  flex-direction: column;
+}
+
+.dataClient svg {
+  width: 30px; /* Ajusta el valor según sea necesario */
+  height: 30px; /* Ajusta el valor según sea necesario */
+  margin-right: 10px; /* Espacio entre el icono y el texto, ajusta según sea necesario */
+}
+
+.label {
+  font-weight: bold; /* Hace que la palabra "Numero" sea en negrita */
+}
+
+.info{
+  color: rgb(101, 99, 99);
+}
