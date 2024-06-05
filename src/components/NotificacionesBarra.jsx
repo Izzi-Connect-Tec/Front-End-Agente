@@ -12,7 +12,7 @@ import "../styles/notificacionesBarra.css";
 import NotificationContext from "../Providers/NotificationContext";
 import io from "socket.io-client";
 
-// const socket = io("http://127.0.0.1:8080");
+const socket = io("http://127.0.0.1:8080");
 
 export default function TemporaryDrawer() {
   // Dummies
@@ -27,47 +27,32 @@ export default function TemporaryDrawer() {
 
   const [notifications, setNotifications] = useState([]); // Estado para las notificaciones
   const [open, setOpen] = useState(false); // Estado para abrir y cerrar el drawer
-  
-  const [url, setUrl] = useState('')
-  const [data, setData] = useState(null);
 
-  // const fecha = "2024-06-04"
 
-  const descargar = useCallback(
-    async () => {
-      setUrl(`http://127.0.0.1:8080/notifications/notificaciones`);
-      const response = await fetch(url);
-      const data = await response.json();
-      console.log(data); 
-      setData(data);
-    }, [url])
+  const fecha = "2024-06-04"
 
   useEffect(() => {
-    descargar();
-  }, [descargar]);
-
-  console.log(data);
-
-  // useEffect(() => {
     // Inicialmente cargar datos
-    // console.log("Cargando notificaciones...");
-    // fetch(`http://127.0.0.1:8080/notifications/notificaciones`)
-    //   .then((response) => response.json())
-    //   .then((data) => console.log(data))
-    //   .catch((error) => console.error("Error fetching data:", error));
+    console.log("Cargando notificaciones...");
+    fetch(`http://127.0.0.1:8080/notificacion/notificacionesDiaGlobal/${fecha}`)
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+        setNotifications(data);})
+      .catch((error) => console.error("Error fetching data: ", error));
 
-    // // Configurar el socket para escuchar eventos
-    // socket.on("notificacion_global", (notificacionesGlobales) => {
-    //   console.log("Notificaciones globales recibidas:", notificacionesGlobales);
-    //   // setNotifications(notificacionesGlobales);
-    // });
+    // Configurar el socket para escuchar eventos
+    socket.on("notificacion_global", (notificacionesGlobales) => {
+      console.log("Notificaciones globales recibidas:", notificacionesGlobales);
+      setNotifications(notificacionesGlobales);
+    });
 
     // Limpiar el socket al desmontar el componente
-    // return () => {
-    //   socket.off("notificacion_global");
-    //   console.log("Socket limpiado");
-    // };
-  // }, []);
+    return () => {
+      socket.off("notificacion_global");
+      console.log("Socket limpiado");
+    };
+  }, []);
 
   // Función para manejar el clic en el badge
   const handleBadgeClick = () => {
@@ -90,8 +75,10 @@ export default function TemporaryDrawer() {
   // Utiliza el componente de notificación para mostrar las notificaciones
   const DrawerList = (
     <Box sx={{ width: 400 }} role="presentation">
-      <div className="bdia-agente"><p>¡Buen día Joahan Javier Garcia Fernandez!</p></div>
-      
+      <div className="bdia-agente">
+        <p>¡Buen día Joahan Javier Garcia Fernandez!</p>
+      </div>
+
       <Divider />
       <List>
         {notifications.length !== 0 ? (
@@ -99,9 +86,8 @@ export default function TemporaryDrawer() {
             return (
               <Notification
                 key={index}
-                titulo={notification.titulo}
-                descripcion={notification.description}
-                remitente={notification.sender}
+                titulo={notification.Titulo}
+                descripcion={notification.Descripcion}
                 onDelete={() => handleDelete(index)}
               />
             );
