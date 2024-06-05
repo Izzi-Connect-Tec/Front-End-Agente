@@ -11,6 +11,29 @@
   --font-size-value-small: 30px;
   --font-size-star-rating: 30px;
 }
+.blue-card,
+.pink-card,
+.yellow-card,
+.orange-card,
+.custom-card, 
+.profile-container img,
+.chart-container  {
+  animation-name: slideIn;
+  animation-duration: 0.5s;
+  animation-timing-function: ease;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 
 .custom-container {
   display: grid;
@@ -52,6 +75,7 @@
   padding: 5px;
   text-align: center;
 }
+
 .custom-card-title,
 .custom-card-text,
 .custom-card-footer {
@@ -239,27 +263,56 @@
   width: 80%;
 }
 
+
 @media (orientation: landscape) {
   .calificacion-content {
-    margin-left: -2%;
+    margin-left: -4%;
+  }
+
+  .blue-card:hover,
+  .pink-card:hover,
+  .yellow-card:hover,
+  .orange-card:hover {
+    width: 101%;
+    height: auto;
+    transform: scale(1.1);
+    transition: all 0.3s ease; 
+  }
+
+  .custom-card:hover {
+    transform: scale(1.1);
+    transition: all 0.3s ease; 
+  }
+  .chart-container:hover {
+    transform: scale(1.01);
+    transition: all 0.3s ease; 
   }
 
   .profile-container img {
     width: 100%;
     margin-right: 0;
     margin-left: 0%;
-    margin-bottom: 5%;
+    margin-bottom: -2%;
     margin-top: -5%;
+  }
+
+  .profile-container img:hover {
+    transform: scale(1.05); 
+    transition: transform 0.3s ease;
   }
 
   .orange-card-container {
     width: 70%;
+    min-height: 300px; 
+    margin-top: -2%; 
   }
 
   .orange-card {
     margin-top: 0%;
     height: 95%;
+    margin-bottom: 1px;
   }
+
   .card-container {
     grid-template-columns: repeat(3, 1fr);
     width: 70%;
@@ -286,31 +339,160 @@
     margin-top: 8%;
     margin-bottom: 5%;
   }
-
+  
   .chart-container {
-    width: calc(75% - 40%);
-    margin-left: 32%;
-    margin-top: -17vw;
+    position: absolute; 
+    top: calc(51% + 25px); 
+    width: calc(71.5% - 40%);
+    left: 31%;
   }
 
   .chart {
     width: 100%;
     height: 100px;
   }
+
   .charts-container {
     display: flex;
     width: 200%;
     margin-top: -20%;
-    
   }
-  
+
   .chart-wrapper {
     flex: 1;
     margin-left: 10px; 
   }
+
+  .figure-caption{
+    margin-top: 5%;
+    margin-bottom: -10%;
+  }
+  .custom-card {
+    width: 85%;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-top: 0%;
+    margin-left: -5%;
+  }
+}
+
+@media (min-width: 1200px) and (orientation: landscape) {
+  .calificacion-content {
+    margin-left: -4%;
+  }
+
+  .profile-container img {
+    width: 90%;
+    margin-right: 0;
+    margin-left: 0%;
+    margin-bottom: -2%;
+    margin-top: -5%;
+  }
+
+  .orange-card-container {
+    width: 63%;
+    min-height: 300px; 
+    margin-top: -2%; 
+    margin-left: -7%;
+  }
+
+  .orange-card {
+    margin-top: 0%;
+    height: 95%;
+    margin-bottom: 1px;
+  }
+  .card-container {
+    grid-template-columns: repeat(3, 1fr);
+    width: 70%;
+  }
+
+  .card {
+    flex: 1;
+  }
+
+  .card-value {
+    font-size: 45px;
+  }
+  .blue-card:hover,
+  .pink-card:hover,
+  .yellow-card:hover,
+  .orange-card:hover {
+    width: 100.5%;
+    height: auto;
+    transform: scale(1.1);
+    transition: all 0.3s ease; 
+  }
+  
+
+  .star-rating {
+    font-size: var(--font-size-star-rating);
+  }
+
+  .card-rank {
+    font-size: var(--font-size-rank);
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    align-self: center;
+    margin-top: 8%;
+    margin-bottom: 5%;
+  }
+  
+  .chart-container {
+    position: absolute; 
+    top: calc(55% + 25px); 
+    width: calc(70% - 35%);
+    left: 29%;
+  }
+
+  .chart {
+    width: 100%;
+    height: 100px;
+  }
+
+  .charts-container {
+    display: flex;
+    width: 200%;
+    margin-top: -20%;
+  }
+
+  .chart-wrapper {
+    flex: 1;
+    margin-left: 10px; 
+  }
+
+  .figure-caption{
+    margin-top: 5%;
+    margin-bottom: -10%;
+  }
+  .custom-card {
+    width: 90%;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-top: 0%;
+    margin-left: -5%;
+  }
+
+  .pink-card .card-value,
+  .yellow-card .card-value{
+    margin-top: 10%;
+  }
+
+  .orange-card .card-title {
+    margin-top: -3%;
+  } 
+  .profile-container img:hover {
+    transform: scale(1.02); 
+    transition: transform 0.3s ease;
+  }
+  
 }
 
 @media (orientation: portrait) {
+  .calificacion-content {
+    margin-left: -2%;
+  }
+
   .custom-card {
     width: 90%;
     border-radius: 10px;
@@ -323,6 +505,12 @@
     margin-top: -10%;
     margin-left: -13%;
   }
+
+  .profile-container img:hover {
+    transform: scale(1.1); 
+    transition: transform 0.3s ease;
+  }
+  
   .orange-card {
     height: 24vw;
     margin-top: 0%;
@@ -352,61 +540,86 @@
     align-items: center;
     justify-content: space-between;
     height: 100%;
-  }
+}
 
   .orange-card .card-title {
-    margin-top: 0%;
+  margin-top: 0%;
   }
 
   .orange-card .card-value {
-    margin-bottom: 10%;
-    margin-top: 10%;
+  margin-bottom: 10%;
+  margin-top: 10%;
   }
   .card-title {
-    font-size: var(--font-size-title-small);
-    text-align: center;
-    margin-bottom: 5px;
-    margin-left: 5%;
-    margin-right: 5%;
-    margin-top: -5%;
+  font-size: var(--font-size-title-small);
+  text-align: center;
+  margin-bottom: 5px;
+  margin-left: 5%;
+  margin-right: 5%;
+  margin-top: -5%;
   }
 
   .card-value {
-    font-size: var(--font-size-value-small);
-    text-align: center;
-    margin-top: 15px;
+  font-size: var(--font-size-value-small);
+  text-align: center;
+  margin-top: 15px;
   }
 
   .card-rank {
-    font-size: var(--font-size-rank);
-    color: white;
-    font-weight: bold;
-    text-align: center;
-    align-self: center;
-    margin-top: 6%;
+  font-size: var(--font-size-rank);
+  color: white;
+  font-weight: bold;
+  text-align: center;
+  align-self: center;
+  margin-top: 6%;
   }
 
   .chart-container {
-    flex-direction: column;
-    width: 100%;
-    max-width: 90%;
+  flex-direction: column;
+  width: 100%;
+  max-width: 90%;
   }
 
   .chart {
-    width: 100%;
+  width: 100%;
   }
 
   .header {
-    height: 50px;
+  height: 50px;
   }
   .figure-caption {
-    width: 100%; 
-    text-align: center;
-    margin-top: -5%; 
-    margin-bottom: 5%;
+  width: 100%;
+  text-align: center;
+  margin-top: -5%;
+  margin-bottom: 5%;
   }
   .charts-container {
-    margin-top: 0%;
+  margin-top: 0%;
+  margin-left: 5%;
+  }
+  .custom-card {
+    margin-left: -10%;
+  }
+  .custom-card:hover {
+    transform: scale(1.1);
+    transition: all 0.3s ease; 
+  }
+  .orange-card:hover {
+    width: 100.01%;
+    height: auto;
+    transform: scale(1.1);
+    transition: all 0.3s ease; 
+  }
+  .blue-card:hover,
+  .pink-card:hover,
+  .yellow-card:hover {
     margin-left: 5%;
+    height: auto;
+    transform: scale(1.1);
+    transition: all 0.3s ease; 
+  }
+  .chart-container:hover {
+    transform: scale(1.1);
+    transition: all 0.3s ease; 
   }
 }
