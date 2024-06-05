@@ -29,7 +29,7 @@ export default function TemporaryDrawer() {
   const [open, setOpen] = useState(false); // Estado para abrir y cerrar el drawer
 
 
-  const fecha = "2024-06-04"
+  const fecha = "2024-06-05"
 
   useEffect(() => {
     // Inicialmente cargar datos
