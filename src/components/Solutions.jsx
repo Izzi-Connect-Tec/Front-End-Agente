@@ -1,29 +1,32 @@
-// Contenedor que despliega las soluciones en forma de lista para ser seleccionados
+// Autor: Karla Cruz
+// Componente que despliega las soluciones disponibles dependiendo del problema con el que se esté trabajando\
 
-import {TextSolution} from "./TextSolution";
+import React, { useEffect, useState } from "react";
 import "../styles/solutions.css";
 import FormDialog from "./Reporte";
+import SolutionCard from "./SolutionCard";
+import axios from "axios";
+import IncidenceForm from "./Incidence";
 
-const data = [
-  {
-    id: 1,
-    name: "Reiniciar el módem",
-    dec: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Suscipit, molestiae.",
-  },
-  {
-    id: 2,
-    name: "Checar las conexiones del módem",
-  },
-  {
-    id: 3,
-    name: "Checar indicadores led del módem",
-  }
-];
+const Solutions = () => {
+  const [solutionsData, setSolutionsData] = useState([]); // Estado para los datos de las soluciones
 
+  // Función para obtener las soluciones
+  const fetchSolutions = async () => {
+    try {
+      // El api puede ser internet, telefonia o television
+      const response = await axios.get("http://44.209.22.101:8080/llamada/consultarSolucion/internet"); // Hacer la petición al API
+      setSolutionsData(response.data); // Guardar los datos en el estado
+    } catch (error) {
+      console.error("Error al obtener datos del API:", error); // Mostrar error en consola
+    }
+  };
 
+  // Obtener las soluciones al cargar el componente
+  useEffect(() => {
+    fetchSolutions(); // Obtener las soluciones
+  }, []);
 
-
-const Solutions = (props) => {
   return (
     <div className="solutions">
       <div className="titulo-soluciones">
@@ -31,12 +34,17 @@ const Solutions = (props) => {
       </div>
       <div className="solutions-div">
         <div className="possible-solutions">
-          {data.map ((solution) => (
-            <TextSolution key={solution.id} tituloSolucion={solution.name}/>
+          {solutionsData.map((solution) => (
+            <SolutionCard
+              key={solution.IdSolucion}
+              solution={solution}
+              tituloSolucion={solution.Nombre}
+            />
           ))}
         </div>
         <div className="botones-solutions">
-          <FormDialog/>
+          <FormDialog />
+          <IncidenceForm />
         </div>
       </div>
     </div>

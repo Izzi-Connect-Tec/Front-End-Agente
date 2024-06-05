@@ -54,10 +54,23 @@
 ///////////
 
 import "amazon-connect-streams";
-import { useEffect, React } from "react";
+import { useEffect, React, useState } from "react";
+import { useUserToggleContext } from "../Providers/UserContext";
 
 
 const EmbedConnect = (props) => {
+
+  const cambiaLogin = useUserToggleContext();
+
+  const [data, setData] = useState(null);
+
+  useEffect( () => {
+    if (data) {
+      cambiaLogin(data.Tel.value)
+    }
+  }, [data, cambiaLogin]);
+
+
   //Variables to assing the call id and the status of the call
   
 
@@ -96,20 +109,22 @@ const EmbedConnect = (props) => {
 
     // Code to be executed once a call starts
     // eslint-disable-next-line no-undef
-    // connect.contact(function (contact) {
-    //   contact.onConnected(async function (contact) {
-    //     cid = contact.getContactId();
-    //     console.log(cid);
-    //     var attributeMap = contact.getAttributes();
-    //     console.log(attributeMap);
-    //   });
-    // });
+    connect.contact(function (contact) {
+      contact.onConnected(async function (contact) {
+        // let cid = contact.getContactId();
+        // console.log(cid);
+        var attributeMap = contact.getAttributes();
+        console.log(attributeMap);
+        setData(attributeMap);
+      });
+    });
 
+    
     
     
   }, []);
 
-  return <div id="ccp" style={{ width: "400px", height: "450px" }}></div>;
+  return <div id="ccp" style={{ width: "300px", height: "350px" }}></div>;
 };
 
 export default EmbedConnect;
