@@ -4,6 +4,7 @@ import FolderList from "./HistorialCliente";
 //import TextField from "@mui/material/TextField";
 import { useState, useCallback, useEffect } from "react";
 import { useUserContext } from "../Providers/AmazonContext";
+import Chatbox from "./Chatbox";
 
 
 
@@ -81,6 +82,7 @@ const descargarReportesCliente = useCallback(async () => {
         <h2>Cliente</h2>
       </div>
       <div className="client-div">
+      {/* <Chatbox nombreCliente = {"Joahan"} nombreAgente = {"Maxito"} id = {"c9e70e8d-441f-4b80-9efa-9f7f907da0a0"}/> */}
         <div className="solucionTarjetaProblema">
         </div>
         {usuario.Nombre ? 

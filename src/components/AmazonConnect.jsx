@@ -111,7 +111,7 @@ const EmbedConnect = (props) => {
         setStateCall(true)
         var attributeMap = contact.getAttributes();
         console.log(attributeMap);
-        callData({IdLlamada: attributeMap.Call.value, TipoLlamada: attributeMap.Concept.value, DescripcionLlamada: attributeMap.Notes.value})
+        callData({IdLlamada: attributeMap.Call.value, TipoLlamada: attributeMap.CurrentConcept.value, DescripcionLlamada: attributeMap.CurrentNotes.value})
         idCliente(attributeMap.Tel.value)
       });
       contact.onEnded(function(contact) {
