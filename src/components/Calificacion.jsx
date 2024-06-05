@@ -610,14 +610,13 @@
 
 // export default Calificacion;
 //con las nuevas gráficas (con librería)
-import { useState, useEffect } from 'react';
 import '../styles/calificacion.css';
 import Card from 'react-bootstrap/Card';
 import StarRating from './StarRating';
 import ProfilePhoto from './ProfilePicture';
 import izziImage from '../elements/izzi.jpeg';
 import Charts from './Charts';
-import AgentRankingChart from './AgentRankingChart'; // Importamos el componente de la gráfica
+// import AgentRankingChart from './AgentRankingChart'; // Importamos el componente de la gráfica
 import Header from './Header';
 import { useState, useEffect } from 'react';
 
