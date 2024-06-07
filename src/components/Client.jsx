@@ -122,7 +122,7 @@ const descargarReportesCliente = useCallback(async () => {
         <h2>Cliente</h2>
       </div>
       <div className="client-div">
-      <DatosClienteEncontrados />
+      {/* <DatosClienteEncontrados /> */}
         <div className="solucionTarjetaProblema">
         </div>
         {usuario.Nombre ? 

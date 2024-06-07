@@ -10,6 +10,10 @@ import BasicSelect from "./Prioridad";
 import { useAlertToggleContext } from "../Providers/AlertContext";
 import { useUserContext } from "../Providers/AmazonContext";
 
+///
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 export default function FormDialog() {
 
   const [descripcion, setDescripcion] = React.useState("");
@@ -51,7 +55,14 @@ export default function FormDialog() {
         },
         body: JSON.stringify(reportePrueba)
       };
-      let res = await fetch('http://localhost:8080/reporte/crearReporte', config);
+      let res = await toast.promise(
+        fetch('http://localhost:8080/reporte/crearReporte', config),
+        {
+          pending: 'Promise is pending',
+          success: 'Reporte enviado exitosamente',
+          error: 'Error en el envio'
+        }
+      );
       console.log(res);
       handleClose();
     } catch (error) {
@@ -176,6 +187,9 @@ export default function FormDialog() {
           </Button>
         </DialogActions>
       </Dialog>
+      {/* <button onClick={notify}>Notify</button> */}
+      <ToastContainer 
+      position="bottom-left"/>
     </React.Fragment>
   );
 }

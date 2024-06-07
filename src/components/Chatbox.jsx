@@ -38,25 +38,27 @@ const Chatbox = (props) => {
   }, []);
 
   const updateSentiment = useCallback( async () => {
-    try{
-      const datos = {
-        id: props.id,
-        sentiment: lastCustomerSentiment
+    if (lastCustomerSentiment){
+      try{
+        const datos = {
+          id: props.id,
+          sentiment: lastCustomerSentiment
+        }
+        let config = {
+          method: 'PUT',
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(datos)
+        }
+        let res = await fetch("http://44.209.22.101:8080/llamada/cambiarSentiment", config) 
+        if (!res.ok) {
+          throw new Error('La solicitud no pudo completarse con éxito');
+        }
+      } catch (error){
+        console.log(error)
       }
-      let config = {
-        method: 'PUT',
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(datos)
-      }
-      let res = await fetch("http://44.209.22.101:8080/llamada/cambiarSentiment", config) 
-      if (!res.ok) {
-        throw new Error('La solicitud no pudo completarse con éxito');
-      }
-    } catch (error){
-      console.log(error)
     }
   }, [lastCustomerSentiment])
 

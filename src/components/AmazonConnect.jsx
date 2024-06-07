@@ -146,7 +146,7 @@ const EmbedConnect = (props) => {
     }
   }, [stateCall, actualizarLlamadaFinalizada])
 
-  return <div id="ccp" style={{ width: "300px", height: "350px" }}></div>;
+  return <div id="ccp" style={{ width: "400px", height: "250px" }}></div>;
 };
 
 export default EmbedConnect;
