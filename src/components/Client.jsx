@@ -122,15 +122,15 @@ const descargarReportesCliente = useCallback(async () => {
         <h2>Cliente</h2>
       </div>
       <div className="client-div">
-      {/* <DatosClienteEncontrados /> */}
+      <DatosClienteEncontrados />
         <div className="solucionTarjetaProblema">
         </div>
-        {usuario.Nombre ? 
+        {usuario.Nombre && 
         <div>
           <DatosClienteEncontrados />
           {reportesCliente && <FolderList historiaCliente={reportesCliente}/> }
         </div>
-        : <h1>Sin cliente</h1>}
+        }
       </div>
     </div>
   );
