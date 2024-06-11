@@ -11,6 +11,9 @@ import {TarjetaLlamada} from "./tarjetaLlamada";
 import { TarjetaCliente } from "./tarjetaCliente";
 import { TarjetaChat } from "./tarjetaChat";
 import { TarjetaSoluciones } from "./tarjetaSoluciones";
+import OpcionesExternas from "./OpcionesExternas";
+import TarjetaControlesLlamada from "./TarjetaControlesLlamada";
+import EmbedConnect from "./AmazonConnect";
 
 const Window = (props) => {
 

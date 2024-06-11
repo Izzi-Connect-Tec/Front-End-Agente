@@ -27,10 +27,16 @@ import * as React from 'react';
 import Stack from '@mui/material/Stack';
 import Paper from '@mui/material/Paper';
 import { styled } from '@mui/material/styles';
+import { EstadoLlamada } from './EstadoLlamada';
+
+import { motion, AnimatePresence  } from "framer-motion"
+
 
 const DemoPaper = styled(Paper)(({ theme }) => ({
   width: "35vw",
-  height: "30vh",
+  height: "24vh",
+  border: "4px solid #ec6907",
+  borderRadius: "20px",
   padding: theme.spacing(2),
   elevation: 15,
   ...theme.typography.body2,
@@ -39,8 +45,15 @@ const DemoPaper = styled(Paper)(({ theme }) => ({
 
 export const  TarjetaLlamada = () =>  {
   return (
+    <motion.div whileHover={{
+      scale: 1.01,
+      transition: { duration: 0.5 },
+    }}>
     <Stack direction="row" spacing={2}>
-      <DemoPaper elevation={20} square>square corners</DemoPaper>
+      <DemoPaper elevation={10} >
+        <EstadoLlamada/>
+      </DemoPaper>
     </Stack>
+    </motion.div>
   );
 }
