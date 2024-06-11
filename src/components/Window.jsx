@@ -11,6 +11,9 @@ import {TarjetaLlamada} from "./tarjetaLlamada";
 import { TarjetaCliente } from "./tarjetaCliente";
 import { TarjetaChat } from "./tarjetaChat";
 import { TarjetaSoluciones } from "./tarjetaSoluciones";
+import OpcionesExternas from "./OpcionesExternas";
+import TarjetaControlesLlamada from "./TarjetaControlesLlamada";
+import EmbedConnect from "./AmazonConnect";
 
 const Window = (props) => {
 
@@ -31,6 +34,9 @@ const Window = (props) => {
           </div>
         </div>
       </div> */}
+
+
+      
       <div className="window-header">
         <Header />
         <div className="llamada">
@@ -42,9 +48,12 @@ const Window = (props) => {
             <TarjetaChat/>
             <TarjetaSoluciones/>
           </div>
-        </div>  
+        </div> 
+        <TarjetaControlesLlamada/>
+        {/* <EmbedConnect/> */}
       </div>
-    </AppProviders>
+ 
+    </AppProviders> 
   );
 };
 

@@ -76,11 +76,11 @@ const descargarReportesCliente = useCallback(async () => {
       //   <p>Localidad: {usuario.IdZona}</p>
       //   <p>Plan contratado: Izzi Basic $150</p>
       // </div>
-      <div>
+      <div className="completeClient">
         <div className="dataClient">
           <AccountCircleIcon/>
           <div className="client">
-            <p className="label">Joahan Garcia Fernandez</p>
+            <p className="labelNombre">Joahan Garcia Fernandez</p>
             <p className="info">Hombre, 25 años</p>
           </div>
         </div>
@@ -119,7 +119,7 @@ const descargarReportesCliente = useCallback(async () => {
   return (
     <div className="client">
       <div className="titulo-cliente">
-        <h2>Cliente</h2>
+        Customer details
       </div>
       <div className="client-div">
       <DatosClienteEncontrados />

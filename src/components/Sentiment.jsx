@@ -11,7 +11,9 @@ export const Sentiment = () => {
 
     return(
             <div className="container">
-                App
+                <div className="titulo-transcripcion">
+                    Transcript
+                </div>
                 <div className="center">
                     <div className="message">
                         <img src="https://avatars.githubusercontent.com/u/16248328?v=4" alt="" />

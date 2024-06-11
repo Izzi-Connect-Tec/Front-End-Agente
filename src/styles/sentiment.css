@@ -5,16 +5,18 @@
 } */
 
 .container {
-    width: 40vw;
-    height: 55vh;
-    margin: 5vh auto; /* Center the container NUEVO*/ 
+    /* width: 55vw;
+    height: 54vh; */
     border-radius: 12px;
     /* background-color: rgba(17, 25, 40, 0.75); */
-    background-color: rgba(209, 213, 219, 0.75);
+    /* background-color: rgba(209, 213, 219, 0.75); */
+    background-color: white;
     backdrop-filter: blur(19px) saturate(180%);
     border: 1px solid rgba(255, 255, 255, 0.125);
     display: flex;
     flex-direction: column;
+    height: 100%;
+    width: 100%;
 }
 
 .center {
@@ -103,3 +105,13 @@
 .message .icon.blue {
     color: blue;
   }
+
+.titulo-transcripcion {
+    font-weight: bold;
+    font-size: 2rem;
+    display: flex;
+    margin-bottom: 15px;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Century Gothic", "Futura";
+}

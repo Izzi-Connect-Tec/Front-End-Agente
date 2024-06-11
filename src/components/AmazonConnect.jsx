@@ -3,9 +3,166 @@ import { useEffect, React, useState, useCallback } from "react";
 import { useUserContext } from "../Providers/AmazonContext";
 import { useLlamadaContext } from "../Providers/LlamadaContext";
 import { useLogInContext } from "../Providers/LogInContext";
+import { useNavigate } from "react-router-dom";
 
+
+import Button from '@mui/material/Button';
+import lottie from "lottie-web";
+import DeleteIcon from '@mui/icons-material/Delete';
+import { defineElement } from "@lordicon/element";
+import DeleteButton from "./DisqueBoton";
+import { green } from "@mui/material/colors";
+
+
+import { motion, AnimatePresence  } from "framer-motion"
+import Mute from "./Mute";
 
 const EmbedConnect = (props) => {
+
+  function clearCall(){
+
+    const agent = new connect.Agent();
+    const contact  = agent.getContacts(connect.ContactType.VOICE)?.[0]
+
+  contact.clear({
+    success: function () {
+      console.log("PAUSA")
+    },
+    failure: function (err) {
+      console.log("NO PAUSA")
+    },
+  });
+
+  }
+
+
+  function resumeCall(){
+
+    const agent = new connect.Agent();
+    const contact  = agent.getContacts(connect.ContactType.VOICE)?.[0]
+    const conn = contact?.getInitialConnection()
+
+    if (conn.length === 0) {
+      console.log("No Active Connections to pause");
+      return;
+  }
+
+    conn.resume();
+
+  }
+
+
+
+  function holdCall(){
+
+    const agent = new connect.Agent();
+    const contact  = agent.getContacts(connect.ContactType.VOICE)?.[0]
+    const conn = contact?.getInitialConnection()
+
+    if (conn.length === 0) {
+      console.log("No Active Connections to pause");
+      return;
+  }
+
+    conn.hold();
+
+  }
+
+  function hangUpCall(){
+
+    const agent = new connect.Agent();
+    const contact  = agent.getContacts(connect.ContactType.VOICE)?.[0]
+    const conn = contact?.getInitialConnection()
+
+    if (conn.length === 0) {
+      console.log("No Active Connections to pause");
+      return;
+  }
+
+    conn.destroy();
+          
+  }
+
+  function acceptCall(){
+    const agent = new connect.Agent();
+    const contact  = agent.getContacts(connect.ContactType.VOICE)?.[0]
+    const activeConnections = contact?.getConnections().filter((conn) => conn.isActive()) || [];
+
+    if (activeConnections.length === 0) {
+      console.log("No Active Connections to pause");
+      return;
+  }
+
+  contact.accept({
+    success: function () {
+      console.log("PAUSA")
+    },
+    failure: function (err) {
+      console.log("NO PAUSA")
+    },
+  });
+
+
+  }
+
+
+  function muteAgent(){
+    const agent = new connect.Agent();
+    const contact  = agent.getContacts(connect.ContactType.VOICE)?.[0]
+    
+    // Get all open active connections
+    const activeConnections = contact?.getConnections().filter((conn) => conn.isActive()) || [];
+    
+    
+    if (activeConnections.length === 0) {
+        console.log("No Active Connections to mute");
+        return;
+    }
+    
+    // Check if we are using multiparty and see if there more than 2 active connections
+    if (contact.isMultiPartyConferenceEnabled() && activeConnections.length > 2) {
+        // if any of those are in connecting mode
+        const connectingConnections =  contact?.getConnections().filter((conn) => conn.isConnecting()) || [];
+        if (connectingConnections.length === 0) {
+            console.log("Agent Connection is muted at the server side");
+            contact.getAgentConnection().muteParticipant();
+        } else {
+            console.log("Agent Connection cannot be muted while multi party participant is connecting")
+        }
+    } else {
+        console.log("Agent connection muted at the client side");
+        agent.mute();
+    }
+}
+
+function unmuteAgent(){
+  const agent = new connect.Agent();
+  const contact  = agent.getContacts(connect.ContactType.VOICE)?.[0]
+  
+  // Get all open active connections
+  const activeConnections = contact?.getConnections().filter((conn) => conn.isActive()) || [];
+  
+  
+  if (activeConnections.length === 0) {
+      console.log("No Active Connections to mute");
+      return;
+  }
+  
+  // Check if we are using multiparty and see if there more than 2 active connections
+  if (contact.isMultiPartyConferenceEnabled() && activeConnections.length > 2) {
+      // if any of those are in connecting mode
+      const connectingConnections =  contact?.getConnections().filter((conn) => conn.isConnecting()) || [];
+      if (connectingConnections.length === 0) {
+          console.log("Agent Connection is muted at the server side");
+          contact.getAgentConnection().unmuteParticipant();
+      } else {
+          console.log("Agent Connection cannot be muted while multi party participant is connecting")
+      }
+  } else {
+      console.log("Agent connection muted at the client side");
+      agent.unmute();
+  }
+}
 
   //Agent
   const [agent,,] = useLogInContext(); 
@@ -91,6 +248,7 @@ const EmbedConnect = (props) => {
         // optional, defaults below apply if not provided
         allowFramedSoftphone: true, // optional, defaults to false
         disableRingtone: false, // optional, defaults to false
+        ringtoneUrl: 'https://joahanbucket.s3.amazonaws.com/Li%CC%81nea+del+Perreo-Uzielito+Mix%2C+Yeri+Mua+%2C+El+Jordan+23%2C+DJ+Kiire(Video+Oficial)+(320)+(mp3cut.net).mp3', // optional, defaults to CCP’s default ringtone if a falsy value is set
       },
       pageOptions: {
         //optional
@@ -105,6 +263,7 @@ const EmbedConnect = (props) => {
     // Code to be executed once a call starts
     // eslint-disable-next-line no-undef
     connect.contact(function (contact) {
+
       contact.onConnected(async function (contact) {
         // let cid = contact.getContactId();
         // console.log(cid);
@@ -114,10 +273,16 @@ const EmbedConnect = (props) => {
         callData({IdLlamada: attributeMap.Call.value, TipoLlamada: attributeMap.CurrentConcept.value, DescripcionLlamada: attributeMap.CurrentNotes.value})
         idCliente(attributeMap.Tel.value)
       });
+
+
       contact.onEnded(function(contact) {
         setStateCall(false)
       });
     });
+
+    // connect.core.onAuthFail(function(){
+    //   useNavigate("/");
+    // });
 
     /* global connect */
     connect.agent(function(agent) {
@@ -146,7 +311,51 @@ const EmbedConnect = (props) => {
     }
   }, [stateCall, actualizarLlamadaFinalizada])
 
-  return <div id="ccp" style={{ width: "400px", height: "250px" }}></div>;
+
+  // define "lord-icon" custom element with default properties
+  defineElement(lottie.loadAnimation);
+
+
+
+
+
+
+  return (
+  // <div id="ccp" style={{ width: "400px", height: "250px" }}>
+  <section>
+    <div id="ccp" style={{ display: "none"}}/>
+    <button onClick={muteAgent}>MUTE</button>
+    <button onClick={unmuteAgent}>UNMUTE</button>
+    <button onClick={acceptCall}>ACEPTAR LLAMADA</button>
+    <button onClick={hangUpCall}>TERMINAR LLAMADA</button>
+    <button onClick={holdCall}>PONER EN ESPERA</button>
+    <button onClick={resumeCall}>RETOMAR LLAMADA</button>
+    <button onClick={clearCall}>CERRAR CONTACTO</button>
+    {/*  avisar que hay una llamada e iniciar sesion y salir sin cpp*/}
+    
+    <div>
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+    </div>
+
+  </section>
+  
+  )
 };
 
 export default EmbedConnect;

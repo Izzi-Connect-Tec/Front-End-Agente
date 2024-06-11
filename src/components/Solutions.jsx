@@ -34,7 +34,7 @@ const Solutions = () => {
   return (
     <div className="solutions">
       <div className="titulo-soluciones">
-        <h2>Soluciones</h2>
+        Soluciones
       </div>
       <div className="solutions-div">
         <div className="possible-solutions">
@@ -54,10 +54,10 @@ const Solutions = () => {
             />
           ))} */}
         </div>
-        <div className="botones-solutions">
+        {/* <div className="botones-solutions">
           <FormDialog />
           <IncidenceForm />
-        </div>
+        </div> */}
       </div>
     </div>
   );

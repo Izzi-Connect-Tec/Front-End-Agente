@@ -9,6 +9,7 @@ import DialogTitle from "@mui/material/DialogTitle";
 import BasicSelect from "./Prioridad";
 import { useAlertToggleContext } from "../Providers/AlertContext";
 import { useUserContext } from "../Providers/AmazonContext";
+import FlagIcon from '@mui/icons-material/Flag';
 
 ///
 import { ToastContainer, toast } from 'react-toastify';
@@ -72,7 +73,7 @@ export default function FormDialog() {
 
   return (
     <React.Fragment>
-      <Button
+      {/* <Button
         onClick={handleClickOpen}
         sx={{
           backgroundColor: "#D7006D",
@@ -91,7 +92,8 @@ export default function FormDialog() {
         size="large"
       >
         Reporte
-      </Button>
+      </Button> */}
+      <FlagIcon onClick={handleClickOpen}/>
       <Dialog
         open={open}
         onClose={handleClose}
