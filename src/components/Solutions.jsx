@@ -8,8 +8,11 @@ import SolutionCard from "./SolutionCard";
 import axios from "axios";
 import IncidenceForm from "./Incidence";
 import { useLlamadaContext } from "../Providers/LlamadaContext";
+import { useLogInContext } from "../Providers/LogInContext";
 
 const Solutions = () => {
+
+  const [agent,,] = useLogInContext();
 
   const [call,,] = useLlamadaContext();
 
@@ -19,7 +22,11 @@ const Solutions = () => {
   const fetchSolutions = async () => {
     try {
       // El api puede ser internet, telefonia o television
-      const response = await axios.get(`http://44.209.22.101:8080/llamada/consultarSolucion/${call.TipoLlamada}`); // Hacer la petición al API
+      const response = await axios.get(`http://44.209.22.101:8080/llamada/consultarSolucion/${call.TipoLlamada}`, {
+        headers: {
+          "Authorization": `Bearer ${agent.token}` // Enviar token en la petición
+        }
+      }); // Hacer la petición al API
       setSolutionsData(response.data); // Guardar los datos en el estado
     } catch (error) {
       console.error("Error al obtener datos del API:", error); // Mostrar error en consola

@@ -9,7 +9,7 @@ import CallIcon from '@mui/icons-material/Call';
 import EmailIcon from '@mui/icons-material/Email';
 import PlaceIcon from '@mui/icons-material/Place';
 import ReceiptLongIcon from '@mui/icons-material/ReceiptLong';
-
+import { useLogInContext } from "../Providers/LogInContext";
 
 const Client = (props) => {
 
@@ -21,10 +21,12 @@ const Client = (props) => {
 
   const [urlReportes, setUrlReportes] = useState(null); // Valor inicial para url
 
+  const [agent, ,] = useLogInContext();
+
 const descargarDatosCliente = useCallback(async () => {
     try {
       console.log("Descargando datos");
-      const response = await fetch(urlDatos);
+      const response = await fetch(urlDatos, {headers: { Authorization: `Bearer ${agent.Token}`}});
       if (!response.ok) {
         throw new Error('La solicitud no pudo completarse con éxito');
       }
@@ -39,7 +41,7 @@ const descargarDatosCliente = useCallback(async () => {
 const descargarReportesCliente = useCallback(async () => {
   try {
     console.log("Descargando Reportes");
-    const response = await fetch(urlReportes);
+    const response = await fetch(urlReportes, {headers: { Authorization: `Bearer ${agent.Token}`}});
     if (!response.ok) {
       throw new Error('La solicitud no pudo completarse con éxito');
     }

@@ -9,12 +9,15 @@ import DialogTitle from "@mui/material/DialogTitle";
 import BasicSelect from "./Prioridad";
 import { useAlertToggleContext } from "../Providers/AlertContext";
 import { useUserContext } from "../Providers/AmazonContext";
+import { useLogInContext } from "../Providers/LogInContext";
 
 ///
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 export default function FormDialog() {
+
+  const [agent,,] = useLogInContext();
 
   const [descripcion, setDescripcion] = React.useState("");
   const [prioridad, setPrioridad] = React.useState("baja");
@@ -51,7 +54,8 @@ export default function FormDialog() {
         method: 'POST',
         headers: {
           'Accept': 'application/json',
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${agent.Token}`
         },
         body: JSON.stringify(reportePrueba)
       };

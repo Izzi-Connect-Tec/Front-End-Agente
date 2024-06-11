@@ -3,11 +3,13 @@ import Message from "./Message";
 import { useState, useEffect, useCallback, useRef } from "react";
 import { v4 as uuidv4 } from 'uuid';
 import "../styles/sentiment.css"
+import { useLogInContext } from "../Providers/LogInContext";
 
 
 const Chatbox = (props) => {
 
   const endRef = useRef(null)
+  const [agent,,] = useLogInContext(); 
 
   useEffect(() => {
       endRef.current?.scrollIntoView({behavior: "smooth"})
@@ -18,15 +20,19 @@ const Chatbox = (props) => {
 
   useEffect(() => {
     const fetchMessages = () => {
-      fetch(`http://44.209.22.101:8080/connect/sentiment/${props.id}`)
+      fetch(`http://44.209.22.101:8080/connect/sentiment/${props.id}`, 
+        {headers: { "Authorization" : `Bearer ${agent.Token}`}})
+        .then(console.log("TOKEN", agent.Token))
         .then((response) => response.json())
         .then((data) => {
+          console.log(data);
           setMessages(data);
           const lastCustomerMessage = [...data].reverse().find((msg) => msg.role === "CUSTOMER");
           if (lastCustomerMessage) {
             setLastCustomerSentiment(lastCustomerMessage.sentiment);
           }
-    })
+        })
+        .then(console.log(messages))
         .catch((error) => console.error("Error fetching data:", error));
     };
 
@@ -48,7 +54,8 @@ const Chatbox = (props) => {
           method: 'PUT',
           headers: {
             'Accept': 'application/json',
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${agent.Token}`,
           },
           body: JSON.stringify(datos)
         }
