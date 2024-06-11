@@ -3,13 +3,23 @@ import { useNavigate } from "react-router-dom";
 import "../styles/login.css";
 import giphy from "../elements/pinkdots.gif";
 import logo from "../elements/izziN.png";
+import { useLogInContext } from "../Providers/LogInContext";
 
 const Login = () => {
+
+  const [agent, agentData,] = useLogInContext();
+
+
   const navigate = useNavigate();
   const [showLogin, setShowLogin] = useState(false);
   const [gifLoaded, setGifLoaded] = useState(false);
+
+  //Posiblemente cambiar estos
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+
+  const [errorAut, setErrorAut] = useState(false)
+
 
   useEffect(() => {
     setTimeout(() => {
@@ -25,10 +35,42 @@ const Login = () => {
     img.src = giphy;
   }, []);
 
-  const handleLogin = (e) => {
-    e.preventDefault();
+  useEffect( () => {
     // Aquí va lo de verificación
     navigate("/window");
+  }, [agent.Nombre, navigate])
+
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    try {
+      console.log("INCIANDO SESION");
+      const datos = {
+        email: username,
+        password: password,
+      }
+      let config = {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(datos)
+      }
+      // let res = await fetch("http://localhost:8080/auth/signin", config)
+      let res = await fetch("http://44.209.22.101:8080/auth/signin", config)
+
+      if (!res.ok) {
+        setErrorAut(true)
+        throw new Error('La solicitud no pudo completarse con éxito');
+        
+      }
+
+      const data = await res.json();
+      console.log(data)
+      agentData({IdEmpleado: data.user.IdEmpleado, Nombre: data.user.Nombre, ApellidoP: data.user.ApellidoP, ApellidoM: data.user.ApellidoM});
+    } catch (error) {
+      console.log(error)
+    }
   };
 
   return (
@@ -49,11 +91,12 @@ const Login = () => {
           <img className="logo" src={logo} alt="logoIzziConnect"></img>
         </div>
         <p className="txt">Ingrese sus credenciales para accesar.</p>
+        {errorAut && <p className="error">Usuario o contraseña incorrectos</p>}
         <div className="formdiv">
           <form className="form" align="center" onSubmit={handleLogin}>
             <input
               className="input"
-              type="text"
+              type="email"
               placeholder="Usuario"
               value={username}
               onChange={(e) => setUsername(e.target.value)}

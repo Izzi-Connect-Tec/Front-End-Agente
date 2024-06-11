@@ -1,4 +1,4 @@
-import { useUserContext } from "../Providers/UserContext";
+import { useUserContext } from "../Providers/AmazonContext";
 import "../styles/client.css";
 import FolderList from "./HistorialCliente";
 //import TextField from "@mui/material/TextField";
@@ -8,47 +8,66 @@ import { useState, useCallback, useEffect } from "react";
 
 const Client = (props) => {
 
-  const user = useUserContext();
+  const [reportesCliente, setReportesCliente] = useState();
 
+  const [usuario,,datosCliente,,] = useUserContext();
 
+  const [urlDatos, setUrlDatos] = useState(null); // Valor inicial para url\
 
-  const [cliente, setCliente] = useState(""); // Valor inicial para cliente
-  const [url, setUrl] = useState(""); // Valor inicial para url
-  const [usuarioData, setUsuarioData] = useState(null);
+  const [urlReportes, setUrlReportes] = useState(null); // Valor inicial para url
 
-  const descargar = useCallback(async () => {
+const descargarDatosCliente = useCallback(async () => {
     try {
       console.log("Descargando datos");
-      const response = await fetch(url);
+      const response = await fetch(urlDatos);
+      if (!response.ok) {
+        throw new Error('La solicitud no pudo completarse con éxito');
+      }
       const data = await response.json();
-      console.log(data);
-      setUsuarioData(data);
+      datosCliente({Nombre: data.Nombre, ApellidoP: data.ApellidoP, ApellidoM: data.ApellidoM, IdZona: data.IdZona});
     } catch (error) {
-      console.log(error);
+        console.log(error);
     }
-  }, [url]);
+}, [urlDatos]);
+
+
+const descargarReportesCliente = useCallback(async () => {
+  try {
+    console.log("Descargando Reportes");
+    const response = await fetch(urlReportes);
+    if (!response.ok) {
+      throw new Error('La solicitud no pudo completarse con éxito');
+    }
+    const data = await response.json();
+    console.log(data)
+    setReportesCliente(data)
+  } catch (error) {
+      console.log(error);
+  }
+}, [urlReportes]);
 
   //Mejorar lógica
-
-  useEffect(() => { // Descargar datos cuando cambie el cliente
-    if (cliente !== "" && cliente !== null) { // Asegurar que cliente no esté vacío antes de descargar
-      setUrl(`http://44.209.22.101:8080/cliente/consultarCliente/${cliente}`);
-      descargar();
-    }
-  }, [cliente, descargar]);
+  //PRegunat por el useCallBack
 
   useEffect(() => {
-    if(user !== null){
-      setCliente(user.name)
+    descargarDatosCliente();
+    descargarReportesCliente();
+  }, [descargarDatosCliente]);
+
+  useEffect(() => {
+    if(usuario.Celular){
+      setUrlDatos(`http://44.209.22.101:8080/cliente/consultarCliente/${usuario.Celular}`);
+      setUrlReportes(`http://44.209.22.101:8080/reporte/reportesCliente/${usuario.Celular}`)
+      // setUrl(`http://localhost:8080/cliente/consultarCliente/${usuario.Celular}`);
     }
-  }, [user])
+  }, [usuario.Celular])
 
   const DatosClienteEncontrados = () => {
     return (
       <div>
-        <p>Contrato: {usuarioData.Celular}</p>
-        <p>Nombre: {usuarioData.Nombre} {usuarioData.ApellidoP} {usuarioData.ApellidoM}</p>
-        <p>Localidad: {usuarioData.IdZona}</p>
+        <p>Contrato: {usuario.Celular}</p>
+        <p>Nombre: {usuario.Nombre} {usuario.ApellidoP} {usuario.ApellidoM}</p>
+        <p>Localidad: {usuario.IdZona}</p>
         <p>Plan contratado: Izzi Basic $150</p>
       </div>
     );
@@ -62,10 +81,10 @@ const Client = (props) => {
       <div className="client-div">
         <div className="solucionTarjetaProblema">
         </div>
-        {usuarioData ? 
+        {usuario.Nombre ? 
         <div>
-            <DatosClienteEncontrados /> 
-            <FolderList />
+          <DatosClienteEncontrados />
+          {reportesCliente && <FolderList historiaCliente={reportesCliente}/> }
         </div>
         : <h1>Sin cliente</h1>}
       </div>
