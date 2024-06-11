@@ -18,7 +18,7 @@
 //       { title: 'Cantidad de llamadas en el día', value: '10', rank: '#1 Pepo' },
 //       { title: 'Promedio de tiempo en llamada', value: '7', rank: '#1 Alfy' },
 //       { title: 'Cantidad de llamadas en el día', value: 4, rank: '#1 Benny' } 
-      
+
 //     ]);
 
 //     setDurationData([
@@ -73,7 +73,7 @@
 //                   )}
 //                 </div>
 //                 <div className="card-rank">{rank}</div> 
-                
+
 //               </Card.Body>
 //             </Card>
 //           ))}
@@ -110,7 +110,7 @@
 //       { title: 'Cantidad de llamadas en el día', value: '10', rank: '#1 Pepo' },
 //       { title: 'Promedio de tiempo en llamada', value: '7', rank: '#1 Alfy' },
 //       { title: 'Cantidad de llamadas en el día', value: 4, rank: '#1 Benny' } 
-      
+
 //     ]);
 
 //     setDurationData([
@@ -166,7 +166,7 @@
 //                   )}
 //                 </div>
 //                 <div className="card-rank">{rank}</div> 
-                
+
 //               </Card.Body>
 //             </Card>
 //           ))}
@@ -626,12 +626,34 @@ const Calificacion = () => {
 
   useEffect(() => {
     // para hacer fetch
-    setData([
-      { title: 'Calificación promedio', value: 5, rank: '#1 Joahan' },
-      { title: 'Cantidad de llamadas en el día', value: '10', rank: '#1 Pepo' },
-      { title: 'Promedio de tiempo en llamada', value: '7', rank: '#1 Alfy' },
-      { title: 'Cantidad de soluciones nuevas propuestas', value: 4, rank: '#1 Benny' } 
-    ]);
+    const fetchData = async () => {
+      try {
+        const idEmpleado = 1; // Reemplazar esto con el ID de algún empleado a consultar
+        const fecha = '2023-05-21'; // Reemplazar esto con la fecha a consultar
+
+        const res1 = await fetch(`http://44.209.22.101:8080/empleado/calificacionPromedio/${idEmpleado}`);
+        const data1 = await res1.json();
+
+        const res2 = await fetch(`http://44.209.22.101:8080/empleado/consultarLlamadasEmpleado/${idEmpleado}`);
+        const data2 = await res2.json();
+
+        const res3 = await fetch(`http://44.209.22.101:8080/empleado/consultarPromLlamadasEmpleado/${idEmpleado}`);
+        const data3 = await res3.json();
+
+        const res4 = await fetch(`http://44.209.22.101:8080/empleado/califPromDia/${idEmpleado}/calificaciones/${fecha}`);
+        const data4 = await res4.json();
+
+        setData([
+          { title: 'Calificación promedio', value: data1, rank: '#1 Joahan' },
+          { title: 'Cantidad de llamadas en el día', value: data2, rank: '#1 Pepo' },
+          { title: 'Promedio de tiempo en llamada', value: data3, rank: '#1 Alfy' },
+          { title: 'Cantidad de soluciones nuevas propuestas', value: data4, rank: '#1 Benny' }
+        ]);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    fetchData();
 
     setDurationData([
       { month: 'Enero', duration: 5 },
@@ -663,7 +685,7 @@ const Calificacion = () => {
                   <div className="card-title">{data[3]?.title}</div>
                   <div className="card-value">{data[3]?.value}</div>
                 </div>
-                <div className="card-rank">{data[3]?.rank}</div> 
+                <div className="card-rank">{data[3]?.rank}</div>
               </Card.Body>
             </Card>
           </div>
@@ -686,7 +708,7 @@ const Calificacion = () => {
                     <div className="card-value">{value}</div>
                   )}
                 </div>
-                <div className="card-rank">{rank}</div> 
+                <div className="card-rank">{rank}</div>
               </Card.Body>
             </Card>
           ))}
