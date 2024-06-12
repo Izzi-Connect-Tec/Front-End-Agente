@@ -629,7 +629,6 @@ const Calificacion = () => {
     const fetchData = async () => {
       try {
         const idEmpleado = 1; // Reemplazar esto con el ID de algún empleado a consultar
-        const fecha = '2023-05-21'; // Reemplazar esto con la fecha a consultar
 
         const res1 = await fetch(`http://44.209.22.101:8080/empleado/calificacionPromedio/${idEmpleado}`);
         const data1 = await res1.json();
