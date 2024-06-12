@@ -78,6 +78,7 @@
     color: #333;
     overflow-wrap: break-word;
     margin-top: 20px;
+    font-family: "Century Gothic", "Futura";
   }
   
 .titlee-agent {
@@ -87,6 +88,7 @@
     color: #333;
     overflow: hidden;
     padding-top: 20px;
+    font-family: "Century Gothic", "Futura";
   }
 
 .message .icon {

@@ -22,7 +22,7 @@ const AgentRankingChart = ({ agentData }) => {
       data: {
         labels: agentNames,
         datasets: [{
-          label: 'Calificación promedio',
+          label: 'Average Score',
           data: agentScores,
           backgroundColor: 'rgba(54, 162, 235, 0.5)', // Azul claro
           borderColor: 'rgba(54, 162, 235, 1)',

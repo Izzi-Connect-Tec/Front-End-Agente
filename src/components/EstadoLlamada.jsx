@@ -41,7 +41,7 @@ export const EstadoLlamada = () => {
                         <EditNoteOutlinedIcon/>
                     </div>
                     <div className='client'>
-                        <p className='label'>Problema del cliente</p>
+                        <p className='label'>Client Issue</p>
                         <p className="info">Internet</p>
                     </div>
                 </div>
@@ -50,7 +50,7 @@ export const EstadoLlamada = () => {
                         <HelpOutlineIcon/>
                     </div>
                     <div className='client'>
-                        <p className='label'>Notas</p>
+                        <p className='label'>Notes</p>
                         <p className="info">No funciona el módem</p>
                     </div>
                 </div>
@@ -62,11 +62,11 @@ export const EstadoLlamada = () => {
                         <SentimentNeutralOutlinedIcon/>
                     </div>
                     <div className='client'>
-                        <p className='label'>Sentimiento de la llamada</p>
+                        <p className='label'>Call Sentiment</p>
                         <LinearProgress />
                         <LinearProgress color="success" />
                         <LinearProgress color="error" />
-                        <p className="info">Positivo</p>
+                        <p className="info">Positive</p>
                     </div>
                 </div>
             </div> 

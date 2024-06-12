@@ -9,7 +9,7 @@
   margin-bottom: 3px;
   padding: 0;
   box-sizing: border-box;
-  /* font-family: "Century Gothic", "Futura"; */
+  font-family: "Century Gothic", "Futura";
 }
 
 
@@ -19,6 +19,8 @@
     align-items: center; /* Alinea los elementos verticalmente al centro */
     gap: 3px; /* Ajusta el valor según sea necesario */
     margin-top: 8px;
+    font-family: "Century Gothic", "Futura";
+    font-size: 10px;
   }
   
   .dataClient p {

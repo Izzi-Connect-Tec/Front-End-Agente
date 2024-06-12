@@ -20,7 +20,7 @@ const Window = (props) => {
 
   return (
     <AppProviders>
-      <div className="window-header">
+      {/* <div className="window-header">
         <Header />
         <div className="window">
           <div className="">
@@ -33,8 +33,8 @@ const Window = (props) => {
             <Service />
           </div>
         </div>
-      </div>
-      {/* <div className="window-header">
+      </div> */}
+      <div className="window-header">
         <Header />
         <div className="llamada">
           <div className="datosLlamada">
@@ -46,7 +46,7 @@ const Window = (props) => {
             <TarjetaSoluciones/>
           </div>
         </div>  
-      </div> */}
+      </div>
     </AppProviders>
   );
 };

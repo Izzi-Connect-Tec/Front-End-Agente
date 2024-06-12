@@ -31,6 +31,7 @@ body {
 
 .modal_header-title {
   margin: 0;
+  font-family: "Century Gothic", "Futura";
 }
 
 .close {
@@ -72,6 +73,7 @@ body {
 .paso {
   color: #858585;
   font-size: 10px;
+  font-family: "Century Gothic", "Futura";
 }
 
 .step-button {
@@ -111,6 +113,10 @@ body {
   margin: 5px;
 }
 
+.question{
+  font-family: "Century Gothic", "Futura";
+}
+
 .faces:hover {
   color: #d7006d;
   cursor: pointer;
@@ -119,4 +125,8 @@ body {
 .sim-flecha{
     margin-top: 3px;
     
+}
+
+.step-description{
+  font-family: "Century Gothic", "Futura";
 }

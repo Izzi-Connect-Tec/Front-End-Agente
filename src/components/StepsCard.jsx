@@ -67,7 +67,7 @@ const StepsCard = (props) => {
             <main className="modal_content">
               {showFeedback ? (
                 <div>
-                  <p>¿Funcionó esta solución?</p>
+                  <p className="question">Did this solution work?</p>
                   <button
                     className="faces"
                     onClick={() => handleFeedback("yes")}
@@ -84,9 +84,9 @@ const StepsCard = (props) => {
               ) : (
                 <div>
                   <div className="paso">
-                    <p>Paso {currentStepIndex + 1}</p>
+                    <p>Step {currentStepIndex + 1}</p>
                   </div>
-                  <div>
+                  <div className="step-description">
                     <p>{steps[currentStepIndex].Descripcion}</p>
                   </div>
                 </div>
@@ -94,7 +94,7 @@ const StepsCard = (props) => {
             </main>
             <footer className="modal_footer">
               <button className="modal-close" onClick={props.close}>
-                Cancelar
+                Cancel
               </button>
               {!showFeedback && (
                 <>

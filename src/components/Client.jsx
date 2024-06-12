@@ -83,13 +83,13 @@ const descargarReportesCliente = useCallback(async () => {
           <AccountCircleIcon/>
           <div className="client">
             <p className="labelNombre">Joahan Garcia Fernandez</p>
-            <p className="info">Hombre, 25 años</p>
+            <p className="info">Male, 25 years</p>
           </div>
         </div>
         <div className="dataClient">
           <CallIcon/>
           <div className="client">
-            <p className="label">Número</p>
+            <p className="label">Phone number</p>
             <p className="info">+525584016051</p>
           </div>
         </div>
@@ -103,14 +103,14 @@ const descargarReportesCliente = useCallback(async () => {
         <div className="dataClient">
           <PlaceIcon/>
           <div className="client">
-            <p className="label">Localidad</p>
+            <p className="label">Location</p>
             <p className="info">Atizapan</p>
           </div>
         </div>
         <div className="dataClient">
           <ReceiptLongIcon/>
           <div className="client">
-            <p className="label">Plan actual</p>
+            <p className="label">Current Plan</p>
             <p className="info">Izzi Basic $150</p>
           </div>
         </div>
