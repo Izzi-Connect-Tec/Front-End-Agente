@@ -52,8 +52,7 @@ const Window = (props) => {
         <Llamada/>        
         <EmbedConnect/>
       </div>
- 
-    </AppProviders> 
+    </AppProviders>
   );
 };
 

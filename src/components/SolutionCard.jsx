@@ -7,11 +7,11 @@ import StepsCard from "./StepsCard";
 
 const SolutionCard = (props) => {
   const [steps, setSteps] = useState(false); // Estado para mostrar los pasos
-  const [blocked, setBlocked] = useState(false); // Estado para bloquear la solución
+  //const [blocked, setBlocked] = useState(false); // Estado para bloquear la solución
 
   // Función para mostrar los pasos
   const Toggle = () => {
-    if (!blocked) { // Si la solución no está bloqueada
+    if (!props.isBlocked) { // Si la solución no está bloqueada
       setSteps(!steps); // Mostrar los pasos
     }
   };
@@ -20,17 +20,17 @@ const SolutionCard = (props) => {
 
   // Función para bloquear la solución
   const handleBlock = () => {
-    setBlocked(true); // Función para bloquear la solución
+    props.blockSolution(); // Función para bloquear la solución
     setSteps(false); // Cerrar el modal
   };
 
   return (
     <>
       <div
-        className={`solution-card ${blocked ? "blocked" : ""}`}
+        className={`solution-card ${props.isBlocked ? "blocked" : ""} ${props.isActive ? "active" : "inactive"}`}
         onClick={Toggle}
       >
-        <p>{props.tituloSolucion}</p>
+        <p className="text-solution">{props.tituloSolucion}</p>
       </div>
       <StepsCard
         show={steps}

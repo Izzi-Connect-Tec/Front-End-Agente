@@ -69,7 +69,8 @@ const Login = () => {
 
       const data = await res.json();
       console.log(data)
-      agentData({IdEmpleado: data.user.IdEmpleado, Nombre: data.user.Nombre, ApellidoP: data.user.ApellidoP, ApellidoM: data.user.ApellidoM});
+      console.log(data.token.AccessToken)
+      agentData({IdEmpleado: data.user.IdEmpleado, Nombre: data.user.Nombre, ApellidoP: data.user.ApellidoP, ApellidoM: data.user.ApellidoM, Token: data.token.AccessToken});
     } catch (error) {
       console.log(error)
     }

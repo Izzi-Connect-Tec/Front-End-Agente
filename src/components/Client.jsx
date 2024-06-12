@@ -13,7 +13,7 @@ import { calcularEdad } from "../Logic/edadCliente";
 
 
 const Client = (props) => {
-
+  
   const [vistaReporte, setVistaReporte] = useState(false);
 
   const [reportesCliente, setReportesCliente] = useState();
@@ -24,10 +24,12 @@ const Client = (props) => {
 
   const [urlReportes, setUrlReportes] = useState(null); // Valor inicial para url
 
+  const [agent, ,] = useLogInContext();
+
 const descargarDatosCliente = useCallback(async () => {
     try {
       console.log("Descargando datos");
-      const response = await fetch(urlDatos);
+      const response = await fetch(urlDatos, {headers: { Authorization: `Bearer ${agent.Token}`}});
       if (!response.ok) {
         throw new Error('La solicitud no pudo completarse con éxito');
       }
@@ -42,7 +44,7 @@ const descargarDatosCliente = useCallback(async () => {
 const descargarReportesCliente = useCallback(async () => {
   try {
     console.log("Descargando Reportes");
-    const response = await fetch(urlReportes);
+    const response = await fetch(urlReportes, {headers: { Authorization: `Bearer ${agent.Token}`}});
     if (!response.ok) {
       throw new Error('La solicitud no pudo completarse con éxito');
     }
@@ -83,13 +85,13 @@ const descargarReportesCliente = useCallback(async () => {
           <AccountCircleIcon/>
           <div className="client">
             <p className="labelNombre">{`${usuario.Nombre} ${usuario.ApellidoP} ${usuario.ApellidoM}`}</p>
-            <p className="info">{`${usuario.Sexo}, ${calcularEdad(usuario.FechaNac)} años`}</p>
+            <p className="info">{`${usuario.Sexo}, ${calcularEdad(usuario.FechaNac)} years`}</p>
           </div>
         </div>
         <div className="dataClient">
           <CallIcon/>
           <div className="client">
-            <p className="label">Número</p>
+            <p className="label">Phone number</p>
             <p className="info">{usuario.Celular}</p>
           </div>
         </div>
@@ -103,14 +105,14 @@ const descargarReportesCliente = useCallback(async () => {
         <div className="dataClient">
           <PlaceIcon/>
           <div className="client">
-            <p className="label">Localidad</p>
+            <p className="label">Location</p>
             <p className="info">{usuario.Zona}</p>
           </div>
         </div>
         <div className="dataClient">
           <ReceiptLongIcon/>
           <div className="client">
-            <p className="label">{usuario.Paquetes > 1 ? "Plan contratado" : "Planes contratados"}</p>
+            <p className="label">{usuario.Paquetes > 1 ? "Current Plan" : "Current Plans"}</p>
             <p className="info">Izzi Basic $150</p>
             {usuario.Paquetes.map((paquete, index) => (
               <p key={index} className="info">{paquete.Nombre}</p>

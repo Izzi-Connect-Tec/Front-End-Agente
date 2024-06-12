@@ -12,11 +12,14 @@ import Chatbox from "./Chatbox";
 import Button from '@mui/material/Button';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { useCallback } from "react";
+import { useLogInContext } from "../Providers/LogInContext";
+
 
 
 const Service = (props) => {
 
   const [call,,] = useLlamadaContext();
+  const [agent,,] = useLogInContext(); 
 
   const emergencia = useCallback( async () => {
     try{
@@ -29,7 +32,9 @@ const Service = (props) => {
         method: 'POST',
         headers: {
           'Accept': 'application/json',
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${agent.token}`
+          
         },
         body: JSON.stringify(datos)
       }

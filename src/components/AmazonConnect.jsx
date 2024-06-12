@@ -188,7 +188,8 @@ const EmbedConnect = (props) => {
         method: 'PUT',
         headers: {
           'Accept': 'application/json',
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json', 
+          "Authorization": `Bearer ${agent.Token}`
         },
         body: JSON.stringify(datos)
       }
@@ -214,7 +215,8 @@ const EmbedConnect = (props) => {
         method: 'PUT',
         headers: {
           'Accept': 'application/json',
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${agent.Token}`,
         },
         body: JSON.stringify(datos)
       }
