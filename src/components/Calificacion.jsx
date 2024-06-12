@@ -631,21 +631,35 @@ const Calificacion = () => {
       const date = "2024-06-11"; // Fecha de la que se quieren obtener los datos
 
       try {
-        const response = await fetch(`http://44.209.22.101:8080/empleado/califPromDia/${agentId}/calificaciones/${date}`, {
+        const response1 = await fetch(`http://44.209.22.101:8080/empleado/califPromDia/${agentId}/calificaciones/${date}`, {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
           },
         });
 
-        if (!response.ok){
+        if (!response1.ok){
           throw new Error('Error al obtener datos del agente');
         }
 
-        const agentData = await response.json();
+        const agentData1 = await response1.json();
+
+        const response2 = await fetch(`http://44.209.22.101:8080/empleado/consultarPromLlamadasEmpleado/${agentId}`, {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        })
+
+        if (!response2.ok){
+          throw new Error('Error al oobtener promedio de tiempo en llamada');
+        }
+
+        const agentData2 = await response2.json();
 
         setData(prevData => [ // Actualizamos el estado con los nuevos datos
-          { title: 'Calificación promedio', value: agentData.promGeneral, rank: '#1 Joahan' },
+          { title: 'Calificación promedio', value: agentData1.promGeneral, rank: '#1 Joahan' },
+          { title: 'Promedio de tiempo en llamada', value: agentData2.PromLlamadas, rank: '#1 Alfy' },
           ...prevData.slice(1), // Mantenemos los datos anteriores
         ]);
         } catch (error) {
@@ -740,14 +754,6 @@ const Calificacion = () => {
               <div className="custom-card-header">Agente con más llamadas al día</div>
               <div className="custom-card-body">
                 <h5 className="custom-card-title">Pinky Dinky Doo</h5>
-              </div>
-            </div>
-          </div>
-          <div className="custom-col">
-            <div className="custom-card card-tertiary">
-              <div className="custom-card-header">Agente más veloz solucionando</div>
-              <div className="custom-card-body">
-                <h5 className="custom-card-title">Iker Casanova</h5>
               </div>
             </div>
           </div>
