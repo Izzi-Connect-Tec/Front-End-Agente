@@ -1,4 +1,3 @@
-import "../styles/chatbox.css";
 import Message from "./Message";
 import { useState, useEffect, useCallback, useRef } from "react";
 import { v4 as uuidv4 } from 'uuid';
@@ -9,11 +8,12 @@ const Chatbox = (props) => {
 
   const endRef = useRef(null)
 
+  const [messages, setMessages] = useState([]);
+
   useEffect(() => {
       endRef.current?.scrollIntoView({behavior: "smooth"})
-  }, [])
+  }, [messages])
 
-  const [messages, setMessages] = useState([]);
   const [lastCustomerSentiment, setLastCustomerSentiment] = useState(null);
 
   useEffect(() => {
@@ -69,10 +69,9 @@ const Chatbox = (props) => {
 
   return (
     <div className="container">
-      <div className="chatbox-header">
-        {lastCustomerSentiment && <p>Último Sentimiento del Cliente: {lastCustomerSentiment}</p>}
+      <div className="titulo-transcripcion">
+          Transcript
       </div>
-
       <div className="center">
         {messages.map((mensaje) => (
           <Message

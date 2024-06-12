@@ -6,7 +6,6 @@ import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
-import BasicSelect from "./Prioridad";
 import { useAlertToggleContext } from "../Providers/AlertContext";
 import { useUserContext } from "../Providers/AmazonContext";
 import FlagIcon from '@mui/icons-material/Flag';
@@ -14,6 +13,7 @@ import FlagIcon from '@mui/icons-material/Flag';
 ///
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import BasicSelect from "./Prioridad";
 
 export default function FormDialog() {
 
@@ -44,17 +44,17 @@ export default function FormDialog() {
       IdZona: cliente.IdZona,
       Celular: cliente.Celular,
       IdEmpleado: "E123",
-      IdIncidencia: 1
+      IdIncidencia: 1,
     };
 
     try {
       let config = {
-        method: 'POST',
+        method: "POST",
         headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json'
+          Accept: "application/json",
+          "Content-Type": "application/json",
         },
-        body: JSON.stringify(reportePrueba)
+        body: JSON.stringify(reportePrueba),
       };
       let res = await toast.promise(
         fetch('http://localhost:8080/reporte/crearReporte', config),
@@ -67,7 +67,7 @@ export default function FormDialog() {
       console.log(res);
       handleClose();
     } catch (error) {
-      console.error('Error al enviar el reporte:', error);
+      console.error("Error al enviar el reporte:", error);
     }
   };
 

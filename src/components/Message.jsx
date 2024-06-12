@@ -25,7 +25,7 @@ const Message = ({ emotion, name, time, content, title }) => {
   //AREGLAR EL DE AGENTE
 
   return (
-    <div>
+    <section>
     <p className={titleClass}>{name + " " + time}</p>
     <div className={messageClass}>
       {icon}
@@ -33,7 +33,7 @@ const Message = ({ emotion, name, time, content, title }) => {
         <p>{content}</p>
       </div>
       </div>
-    </div>
+    </section>
   );
 };
 

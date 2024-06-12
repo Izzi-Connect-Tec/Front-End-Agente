@@ -45,15 +45,30 @@ const DemoPaper = styled(Paper)(({ theme }) => ({
 
 export const  TarjetaLlamada = () =>  {
   return (
+
+    
     <motion.div whileHover={{
       scale: 1.01,
       transition: { duration: 0.5 },
-    }}>
+    }}
+    initial={{ x: -600 }}
+
+    animate={{ x: 1 }}
+
+    exit={{ x: -600, transition: { duration: 0.5 }}}
+
+    // transition={{ duration: 1, repeat: Infinity }}
+
+    transition={{ duration: 0.8 }}
+
+
+    >
     <Stack direction="row" spacing={2}>
       <DemoPaper elevation={10} >
         <EstadoLlamada/>
       </DemoPaper>
     </Stack>
     </motion.div>
+
   );
 }

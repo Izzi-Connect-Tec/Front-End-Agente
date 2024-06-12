@@ -14,9 +14,16 @@ import { TarjetaSoluciones } from "./tarjetaSoluciones";
 import OpcionesExternas from "./OpcionesExternas";
 import TarjetaControlesLlamada from "./TarjetaControlesLlamada";
 import EmbedConnect from "./AmazonConnect";
+import Calificacion from "./Calificacion"
+import { useState } from "react";
+
+import { motion, AnimatePresence } from "framer-motion"
+import { useControlLlamadaContext } from "../Providers/ControlLlamadaContext";
+import { Llamada } from "./pruebaWindow";
 
 const Window = (props) => {
 
+  const [,,esLlamada,cambiarEsLlamada,,,,,] = useControlLlamadaContext();
 
   return (
     <AppProviders>
@@ -36,21 +43,14 @@ const Window = (props) => {
       </div> */}
 
 
-      
+    
+
       <div className="window-header">
         <Header />
-        <div className="llamada">
-          <div className="datosLlamada">
-            <TarjetaLlamada/>
-            <TarjetaCliente/>
-          </div>
-          <div className="servicioLlamada">
-            <TarjetaChat/>
-            <TarjetaSoluciones/>
-          </div>
-        </div> 
-        <TarjetaControlesLlamada/>
-        {/* <EmbedConnect/> */}
+        <br/>
+        {/* <button onClick={cambiarEsLlamada}>Entra llamada</button> */}
+        <Llamada/>        
+        <EmbedConnect/>
       </div>
  
     </AppProviders> 

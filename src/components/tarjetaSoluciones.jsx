@@ -5,6 +5,8 @@ import { styled } from '@mui/material/styles';
 import { Sentiment } from './Sentiment';
 import Solutions from './Solutions';
 
+import { motion, AnimatePresence  } from "framer-motion"
+
 const DemoPaper = styled(Paper)(({ theme }) => ({
   // backgroundImage: "linear-gradient(0deg, rgba(1, 142, 135, 0.5) 0%, rgba(0, 188, 180, 0.5) 100%)",
   width: "55vw",
@@ -19,10 +21,30 @@ const DemoPaper = styled(Paper)(({ theme }) => ({
 
 export const  TarjetaSoluciones = () =>  {
   return (
+      <motion.div
+      
+      whileHover={{
+        scale: 1.01,
+        transition: { duration: 0.5 },
+      }}
+      initial={{ x: 900 }}
+  
+      animate={{ x: 1 }}
+  
+      exit={{x: 900, transition: { duration: 0.5 } }}
+  
+      // transition={{ duration: 1, repeat: Infinity }}
+
+      transition={{ duration: 0.8 }}
+  
+  
+      
+      >
     <Stack direction="row" spacing={2}>
       <DemoPaper elevation={20}>
         <Solutions/>
       </DemoPaper>
     </Stack>
+      </motion.div>
   );
 }

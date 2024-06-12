@@ -6,6 +6,7 @@ import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 
 export default function BasicSelect({ onPrioridadChange }) {
+  // const [age, setAge] = React.useState("");
   const [prioridad, setPrioridad] = React.useState('');
 
   const handleChange = (event) => {
@@ -30,9 +31,24 @@ export default function BasicSelect({ onPrioridadChange }) {
           label="Prioridad"
           onChange={handleChange}
         >
-          <MenuItem value="baja">Baja</MenuItem>
-          <MenuItem value="media">Media</MenuItem>
-          <MenuItem value="alta">Alta</MenuItem>
+          <MenuItem
+            sx={{ fontFamily: ["Century Gothic", "Futura"].join(",") }}
+            value={10}
+          >
+            Baja
+          </MenuItem>
+          <MenuItem
+            sx={{ fontFamily: ["Century Gothic", "Futura"].join(",") }}
+            value={20}
+          >
+            Media
+          </MenuItem>
+          <MenuItem
+            sx={{ fontFamily: ["Century Gothic", "Futura"].join(",") }}
+            value={30}
+          >
+            Alta
+          </MenuItem>
         </Select>
       </FormControl>
     </Box>

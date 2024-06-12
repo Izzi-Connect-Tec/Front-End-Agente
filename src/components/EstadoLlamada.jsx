@@ -5,12 +5,20 @@ import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import NumbersIcon from '@mui/icons-material/Numbers';
 import LinearProgress from '@mui/material/LinearProgress';
 import "../styles/icono.css"
+import { useLlamadaContext } from '../Providers/LlamadaContext';
 
 
 export const EstadoLlamada = () => {
 
+    const [call,,] = useLlamadaContext();
+
     return(
+
+        <>
+        { call.IdLlamada && 
         <section className='completeCall'>
+
+            
 
             <div className="titulo-llamada">
                 Call details
@@ -42,7 +50,7 @@ export const EstadoLlamada = () => {
                     </div>
                     <div className='client'>
                         <p className='label'>Problema del cliente</p>
-                        <p className="info">Internet</p>
+                        <p className="info">{call.TipoLlamada}</p>
                     </div>
                 </div>
                 <div className="dataClient" id='e4'>
@@ -51,7 +59,7 @@ export const EstadoLlamada = () => {
                     </div>
                     <div className='client'>
                         <p className='label'>Notas</p>
-                        <p className="info">No funciona el módem</p>
+                        <p className="info">{call.DescripcionLlamada}</p>
                     </div>
                 </div>
             </div>
@@ -72,6 +80,10 @@ export const EstadoLlamada = () => {
             </div> 
 
         </section>
+
+                }
+
+        </>
 
     );
 

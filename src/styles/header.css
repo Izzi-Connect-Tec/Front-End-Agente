@@ -30,7 +30,7 @@ body {
 
 .divB {
   font-weight: bold;
-  margin-right: 65%;
+  margin-right: 60%;
   display:block;
   color: white;
 }
@@ -38,6 +38,8 @@ body {
 .buttonH {
   width: 110px;
   height: 35px;
+  /* width: 150px;
+  height: 40px; */
   background: transparent;
   border: 0;
   border-radius: 10px;

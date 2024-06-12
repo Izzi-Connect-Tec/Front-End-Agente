@@ -4,6 +4,8 @@ import Paper from '@mui/material/Paper';
 import { styled } from '@mui/material/styles';
 import Client from './Client';
 
+import { motion  } from "framer-motion"
+
 const DemoPaper = styled(Paper)(({ theme }) => ({
   // backgroundColor: "rgba(0, 188, 180, 1)",
   // backgroundImage: "linear-gradient(0deg, rgba(1, 142, 135, 0.5) 0%, rgba(0, 188, 180, 0.5) 100%)",
@@ -19,10 +21,36 @@ const DemoPaper = styled(Paper)(({ theme }) => ({
 
 export const  TarjetaCliente = () =>  {
   return (
+    <motion.div
+
+whileHover={{
+  scale: 1.01,
+  transition: { duration: 0.5 },
+}}
+
+
+initial={{ y: 900 }}
+
+animate={{ y: 1 }}
+
+// initial={{ x: -600 }}
+
+// animate={{ x: 1 }}
+
+
+exit={{ opacity: 0, y: 900, transition: { duration: 0.5 } }}
+
+// transition={{ duration: 1, repeat: Infinity }}
+
+transition={{ duration: 0.8 }}
+
+>
+
     <Stack direction="row" spacing={2}>
       <DemoPaper elevation={20} >
         <Client/>
       </DemoPaper>
     </Stack>
+    </motion.div>
   );
 }

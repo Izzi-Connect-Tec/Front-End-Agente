@@ -5,6 +5,9 @@ import { styled } from '@mui/material/styles';
 import { Sentiment } from './Sentiment';
 import Chatbox from './Chatbox';
 
+import { motion  } from "framer-motion"
+import { useLlamadaContext } from '../Providers/LlamadaContext';
+
 const DemoPaper = styled(Paper)(({ theme }) => ({
 
 
@@ -19,13 +22,43 @@ const DemoPaper = styled(Paper)(({ theme }) => ({
 }));
 
 export const  TarjetaChat = () =>  {
+
+  const [call,,] = useLlamadaContext();
+
+
   return (
+    
+
+<motion.div
+
+whileHover={{
+  scale: 1.01,
+  transition: { duration: 0.5 },
+}}
+initial={{ y: -900 }}
+
+animate={{ y: 1 }}
+
+// initial={{ x: 900 }}
+
+// animate={{ x: 1 }}
+
+exit={{ y: -900, transition: { duration: 0.5 } }}
+
+// transition={{ duration: 1, repeat: Infinity }}
+
+transition={{ duration: 0.8 }}
+
+
+
+>
+
     <Stack direction="row" spacing={2}>
       <DemoPaper elevation={20}>
-        <Sentiment/>
-        {/* <Chatbox/> */}
-
+        {/* <Sentiment/> */}
+        {call.IdLlamada && <Chatbox id = {call.IdLlamada}/>}
       </DemoPaper>
     </Stack>
+</motion.div>
   );
 }

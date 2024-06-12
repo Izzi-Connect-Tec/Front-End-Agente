@@ -16,153 +16,156 @@ import { green } from "@mui/material/colors";
 
 import { motion, AnimatePresence  } from "framer-motion"
 import Mute from "./Mute";
+import { useControlLlamadaContext } from "../Providers/ControlLlamadaContext";
 
 const EmbedConnect = (props) => {
 
-  function clearCall(){
+  const [,cambiarLlamadaEntrando,] = useControlLlamadaContext();
 
-    const agent = new connect.Agent();
-    const contact  = agent.getContacts(connect.ContactType.VOICE)?.[0]
+  // function clearCall(){
 
-  contact.clear({
-    success: function () {
-      console.log("PAUSA")
-    },
-    failure: function (err) {
-      console.log("NO PAUSA")
-    },
-  });
+  //   const agent = new connect.Agent();
+  //   const contact  = agent.getContacts(connect.ContactType.VOICE)?.[0]
 
-  }
+  // contact.clear({
+  //   success: function () {
+  //     console.log("PAUSA")
+  //   },
+  //   failure: function (err) {
+  //     console.log("NO PAUSA")
+  //   },
+  // });
 
-
-  function resumeCall(){
-
-    const agent = new connect.Agent();
-    const contact  = agent.getContacts(connect.ContactType.VOICE)?.[0]
-    const conn = contact?.getInitialConnection()
-
-    if (conn.length === 0) {
-      console.log("No Active Connections to pause");
-      return;
-  }
-
-    conn.resume();
-
-  }
+  // }
 
 
+  // function resumeCall(){
 
-  function holdCall(){
+  //   const agent = new connect.Agent();
+  //   const contact  = agent.getContacts(connect.ContactType.VOICE)?.[0]
+  //   const conn = contact?.getInitialConnection()
 
-    const agent = new connect.Agent();
-    const contact  = agent.getContacts(connect.ContactType.VOICE)?.[0]
-    const conn = contact?.getInitialConnection()
+  //   if (conn.length === 0) {
+  //     console.log("No Active Connections to pause");
+  //     return;
+  // }
 
-    if (conn.length === 0) {
-      console.log("No Active Connections to pause");
-      return;
-  }
+  //   conn.resume();
 
-    conn.hold();
+  // }
 
-  }
 
-  function hangUpCall(){
 
-    const agent = new connect.Agent();
-    const contact  = agent.getContacts(connect.ContactType.VOICE)?.[0]
-    const conn = contact?.getInitialConnection()
+  // function holdCall(){
 
-    if (conn.length === 0) {
-      console.log("No Active Connections to pause");
-      return;
-  }
+  //   const agent = new connect.Agent();
+  //   const contact  = agent.getContacts(connect.ContactType.VOICE)?.[0]
+  //   const conn = contact?.getInitialConnection()
 
-    conn.destroy();
+  //   if (conn.length === 0) {
+  //     console.log("No Active Connections to pause");
+  //     return;
+  // }
+
+  //   conn.hold();
+
+  // }
+
+  // function hangUpCall(){
+
+  //   const agent = new connect.Agent();
+  //   const contact  = agent.getContacts(connect.ContactType.VOICE)?.[0]
+  //   const conn = contact?.getInitialConnection()
+
+  //   if (conn.length === 0) {
+  //     console.log("No Active Connections to pause");
+  //     return;
+  // }
+
+  //   conn.destroy();
           
-  }
+  // }
 
-  function acceptCall(){
-    const agent = new connect.Agent();
-    const contact  = agent.getContacts(connect.ContactType.VOICE)?.[0]
-    const activeConnections = contact?.getConnections().filter((conn) => conn.isActive()) || [];
+  // function acceptCall(){
+  //   const agent = new connect.Agent();
+  //   const contact  = agent.getContacts(connect.ContactType.VOICE)?.[0]
+  //   const activeConnections = contact?.getConnections().filter((conn) => conn.isActive()) || [];
 
-    if (activeConnections.length === 0) {
-      console.log("No Active Connections to pause");
-      return;
-  }
+  //   if (activeConnections.length === 0) {
+  //     console.log("No Active Connections to pause");
+  //     return;
+  // }
 
-  contact.accept({
-    success: function () {
-      console.log("PAUSA")
-    },
-    failure: function (err) {
-      console.log("NO PAUSA")
-    },
-  });
-
-
-  }
+  // contact.accept({
+  //   success: function () {
+  //     console.log("PAUSA")
+  //   },
+  //   failure: function (err) {
+  //     console.log("NO PAUSA")
+  //   },
+  // });
 
 
-  function muteAgent(){
-    const agent = new connect.Agent();
-    const contact  = agent.getContacts(connect.ContactType.VOICE)?.[0]
+  // }
+
+
+//   function muteAgent(){
+//     const agent = new connect.Agent();
+//     const contact  = agent.getContacts(connect.ContactType.VOICE)?.[0]
     
-    // Get all open active connections
-    const activeConnections = contact?.getConnections().filter((conn) => conn.isActive()) || [];
+//     // Get all open active connections
+//     const activeConnections = contact?.getConnections().filter((conn) => conn.isActive()) || [];
     
     
-    if (activeConnections.length === 0) {
-        console.log("No Active Connections to mute");
-        return;
-    }
+//     if (activeConnections.length === 0) {
+//         console.log("No Active Connections to mute");
+//         return;
+//     }
     
-    // Check if we are using multiparty and see if there more than 2 active connections
-    if (contact.isMultiPartyConferenceEnabled() && activeConnections.length > 2) {
-        // if any of those are in connecting mode
-        const connectingConnections =  contact?.getConnections().filter((conn) => conn.isConnecting()) || [];
-        if (connectingConnections.length === 0) {
-            console.log("Agent Connection is muted at the server side");
-            contact.getAgentConnection().muteParticipant();
-        } else {
-            console.log("Agent Connection cannot be muted while multi party participant is connecting")
-        }
-    } else {
-        console.log("Agent connection muted at the client side");
-        agent.mute();
-    }
-}
+//     // Check if we are using multiparty and see if there more than 2 active connections
+//     if (contact.isMultiPartyConferenceEnabled() && activeConnections.length > 2) {
+//         // if any of those are in connecting mode
+//         const connectingConnections =  contact?.getConnections().filter((conn) => conn.isConnecting()) || [];
+//         if (connectingConnections.length === 0) {
+//             console.log("Agent Connection is muted at the server side");
+//             contact.getAgentConnection().muteParticipant();
+//         } else {
+//             console.log("Agent Connection cannot be muted while multi party participant is connecting")
+//         }
+//     } else {
+//         console.log("Agent connection muted at the client side");
+//         agent.mute();
+//     }
+// }
 
-function unmuteAgent(){
-  const agent = new connect.Agent();
-  const contact  = agent.getContacts(connect.ContactType.VOICE)?.[0]
+// function unmuteAgent(){
+//   const agent = new connect.Agent();
+//   const contact  = agent.getContacts(connect.ContactType.VOICE)?.[0]
   
-  // Get all open active connections
-  const activeConnections = contact?.getConnections().filter((conn) => conn.isActive()) || [];
+//   // Get all open active connections
+//   const activeConnections = contact?.getConnections().filter((conn) => conn.isActive()) || [];
   
   
-  if (activeConnections.length === 0) {
-      console.log("No Active Connections to mute");
-      return;
-  }
+//   if (activeConnections.length === 0) {
+//       console.log("No Active Connections to mute");
+//       return;
+//   }
   
-  // Check if we are using multiparty and see if there more than 2 active connections
-  if (contact.isMultiPartyConferenceEnabled() && activeConnections.length > 2) {
-      // if any of those are in connecting mode
-      const connectingConnections =  contact?.getConnections().filter((conn) => conn.isConnecting()) || [];
-      if (connectingConnections.length === 0) {
-          console.log("Agent Connection is muted at the server side");
-          contact.getAgentConnection().unmuteParticipant();
-      } else {
-          console.log("Agent Connection cannot be muted while multi party participant is connecting")
-      }
-  } else {
-      console.log("Agent connection muted at the client side");
-      agent.unmute();
-  }
-}
+//   // Check if we are using multiparty and see if there more than 2 active connections
+//   if (contact.isMultiPartyConferenceEnabled() && activeConnections.length > 2) {
+//       // if any of those are in connecting mode
+//       const connectingConnections =  contact?.getConnections().filter((conn) => conn.isConnecting()) || [];
+//       if (connectingConnections.length === 0) {
+//           console.log("Agent Connection is muted at the server side");
+//           contact.getAgentConnection().unmuteParticipant();
+//       } else {
+//           console.log("Agent Connection cannot be muted while multi party participant is connecting")
+//       }
+//   } else {
+//       console.log("Agent connection muted at the client side");
+//       agent.unmute();
+//   }
+// }
 
   //Agent
   const [agent,,] = useLogInContext(); 
@@ -264,6 +267,15 @@ function unmuteAgent(){
     // eslint-disable-next-line no-undef
     connect.contact(function (contact) {
 
+      contact.onIncoming(function(contact) { 
+        console.log("VIENE LA LLAMAD CON ONCOMIG")
+      });
+
+      contact.onConnecting(function(contact) { 
+        cambiarLlamadaEntrando();
+        console.log("LA LLAMADA ES ON CONNECRTING")
+       });
+
       contact.onConnected(async function (contact) {
         // let cid = contact.getContactId();
         // console.log(cid);
@@ -275,9 +287,13 @@ function unmuteAgent(){
       });
 
 
-      contact.onEnded(function(contact) {
+      contact.onDestroy(function(contact) {
+        console.log("LA DURACION FUE: ", statusMillis)
         setStateCall(false)
       });
+
+      const statusMillis = contact.getInitialConnection().getStatusDuration();
+      
     });
 
     // connect.core.onAuthFail(function(){
@@ -323,14 +339,14 @@ function unmuteAgent(){
   return (
   // <div id="ccp" style={{ width: "400px", height: "250px" }}>
   <section>
-    <div id="ccp" style={{ display: "none"}}/>
-    <button onClick={muteAgent}>MUTE</button>
+    <div id="ccp" style={{ display: "block"}}/>
+    {/* <button onClick={muteAgent}>MUTE</button>
     <button onClick={unmuteAgent}>UNMUTE</button>
     <button onClick={acceptCall}>ACEPTAR LLAMADA</button>
     <button onClick={hangUpCall}>TERMINAR LLAMADA</button>
     <button onClick={holdCall}>PONER EN ESPERA</button>
     <button onClick={resumeCall}>RETOMAR LLAMADA</button>
-    <button onClick={clearCall}>CERRAR CONTACTO</button>
+    <button onClick={clearCall}>CERRAR CONTACTO</button> */}
     {/*  avisar que hay una llamada e iniciar sesion y salir sin cpp*/}
     
     <div>
