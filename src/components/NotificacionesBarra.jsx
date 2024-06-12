@@ -1,7 +1,7 @@
 // Autor: Karla Cruz, Joahan García ok
 // Componente de la barra de notificaciones
 
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import Box from "@mui/material/Box";
 import Drawer from "@mui/material/Drawer";
 import List from "@mui/material/List";
@@ -29,15 +29,23 @@ const socket = io("http://127.0.0.1:8080");
 export default function TemporaryDrawer() {
   const [notifications, setNotifications] = useState([]); // Estado para las notificaciones
   const [open, setOpen] = useState(false); // Estado para abrir y cerrar el drawer
+  const [notificationsLoaded, setNotificationsLoaded] = useState(false); // Estado para saber si las notificaciones ya se cargaron
   const [agente] = useLogInContext();
-  // const IdAgente = IdEmpleado.IdAgente;
-  // const notify = () => toast("¡Tienes una nueva notificación!");
 
-  // console.log("IdEmpleado", IdAgente);
+  const notify = useCallback(() => {
+    if (!notificationsLoaded) {
+      return setNotificationsLoaded(true); 
+    } 
+    if (notifications.length > 0 && notificationsLoaded) {
+      // console.log("Notificación recibida:", notifications.at().Titulo);
+      toast(notifications.at(-1).Titulo);
+      // toast("hola cara de bola");
+    }
+  }, [notifications]);
 
-  // useEffect(() => {
-  //   notify();
-  // }, [notifications]);
+  useEffect(() => {
+    notify();
+  }, [notify]);
 
   useEffect(() => {
     // Inicialmente cargar datos
@@ -50,22 +58,15 @@ export default function TemporaryDrawer() {
       })
       .catch((error) => console.error("Error fetching data: ", error));
 
-    // Configurar el socket para escuchar eventos
-    socket.on("notificacion_empleado", (notificacionEmpleado) => {
-      console.log("Notificaciones recibidas:", notificacionEmpleado);
-      setNotifications(notificacionEmpleado);
-      // notify();
-    });
-
+    // Soket 
     socket.on(`notificacion_empleado_${agente.IdEmpleado}`, (notificacionEmpleado) => {
       console.log("Notificaciones recibidas:", notificacionEmpleado);
       setNotifications(notificacionEmpleado);
-      // notify();
     });
-    
+
     // Limpiar el socket al desmontar el componente
     return () => {
-      socket.off("notificacion_empleado");
+      socket.off(`notificacion_empleado_${agente.IdEmpleado}`);
       console.log("Socket limpiado");
     };
   }, []);
