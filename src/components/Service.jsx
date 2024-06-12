@@ -20,7 +20,7 @@ const Service = (props) => {
       </div>
       <div className="service-div">
         <div className="tarjetaProblema">
-          <EmbedConnect/>
+          {/* <EmbedConnect/> */}
           {call.IdLlamada && 
           <section>
             <Card variant="outlined">
