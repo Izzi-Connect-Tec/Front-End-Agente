@@ -18,7 +18,7 @@
 //       { title: 'Cantidad de llamadas en el día', value: '10', rank: '#1 Pepo' },
 //       { title: 'Promedio de tiempo en llamada', value: '7', rank: '#1 Alfy' },
 //       { title: 'Cantidad de llamadas en el día', value: 4, rank: '#1 Benny' } 
-      
+
 //     ]);
 
 //     setDurationData([
@@ -73,7 +73,7 @@
 //                   )}
 //                 </div>
 //                 <div className="card-rank">{rank}</div> 
-                
+
 //               </Card.Body>
 //             </Card>
 //           ))}
@@ -110,7 +110,7 @@
 //       { title: 'Cantidad de llamadas en el día', value: '10', rank: '#1 Pepo' },
 //       { title: 'Promedio de tiempo en llamada', value: '7', rank: '#1 Alfy' },
 //       { title: 'Cantidad de llamadas en el día', value: 4, rank: '#1 Benny' } 
-      
+
 //     ]);
 
 //     setDurationData([
@@ -166,7 +166,7 @@
 //                   )}
 //                 </div>
 //                 <div className="card-rank">{rank}</div> 
-                
+
 //               </Card.Body>
 //             </Card>
 //           ))}
@@ -627,11 +627,11 @@ const Calificacion = () => {
   useEffect(() => {
     // para hacer fetch
     const fetchData = async () => {
-      const agentId = "joahan11"; // ID del agente
-      const date = "2024-06-11"; // Fecha de la que se quieren obtener los datos
+      
+      const date = new Date().toISOString().split('T')[0]; // Obtenemos la fecha actual 
 
       try {
-        const response = await fetch(`http://44.209.22.101:8080/empleado/califPromDia/${agentId}/calificaciones/${date}`, {
+        const response = await fetch(`/califPromDia/${agentId}/calificaciones/${date}`, {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
@@ -645,7 +645,7 @@ const Calificacion = () => {
         const agentData = await response.json();
 
         setData(prevData => [ // Actualizamos el estado con los nuevos datos
-          { title: 'Calificación promedio', value: agentData.promGeneral, rank: '#1 Joahan' },
+          { title: 'Calificación promedio', value: agentData.averageRating, rank: `#${agentData} ${agentData}` },
           ...prevData.slice(1), // Mantenemos los datos anteriores
         ]);
         } catch (error) {
@@ -692,7 +692,7 @@ const Calificacion = () => {
                   <div className="card-title">{data[3]?.title}</div>
                   <div className="card-value">{data[3]?.value}</div>
                 </div>
-                <div className="card-rank">{data[3]?.rank}</div> 
+                <div className="card-rank">{data[3]?.rank}</div>
               </Card.Body>
             </Card>
           </div>
@@ -715,7 +715,7 @@ const Calificacion = () => {
                     <div className="card-value">{value}</div>
                   )}
                 </div>
-                <div className="card-rank">{rank}</div> 
+                <div className="card-rank">{rank}</div>
               </Card.Body>
             </Card>
           ))}
