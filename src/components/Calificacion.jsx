@@ -18,7 +18,7 @@
 //       { title: 'Cantidad de llamadas en el día', value: '10', rank: '#1 Pepo' },
 //       { title: 'Promedio de tiempo en llamada', value: '7', rank: '#1 Alfy' },
 //       { title: 'Cantidad de llamadas en el día', value: 4, rank: '#1 Benny' } 
-      
+
 //     ]);
 
 //     setDurationData([
@@ -73,7 +73,7 @@
 //                   )}
 //                 </div>
 //                 <div className="card-rank">{rank}</div> 
-                
+
 //               </Card.Body>
 //             </Card>
 //           ))}
@@ -110,7 +110,7 @@
 //       { title: 'Cantidad de llamadas en el día', value: '10', rank: '#1 Pepo' },
 //       { title: 'Promedio de tiempo en llamada', value: '7', rank: '#1 Alfy' },
 //       { title: 'Cantidad de llamadas en el día', value: 4, rank: '#1 Benny' } 
-      
+
 //     ]);
 
 //     setDurationData([
@@ -166,7 +166,7 @@
 //                   )}
 //                 </div>
 //                 <div className="card-rank">{rank}</div> 
-                
+
 //               </Card.Body>
 //             </Card>
 //           ))}
@@ -626,21 +626,50 @@ const Calificacion = () => {
 
   useEffect(() => {
     // para hacer fetch
-    setData([
-      { title: 'Calificación promedio', value: 5, rank: '#1 Joahan' },
-      { title: 'Cantidad de llamadas en el día', value: '10', rank: '#1 Pepo' },
-      { title: 'Promedio de tiempo en llamada', value: '7', rank: '#1 Alfy' },
-      { title: 'Cantidad de soluciones nuevas propuestas', value: 4, rank: '#1 Benny' } 
-    ]);
+    const fetchData = async () => {
+      
+      const date = new Date().toISOString().split('T')[0]; // Obtenemos la fecha actual 
 
-    setDurationData([
-      { month: 'Enero', duration: 5 },
-      { month: 'Febrero', duration: 6 },
-      { month: 'Marzo', duration: 7 },
-      { month: 'Abril', duration: 5 },
-      { month: 'Mayo', duration: 6 },
-    ]);
-  }, []);
+      try {
+        const response = await fetch(`/califPromDia/${agentId}/calificaciones/${date}`, {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        });
+
+        if (!response.ok){
+          throw new Error('Error al obtener datos del agente');
+        }
+
+        const agentData = await response.json();
+
+        setData(prevData => [ // Actualizamos el estado con los nuevos datos
+          { title: 'Calificación promedio', value: agentData.averageRating, rank: `#${agentData} ${agentData}` },
+          ...prevData.slice(1), // Mantenemos los datos anteriores
+        ]);
+        } catch (error) {
+          console.error('Error al obtener datos del agente', error);
+        }
+      };
+
+      fetchData();
+
+      setData([
+        { title: 'Calificación promedio', value: 5, rank: '#1 Joahan' },
+        { title: 'Cantidad de llamadas en el día', value: '10', rank: '#1 Pepo' },
+        { title: 'Promedio de tiempo en llamada', value: '7', rank: '#1 Alfy' },
+        { title: 'Cantidad de llamadas en el día', value: 4, rank: '#1 Benny' }
+      ]);
+
+      setDurationData([
+        { month: 'Enero', duration: 5 },
+        { month: 'Febrero', duration: 6 },
+        { month: 'Marzo', duration: 7 },
+        { month: 'Abril', duration: 5 },
+        { month: 'Mayo', duration: 6 },
+      ]);
+    }, []);
 
   const colors = ['#00BCB4', '#D7006D', '#FFCE00', '#EC6907'];
   const profilePhotoUrl = izziImage;
@@ -663,7 +692,7 @@ const Calificacion = () => {
                   <div className="card-title">{data[3]?.title}</div>
                   <div className="card-value">{data[3]?.value}</div>
                 </div>
-                <div className="card-rank">{data[3]?.rank}</div> 
+                <div className="card-rank">{data[3]?.rank}</div>
               </Card.Body>
             </Card>
           </div>
@@ -686,7 +715,7 @@ const Calificacion = () => {
                     <div className="card-value">{value}</div>
                   )}
                 </div>
-                <div className="card-rank">{rank}</div> 
+                <div className="card-rank">{rank}</div>
               </Card.Body>
             </Card>
           ))}
