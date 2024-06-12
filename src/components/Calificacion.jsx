@@ -626,24 +626,14 @@ const Calificacion = () => {
 
   useEffect(() => {
     // para hacer fetch
-    const fetchData = async () => {
-      try {
-        const idEmpleado = 1; // Reemplazar esto con el ID de algún empleado a consultar
+    
 
-        const res1 = await fetch(`http://44.209.22.101:8080/empleado/calificacionPromedio/${idEmpleado}`);
-        const data1 = await res1.json();
-
-        setData([
-          { title: 'Calificación promedio', value: data1, rank: '#1 Joahan' },
-          { title: 'Cantidad de llamadas en el día', value: '10', rank: '#1 Pepo' },
-          { title: 'Promedio de tiempo en llamada', value: '7', rank: '#1 Alfy' },
-          { title: 'Cantidad de soluciones nuevas propuestas', value: 4, rank: '#1 Benny' }
-        ]);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-    fetchData();
+    setData([
+      { title: 'Calificación promedio', value: 5, rank: '#1 Joahan' },
+      { title: 'Cantidad de llamadas en el día', value: '10', rank: '#1 Pepo' },
+      { title: 'Promedio de tiempo en llamada', value: '7', rank: '#1 Alfy' },
+      { title: 'Cantidad de llamadas en el día', value: 4, rank: '#1 Benny' }
+    ]);
 
     setDurationData([
       { month: 'Enero', duration: 5 },
