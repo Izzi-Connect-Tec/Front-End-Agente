@@ -6,7 +6,7 @@ import { motion, AnimatePresence  } from "framer-motion"
 import lottie from "lottie-web";
 import { defineElement } from "@lordicon/element";
 import Button from '@mui/material/Button';
-
+import '../styles/callcontrollers.css'
 import {acceptCall, rejectCall, muteAgent, unmuteAgent, holdCall, resumeCall, hangUpCall, clearCall} from "../Logic/botonesLlamada.js"
 
 import Mute from "./Mute";
@@ -16,15 +16,54 @@ import Timer from './Timer';
 import { useControlLlamadaContext } from '../Providers/ControlLlamadaContext';
 
 
-const DemoPaper = styled(Paper)(({ theme }) => ({
-  width: "100vw",
-  height: 20,
-  padding: theme.spacing(2),
-  ...theme.typography.body2,
-  textAlign: 'center',
-}));
+import { keyframes } from '@emotion/react';
+
 
 export default function TarjetaControlesLlamada() {
+
+  // Define la animación con keyframes
+const rotar = keyframes`
+from {
+  transform: rotate(0deg);
+}
+to {
+  transform: rotate(-360deg);
+}
+`;
+
+
+  const DemoPaper = styled(Paper)(({ theme }) => ({
+    width: "100vw",
+    height: 78,
+    // padding: theme.spacing(2),
+    ...theme.typography.body2,
+    position: 'relative',
+    textAlign: 'center',
+    display: 'flex',
+    flexDirection: "row",
+    alignItems: 'center',
+    justifyContent: 'center',
+    overflow: 'hidden',
+    
+
+    // "&::before": {
+    //   content: `""`,
+    //   position: 'absolute',
+    //   height: '900%',
+    //   width: '110%',
+    //   backgroundImage: 'conic-gradient(red 20deg, transparent 120deg)',
+    //   animation: `${rotar} 2s linear infinite`,
+    // },
+  
+    // "&::after": {
+    //   content: `""`,
+    //   position: 'absolute',
+    //   height: '95%',
+    //   width: '95%',
+    //   backgroundColor: 'white',
+    //   borderRadius: "9%",
+    // },
+  }));
 
   // define "lord-icon" custom element with default properties
   defineElement(lottie.loadAnimation);
@@ -155,21 +194,24 @@ export default function TarjetaControlesLlamada() {
 
     
     return (
-      <motion.div
+      <motion.div 
       initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        exit={{ opacity: 0 }}>
+        exit={{ opacity: 0 }}
+        transition={{delay: 0.25 }}
+        className='callcontrollers'
+        >
         <lord-icon
           src="https://cdn.lordicon.com/rsvfayfn.json"
           trigger="loop"
           target=".block"
           class="current-color"
         />
-        "LLamada entrante"
+        <div style={{ fontSize: '17px', fontWeight: 'bold'  }}>Incoming call</div>
         {/* //Aceptar */}
         <Button
           className="block"
-          variant="outlined"
+          variant="contained"
           onClick={aceptarLlamada}
           startIcon={
             <lord-icon
@@ -180,19 +222,21 @@ export default function TarjetaControlesLlamada() {
             />
           }
           sx={{
-            color: "black",
+            backgroundColor: "white",
+            color: "green",
             border: "solid green",
             "&:hover": {
-              color: "green",
+              backgroundColor: "green",
+              color: "white",
             },
           }}
         >
-          Aceptar
+          Acept
         </Button>
         {/* //Rechazar */}
         <Button
           className="dismiss"
-          variant="outlined"
+          variant="contained"
           onClick={rechazarLlamada}
           startIcon={
             <lord-icon
@@ -203,14 +247,16 @@ export default function TarjetaControlesLlamada() {
             />
           }
           sx={{
-            color: "black",
+            backgroundColor: "white",
+            color: "red",
             border: "solid red",
             "&:hover": {
-              color: "red",
+              backgroundColor: "red",
+              color: "white",
             },
           }}
         >
-          Rechazar
+          Decline
         </Button>
       </motion.div>
     );
@@ -237,7 +283,7 @@ export default function TarjetaControlesLlamada() {
     }
 
 return(
-  <div>
+  <div className='callcontrollers'>
     <Timer/>
         <Button className="block" variant="outlined" onClick={muteLlamada}
     startIcon={<Mute lineVisible={mute}/>}
@@ -313,14 +359,14 @@ return(
 
   return (
     <section>
-      {/* <button onClick={cambiarLlamadaEntrando}>Llamada entra</button>
-      <button onClick={activarControlLlamada}>Open</button> */}
+      <button onClick={cambiarLlamadaEntrando}>Llamada entra</button>
+      <button onClick={activarControlLlamada}>Open</button>
       
     <motion.div
     animate={animar}
       variants={variants}
       >
-    <Stack direction="row" spacing={2}>
+    <Stack direction={{ xs: 'column', s:'row', md:'row'}} useFlexGap='wrap' spacing={{xs:3,s:3,md:3}}>
       <DemoPaper>
         {llamadaEntrante ? <LlamadaEntrante/> : <lord-icon
           src="https://cdn.lordicon.com/rsvfayfn.json"

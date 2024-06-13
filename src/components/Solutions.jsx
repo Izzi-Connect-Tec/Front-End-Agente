@@ -17,21 +17,21 @@ const Solutions = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [blockedSolutions, setBlockedSolutions] = useState({});
 
-  // // Función para obtener las soluciones
-  // const fetchSolutions = async () => {
-  //   try {
-  //     // El api puede ser internet, telefonia o television
-  //     const response = await axios.get(http://44.209.22.101:8080/llamada/consultarSolucion/${call.TipoLlamada}); // Hacer la petición al API
-  //     setSolutionsData(response.data); // Guardar los datos en el estado
-  //   } catch (error) {
-  //     console.error("Error al obtener datos del API:", error); // Mostrar error en consola
-  //   }
-  // };
+  // Función para obtener las soluciones
+  const fetchSolutions = async () => {
+    try {
+      // El api puede ser internet, telefonia o television
+      const response = await axios.get(`http://44.209.22.101:8080/llamada/consultarSolucion/${call.TipoLlamada}`); // Hacer la petición al API
+      setSolutionsData(response.data); // Guardar los datos en el estado
+    } catch (error) {
+      console.error("Error al obtener datos del API:", error); // Mostrar error en consola
+    }
+  };
 
-  // // Obtener las soluciones al cargar el componente
-  // useEffect(() => {
-  //   fetchSolutions(); // Obtener las soluciones
-  // }, [call.TipoLlamada]);
+  // Obtener las soluciones al cargar el componente
+  useEffect(() => {
+    fetchSolutions(); // Obtener las soluciones
+  }, [call.TipoLlamada]);
 
   // // Función para obtener las soluciones
   // const fetchSolutions = async () => {
@@ -93,23 +93,26 @@ const Solutions = () => {
     setBlockedSolutions((prev) => ({ ...prev, [id]: true }));
   };
 
-    // Función para obtener las soluciones
-    const fetchSolutions = async () => {
-      try {
-        // El api puede ser internet, telefonia o television
-        const response = await axios.get(`http://44.209.22.101:8080/llamada/consultarSolucion/internet`); // Hacer la petición al API
-        setSolutionsData(response.data); // Guardar los datos en el estado
-      } catch (error) {
-        console.error("Error al obtener datos del API:", error); // Mostrar error en consola
-      }
-    };
+    // // Función para obtener las soluciones
+    // const fetchSolutions = async () => {
+    //   try {
+    //     // El api puede ser internet, telefonia o television
+    //     const response = await axios.get(`http://44.209.22.101:8080/llamada/consultarSolucion/internet`); // Hacer la petición al API
+    //     setSolutionsData(response.data); // Guardar los datos en el estado
+    //   } catch (error) {
+    //     console.error("Error al obtener datos del API:", error); // Mostrar error en consola
+    //   }
+    // };
 
-    fetchSolutions();
+    // fetchSolutions();
   
   return (
     <div className="solutions">
       <div className="titulo-soluciones">Solutions</div>
+
+      { call.IdLlamada &&
       <div className="solutions-div">
+        
         <button className="carousel-button" onClick={handlePrev}>
           <FaArrowLeft />
         </button>
@@ -133,6 +136,7 @@ const Solutions = () => {
           <IncidenceForm />
         </div> */}
       </div>
+      }
     </div>
   );
 };

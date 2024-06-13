@@ -10,10 +10,11 @@ import PlaceIcon from '@mui/icons-material/Place';
 import ReceiptLongIcon from '@mui/icons-material/ReceiptLong';
 
 import { calcularEdad } from "../Logic/edadCliente";
+import { useLogInContext } from "../Providers/LogInContext";
 
 
 const Client = (props) => {
-  
+
   const [vistaReporte, setVistaReporte] = useState(false);
 
   const [reportesCliente, setReportesCliente] = useState();

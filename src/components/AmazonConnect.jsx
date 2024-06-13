@@ -341,7 +341,7 @@ const EmbedConnect = (props) => {
   return (
   // <div id="ccp" style={{ width: "400px", height: "250px" }}>
   <section>
-    <div id="ccp" style={{ display: "block"}}/>
+    <div id="ccp" style={{ display: "none"}}/>
     {/* <button onClick={muteAgent}>MUTE</button>
     <button onClick={unmuteAgent}>UNMUTE</button>
     <button onClick={acceptCall}>ACEPTAR LLAMADA</button>

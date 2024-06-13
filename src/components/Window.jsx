@@ -48,7 +48,7 @@ const Window = (props) => {
       <div className="window-header">
         <Header />
         <br/>
-        {/* <button onClick={cambiarEsLlamada}>Entra llamada</button> */}
+        <button onClick={cambiarEsLlamada}>Entra llamada</button>
         <Llamada/>        
         <EmbedConnect/>
       </div>
