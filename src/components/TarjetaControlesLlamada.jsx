@@ -46,23 +46,16 @@ to {
     overflow: 'hidden',
     
 
-    // "&::before": {
-    //   content: `""`,
-    //   position: 'absolute',
-    //   height: '900%',
-    //   width: '110%',
-    //   backgroundImage: 'conic-gradient(red 20deg, transparent 120deg)',
-    //   animation: `${rotar} 2s linear infinite`,
-    // },
+    "&::before": {
+      content: `""`,
+      position: 'absolute',
+      height: '800%',
+      width: '900%',
+      backgroundImage: 'conic-gradient(gray 10deg, transparent 120deg)',
+      animation: `${rotar} 2s linear infinite`,
+    },
+    
   
-    // "&::after": {
-    //   content: `""`,
-    //   position: 'absolute',
-    //   height: '95%',
-    //   width: '95%',
-    //   backgroundColor: 'white',
-    //   borderRadius: "9%",
-    // },
   }));
 
   // define "lord-icon" custom element with default properties
@@ -115,11 +108,6 @@ to {
     cerrarContacto: { opacity: 1,  width: 500 }
   }
 
-
-
-
-
-
   function HoldFunction() {
     return(
 
@@ -147,7 +135,6 @@ to {
     )
   }
 
-
   const ResumeFunction = () => {
     return(
       <AnimatePresence>
@@ -170,7 +157,6 @@ to {
     transition: "opacity 0.5s ease",}}>
         Resume
       </Button>
-
       </motion.div>
       </AnimatePresence>
     
@@ -194,12 +180,20 @@ to {
 
     
     return (
+      
       <motion.div 
       initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        exit={{ opacity: 0 }}
-        transition={{delay: 0.25 }}
-        className='callcontrollers'
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ delay: 0.25 }}
+      className='callcontrollers'
+      style={{
+        position: 'relative',
+        height: '75%',
+        width: '100%',
+        backgroundColor: 'white',
+        borderRadius: '5px',
+      }}
         >
         <lord-icon
           src="https://cdn.lordicon.com/rsvfayfn.json"
@@ -366,7 +360,7 @@ return(
     animate={animar}
       variants={variants}
       >
-    <Stack direction={{ xs: 'column', s:'row', md:'row'}} useFlexGap='wrap' spacing={{xs:3,s:3,md:3}}>
+    <Stack direction={{ xs: 'column', s:'row', md:'row'}} useFlexGap='wrap' spacing={{xs:3,s:3,md:3}} className='incoming-content' >
       <DemoPaper>
         {llamadaEntrante ? <LlamadaEntrante/> : <lord-icon
           src="https://cdn.lordicon.com/rsvfayfn.json"
