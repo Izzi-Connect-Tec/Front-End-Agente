@@ -10,7 +10,7 @@ import { useLlamadaContext } from '../Providers/LlamadaContext';
 
 export const EstadoLlamada = () => {
 
-    const [call,,] = useLlamadaContext();
+    const [call,,,] = useLlamadaContext();
 
     return(
 
@@ -71,10 +71,14 @@ export const EstadoLlamada = () => {
                     </div>
                     <div className='client'>
                         <p className='label'>Call Sentiment</p>
-                        <LinearProgress />
-                        <LinearProgress color="success" />
-                        <LinearProgress color="error" />
-                        <p className="info">Positive</p>
+
+                        { call.SentimientoLlamada === "POSITIVE"  && <LinearProgress style={{height: 10, borderRadius: 2}} color="success" /> }
+
+                        { call.SentimientoLlamada === "NEUTRAL" && <LinearProgress style={{height: 10, borderRadius: 2}}/>} 
+                            
+                        { call.SentimientoLlamada === "NEGATIVE" && <LinearProgress style={{height: 10, borderRadius: 2}} color="error" />}   
+                            
+                        <p className="info">{call.SentimientoLlamada}</p>
                     </div>
                 </div>
             </div> 

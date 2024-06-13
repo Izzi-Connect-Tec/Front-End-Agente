@@ -53,12 +53,12 @@ const Header = (props) => {
       <div className="divB"></div>
       <div>
         <nav className={`header-nav ${menu ? "isActive" : ""}`}>
-          <button className="buttonH" onClick={handleStats}>
+          {/* <button className="buttonH" onClick={handleStats}>
             My Stats
-          </button>
-          <button className="buttonH" onClick={handleCall}>
+          </button> */}
+          {/* <button className="buttonH" onClick={handleCall}>
             Call
-          </button>
+          </button> */}
           <button className="logOut">
             <TemporaryDrawer />
           </button>

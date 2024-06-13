@@ -15,7 +15,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useLogInContext } from "../Providers/LogInContext";
 
-const socket = io("http://127.0.0.1:8080");
+const socket = io("http://44.209.22.101:8080");
 // Dummies
 // const initialData = [
 //   { titulo: "TITLE 1", description: "This is notification one"},
@@ -38,7 +38,9 @@ export default function TemporaryDrawer() {
     } 
     if (notifications.length > 0 && notificationsLoaded) {
       // console.log("Notificación recibida:", notifications.at().Titulo);
-      toast(notifications.at(-1).Titulo);
+      toast(`${notifications.at(-1).Titulo} 
+      
+       ${notifications.at(-1).Descripcion}`);
       // toast("hola cara de bola");
     }
   }, [notifications]);
@@ -50,7 +52,7 @@ export default function TemporaryDrawer() {
   useEffect(() => {
     // Inicialmente cargar datos
     console.log("Cargando notificaciones...");
-    fetch(`http://127.0.0.1:8080/notificacion/getNotificacionAgente/${agente.IdEmpleado}`)
+    fetch(`http://44.209.22.101:8080/notificacion/getNotificacionAgente/${agente.IdEmpleado}`)
       .then((response) => response.json())
       .then((data) => {
         console.log(data);

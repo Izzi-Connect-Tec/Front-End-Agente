@@ -12,7 +12,8 @@ export const LlamadaProvider = ({children}) => {
     const defaultCall = {
         IdLlamada: null,
         TipoLlamada: null,
-        DescripcionLlamada: null
+        DescripcionLlamada: null,
+        SentimientoLlamada: null,
     }
 
     const [call, setCall] = useState(defaultCall);
@@ -26,12 +27,20 @@ export const LlamadaProvider = ({children}) => {
         }));
     };
 
+    const cambiarSentimientoLlamada = ({SentimientoLlamada}) => {
+        setCall( prevCall => ({
+            ...prevCall,
+            SentimientoLlamada: SentimientoLlamada
+        })
+        )
+    }
+
     const restartCall = () => {
         setCall(defaultCall);
     };
 
     return (
-        <LlamadaContext.Provider value={[call, callData, restartCall]} >
+        <LlamadaContext.Provider value={[call, callData, restartCall, cambiarSentimientoLlamada]} >
             {children}
         </LlamadaContext.Provider>
     )

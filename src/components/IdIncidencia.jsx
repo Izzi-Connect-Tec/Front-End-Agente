@@ -5,50 +5,50 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 
-export default function BasicSelect({ onPrioridadChange }) {
+export default function BasicSelectIncidencia({ onIdIncidenciaChange }) {
   // const [age, setAge] = React.useState("");
-  const [prioridad, setPrioridad] = React.useState('');
+  const [idIncidencia, setIdIncidencia] = React.useState('');
 
   const handleChange = (event) => {
-    setPrioridad(event.target.value);
+    setIdIncidencia(event.target.value);
     console.log(event.target.value);
-    onPrioridadChange(event.target.value);
+    onIdIncidenciaChange(event.target.value);
   };
 
   return (
     <Box sx={{ minWidth: 120 }}>
-      <FormControl required sx={{ m: 1, minWidth: 250}} >
+      <FormControl required sx={{ m: 1, minWidth: 250 }}>
         <InputLabel
           sx={{ fontFamily: ["Century Gothic", "Futura"].join(","),}}
           id="demo-simple-select-label"
         >
-          Prioridad
+          Id incidencia
         </InputLabel>
         <Select
           sx={{ fontFamily: ["Century Gothic", "Futura"].join(",") }}
           labelId="demo-simple-select-label"
           id="demo-simple-select"
-          value={prioridad}
-          label="Prioridad"
+          value={idIncidencia}
+          label="IdIncidencia"
           onChange={handleChange}
         >
           <MenuItem
             sx={{ fontFamily: ["Century Gothic", "Futura"].join(",") }}
-            value="Baja"
+            value={1}
           >
-            Baja
+            Internet
           </MenuItem>
           <MenuItem
             sx={{ fontFamily: ["Century Gothic", "Futura"].join(",") }}
-            value="Media"
+            value={2}
           >
-            Media
+            Telefonia
           </MenuItem>
           <MenuItem
             sx={{ fontFamily: ["Century Gothic", "Futura"].join(",") }}
-            value="Alta"
+            value={3}
           >
-            Alta
+            Television
           </MenuItem>
         </Select>
       </FormControl>

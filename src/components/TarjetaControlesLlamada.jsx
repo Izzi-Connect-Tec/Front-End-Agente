@@ -51,9 +51,19 @@ to {
       position: 'absolute',
       height: '800%',
       width: '900%',
-      backgroundImage: llamadaEntrante ? 'conic-gradient(gray 10deg, transparent 120deg)' : null,
+      backgroundImage: llamadaEntrante ? 'conic-gradient(green 10deg, transparent 120deg)' : null,
       animation: llamadaEntrante ? `${rotar} 2s linear infinite` : null,
     },
+
+    "&::after": {
+      content: llamadaEntrante  && `""`,
+      position: llamadaEntrante  && "absolute",
+      width: llamadaEntrante  && 455,
+      height: llamadaEntrante  && 70,
+      backgroundColor: llamadaEntrante  && "white",
+      borderRadius: llamadaEntrante  && '2%',
+
+    }
     
   
   }));
@@ -353,14 +363,14 @@ return(
 
   return (
     <section>
-      {/* <button onClick={cambiarLlamadaEntrando}>Llamada entra</button>
-      <button onClick={activarControlLlamada}>Open</button> */}
+      {/* <button onClick={cambiarLlamadaEntrando}>Llamada entra</button> */}
+      {/* <button onClick={activarControlLlamada}>Open</button> */}
       
     <motion.div
     animate={animar}
       variants={variants}
       >
-    <Stack direction={{ xs: 'column', s:'row', md:'row'}} useFlexGap='wrap' spacing={{xs:3,s:3,md:3}} className='incoming-content' >
+    <Stack direction={{ xs: 'column', s:'row', md:'row'}} useFlexGap='wrap' spacing={{xs:3,s:3,md:3}} className={ llamadaEntrante ? 'incoming-content' : null}>
       <DemoPaper>
         {llamadaEntrante ? <LlamadaEntrante/> : <lord-icon
           src="https://cdn.lordicon.com/rsvfayfn.json"

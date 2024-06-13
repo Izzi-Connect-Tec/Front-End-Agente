@@ -128,7 +128,7 @@ const descargarReportesCliente = useCallback(async () => {
     <div className="client">
       <div className="titulo-cliente">
         Customer details
-        <button onClick={() => {setVistaReporte(!vistaReporte)}}>{vistaReporte ? "Datos" : "Reportes"}</button>
+        <button style={{ cursor: 'pointer', borderRadius: '10px', background: 'transparent'}} onClick={() => {setVistaReporte(!vistaReporte)}}>{vistaReporte ? "Data" : "Previous issues"}</button>
       </div>
       <div className="client-div">
         <div className="solucionTarjetaProblema">

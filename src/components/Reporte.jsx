@@ -13,13 +13,15 @@ import FlagIcon from '@mui/icons-material/Flag';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import BasicSelect from "./Prioridad";
+import BasicSelectIncidencia from "./IdIncidencia";
 
 export default function FormDialog() {
 
   const [agent,,] = useLogInContext();
 
   const [descripcion, setDescripcion] = React.useState("");
-  const [prioridad, setPrioridad] = React.useState("baja");
+  const [prioridad, setPrioridad] = React.useState("");
+  const [idIncidencia, setIdIncidencia] = React.useState("");
 
   const [cliente,,] = useUserContext();
   const toggleAlert = useAlertToggleContext();
@@ -41,11 +43,11 @@ export default function FormDialog() {
     const reportePrueba = {
       FechaHora: fechaActual,
       Prioridad: prioridad,
-      Descripcion: descripcion || "NADA",
+      Descripcion: descripcion,
       IdZona: cliente.IdZona,
       Celular: cliente.Celular,
-      IdEmpleado: "E123",
-      IdIncidencia: 1,
+      IdEmpleado: agent.IdEmpleado,
+      IdIncidencia: idIncidencia,  //ARREGLAR ESTO
     };
 
     try {
@@ -59,9 +61,9 @@ export default function FormDialog() {
         body: JSON.stringify(reportePrueba),
       };
       let res = await toast.promise(
-        fetch('http://localhost:8080/reporte/crearReporte', config),
+        fetch('http://44.209.22.101:8080/reporte/crearReporte', config),
         {
-          pending: 'Promise is pending',
+          pending: 'Enviando reporte',
           success: 'Reporte enviado exitosamente',
           error: 'Error en el envio'
         }
@@ -152,7 +154,9 @@ export default function FormDialog() {
             onChange={(e) => setDescripcion(e.target.value)}
           />
         </DialogContent>
-        <DialogContent>
+
+
+        <DialogContent sx={{display: 'flex'}}>
           <BasicSelect onPrioridadChange={setPrioridad}
             InputProps={{
               style: {
@@ -160,7 +164,17 @@ export default function FormDialog() {
               },
             }}
             />
+
+<BasicSelectIncidencia onIdIncidenciaChange={setIdIncidencia}
+            InputProps={{
+              style: {
+                fontFamily: ["Century Gothic", "Futura"].join(","),
+              },
+            }}
+            />
         </DialogContent>
+
+        
         <DialogActions>
           <Button
             sx={{

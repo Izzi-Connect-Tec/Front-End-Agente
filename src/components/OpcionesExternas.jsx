@@ -1,4 +1,4 @@
-import { useCallback } from 'react';
+
 import Box from '@mui/material/Box';
 import SpeedDial from '@mui/material/SpeedDial';
 import SpeedDialIcon from '@mui/material/SpeedDialIcon';
@@ -7,47 +7,20 @@ import FlagIcon from '@mui/icons-material/Flag';
 import HomeRepairServiceIcon from '@mui/icons-material/HomeRepairService';
 import WarningAmberIcon from '@mui/icons-material/WarningAmber';
 import FormDialog from './Reporte';
-import { useLogInContext } from '../Providers/LogInContext';
-import { useLlamadaContext } from '../Providers/LlamadaContext';
 
-const actions = [
-  { icon: <FlagIcon />, name: 'Reporte', fun: <FormDialog/> },
-  { icon: <HomeRepairServiceIcon />, name: 'Incidencia', fun: <FormDialog/> },
-  { icon: <WarningAmberIcon />, name: 'Ayuda supervisor', fun: <FormDialog/> }
-];
+import IncidenceForm from './Incidence';
+import { EmergenciaSupervisor } from './EmergenciaSupervisor';
+
 
 export default function OpcionesExternas() {
 
-  const [call,,] = useLlamadaContext();
-  const [agent,,] = useLogInContext();
 
-
-  const emergencia = useCallback( async () => {
-    try{
-      const datos = {
-        id: call.IdLlamada,
-        nombre: "Javier",
-        apellido: "Garcia"
-      }
-      let config = {
-        method: 'POST',
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${agent.token}`
-          
-        },
-        body: JSON.stringify(datos)
-      }
-      let res = await fetch("http://44.209.22.101:8080/empleado/EMERGENCIA", config) 
-      if (!res.ok) {
-        throw new Error('La solicitud no pudo completarse con éxito');
-      }
-    } catch (error){
-      console.log(error)
-    }
-  })
-
+  const actions = [
+    { icon: <FlagIcon />, name: 'Reporte', fun: <FormDialog/> },
+    { icon: <HomeRepairServiceIcon />, name: 'Incidencia', fun: <IncidenceForm/> },
+    { icon: <WarningAmberIcon />, name: 'Ayuda supervisor', fun: <EmergenciaSupervisor/> }
+  ];
+  
 
   return (
     <Box>
@@ -65,9 +38,9 @@ export default function OpcionesExternas() {
                 border: "2px solid #D7006D",
               },}}
             key={action.name}
-            icon={action.icon}
+            icon={action.fun}
             tooltipTitle={action.name}
-            onClick={emergencia}
+            // onClick={action.fun}
           />
         ))}
       </SpeedDial>

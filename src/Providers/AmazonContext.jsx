@@ -72,7 +72,7 @@ export const UserProvider = ({ children }) => {
     //AGENTE
 
     const defaultAgent = {
-        IdEmpleado: 2,
+        IdEmpleado: null,
         Nombre: null,
         ApellidoP: null,
         ApellidoM: null,

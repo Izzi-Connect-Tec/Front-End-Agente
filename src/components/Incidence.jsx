@@ -14,6 +14,8 @@ import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import { TimePicker } from "@mui/x-date-pickers/TimePicker";
 
+import HomeRepairServiceIcon from '@mui/icons-material/HomeRepairService';
+
 export default function IncidenceForm() {
   const toggleAlert = useAlertToggleContext();
 
@@ -30,7 +32,7 @@ export default function IncidenceForm() {
 
   return (
     <React.Fragment>
-      <Button
+      {/* <Button
         onClick={handleClickOpen}
         sx={{
           backgroundColor: "#D7006D",
@@ -49,7 +51,8 @@ export default function IncidenceForm() {
         size="large"
       >
         Incidencia
-      </Button>
+      </Button> */}
+      <HomeRepairServiceIcon onClick={handleClickOpen}/>
       <Dialog
         open={open}
         onClose={handleClose}

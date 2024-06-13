@@ -3,9 +3,12 @@ import { useState, useEffect, useCallback, useRef } from "react";
 import { v4 as uuidv4 } from 'uuid';
 import "../styles/sentiment.css"
 import { useLogInContext } from "../Providers/LogInContext";
+import { useLlamadaContext } from "../Providers/LlamadaContext";
 
 
 const Chatbox = (props) => {
+
+  const [,,,cambiarSentimientoLlamada] = useLlamadaContext();
 
   const endRef = useRef(null)
   const [agent,,] = useLogInContext(); 
@@ -29,6 +32,7 @@ const Chatbox = (props) => {
           setMessages(data);
           const lastCustomerMessage = [...data].reverse().find((msg) => msg.role === "CUSTOMER");
           if (lastCustomerMessage) {
+            cambiarSentimientoLlamada({SentimientoLlamada: lastCustomerMessage.sentiment });
             setLastCustomerSentiment(lastCustomerMessage.sentiment);
           }
         })
