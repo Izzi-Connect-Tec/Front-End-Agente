@@ -2,7 +2,7 @@
 .incoming-content{
     overflow-x: hidden;
     overflow-y: hidden;
-    width: 450px;
+    /* width: 450px; */
 }
 
 .callcontrollers{
@@ -20,6 +20,6 @@
     overflow: hidden;
 }
 
-@media screen and (max-width: 768px){
-    {/* Responsive */}
-}
+/* @media screen and (max-width: 768px){
+    
+} */

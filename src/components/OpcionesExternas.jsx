@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { useCallback } from 'react';
 import Box from '@mui/material/Box';
 import SpeedDial from '@mui/material/SpeedDial';
 import SpeedDialIcon from '@mui/material/SpeedDialIcon';
@@ -7,6 +7,8 @@ import FlagIcon from '@mui/icons-material/Flag';
 import HomeRepairServiceIcon from '@mui/icons-material/HomeRepairService';
 import WarningAmberIcon from '@mui/icons-material/WarningAmber';
 import FormDialog from './Reporte';
+import { useLogInContext } from '../Providers/LogInContext';
+import { useLlamadaContext } from '../Providers/LlamadaContext';
 
 const actions = [
   { icon: <FlagIcon />, name: 'Reporte', fun: <FormDialog/> },
@@ -15,6 +17,38 @@ const actions = [
 ];
 
 export default function OpcionesExternas() {
+
+  const [call,,] = useLlamadaContext();
+  const [agent,,] = useLogInContext();
+
+
+  const emergencia = useCallback( async () => {
+    try{
+      const datos = {
+        id: call.IdLlamada,
+        nombre: "Javier",
+        apellido: "Garcia"
+      }
+      let config = {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${agent.token}`
+          
+        },
+        body: JSON.stringify(datos)
+      }
+      let res = await fetch("http://44.209.22.101:8080/empleado/EMERGENCIA", config) 
+      if (!res.ok) {
+        throw new Error('La solicitud no pudo completarse con éxito');
+      }
+    } catch (error){
+      console.log(error)
+    }
+  })
+
+
   return (
     <Box>
       <SpeedDial
@@ -33,7 +67,7 @@ export default function OpcionesExternas() {
             key={action.name}
             icon={action.icon}
             tooltipTitle={action.name}
-            onClick={() => {console.log("JOAL")}}
+            onClick={emergencia}
           />
         ))}
       </SpeedDial>

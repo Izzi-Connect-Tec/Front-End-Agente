@@ -51,8 +51,8 @@ to {
       position: 'absolute',
       height: '800%',
       width: '900%',
-      backgroundImage: 'conic-gradient(gray 10deg, transparent 120deg)',
-      animation: `${rotar} 2s linear infinite`,
+      backgroundImage: llamadaEntrante ? 'conic-gradient(gray 10deg, transparent 120deg)' : null,
+      animation: llamadaEntrante ? `${rotar} 2s linear infinite` : null,
     },
     
   
@@ -353,8 +353,8 @@ return(
 
   return (
     <section>
-      <button onClick={cambiarLlamadaEntrando}>Llamada entra</button>
-      <button onClick={activarControlLlamada}>Open</button>
+      {/* <button onClick={cambiarLlamadaEntrando}>Llamada entra</button>
+      <button onClick={activarControlLlamada}>Open</button> */}
       
     <motion.div
     animate={animar}
