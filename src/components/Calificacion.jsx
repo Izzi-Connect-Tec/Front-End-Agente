@@ -684,7 +684,7 @@ const Calificacion = () => {
 
         const agentData4 = await response4.json();
 
-        setData([ // Actualizamos el estado con los nuevos datos
+        setData(prevData => [ // Actualizamos el estado con los nuevos datos
           { title: 'Calificación promedio', value: agentData1.promGeneral, rank: '#1 Joahan' },
           { title: 'Cantidad de llamadas en el día', value: agentData2.cantLlamadas, rank: '#1 Pepo'},
           { title: 'Promedio de tiempo en llamada', value: agentData3.PromLlamadas, rank: '#1 Alfy' },
@@ -697,13 +697,15 @@ const Calificacion = () => {
 
       fetchData();
 
+      /*
       setData([ // Actualizamos el estado con los nuevos datos
         { title: 'Calificación promedio', value: 4.5, rank: '#1 Joahan' },
         { title: 'Cantidad de llamadas en el día', value: 3, rank: '#1 Pepo'},
         { title: 'Promedio de tiempo en llamada', value: 2, rank: '#1 Alfy' },
         { title: 'Cantidad de llamadas en la semana', value: 1, rank: '#1 Benny'}
       ]);
-
+      */
+      
       setDurationData([
         { month: 'Enero', duration: 5 },
         { month: 'Febrero', duration: 6 },
