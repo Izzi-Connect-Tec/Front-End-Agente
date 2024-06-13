@@ -619,6 +619,7 @@ import Charts from './Charts';
 // import AgentRankingChart from './AgentRankingChart'; // Importamos el componente de la gráfica
 import Header from './Header';
 import { useState, useEffect } from 'react';
+import { title } from 'process';
 
 const Calificacion = () => {
   const [data, setData] = useState([]);
@@ -657,10 +658,37 @@ const Calificacion = () => {
 
         const agentData2 = await response2.json();
 
-        setData(prevData => [ // Actualizamos el estado con los nuevos datos
+        const response3 = await fetch(`http://44.209.22.101:8080/empleado/consultarCantLlamadasEmpleado/${agentId}`, {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        })
+
+        if (!response3.ok){
+          throw new Error('Error al obtener cantidad de llamadas en el día');
+        }
+
+        const agentData3 = await response3.json();
+
+        const response4 = await fetch(`http://44.209.22.101:8080/empleado/consultarCantLlamadasSemanaEmpleado/${agentId}`, {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        })
+        
+        if (!response4.ok){
+          throw new Error('Error al obtener cantidad de llamadas en la semana');
+        }
+
+        const agentData4 = await response4.json();
+
+        setData([ // Actualizamos el estado con los nuevos datos
           { title: 'Calificación promedio', value: agentData1.promGeneral, rank: '#1 Joahan' },
-          { title: 'Promedio de tiempo en llamada', value: agentData2.PromLlamadas, rank: '#1 Alfy' },
-          ...prevData.slice(1), // Mantenemos los datos anteriores
+          { title: 'Cantidad de llamadas en el día', value: agentData2.cantLlamadas, rank: '#1 Pepo'},
+          { title: 'Promedio de tiempo en llamada', value: agentData3.PromLlamadas, rank: '#1 Alfy' },
+          { title: 'Cantidad de llamadas en la semana', value: agentData4.cantLlamadas, rank: '#1 Benny'}
         ]);
         } catch (error) {
           console.error('Error al obtener datos del agente', error);
@@ -669,11 +697,11 @@ const Calificacion = () => {
 
       fetchData();
 
-      setData([
-        { title: 'Calificación promedio', value: 5, rank: '#1 Joahan' },
-        { title: 'Cantidad de llamadas en el día', value: '10', rank: '#1 Pepo' },
-        { title: 'Promedio de tiempo en llamada', value: '7', rank: '#1 Alfy' },
-        { title: 'Cantidad de llamadas en el día', value: 4, rank: '#1 Benny' }
+      setData([ // Actualizamos el estado con los nuevos datos
+        { title: 'Calificación promedio', value: 4.5, rank: '#1 Joahan' },
+        { title: 'Cantidad de llamadas en el día', value: 3, rank: '#1 Pepo'},
+        { title: 'Promedio de tiempo en llamada', value: 2, rank: '#1 Alfy' },
+        { title: 'Cantidad de llamadas en la semana', value: 1, rank: '#1 Benny'}
       ]);
 
       setDurationData([
@@ -687,8 +715,8 @@ const Calificacion = () => {
 
   const colors = ['#00BCB4', '#D7006D', '#FFCE00', '#EC6907'];
   const profilePhotoUrl = izziImage;
-  const agentName = "Maximiliano Lecona";
-  const agentId = 1234;
+  const agentName = "Joahan Javier";
+  const agentId = "joahan11";
 
   return (
     <div className="calificacion-page">
