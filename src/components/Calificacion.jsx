@@ -619,7 +619,9 @@ import Charts from './Charts';
 // import AgentRankingChart from './AgentRankingChart'; // Importamos el componente de la gráfica
 import Header from './Header';
 import { useState, useEffect } from 'react';
+/*
 import { title } from 'process';
+*/
 
 const Calificacion = () => {
   const [data, setData] = useState([]);
@@ -627,93 +629,55 @@ const Calificacion = () => {
 
   useEffect(() => {
     // para hacer fetch
-    const fetchData = async () => {
+    const fetchData = async () =>{
       const agentId = "joahan11"; // ID del agente
-      const date = "2024-06-11"; // Fecha de la que se quieren obtener los datos
+      const date = "2024-06-13"; // Fecha de la que se quieren obtener los datos
+      const url = [
+        `http://44.209.22.101:8080/empleado/califPromDia/${agentId}/calificaciones/${date}`, // URL para obtener la calificación promedio del día
+        `http://44.209.22.101:8080/empleado/consultarLlamadasEmpleado/${agentId}`, // URL para obtener la cantidad de llamadas en el día
+        `http://44.209.22.101:8080/empleado/consultarPromLlamadasEmpleado/${agentId}`, // URL para obtener el promedio de tiempo en llamada
+      ];
 
       try {
-        const response1 = await fetch(`http://44.209.22.101:8080/empleado/califPromDia/${agentId}/calificaciones/${date}`, {
-          method: 'GET',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-        });
+        const responses = await Promise.all(url.map(async (url) =>
+          fetch(url, {
+            method: 'GET',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+          }).then(async (response) => {
+            if (!response.ok) {
+              throw new Error(`Error al obtener datos del agente desde ${url}`);
+            }
+            const data = await response.json();
+            console.log(`Response for ${url}: `, data);
+            return data;
+          })
+        ));
 
-        if (!response1.ok){
-          throw new Error('Error al obtener datos del agente');
-        }
+        console.log("Respuestas obtenidas: ", responses); // Para depurar y ver los datos obtenidos
 
-        const agentData1 = await response1.json();
-
-        const response2 = await fetch(`http://44.209.22.101:8080/empleado/consultarPromLlamadasEmpleado/${agentId}`, {
-          method: 'GET',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-        })
-
-        if (!response2.ok){
-          throw new Error('Error al oobtener promedio de tiempo en llamada');
-        }
-
-        const agentData2 = await response2.json();
-
-        const response3 = await fetch(`http://44.209.22.101:8080/empleado/consultarCantLlamadasEmpleado/${agentId}`, {
-          method: 'GET',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-        })
-
-        if (!response3.ok){
-          throw new Error('Error al obtener cantidad de llamadas en el día');
-        }
-
-        const agentData3 = await response3.json();
-
-        const response4 = await fetch(`http://44.209.22.101:8080/empleado/consultarCantLlamadasSemanaEmpleado/${agentId}`, {
-          method: 'GET',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-        })
-        
-        if (!response4.ok){
-          throw new Error('Error al obtener cantidad de llamadas en la semana');
-        }
-
-        const agentData4 = await response4.json();
-
-        setData(prevData => [ // Actualizamos el estado con los nuevos datos
-          { title: 'Calificación promedio', value: agentData1.promGeneral, rank: '#1 Joahan' },
-          { title: 'Cantidad de llamadas en el día', value: agentData2.cantLlamadas, rank: '#1 Pepo'},
-          { title: 'Promedio de tiempo en llamada', value: agentData3.PromLlamadas, rank: '#1 Alfy' },
-          { title: 'Cantidad de llamadas en la semana', value: agentData4.cantLlamadas, rank: '#1 Benny'}
+        setData([
+          { title: 'Calificación promedio', value: responses[0].promGeneral, rank: '#1 Joahan' },
+          { title: 'Cantidad de llamadas en el día', value: responses[1][0].NumeroLlamadas, rank: '#1 Pepo' },
+          { title: 'Promedio de tiempo en llamada', value: parseFloat(responses[2][0].PromLlamadas).toFixed(1), rank: '#1 Alfy' },
+          { title: 'Cantidad de llamadas en la semana', value: 4, rank: '#1 Benny' }
         ]);
-        } catch (error) {
-          console.error('Error al obtener datos del agente', error);
-        }
-      };
+      } catch (error) {
+        console.error('Error: ', error);
+      }
+    };
 
-      fetchData();
+    fetchData();
 
-      /*
-      setData([ // Actualizamos el estado con los nuevos datos
-        { title: 'Calificación promedio', value: 4.5, rank: '#1 Joahan' },
-        { title: 'Cantidad de llamadas en el día', value: 3, rank: '#1 Pepo'},
-        { title: 'Promedio de tiempo en llamada', value: 2, rank: '#1 Alfy' },
-        { title: 'Cantidad de llamadas en la semana', value: 1, rank: '#1 Benny'}
-      ]);
-      */
-      
-      setDurationData([
-        { month: 'Enero', duration: 5 },
-        { month: 'Febrero', duration: 6 },
-        { month: 'Marzo', duration: 7 },
-        { month: 'Abril', duration: 5 },
-        { month: 'Mayo', duration: 6 },
-      ]);
-    }, []);
+    setDurationData([
+      { month: 'Enero', duration: 5 },
+      { month: 'Febrero', duration: 6 },
+      { month: 'Marzo', duration: 7 },
+      { month: 'Abril', duration: 5 },
+      { month: 'Mayo', duration: 6 },
+    ]);
+  }, []);
 
   const colors = ['#00BCB4', '#D7006D', '#FFCE00', '#EC6907'];
   const profilePhotoUrl = izziImage;
@@ -733,10 +697,10 @@ const Calificacion = () => {
             >
               <Card.Body>
                 <div className="card-content">
-                  <div className="card-title">{data[3]?.title}</div>
+                  <div className="card-title">{data[3]?.title}</div> 
                   <div className="card-value">{data[3]?.value}</div>
                 </div>
-                <div className="card-rank">{data[3]?.rank}</div> 
+                <div className="card-rank">{data[3]?.rank}</div>
               </Card.Body>
             </Card>
           </div>
@@ -759,7 +723,7 @@ const Calificacion = () => {
                     <div className="card-value">{value}</div>
                   )}
                 </div>
-                <div className="card-rank">{rank}</div> 
+                <div className="card-rank">{rank}</div>
               </Card.Body>
             </Card>
           ))}
