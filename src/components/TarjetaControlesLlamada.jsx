@@ -190,7 +190,7 @@ to {
       style={{
         position: 'relative',
         height: '75%',
-        width: '100%',
+        width: '90%',
         backgroundColor: 'white',
         borderRadius: '5px',
       }}
