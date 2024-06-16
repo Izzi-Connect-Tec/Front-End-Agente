@@ -4,32 +4,35 @@ import { LineChart } from '@mui/x-charts/LineChart';
 import '../styles/charts.css';
 
 const Charts = () => {
-  const [durationData, setDurationData] = useState([]);
-  const [agentData, setAgentData] = useState([]);
+  //d
+  const defaultDurationData = [
+    { month: 'Enero', duration: 5 },
+    { month: 'Febrero', duration: 6 },
+    { month: 'Marzo', duration: 7 },
+    { month: 'Abril', duration: 5 },
+    { month: 'Mayo', duration: 6 },
+  ];
+
+  const defaultAgentData = [
+    { agente: 'Agustín Ríos', value: 4.5 },
+    { agente: 'Lara Díaz', value: 3.8 },
+    { agente: 'Juan Ortíz', value: 4.2 },
+    { agente: 'Karla Lara', value: 4.9 },
+    { agente: 'Diana Fuentes', value: 4.1 },
+  ];
+
+  const [durationData, setDurationData] = useState(defaultDurationData);
+  const [agentData, setAgentData] = useState(defaultAgentData);
 
   useEffect(() => {
     const fetchDurationData = async () => {
-      // Aquí deberías hacer la llamada a la API para obtener durationData
-      // Este es un ejemplo de cómo podrías estructurar los datos
-      setDurationData([
-        { month: 'Enero', duration: 5 },
-        { month: 'Febrero', duration: 6 },
-        { month: 'Marzo', duration: 7 },
-        { month: 'Abril', duration: 5 },
-        { month: 'Mayo', duration: 6 },
-      ]);
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      setDurationData(defaultDurationData);
     };
 
     const fetchAgentData = async () => {
-      // Aquí deberías hacer la llamada a la API para obtener agentData
-      // Este es un ejemplo de cómo podrías estructurar los datos
-      setAgentData([
-        { title: 'Agustín Ríos', value: 4.5 },
-        { title: 'Lara Díaz', value: 3.8 },
-        { title: 'Juan Ortíz', value: 4.2 },
-        { title: 'Karla Lara', value: 4.9 },
-        { title: 'Diana Fuentes', value: 4.1 },
-      ]);
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      setAgentData(defaultAgentData); 
     };
 
     fetchDurationData();
@@ -65,7 +68,7 @@ const Charts = () => {
       <div className="chart-wrapper">
         <BarChart
           dataset={agentData}
-          xAxis={[{ scaleType: 'band', dataKey: 'title' }]}
+          xAxis={[{ scaleType: 'band', dataKey: 'agente' }]}
           {...agentChartSetting}
         />
       </div>
