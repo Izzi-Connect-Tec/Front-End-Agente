@@ -5,12 +5,13 @@
   --color-quaternary: #ec6907;
   --font-family: "exo", sans-serif;
   --font-size-title: 18px;
-  --font-size-value: 40px;
+  --font-size-value: 20px;
   --font-size-rank: 14px;
   --font-size-title-small: 16px;
   --font-size-value-small: 30px;
   --font-size-star-rating: 30px;
 }
+
 
 /* ANIMACIONEEES iii */
 .blue-card,
@@ -40,7 +41,7 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(10px, 1fr));
   gap: 10px;
-  margin-top: -5%;
+  margin-top: 5%;
   margin-left: 7.5%;
 }
 
@@ -134,14 +135,17 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  margin-left: -25%;
+  margin-top: 5%;
 }
 
 .profile-container img {
-  width: 50%;
+  max-width: 40%;
   height: auto;
   border-radius: 5%;
   box-shadow: var(--box-shadow);
   margin-bottom: 10px;
+
 }
 
 .figure-caption {
@@ -175,37 +179,40 @@
   text-align: center;
 }
 
-.profile-container img {
-  width: 50%;
-  height: auto;
-  border-radius: 5%;
-  box-shadow: var(--box-shadow);
-  margin-bottom: 20px;
-}
 
-.orange-card-container {
-  width: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
 
-.orange-card {
-  width: 100%;
-}
-
-.card-container {
+/* .card-container {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
   gap: 20px;
   flex: 1 1 60%;
   margin-right: 10px;
+} */
+.card-container {
+  margin-left: 35%;
+  display: flex;
+  gap: 20px;
+  flex: 1 1 auto; /* Ajusta la flexibilidad para ocupar el espacio disponible */
+  margin-right: 0; /* Eliminar el margen derecho */
+  margin-top: -31%;
+
+
+}
+.card {
+  width: 100%; /* Ajusta el ancho de las tarjetas al 100% del contenedor */
+  max-width: 100%; /* Asegura que ocupen el máximo ancho posible */
+  margin-right: 5%;
+  border-radius: 10%;
+  height: 13vw;
+  width: 30vw;
 }
 
+
+/* 
 .card {
   height: 200px;
   border-radius: 10px;
-}
+} */
 
 .card-content {
   display: flex;
@@ -239,19 +246,35 @@
   font-weight: bold;
   text-align: center;
 }
-
-.chart-container {
+.charts-container {
   display: flex;
-  flex-direction: column;
+  margin-left: -75%;
+  width: 100%;
+  padding: 0 5%;
+  
+}
+
+.chart-wrapper {
+  flex: 1;
+  margin-top: 7%;
+  margin-left: 10px;
+  min-width: 700px; /* Define un ancho mínimo para cada gráfica */
+}
+
+
+/* .chart-container {
+  display: flex; */
+  /* flex-direction: column;
   width: 100%;
   max-width: 90%;
   margin: 20px auto;
 }
 
+
 .chart {
   width: 100%;
   max-width: 100%;
-}
+} */
 
 .agent-name {
   font-family: bold;
@@ -266,8 +289,17 @@
 .pink-card .card-title{
   color: white;
 }
+/* Añade este bloque de CSS al final de tu archivo calificacion.css */
+.loading-message {
+  text-align: center;
+  font-size: 1.5rem;
+  color: #007bff;
+  padding: 20px;
+}
+
 
 @media (orientation: landscape) {
+
   .calificacion-content {
     margin-left: -4%;
   }
