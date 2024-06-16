@@ -18,10 +18,10 @@ function App() {
       <div className="App">
         <Routes>
           <Route path="/" element={<Login />} />
-          {/* <Route element={<ProtectedRoute isAllowed={!!agent.IdEmpleado}/>}> */}
+          <Route element={<ProtectedRoute isAllowed={!!agent.IdEmpleado}/>}>
             <Route path="/window" element={<Window />} />
             <Route path="/calificacion" element={<Calificacion/>}/>
-          {/* </Route> */}
+          </Route>
         </Routes>
       </div>
     </Router>

@@ -2,30 +2,38 @@ import '../styles/bottomCards.css';
 import { useState, useEffect } from 'react';
 
 const BottomCards = () => {
+  const baseUrl = process.env.REACT_APP_API_BASE_URL;
+  const date = new Date();
+  const year = date.getFullYear();
+  const month = (date.getMonth() + 1).toString().padStart(2, "0");
+  const day = date.getDate().toString().padStart(2, "0");
+  const formattedDate = `${year}-${month}-${day}`;  
   const [agentWithBestRating, setAgentWithBestRating] = useState('Cargando...');
   const [agentWithMostCalls, setAgentWithMostCalls] = useState('Cargando...');
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch('urllll')
+    fetch(`${baseUrl}/empleado/getAgenteMejorCalifMes/${formattedDate}`)
       .then(response => response.json())
       .then(data => {
-        setAgentWithBestRating(data.name);
+        console.log(data);
+        setAgentWithBestRating(data.nombre + ' ' + data.apellido);
         setLoading(false);
       })
       .catch(error => {
-        console.error('Error fetching:', error);
+        console.error('Error fetching from agente mejor calif:', error);
         setLoading(false);
       });
 
-    fetch('urlll')
+    fetch(`${baseUrl}/empleado/getAgenteMasLlamadasDia/${formattedDate}`)
       .then(response => response.json())
       .then(data => {
-        setAgentWithMostCalls(data.name); 
+        console.log(data);
+        setAgentWithMostCalls(data.nombre + ' ' + data.apellido); 
         setLoading(false);
       })
       .catch(error => {
-        console.error('Error fetching:', error);
+        console.error('Error fetching from agente mas llamadas:', error);
         setLoading(false);
       });
   }, []);
