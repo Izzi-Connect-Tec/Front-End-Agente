@@ -5,17 +5,17 @@ import Charts from './Charts';
 import Header from './Header';
 import CardContainer from './CardContainer';
 import BottomCards from './BottomCards';
+import AgentName from './AgentName'; 
 
 const Calificacion = () => {
   const profilePhotoUrl = izziImage;
-  const agentName = "Maximiliano Lecona";
 
   return (
     <div className="calificacion-page">
       <Header />
       <div className="calificacion-content">
         <div className="profile-container">
-          <ProfilePhoto photoUrl={profilePhotoUrl} name={agentName} />
+          <ProfilePhoto photoUrl={profilePhotoUrl} name={<AgentName defaultName="Maximiliano Lecona" />} />
           <div className="orange-card-container">
             <CardContainer />
           </div>
