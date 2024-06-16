@@ -1,3 +1,5 @@
+/* Autora: Giovanna Lorena Delgado Mendoza*/
+/*Foto de perfil de los agentes en ventana de calificación*/
 import '../styles/profilePicture.css';
 import izziImage from '../elements/izzi.jpeg';
 const ProfilePhoto = ({ photoUrl, name }) => {

@@ -1,3 +1,5 @@
+/* Autora: Giovanna Lorena Delgado Mendoza*/
+/*Gráficas de la ventana de calificación que muestra estadísticas de los agentes*/
 import { useState, useEffect } from 'react';
 import { BarChart } from '@mui/x-charts/BarChart';
 import { LineChart } from '@mui/x-charts/LineChart';

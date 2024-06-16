@@ -1,75 +1,156 @@
-/*Bottom Cards*/
-
+/* Autora: Giovanna Lorena Delgado Mendoza*/
+/*Estilos para las tarjetas estadísticas inferiores de la ventana de calificación de los agentes*/
 .custom-container {
-    width: 70%;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(10px, 1fr));
-    gap: 10px;
-    margin-top: 2%;
-    margin-left: 7.5%;
+  width: 70%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(10px, 1fr));
+  gap: 10px;
+  margin-top: 2%;
+  margin-left: 7.5%;
+}
+
+.custom-row {
+  display: flex;
+}
+
+.custom-col {
+  flex: 1;
+}
+
+.custom-card {
+  border-radius: 10px;
+  overflow: hidden;
+  margin-top: 0%;
+}
+
+.custom-card-title {
+  font-size: 18px;
+  margin-bottom: 10px;
+  margin-top: 0;
+}
+
+.custom-card-header {
+  color: #fff;
+  padding: 5px;
+  text-align: center;
+}
+
+.custom-card-title,
+.custom-card-text {
+  color: #000;
+}
+
+.custom-card-body {
+  padding: 10px;
+}
+
+.custom-card-title {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.custom-card-text {
+  font-size: 14px;
+}
+
+.card-primary {
+  border: 1px solid var(--color-primary);
+}
+
+.card-secondary {
+  border: 1px solid var(--color-secondary);
+}
+
+.card-primary .custom-card-header {
+  background-color: var(--color-primary);
+  border-bottom: 2px solid var(--color-primary);
+}
+
+.card-secondary .custom-card-header {
+  background-color: var(--color-secondary);
+  border-bottom: 2px solid var(--color-secondary);
+}
+
+@media (orientation: landscape) {
+  .custom-card:hover {
+    transform: scale(1.1);
+    transition: all 0.3s ease;
   }
-  
-  .custom-row {
-    display: flex;
-  }
-  
-  .custom-col {
-    flex: 1;
-  }
-  
   .custom-card {
+    width: 85%;
     border-radius: 10px;
     overflow: hidden;
     margin-top: 0%;
+    margin-left: -5%;
   }
-  
-  .custom-card-title {
-    font-size: 18px;
-    margin-bottom: 10px;
-    margin-top: 0;
+  .blue-card:hover,
+  .pink-card:hover,
+  .yellow-card:hover,
+  .orange-card:hover {
+    width: 101%;
+    height: auto;
+    transform: scale(1.1);
+    transition: all 0.3s ease;
   }
-  
-  .custom-card-header {
-    color: #fff;
-    padding: 5px;
-    text-align: center;
+}
+
+@media (min-width: 1200px) and (orientation: landscape) {
+  .card-container {
+    grid-template-columns: repeat(3, 1fr);
+    width: 70%;
   }
-  
-  .custom-card-title,
-  .custom-card-text {
-    color: #000;
+
+  .card {
+    flex: 1;
   }
-  
-  .custom-card-body {
-    padding: 10px;
+
+  .card-value {
+    font-size: 45px;
   }
-  
-  .custom-card-title {
-    font-size: 18px;
-    margin-bottom: 10px;
+  .blue-card:hover,
+  .pink-card:hover,
+  .yellow-card:hover,
+  .orange-card:hover {
+    width: 100.5%;
+    height: auto;
+    transform: scale(1.1);
+    transition: all 0.3s ease;
   }
-  
-  .custom-card-text {
-    font-size: 14px;
+  .custom-card {
+    width: 90%;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-top: 0%;
+    margin-left: -5%;
   }
-  
-  .card-primary {
-    border: 1px solid var(--color-primary);
+  .pink-card .card-value,
+  .yellow-card .card-value {
+    margin-top: 10%;
   }
-  
-  .card-secondary {
-    border: 1px solid var(--color-secondary);
+}
+
+@media (orientation: portrait) {
+  .custom-card {
+    width: 90%;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-top: -5%;
   }
-  
-  
-  .card-primary .custom-card-header {
-    background-color: var(--color-primary);
-    border-bottom: 2px solid var(--color-primary);
+  .custom-card {
+    margin-left: -10%;
+    margin-bottom: 5%;
   }
-  
-  .card-secondary .custom-card-header {
-    background-color: var(--color-secondary);
-    border-bottom: 2px solid var(--color-secondary);
+  .custom-card:hover {
+    transform: scale(1.1);
+    transition: all 0.3s ease;
   }
-  
-  /*Bottom Card fin*/
+
+  .blue-card:hover,
+  .pink-card:hover,
+  .yellow-card:hover {
+    margin-left: 5%;
+    height: auto;
+    transform: scale(1.1);
+    transition: all 0.3s ease;
+  }
+}

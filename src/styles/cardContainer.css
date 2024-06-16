@@ -1,0 +1,128 @@
+/* Autora: Giovanna Lorena Delgado Mendoza*/
+/*Estilos de las tarjetas estadísticas superiores de la ventana de calificaicón*/
+.card-container {
+  margin-left: 35%;
+  display: flex;
+  gap: 20px;
+  flex: 1 1 auto;
+  margin-right: 0;
+  margin-top: -31%;
+}
+.card {
+  width: 100%;
+  max-width: 100%;
+  margin-right: 5%;
+  border-radius: 10%;
+  height: 13vw;
+  min-width: 15vw;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+.loading-text {
+  font-size: 2vw;
+}
+
+.card-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.card-title {
+  padding-top: 8%;
+  font-family: var(--font-family);
+  font-size: var(--font-size-title);
+  color: rgb(37, 35, 35);
+  text-align: center;
+  margin-left: 5%;
+  margin-right: 5%;
+}
+
+.card-value {
+  margin-top: 20px;
+  font-size: var(--font-size-value);
+  font-family: var(--font-family);
+  color: black;
+  text-align: center;
+}
+
+.card-rank {
+  font-size: var(--font-size-rank);
+  font-family: var(--font-family);
+  color: white;
+  font-weight: bold;
+  text-align: center;
+}
+
+@media (orientation: landscape) {
+  .card-container {
+    grid-template-columns: repeat(3, 1fr);
+    width: 70%;
+  }
+
+  .card {
+    flex: 1;
+  }
+
+  .card-value {
+    font-size: 45px;
+  }
+}
+
+@media (min-width: 1200px) and (orientation: landscape) {
+  .card-rank {
+    font-size: var(--font-size-rank);
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    align-self: center;
+    margin-top: 8%;
+    margin-bottom: 5%;
+  }
+}
+
+@media (orientation: portrait) {
+  .card-container {
+    flex-direction: column;
+    margin-top: 10%;
+    margin-left: -50%;
+    max-width: fit-content;
+
+  }
+
+  .card {
+  height: 120%;
+  }
+
+  .card-content {
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .card-title {
+    font-size: var(--font-size-title-small);
+    text-align: center;
+    margin-bottom: 5px;
+    margin-left: 5%;
+    margin-right: 5%;
+    margin-top: -5%;
+  }
+
+  .card-value {
+    font-size: var(--font-size-value-small);
+    text-align: center;
+    margin-top: 1px;
+  }
+
+  .card-rank {
+    font-size: var(--font-size-rank);
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    align-self: center;
+    margin-top: 8%;
+  }
+}

@@ -1,5 +1,7 @@
+/* Autora: Giovanna Lorena Delgado Mendoza*/
+/*Contenedor y APIs de las tarjetas superioes de la ventana de calificación*/
 import CardComponent from './CardComponent';
-import '../styles/calificacion.css';
+import '../styles/cardContainer.css';
 
 const CardContainer = () => {
   const cardsData = [

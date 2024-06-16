@@ -1,3 +1,5 @@
+/* Autora: Giovanna Lorena Delgado Mendoza*/
+/*Tarjetas inferiores de ventana de estadísticas/calificación*/ 
 import '../styles/bottomCards.css';
 import { useState, useEffect } from 'react';
 

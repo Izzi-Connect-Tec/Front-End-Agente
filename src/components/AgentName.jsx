@@ -1,3 +1,6 @@
+/* Autora: Giovanna Lorena Delgado Mendoza*/
+/*Nombre del agente en ventana de estadísticas/calificación*/ 
+import '../styles/agentName.css';
 import { useState, useEffect } from 'react';
 
 const AgentName = ({ defaultName }) => {
