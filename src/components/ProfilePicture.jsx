@@ -1,3 +1,4 @@
+import '../styles/profilePicture.css';
 import izziImage from '../elements/izzi.jpeg';
 const ProfilePhoto = ({ photoUrl, name }) => {
   const defaultPhotoUrl = izziImage;

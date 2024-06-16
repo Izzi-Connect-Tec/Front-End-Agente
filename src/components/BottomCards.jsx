@@ -1,3 +1,4 @@
+import '../styles/bottomCards.css';
 import { useState, useEffect } from 'react';
 
 const BottomCards = () => {

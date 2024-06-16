@@ -4,7 +4,7 @@ import '../styles/calificacion.css';
 const CardContainer = () => {
   const cardsData = [
     { 
-      title: 'Calificación promedio', 
+      title: 'Calificación promedio del agente', 
       dataUrl: 'urllll', 
       rankUrl: 'urllll',
       color: '#00BCB4' 
