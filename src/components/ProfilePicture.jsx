@@ -1,5 +1,6 @@
-import izziImage from '../styles/izzi.jpeg';
-const ProfilePhoto = ({ photoUrl, name}) => {
+import '../styles/profilePicture.css';
+import izziImage from '../elements/izzi.jpeg';
+const ProfilePhoto = ({ photoUrl, name }) => {
   const defaultPhotoUrl = izziImage;
   return (
     <figure className="figure profile-container">
@@ -8,4 +9,5 @@ const ProfilePhoto = ({ photoUrl, name}) => {
     </figure>
   );
 };
+
 export default ProfilePhoto;

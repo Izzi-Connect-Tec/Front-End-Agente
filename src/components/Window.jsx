@@ -10,6 +10,8 @@ import CustomizedSnackbars from "./Alerta";
 import AppProviders from "../Providers/AppProviders";
 
 const Window = (props) => {
+
+
   return (
     <AppProviders>
       <div className="window-header">

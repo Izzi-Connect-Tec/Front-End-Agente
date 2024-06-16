@@ -1,7 +1,7 @@
 // Autor: Karla Cruz, Joahan García
 // Componente de la barra de notificaciones
 
-import React, { useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import Box from "@mui/material/Box";
 import Drawer from "@mui/material/Drawer";
 import List from "@mui/material/List";
@@ -10,20 +10,55 @@ import AccessibleBadges from "./Notificaciones";
 import Notification from "./Notification";
 import "../styles/notificacionesBarra.css";
 import NotificationContext from "../Providers/NotificationContext";
+import io from "socket.io-client";
+
+const socket = io("http://127.0.0.1:8080");
 
 export default function TemporaryDrawer() {
   // Dummies
-  const initialData = [
-    { description: "This is notification one", sender: "Leo" },
-    { description: "This is notification two", sender: "Bris" },
-    { description: "This is notification three", sender: "Javi" },
-    { description: "This is notification four", sender: "Javi" },
-    { description: "This is notification five", sender: "Leo" },
-    { description: "This is notification six, test with longer text, aaaaaa hello hello test test", sender: "Kari" }
-  ];
+  // const initialData = [
+  //   { titulo: "TITLE 1", description: "This is notification one"},
+  //   { titulo: "TITLE 2", description: "This is notification two"},
+  //   { titulo: "TITLE 3", description: "This is notification three"},
+  //   { titulo: "TITLE 4", description: "This is notification four"},
+  //   { titulo: "TITLE 5", description: "This is notification five"},
+  //   { titulo: "TITLE 6 ", description: "This is notification six, test with longer text, aaaaaa hello hello test test"},
+  // ];
 
-  const [notifications, setNotifications] = useState(initialData); // Estado para las notificaciones
+  const [notifications, setNotifications] = useState([]); // Estado para las notificaciones
   const [open, setOpen] = useState(false); // Estado para abrir y cerrar el drawer
+
+
+  const fecha = "2024-06-05"
+
+  useEffect(() => {
+    // Inicialmente cargar datos
+    console.log("Cargando notificaciones...");
+    fetch(`http://127.0.0.1:8080/notificacion/notificacionesDiaGlobal/${fecha}`)
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+        setNotifications(data);})
+      .catch((error) => console.error("Error fetching data: ", error));
+
+    // Configurar el socket para escuchar eventos
+    socket.on("notificacion_global", (notificacionesGlobales) => {
+      console.log("Notificaciones globales recibidas:", notificacionesGlobales);
+      setNotifications(notificacionesGlobales);
+    });
+
+    socket.on("notificacion_empleado", (notificacionEmpleado) => {
+      console.log("Notificacion del empleado recibida:", notificacionEmpleado);
+      setNotifications(notificacionEmpleado);
+    });
+
+    // Limpiar el socket al desmontar el componente
+    return () => {
+      socket.off("notificacion_global");
+      socket.off("notificacion_empleado");
+      console.log("Socket limpiado");
+    };
+  }, []);
 
   // Función para manejar el clic en el badge
   const handleBadgeClick = () => {
@@ -46,8 +81,10 @@ export default function TemporaryDrawer() {
   // Utiliza el componente de notificación para mostrar las notificaciones
   const DrawerList = (
     <Box sx={{ width: 400 }} role="presentation">
-      <div className="bdia-agente"><p>¡Buen día Joahan Javier Garcia Fernandez!</p></div>
-      
+      <div className="bdia-agente">
+        <p>¡Buen día Joahan Javier Garcia Fernandez!</p>
+      </div>
+
       <Divider />
       <List>
         {notifications.length !== 0 ? (
@@ -55,8 +92,8 @@ export default function TemporaryDrawer() {
             return (
               <Notification
                 key={index}
-                descripcion={notification.description}
-                remitente={notification.sender}
+                titulo={notification.Titulo}
+                descripcion={notification.Descripcion}
                 onDelete={() => handleDelete(index)}
               />
             );
