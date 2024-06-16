@@ -701,7 +701,7 @@ const Calificacion = () => {
         <div className="custom-row">
           <div className="custom-col">
             <div className="custom-card card-primary">
-              <div className="custom-card-header">Agente con mejor calificación</div>
+              <div className="custom-card-header">Agente con mejor calificación al mes</div>
               <div className="custom-card-body">
                 <h5 className="custom-card-title">Esteban Miranda</h5>
               </div>
@@ -709,7 +709,7 @@ const Calificacion = () => {
           </div>
           <div className="custom-col">
             <div className="custom-card card-secondary">
-              <div className="custom-card-header">Agente con más llamadas en el día</div>
+              <div className="custom-card-header">Agente con más llamadas al día</div>
               <div className="custom-card-body">
                 <h5 className="custom-card-title">Pinky Dinky Doo</h5>
               </div>
