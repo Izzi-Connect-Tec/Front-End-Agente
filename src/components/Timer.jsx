@@ -16,9 +16,9 @@ const Timer = () => {
     if (isRunning) {
       // setting time from 0 to 1 every 10 milisecond using javascript setInterval method
       intervalId = setInterval(() => setTime(time + 1), 10);
-      if (time === 1000){
-        setIsRunning(false)
-      }
+      // if (time === 1000){
+      //   setIsRunning(false)
+      // }
     }
     return () => clearInterval(intervalId);
   }, [isRunning, time]);
@@ -48,9 +48,11 @@ const Timer = () => {
   return (
     <div className="stopwatch-container">
       <p className="stopwatch-time">
-        {hours}:{minutes.toString().padStart(2, "0")}:
-        {seconds.toString().padStart(2, "0")}:
-        {milliseconds.toString().padStart(2, "0")}
+      {/* {hours}: */}
+        {minutes.toString().padStart(2, "0")}:
+        {seconds.toString().padStart(2, "0")}
+        {/* :
+        {milliseconds.toString().padStart(2, "0")} */}
       </p>
       <div className="stopwatch-buttons">
         {/* <button className="stopwatch-button" onClick={startAndStop}>

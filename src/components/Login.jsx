@@ -37,8 +37,10 @@ const Login = () => {
 
   useEffect( () => {
     // Aquí va lo de verificación
-    navigate("/window");
-  }, [agent.Nombre, navigate])
+    if (agent.Nombre){
+      navigate("/window");
+    }
+  }, [agent.Nombre])
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -67,7 +69,8 @@ const Login = () => {
 
       const data = await res.json();
       console.log(data)
-      agentData({IdEmpleado: data.user.IdEmpleado, Nombre: data.user.Nombre, ApellidoP: data.user.ApellidoP, ApellidoM: data.user.ApellidoM});
+      console.log(data.token.AccessToken)
+      agentData({IdEmpleado: data.user.IdEmpleado, Nombre: data.user.Nombre, ApellidoP: data.user.ApellidoP, ApellidoM: data.user.ApellidoM, Token: data.token.AccessToken});
     } catch (error) {
       console.log(error)
     }
@@ -120,6 +123,8 @@ const Login = () => {
           </form>
         </div>
       </div>
+
+
     </div>
   );
 };

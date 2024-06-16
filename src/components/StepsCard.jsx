@@ -8,11 +8,41 @@ import { PiSmileySadBold } from "react-icons/pi";
 import { FaArrowRight } from "react-icons/fa";
 import { FaArrowLeft } from "react-icons/fa";
 import "../styles/stepsCard.css";
+import { useLlamadaContext } from "../Providers/LlamadaContext";
 
 const StepsCard = (props) => {
+  const [call,,] = useLlamadaContext();
   const { solution } = props;
   const [currentStepIndex, setCurrentStepIndex] = useState(0); // Estado para el índice del paso actual
   const [showFeedback, setShowFeedback] = useState(false); // Estado para mostrar el feedback
+
+
+  const actualizarSolucionLlamada = async () => {
+    
+    const data = {
+      IdLlamada: call.IdLlamada,
+      IdSolucion: props.solutionId,
+    }
+
+
+    try {
+      let config = {
+        method: "PUT",
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      };
+      let res = await fetch('http://44.209.22.101:8080/llamada/solucionLlamada' , config)
+      console.log(res)
+      if (!res.ok){
+        console.log(res)
+      }
+    } catch (error){
+      console.error("Error al enviar el reporte:", error);
+    }
+  }
 
   // Reiniciar el índice del paso actual y el feedback al abrir el modal
   useEffect(() => {
@@ -50,6 +80,9 @@ const StepsCard = (props) => {
     if (response === "no") { // Si la respuesta es "No"
       props.block(); // Bloquear la solución si la respuesta es "No"
     }
+    if (response === "yes") {
+      actualizarSolucionLlamada();
+    }
     props.close(); // Cerrar el modal
   };
 
@@ -67,7 +100,7 @@ const StepsCard = (props) => {
             <main className="modal_content">
               {showFeedback ? (
                 <div>
-                  <p>¿Funcionó esta solución?</p>
+                  <p className="question">Did this solution work?</p>
                   <button
                     className="faces"
                     onClick={() => handleFeedback("yes")}
@@ -84,9 +117,9 @@ const StepsCard = (props) => {
               ) : (
                 <div>
                   <div className="paso">
-                    <p>Paso {currentStepIndex + 1}</p>
+                    <p>Step {currentStepIndex + 1}</p>
                   </div>
-                  <div>
+                  <div className="step-description">
                     <p>{steps[currentStepIndex].Descripcion}</p>
                   </div>
                 </div>
@@ -94,7 +127,7 @@ const StepsCard = (props) => {
             </main>
             <footer className="modal_footer">
               <button className="modal-close" onClick={props.close}>
-                Cancelar
+                Cancel
               </button>
               {!showFeedback && (
                 <>

@@ -1,0 +1,25 @@
+
+.incoming-content{
+    /* overflow-x: hidden;
+    overflow-y: hidden; */
+    width: 465px;
+}
+
+.callcontrollers{
+    display: flex;
+    /* margin-left: 20px; */
+    flex-direction: row;
+    align-items: center;
+    justify-content: center; 
+    gap: 1.5rem;
+    z-index: 2;
+
+}
+
+.llamadacontroller{
+    overflow: hidden;
+}
+
+/* @media screen and (max-width: 768px){
+    
+} */

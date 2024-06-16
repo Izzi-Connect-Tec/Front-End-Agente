@@ -3,9 +3,196 @@ import { useEffect, React, useState, useCallback } from "react";
 import { useUserContext } from "../Providers/AmazonContext";
 import { useLlamadaContext } from "../Providers/LlamadaContext";
 import { useLogInContext } from "../Providers/LogInContext";
+import { useNavigate } from "react-router-dom";
 
+
+import Button from '@mui/material/Button';
+import lottie from "lottie-web";
+import DeleteIcon from '@mui/icons-material/Delete';
+import { defineElement } from "@lordicon/element";
+import DeleteButton from "./DisqueBoton";
+import { green } from "@mui/material/colors";
+
+
+import { motion, AnimatePresence  } from "framer-motion"
+import Mute from "./Mute";
+import { useControlLlamadaContext } from "../Providers/ControlLlamadaContext";
 
 const EmbedConnect = (props) => {
+
+  const [,cambiarLlamadaEntrando,] = useControlLlamadaContext();
+
+  // function clearCall(){
+
+  //   const agent = new connect.Agent();
+  //   const contact  = agent.getContacts(connect.ContactType.VOICE)?.[0]
+
+  // contact.clear({
+  //   success: function () {
+  //     console.log("PAUSA")
+  //   },
+  //   failure: function (err) {
+  //     console.log("NO PAUSA")
+  //   },
+  // });
+
+  // }
+
+
+  // function resumeCall(){
+
+  //   const agent = new connect.Agent();
+  //   const contact  = agent.getContacts(connect.ContactType.VOICE)?.[0]
+  //   const conn = contact?.getInitialConnection()
+
+  //   if (conn.length === 0) {
+  //     console.log("No Active Connections to pause");
+  //     return;
+  // }
+
+  //   conn.resume();
+
+  // }
+
+
+
+  // function holdCall(){
+
+  //   const agent = new connect.Agent();
+  //   const contact  = agent.getContacts(connect.ContactType.VOICE)?.[0]
+  //   const conn = contact?.getInitialConnection()
+
+  //   if (conn.length === 0) {
+  //     console.log("No Active Connections to pause");
+  //     return;
+  // }
+
+  //   conn.hold();
+
+  // }
+
+  // function hangUpCall(){
+
+  //   const agent = new connect.Agent();
+  //   const contact  = agent.getContacts(connect.ContactType.VOICE)?.[0]
+  //   const conn = contact?.getInitialConnection()
+
+  //   if (conn.length === 0) {
+  //     console.log("No Active Connections to pause");
+  //     return;
+  // }
+
+  //   conn.destroy();
+          
+  // }
+
+  // function acceptCall(){
+  //   const agent = new connect.Agent();
+  //   const contact  = agent.getContacts(connect.ContactType.VOICE)?.[0]
+  //   const activeConnections = contact?.getConnections().filter((conn) => conn.isActive()) || [];
+
+  //   if (activeConnections.length === 0) {
+  //     console.log("No Active Connections to pause");
+  //     return;
+  // }
+
+  // contact.accept({
+  //   success: function () {
+  //     console.log("PAUSA")
+  //   },
+  //   failure: function (err) {
+  //     console.log("NO PAUSA")
+  //   },
+  // });
+
+
+  // }
+
+
+//   function muteAgent(){
+//     const agent = new connect.Agent();
+//     const contact  = agent.getContacts(connect.ContactType.VOICE)?.[0]
+    
+//     // Get all open active connections
+//     const activeConnections = contact?.getConnections().filter((conn) => conn.isActive()) || [];
+    
+    
+//     if (activeConnections.length === 0) {
+//         console.log("No Active Connections to mute");
+//         return;
+//     }
+    
+//     // Check if we are using multiparty and see if there more than 2 active connections
+//     if (contact.isMultiPartyConferenceEnabled() && activeConnections.length > 2) {
+//         // if any of those are in connecting mode
+//         const connectingConnections =  contact?.getConnections().filter((conn) => conn.isConnecting()) || [];
+//         if (connectingConnections.length === 0) {
+//             console.log("Agent Connection is muted at the server side");
+//             contact.getAgentConnection().muteParticipant();
+//         } else {
+//             console.log("Agent Connection cannot be muted while multi party participant is connecting")
+//         }
+//     } else {
+//         console.log("Agent connection muted at the client side");
+//         agent.mute();
+//     }
+// }
+
+// function unmuteAgent(){
+//   const agent = new connect.Agent();
+//   const contact  = agent.getContacts(connect.ContactType.VOICE)?.[0]
+  
+//   // Get all open active connections
+//   const activeConnections = contact?.getConnections().filter((conn) => conn.isActive()) || [];
+  
+  
+//   if (activeConnections.length === 0) {
+//       console.log("No Active Connections to mute");
+//       return;
+//   }
+  
+//   // Check if we are using multiparty and see if there more than 2 active connections
+//   if (contact.isMultiPartyConferenceEnabled() && activeConnections.length > 2) {
+//       // if any of those are in connecting mode
+//       const connectingConnections =  contact?.getConnections().filter((conn) => conn.isConnecting()) || [];
+//       if (connectingConnections.length === 0) {
+//           console.log("Agent Connection is muted at the server side");
+//           contact.getAgentConnection().unmuteParticipant();
+//       } else {
+//           console.log("Agent Connection cannot be muted while multi party participant is connecting")
+//       }
+//   } else {
+//       console.log("Agent connection muted at the client side");
+//       agent.unmute();
+//   }
+// }
+
+
+//Duracion
+// Inicializa las variables para almacenar los tiempos de inicio y fin de la llamada
+const [callStartTime, setcallStartTime] = useState(null);
+const [callEndTime, setcallEndTime] = useState(null);
+const [duration, setDuration] = useState(null);
+
+
+// Función para calcular la duración de la llamada en milisegundos
+const getCallDuration = () => {
+  if (callStartTime && callEndTime) {
+    return callEndTime - callStartTime;
+  }
+  return null;
+};
+
+
+// Función para formatear la duración en milisegundos a un formato legible
+const formatDuration = (duration) => {
+  if (duration === null) return "No disponible";
+  const seconds = Math.floor((duration / 1000) % 60);
+  const minutes = Math.floor((duration / (1000 * 60)) % 60);
+  const hours = Math.floor((duration / (1000 * 60 * 60)) % 24);
+  return `${hours}:${minutes}:${seconds}`;
+};
+
 
   //Agent
   const [agent,,] = useLogInContext(); 
@@ -28,7 +215,8 @@ const EmbedConnect = (props) => {
         method: 'PUT',
         headers: {
           'Accept': 'application/json',
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json', 
+          "Authorization": `Bearer ${agent.Token}`
         },
         body: JSON.stringify(datos)
       }
@@ -42,11 +230,13 @@ const EmbedConnect = (props) => {
 
       //Callback??
   const actualizarLlamadaFinalizada = useCallback(async () => {
+
+    console.log(duration)
     try{
       //Pasarlo a la funcion de actualizar llamada
       const datos = {
         id: call.IdLlamada,
-        duracion: "27",
+        duracion: formatDuration(duration),
         estado: false
       }
       console.log("DATOS LLAMADA FINALIZADA" , datos)
@@ -54,7 +244,8 @@ const EmbedConnect = (props) => {
         method: 'PUT',
         headers: {
           'Accept': 'application/json',
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${agent.Token}`,
         },
         body: JSON.stringify(datos)
       }
@@ -64,7 +255,7 @@ const EmbedConnect = (props) => {
     } catch (error) {
       console.log(error)
     }
-    },[call.IdLlamada])
+    },[call.IdLlamada,duration])
 
 
 
@@ -91,6 +282,7 @@ const EmbedConnect = (props) => {
         // optional, defaults below apply if not provided
         allowFramedSoftphone: true, // optional, defaults to false
         disableRingtone: false, // optional, defaults to false
+        ringtoneUrl: 'https://joahanbucket.s3.amazonaws.com/Li%CC%81nea+del+Perreo-Uzielito+Mix%2C+Yeri+Mua+%2C+El+Jordan+23%2C+DJ+Kiire(Video+Oficial)+(320)+(mp3cut.net).mp3', // optional, defaults to CCP’s default ringtone if a falsy value is set
       },
       pageOptions: {
         //optional
@@ -105,19 +297,42 @@ const EmbedConnect = (props) => {
     // Code to be executed once a call starts
     // eslint-disable-next-line no-undef
     connect.contact(function (contact) {
+
+      contact.onIncoming(function(contact) { 
+        console.log("VIENE LA LLAMAD CON ONCOMIG")
+      });
+
+      contact.onConnecting(function(contact) { 
+        cambiarLlamadaEntrando();
+        console.log("LA LLAMADA ES ON CONNECRTING")
+       });
+
       contact.onConnected(async function (contact) {
         // let cid = contact.getContactId();
         // console.log(cid);
         setStateCall(true)
         var attributeMap = contact.getAttributes();
         console.log(attributeMap);
-        callData({IdLlamada: attributeMap.Call.value, TipoLlamada: attributeMap.Concept.value, DescripcionLlamada: attributeMap.Notes.value})
+        callData({IdLlamada: attributeMap.Call.value, TipoLlamada: attributeMap.CurrentConcept.value, DescripcionLlamada: attributeMap.CurrentNotes.value})
         idCliente(attributeMap.Tel.value)
+        setcallStartTime(new Date().getTime());
+
+
       });
-      contact.onEnded(function(contact) {
+
+
+      contact.onDestroy(function(contact) {
+        setcallEndTime(new Date().getTime());
         setStateCall(false)
+        setDuration(getCallDuration());
       });
+
+      
     });
+
+    // connect.core.onAuthFail(function(){
+    //   useNavigate("/");
+    // });
 
     /* global connect */
     connect.agent(function(agent) {
@@ -140,13 +355,65 @@ const EmbedConnect = (props) => {
     console.log("USE EFFECT 3");
     if (!stateCall && call.IdLlamada!=null){
       console.log("Actualice la llamada finalizada");
+
+      //QUITAR
+      
       actualizarLlamadaFinalizada();
       reiniciarCliente();
       restartCall();
+      setcallStartTime(null);
+      setcallEndTime(null);
     }
   }, [stateCall, actualizarLlamadaFinalizada])
 
-  return <div id="ccp" style={{ width: "300px", height: "350px" }}></div>;
+
+  
+
+
+  // define "lord-icon" custom element with default properties
+  defineElement(lottie.loadAnimation);
+
+
+
+
+
+
+  return (
+  // <div id="ccp" style={{ width: "400px", height: "250px" }}>
+  <section>
+    <div id="ccp" style={{ display: "block"}}/>
+    {/* <button onClick={muteAgent}>MUTE</button>
+    <button onClick={unmuteAgent}>UNMUTE</button>
+    <button onClick={acceptCall}>ACEPTAR LLAMADA</button>
+    <button onClick={hangUpCall}>TERMINAR LLAMADA</button>
+    <button onClick={holdCall}>PONER EN ESPERA</button>
+    <button onClick={resumeCall}>RETOMAR LLAMADA</button>
+    <button onClick={clearCall}>CERRAR CONTACTO</button> */}
+    {/*  avisar que hay una llamada e iniciar sesion y salir sin cpp*/}
+    
+    <div>
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+    </div>
+
+  </section>
+  
+  )
 };
 
 export default EmbedConnect;

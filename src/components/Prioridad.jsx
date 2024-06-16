@@ -11,12 +11,13 @@ export default function BasicSelect({ onPrioridadChange }) {
 
   const handleChange = (event) => {
     setPrioridad(event.target.value);
+    console.log(event.target.value);
     onPrioridadChange(event.target.value);
   };
 
   return (
     <Box sx={{ minWidth: 120 }}>
-      <FormControl fullWidth>
+      <FormControl required sx={{ m: 1, minWidth: 250}} >
         <InputLabel
           sx={{ fontFamily: ["Century Gothic", "Futura"].join(","),}}
           id="demo-simple-select-label"
@@ -33,19 +34,19 @@ export default function BasicSelect({ onPrioridadChange }) {
         >
           <MenuItem
             sx={{ fontFamily: ["Century Gothic", "Futura"].join(",") }}
-            value={10}
+            value="Baja"
           >
             Baja
           </MenuItem>
           <MenuItem
             sx={{ fontFamily: ["Century Gothic", "Futura"].join(",") }}
-            value={20}
+            value="Media"
           >
             Media
           </MenuItem>
           <MenuItem
             sx={{ fontFamily: ["Century Gothic", "Futura"].join(",") }}
-            value={30}
+            value="Alta"
           >
             Alta
           </MenuItem>

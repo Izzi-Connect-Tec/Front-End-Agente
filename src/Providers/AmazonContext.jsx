@@ -24,7 +24,13 @@ export const UserProvider = ({ children }) => {
         Nombre: null,
         ApellidoP: null,
         ApellidoM: null,
-        IdZona: null}
+        Sexo: null,
+        Correo: null,
+        FechaNac: null,
+        IdZona: null,
+        Zona: null,
+        Paquetes: []
+    }
 
     const [user, setUser] = useState(defaultUser);
 
@@ -35,13 +41,26 @@ export const UserProvider = ({ children }) => {
         }));
     };
     
-    const datosCliente = ({Nombre, ApellidoP, ApellidoM, IdZona}) => {
+    const datosCliente = ({Nombre, ApellidoP, ApellidoM, Sexo, Correo, FechaNac, IdZona, Zona}) => {
         setUser(prevUser => ({
             ...prevUser,
             Nombre: Nombre,
             ApellidoP: ApellidoP,
             ApellidoM: ApellidoM,
-            IdZona: IdZona
+            Sexo: Sexo,
+            Correo: Correo,
+            FechaNac: FechaNac,
+            IdZona: IdZona,
+            Zona: Zona,
+            Paquetes: [{
+                "Nombre": "Telefonía"
+            },
+            {
+                "Nombre": "IzziTv"
+            },
+            {
+                "Nombre": "IzzInternet 200M"
+            }]
         }));
     };
 
@@ -53,7 +72,7 @@ export const UserProvider = ({ children }) => {
     //AGENTE
 
     const defaultAgent = {
-        IdEmpleado: 2,
+        IdEmpleado: null,
         Nombre: null,
         ApellidoP: null,
         ApellidoM: null,

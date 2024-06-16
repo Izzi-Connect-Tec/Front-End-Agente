@@ -14,18 +14,20 @@ export const LogInProvider = ({children}) => {
         Nombre: null,
         ApellidoP: null,
         ApellidoM: null,
+        Token: null,
         //usuario?
     }
 
     const [agent, setAgent] = useState(defaultAgent);
 
-    const agentData = ({IdEmpleado, Nombre, ApellidoP, ApellidoM}) => {
+    const agentData = ({IdEmpleado, Nombre, ApellidoP, ApellidoM, Token}) => {
         setAgent(prevAgent => ({
             ...prevAgent,
             IdEmpleado: IdEmpleado,
             Nombre: Nombre,
             ApellidoP: ApellidoP,
             ApellidoM: ApellidoM,
+            Token: Token,
         }));
     }
 

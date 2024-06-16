@@ -1,10 +1,10 @@
 // awsConfig.js
-import { config } from "dotenv";
-import { 
-  ConnectContactLensClient, 
-  ListRealtimeContactAnalysisSegmentsCommand 
-} from "@aws-sdk/client-connect-contact-lens";
+// import { config } from "dotenv";
+// import { 
+//   ConnectContactLensClient, 
+//   ListRealtimeContactAnalysisSegmentsCommand 
+// } from "@aws-sdk/client-connect-contact-lens";
 
-config();
+// config();
 
-export const client = new ConnectContactLensClient({ region: "us-east-1" });
+// export const client = new ConnectContactLensClient({ region: "us-east-1" });

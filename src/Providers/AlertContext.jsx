@@ -1,4 +1,7 @@
 import { createContext, useContext, useState } from "react";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 const AlertContext = createContext();
 const AlertToggleContext = createContext();
@@ -18,8 +21,10 @@ export const AlertProvider = ({ children }) => {
         setAlert(status);
     }
 
+    const notify = () => toast("Wow so easy!");
+
     return (
-        <AlertContext.Provider value={alert}>
+        <AlertContext.Provider value={[alert,notify]}>
             <AlertToggleContext.Provider value={toggleAlert}>
                 {children}
             </AlertToggleContext.Provider>

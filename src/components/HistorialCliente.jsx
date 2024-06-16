@@ -11,9 +11,7 @@ export default function FolderList({historiaCliente}) {
   return (
 
     <section>
-
-<h2>HISTORIAL DE ATENCION:</h2>
-
+      
 {historiaCliente.map((reporte, index) => (
   <List
   key={reporte.IdReporte || index}

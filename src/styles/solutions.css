@@ -8,42 +8,65 @@
 }
 
 .solutions-div {
-  flex: 1;
   display: flex;
-  flex-direction: column;
-  padding: 1px;
+  align-items: center;
 }
 
 .titulo-soluciones {
-  background-image: linear-gradient(
-    0deg,
-    rgb(187, 149, 0) 0%,
-    rgb(255, 204, 0) 100%
-  );
-  border-radius: 15px;
-  margin: 15px;
-  color: whitesmoke;
-  font-size: small;
+  font-weight: bold;
+  font-size: 2rem;
+  display: flex;
+  box-sizing: border-box;
+  font-family: "Century Gothic", "Futura";
 }
 
-.possible-solutions {
-  flex: 9;
-  flex-direction: column;
-  padding: 0px;
-  border-radius: 15px;
-  border: 3px solid rgb(229, 186, 12);
-  align-items: center;
-  overflow-y: auto;
+/* .possible-solutions {
+
+     flex: 9;
+    flex-direction: column;
+    padding: 0px;
+    border-radius: 20px;
+    border: 3px solid #FFCE00;
+    align-items: center;
+    overflow-y: auto;
+    display: flex;  
+} */
+
+.carousel-container {
   display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.carousel-button {
+  background-color: #ffce00;
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 12px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 10px;
+  font-family: "Century Gothic", "Futura";
+}
+
+.solution-card {
+  flex: 0 0 auto;
+  margin: 5px;
+  transition: transform 0.3s ease, opacity 0.3s ease;
 }
 
 .botones-solutions {
   flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 20px;
   padding: 10px;
-  border-radius: 15px;
+  border-radius: 20px;
   margin: 5px;
   border: 3px solid #ffce00;
   justify-content: center;
