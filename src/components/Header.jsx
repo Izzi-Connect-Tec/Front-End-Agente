@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 import TemporaryDrawer from "./NotificacionesBarra";
 import { IoMenu } from "react-icons/io5";
 import { useState } from "react";
+import { ToastContainer } from "react-toastify";
 
 const Header = (props) => {
   const navigate = useNavigate(); // Hook para navegar entre rutas
@@ -44,6 +45,7 @@ const Header = (props) => {
 
   return (
     <header className="header">
+      {/* <ToastContainer stacked /> */}
       <img
         src={logo}
         alt="Company Logo"

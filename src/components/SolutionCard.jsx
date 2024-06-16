@@ -6,6 +6,7 @@ import { useState } from "react";
 import StepsCard from "./StepsCard";
 
 const SolutionCard = (props) => {
+  
   const [steps, setSteps] = useState(false); // Estado para mostrar los pasos
   //const [blocked, setBlocked] = useState(false); // Estado para bloquear la solución
 
@@ -33,6 +34,7 @@ const SolutionCard = (props) => {
         <p className="text-solution">{props.tituloSolucion}</p>
       </div>
       <StepsCard
+        solutionId={props.solutionId}
         show={steps}
         close={Toggle}
         solution={solution}

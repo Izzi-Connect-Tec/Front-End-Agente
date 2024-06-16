@@ -66,7 +66,7 @@ export default function FormDialog() {
           pending: 'Enviando reporte',
           success: 'Reporte enviado exitosamente',
           error: 'Error en el envio'
-        }
+        }, {containerId: 'envioReporte'}
       );
       console.log(res);
       handleClose();
@@ -206,7 +206,7 @@ export default function FormDialog() {
         </DialogActions>
       </Dialog>
       {/* <button onClick={notify}>Notify</button> */}
-      <ToastContainer 
+      <ToastContainer containerId="envioReporte"
       position="bottom-left"/>
     </React.Fragment>
   );

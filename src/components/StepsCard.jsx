@@ -8,11 +8,41 @@ import { PiSmileySadBold } from "react-icons/pi";
 import { FaArrowRight } from "react-icons/fa";
 import { FaArrowLeft } from "react-icons/fa";
 import "../styles/stepsCard.css";
+import { useLlamadaContext } from "../Providers/LlamadaContext";
 
 const StepsCard = (props) => {
+  const [call,,] = useLlamadaContext();
   const { solution } = props;
   const [currentStepIndex, setCurrentStepIndex] = useState(0); // Estado para el índice del paso actual
   const [showFeedback, setShowFeedback] = useState(false); // Estado para mostrar el feedback
+
+
+  const actualizarSolucionLlamada = async () => {
+    
+    const data = {
+      IdLlamada: call.IdLlamada,
+      IdSolucion: props.solutionId,
+    }
+
+
+    try {
+      let config = {
+        method: "PUT",
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      };
+      let res = await fetch('http://44.209.22.101:8080/llamada/solucionLlamada' , config)
+      console.log(res)
+      if (!res.ok){
+        console.log(res)
+      }
+    } catch (error){
+      console.error("Error al enviar el reporte:", error);
+    }
+  }
 
   // Reiniciar el índice del paso actual y el feedback al abrir el modal
   useEffect(() => {
@@ -49,6 +79,9 @@ const StepsCard = (props) => {
     console.log(`User response: ${response}`);
     if (response === "no") { // Si la respuesta es "No"
       props.block(); // Bloquear la solución si la respuesta es "No"
+    }
+    if (response === "yes") {
+      actualizarSolucionLlamada();
     }
     props.close(); // Cerrar el modal
   };

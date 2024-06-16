@@ -48,7 +48,6 @@ const Window = (props) => {
       <div className="window-header">
         <Header />
         {/* <OpcionesExternas/> */}
-        <br/>
         {/* <button onClick={cambiarEsLlamada}>Entra llamada</button> */}
         <Llamada/>        
         <EmbedConnect/>

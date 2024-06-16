@@ -167,6 +167,32 @@ const EmbedConnect = (props) => {
 //   }
 // }
 
+
+//Duracion
+// Inicializa las variables para almacenar los tiempos de inicio y fin de la llamada
+const [callStartTime, setcallStartTime] = useState(null);
+const [callEndTime, setcallEndTime] = useState(null);
+
+
+// Función para calcular la duración de la llamada en milisegundos
+const getCallDuration = () => {
+  if (callStartTime && callEndTime) {
+    return callEndTime - callStartTime;
+  }
+  return null;
+};
+
+
+// Función para formatear la duración en milisegundos a un formato legible
+const formatDuration = (duration) => {
+  if (duration === null) return "No disponible";
+  const seconds = Math.floor((duration / 1000) % 60);
+  const minutes = Math.floor((duration / (1000 * 60)) % 60);
+  const hours = Math.floor((duration / (1000 * 60 * 60)) % 24);
+  return `${hours}:${minutes}:${seconds}`;
+};
+
+
   //Agent
   const [agent,,] = useLogInContext(); 
 
@@ -207,7 +233,7 @@ const EmbedConnect = (props) => {
       //Pasarlo a la funcion de actualizar llamada
       const datos = {
         id: call.IdLlamada,
-        duracion: "27",
+        duracion: formatDuration(getCallDuration()),
         estado: false
       }
       console.log("DATOS LLAMADA FINALIZADA" , datos)
@@ -286,15 +312,22 @@ const EmbedConnect = (props) => {
         console.log(attributeMap);
         callData({IdLlamada: attributeMap.Call.value, TipoLlamada: attributeMap.CurrentConcept.value, DescripcionLlamada: attributeMap.CurrentNotes.value})
         idCliente(attributeMap.Tel.value)
+
+        setcallStartTime(new Date().getTime());
+        console.log("Inicio de la llamada registrado: ", callStartTime);
+
+
       });
 
 
       contact.onDestroy(function(contact) {
-        console.log("LA DURACION FUE: ", statusMillis)
         setStateCall(false)
+        setcallEndTime(new Date().getTime());
+
+        console.log("Fin de la llamada registrado: ", callEndTime);
+
       });
 
-      const statusMillis = contact.getInitialConnection().getStatusDuration();
       
     });
 
@@ -323,9 +356,16 @@ const EmbedConnect = (props) => {
     console.log("USE EFFECT 3");
     if (!stateCall && call.IdLlamada!=null){
       console.log("Actualice la llamada finalizada");
+
+      //QUITAR
+      const duration = getCallDuration();
+      console.log("Duración total de la llamada: ", formatDuration(duration));
+      
       actualizarLlamadaFinalizada();
       reiniciarCliente();
       restartCall();
+      setcallStartTime(null);
+      setcallEndTime(null);
     }
   }, [stateCall, actualizarLlamadaFinalizada])
 

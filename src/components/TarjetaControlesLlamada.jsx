@@ -87,8 +87,6 @@ to {
 
   const [llamadaEntrante, cambiarLlamadaEntrando,,cambiarEsLlamada, controlLlamada, activarControlLlamada, cerrarContacto, controlarCerrarContacto] = useControlLlamadaContext();
 
-  const [isCerrarContacto, setIsCerrarContacto] = useState(false);
-
   const [animar, setaAnimar] = useState("");
 
   useEffect(() => {
@@ -105,7 +103,7 @@ to {
       setaAnimar("botonesLlamada");
     }
 
-    if (isCerrarContacto===true){
+    if (cerrarContacto===true){
       setaAnimar("cerrarContacto");
     }
 
@@ -115,7 +113,7 @@ to {
     sinLlamada: { opacity: 1, x: 0, width: 100 },
     entraLlamada: { opacity: 1,  width: 500 },
     botonesLlamada: { opacity: 1,  width: "100%" },
-    cerrarContacto: { opacity: 1,  width: 500 }
+    cerrarContacto: { opacity: 1,  width: "100%" }
   }
 
   function HoldFunction() {
@@ -341,7 +339,7 @@ return(
     };
 
     return(
-      <div>
+      <div className='callcontrollers'>
 
       <Timer/>
 

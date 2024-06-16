@@ -120,6 +120,7 @@ const Solutions = () => {
           {getVisibleSolutions().map((solution, index) => (
             <SolutionCard
               key={solution.IdSolucion}
+              solutionId={solution.IdSolucion}
               solution={solution}
               tituloSolucion={solution.Nombre}
               isActive={index === 1}

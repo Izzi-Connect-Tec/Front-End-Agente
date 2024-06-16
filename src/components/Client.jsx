@@ -68,7 +68,7 @@ const descargarReportesCliente = useCallback(async () => {
   useEffect(() => {
     if(usuario.Celular){
       setUrlDatos(`http://44.209.22.101:8080/cliente/consultarCliente/${usuario.Celular}`);
-      setUrlReportes(`http://44.209.22.101:8080/reporte/reportesCliente/${usuario.Celular}`)
+      setUrlReportes(`http://44.209.22.101:8080/reporte/consultarReportesPersonal/${usuario.Celular}`)
       // setUrl(`http://localhost:8080/cliente/consultarCliente/${usuario.Celular}`);
     }
   }, [usuario.Celular])

@@ -6,7 +6,6 @@ import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
-import { useAlertToggleContext } from "../Providers/AlertContext";
 import dayjs from "dayjs";
 import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
@@ -15,9 +14,21 @@ import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import { TimePicker } from "@mui/x-date-pickers/TimePicker";
 
 import HomeRepairServiceIcon from '@mui/icons-material/HomeRepairService';
+import { useLogInContext } from "../Providers/LogInContext";
+import { useUserContext } from "../Providers/AmazonContext";
+
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function IncidenceForm() {
-  const toggleAlert = useAlertToggleContext();
+
+  const [agent,,] = useLogInContext();
+
+  const [cliente,,] = useUserContext();
+
+
+  const [descripcion, setDescripcion] = React.useState("");
+
 
   const [open, setOpen] = React.useState(false);
   const [value, setValue] = React.useState(dayjs());
@@ -28,6 +39,45 @@ export default function IncidenceForm() {
 
   const handleClose = () => {
     setOpen(false);
+  };
+
+
+  const handleSubmit = async (event) => {
+
+    event.preventDefault();
+    const fechaActual = new Date().toISOString();
+
+    const reportePrueba = {
+      FechaHora: fechaActual,
+      Descripcion: descripcion,
+      IdZona: cliente.IdZona,
+      Celular: cliente.Celular,
+      IdEmpleado: agent.IdEmpleado
+    };
+
+    try {
+      let config = {
+        method: "POST",
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${agent.Token}`
+        },
+        body: JSON.stringify(reportePrueba),
+      };
+      let res = await toast.promise(
+        fetch('http://44.209.22.101:8080/reporte/crearReportePersonal', config),
+        {
+          pending: 'Enviando reporte personal',
+          success: 'Reporte personal enviado exitosamente',
+          error: 'Error en el envio'
+        }, {containerId: 'envioReportePersonal'}
+      );
+      console.log(res);
+      handleClose();
+    } catch (error) {
+      console.error("Error al enviar el reporte:", error);
+    }
   };
 
   return (
@@ -58,14 +108,15 @@ export default function IncidenceForm() {
         onClose={handleClose}
         PaperProps={{
           component: "form",
-          onSubmit: (event) => {
-            event.preventDefault();
-            const formData = new FormData(event.currentTarget);
-            const formJson = Object.fromEntries(formData.entries());
-            const email = formJson.email;
-            console.log(email);
-            handleClose();
-          },
+          onSubmit: handleSubmit,
+          // onSubmit: (event) => {
+          //   event.preventDefault();
+          //   const formData = new FormData(event.currentTarget);
+          //   const formJson = Object.fromEntries(formData.entries());
+          //   const email = formJson.email;
+          //   console.log(email);
+          //   handleClose();
+          // },
         }}
       >
         <DialogTitle
@@ -104,6 +155,8 @@ export default function IncidenceForm() {
             type="text"
             fullWidth
             variant="standard"
+            value={descripcion}
+            onChange={(e) => setDescripcion(e.target.value)}
             InputProps={{
               style: {
                 fontFamily: ["Century Gothic", "Futura"].join(","),
@@ -224,13 +277,14 @@ export default function IncidenceForm() {
                 color: "#EC6907",
               },
             }}
-            onClick={() => toggleAlert(true)}
             type="submit"
           >
             Enviar
           </Button>
         </DialogActions>
       </Dialog>
+      <ToastContainer containerId="envioReportePersonal"
+      position="bottom-left"/>
     </React.Fragment>
   );
 }
