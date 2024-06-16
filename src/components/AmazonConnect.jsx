@@ -172,6 +172,7 @@ const EmbedConnect = (props) => {
 // Inicializa las variables para almacenar los tiempos de inicio y fin de la llamada
 const [callStartTime, setcallStartTime] = useState(null);
 const [callEndTime, setcallEndTime] = useState(null);
+const [duration, setDuration] = useState(null);
 
 
 // Función para calcular la duración de la llamada en milisegundos
@@ -229,11 +230,13 @@ const formatDuration = (duration) => {
 
       //Callback??
   const actualizarLlamadaFinalizada = useCallback(async () => {
+
+    console.log(duration)
     try{
       //Pasarlo a la funcion de actualizar llamada
       const datos = {
         id: call.IdLlamada,
-        duracion: formatDuration(getCallDuration()),
+        duracion: formatDuration(duration),
         estado: false
       }
       console.log("DATOS LLAMADA FINALIZADA" , datos)
@@ -252,7 +255,7 @@ const formatDuration = (duration) => {
     } catch (error) {
       console.log(error)
     }
-    },[call.IdLlamada])
+    },[call.IdLlamada,duration])
 
 
 
@@ -312,20 +315,16 @@ const formatDuration = (duration) => {
         console.log(attributeMap);
         callData({IdLlamada: attributeMap.Call.value, TipoLlamada: attributeMap.CurrentConcept.value, DescripcionLlamada: attributeMap.CurrentNotes.value})
         idCliente(attributeMap.Tel.value)
-
         setcallStartTime(new Date().getTime());
-        console.log("Inicio de la llamada registrado: ", callStartTime);
 
 
       });
 
 
       contact.onDestroy(function(contact) {
-        setStateCall(false)
         setcallEndTime(new Date().getTime());
-
-        console.log("Fin de la llamada registrado: ", callEndTime);
-
+        setStateCall(false)
+        setDuration(getCallDuration());
       });
 
       
@@ -358,8 +357,6 @@ const formatDuration = (duration) => {
       console.log("Actualice la llamada finalizada");
 
       //QUITAR
-      const duration = getCallDuration();
-      console.log("Duración total de la llamada: ", formatDuration(duration));
       
       actualizarLlamadaFinalizada();
       reiniciarCliente();
@@ -368,6 +365,9 @@ const formatDuration = (duration) => {
       setcallEndTime(null);
     }
   }, [stateCall, actualizarLlamadaFinalizada])
+
+
+  
 
 
   // define "lord-icon" custom element with default properties
@@ -381,7 +381,7 @@ const formatDuration = (duration) => {
   return (
   // <div id="ccp" style={{ width: "400px", height: "250px" }}>
   <section>
-    <div id="ccp" style={{ display: "none"}}/>
+    <div id="ccp" style={{ display: "block"}}/>
     {/* <button onClick={muteAgent}>MUTE</button>
     <button onClick={unmuteAgent}>UNMUTE</button>
     <button onClick={acceptCall}>ACEPTAR LLAMADA</button>
