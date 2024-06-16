@@ -175,24 +175,28 @@ const [callEndTime, setcallEndTime] = useState(null);
 const [duration, setDuration] = useState(null);
 
 
-// Función para calcular la duración de la llamada en milisegundos
-const getCallDuration = () => {
-  if (callStartTime && callEndTime) {
-    return callEndTime - callStartTime;
-  }
-  return null;
-};
+useEffect( () => {
 
+  if (callStartTime && callEndTime) {
+    console.log("LLEGUE A CAMBIARME")
+    setDuration(formatDuration(callEndTime - callStartTime));
+  }
+  
+
+}, [callStartTime, callEndTime])
 
 // Función para formatear la duración en milisegundos a un formato legible
 const formatDuration = (duration) => {
   if (duration === null) return "No disponible";
+  
   const seconds = Math.floor((duration / 1000) % 60);
   const minutes = Math.floor((duration / (1000 * 60)) % 60);
   const hours = Math.floor((duration / (1000 * 60 * 60)) % 24);
-  return `${hours}:${minutes}:${seconds}`;
-};
 
+  const pad = (num) => String(num).padStart(2, '0');
+
+  return `${pad(hours)}:${pad(minutes)}:${pad(seconds)}`;
+};
 
   //Agent
   const [agent,,] = useLogInContext(); 
@@ -231,30 +235,36 @@ const formatDuration = (duration) => {
       //Callback??
   const actualizarLlamadaFinalizada = useCallback(async () => {
 
-    console.log(duration)
-    try{
-      //Pasarlo a la funcion de actualizar llamada
-      const datos = {
-        id: call.IdLlamada,
-        duracion: formatDuration(duration),
-        estado: false
+    if (call.IdLlamada && duration) {
+
+      console.log("LEgue a la funcion",duration)
+      try{
+        //Pasarlo a la funcion de actualizar llamada
+        const datos = {
+          id: call.IdLlamada,
+          duracion: duration,
+          estado: false
+        }
+        console.log("DATOS LLAMADA FINALIZADA" , datos)
+        let config = {
+          method: 'PUT',
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${agent.Token}`,
+          },
+          body: JSON.stringify(datos)
+        }
+        let res = await fetch("http://44.209.22.101:8080/llamada/actualizarLlamadaFinalizada", config) 
+        // let res = await fetch(`http://localhost:8080/llamada/actualizarLlamada/${call.IdLlamada}`, config) 
+        console.log(res)
+      } catch (error) {
+        console.log(error)
       }
-      console.log("DATOS LLAMADA FINALIZADA" , datos)
-      let config = {
-        method: 'PUT',
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${agent.Token}`,
-        },
-        body: JSON.stringify(datos)
-      }
-      let res = await fetch("http://44.209.22.101:8080/llamada/actualizarLlamadaFinalizada", config) 
-      // let res = await fetch(`http://localhost:8080/llamada/actualizarLlamada/${call.IdLlamada}`, config) 
-      console.log(res)
-    } catch (error) {
-      console.log(error)
+
     }
+
+ 
     },[call.IdLlamada,duration])
 
 
@@ -320,13 +330,10 @@ const formatDuration = (duration) => {
 
       });
 
-
-      contact.onDestroy(function(contact) {
+      contact.onEnded(function(contact) { 
         setcallEndTime(new Date().getTime());
         setStateCall(false)
-        setDuration(getCallDuration());
-      });
-
+       });
       
     });
 
@@ -353,7 +360,7 @@ const formatDuration = (duration) => {
 
   useEffect(() => {
     console.log("USE EFFECT 3");
-    if (!stateCall && call.IdLlamada!=null){
+    if (call.IdLlamada!=null && call.IdLlamada!=null && duration!=null){
       console.log("Actualice la llamada finalizada");
 
       //QUITAR
@@ -363,12 +370,13 @@ const formatDuration = (duration) => {
       restartCall();
       setcallStartTime(null);
       setcallEndTime(null);
+      setDuration(null);
+      
+
     }
   }, [stateCall, actualizarLlamadaFinalizada])
 
-
   
-
 
   // define "lord-icon" custom element with default properties
   defineElement(lottie.loadAnimation);
