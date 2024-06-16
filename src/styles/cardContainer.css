@@ -1,12 +1,13 @@
 /* Autora: Giovanna Lorena Delgado Mendoza*/
 /*Estilos de las tarjetas estadísticas superiores de la ventana de calificaicón*/
+
 .card-container {
-  margin-left: 35%;
+  margin-left: 45%;
   display: flex;
   gap: 20px;
   flex: 1 1 auto;
   margin-right: 0;
-  margin-top: -31%;
+  margin-top: -23%;
 }
 .card {
   width: 100%;
@@ -61,6 +62,8 @@
   .card-container {
     grid-template-columns: repeat(3, 1fr);
     width: 70%;
+    margin-top: -2%;
+    margin-top: -23%;
   }
 
   .card {
@@ -69,6 +72,42 @@
 
   .card-value {
     font-size: 45px;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1200px) and (orientation: landscape) {
+  .card-container {
+    margin-left: 45%;
+    display: flex;
+    gap: 20px;
+    flex: 1 1 auto;
+    margin-right: 0;
+    margin-top: -27%;
+  }
+  .card {
+    width: 100%;
+    max-width: 100%;
+    margin-right: 5%;
+    border-radius: 10%;
+    height: 13vw;
+    min-width: 15vw;
+    border-radius: 10px;
+    margin-bottom: 20px;
+  }
+  .card-title {
+    padding-top: 0%;
+    font-family: var(--font-family);
+    font-size: 2vh;
+    color: rgb(37, 35, 35);
+    text-align: center;
+  }
+  .loading-text,
+  .loading-rank {
+    font-size: 1.5vh;
+  }
+
+  .header {
+    height: 40px;
   }
 }
 
@@ -88,13 +127,12 @@
   .card-container {
     flex-direction: column;
     margin-top: 10%;
-    margin-left: -50%;
+    margin-left: -45%;
     max-width: fit-content;
-
   }
 
   .card {
-  height: 120%;
+    height: 120%;
   }
 
   .card-content {

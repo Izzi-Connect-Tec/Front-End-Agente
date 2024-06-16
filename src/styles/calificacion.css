@@ -37,7 +37,6 @@
   }
 }
 
-/* fin animaciones */
 
 .calificacion-page {
   display: flex;
@@ -114,7 +113,7 @@
     }
   
     .card {
-      width: 80%; /* Asegura que las tarjetas no sean demasiado anchas */
+      width: 80%; 
       max-width: 80%;
       margin-right: 0;
       border-radius: 10px;

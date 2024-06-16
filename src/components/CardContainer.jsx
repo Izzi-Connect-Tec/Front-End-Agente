@@ -1,12 +1,13 @@
 /* Autora: Giovanna Lorena Delgado Mendoza*/
 /*Contenedor y APIs de las tarjetas superioes de la ventana de calificación*/
+
 import CardComponent from './CardComponent';
 import '../styles/cardContainer.css';
 
 const CardContainer = () => {
   const cardsData = [
     { 
-      title: 'Calificación promedio del agente', 
+      title: 'Calificación promedio al mes', 
       dataUrl: 'urllll', 
       rankUrl: 'urllll',
       color: '#00BCB4' 

@@ -1,12 +1,13 @@
 /* Autora: Giovanna Lorena Delgado Mendoza*/
 /*Estilos para las tarjetas estadísticas inferiores de la ventana de calificación de los agentes*/
+
 .custom-container {
-  width: 70%;
+  width: 60%;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(10px, 1fr));
   gap: 10px;
-  margin-top: 2%;
-  margin-left: 7.5%;
+  margin-top: 20%;
+  margin-left: 38%;
 }
 
 .custom-row {
@@ -129,28 +130,30 @@
   }
 }
 
+@media (min-width: 768px) and (max-width: 1200px) and (orientation: landscape) {
+  .custom-container {
+    width: 60%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(10px, 1fr));
+    gap: 10px;
+    margin-top: 30%;
+    margin-left: 42%;
+  }
+}
+
 @media (orientation: portrait) {
+  .custom-container {
+    width: 80%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(10px, 1fr));
+    gap: 10px;
+    margin-top: 0%;
+    margin-left: 10%;
+  }
   .custom-card {
-    width: 90%;
+    width: 85%;
     border-radius: 10px;
     overflow: hidden;
-    margin-top: -5%;
-  }
-  .custom-card {
-    margin-left: -10%;
-    margin-bottom: 5%;
-  }
-  .custom-card:hover {
-    transform: scale(1.1);
-    transition: all 0.3s ease;
-  }
-
-  .blue-card:hover,
-  .pink-card:hover,
-  .yellow-card:hover {
-    margin-left: 5%;
-    height: auto;
-    transform: scale(1.1);
-    transition: all 0.3s ease;
+    margin-left: 0%;
   }
 }

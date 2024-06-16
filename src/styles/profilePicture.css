@@ -1,5 +1,6 @@
 /* Autora: Giovanna Lorena Delgado Mendoza*/
 /*Estilos para la foto de perfil de los agentes en la ventana calificación*/
+
 .profile-container.figure {
   display: flex;
   flex-direction: column;
@@ -55,24 +56,10 @@
 }
 
 @media (orientation: portrait) {
-
-  .profile-container {
-    min-width: 44vh;
-    margin-top: 0%;
-    align-items: center;
-  }
-
   .profile-container img {
-    width: 175%; 
+    min-width: 80%;
     height: auto;
-    margin-left: 15%; 
+    margin-left: -5%;
+    margin-top: -20%;
   }
-
-  .profile-container img:hover {
-    transform: scale(1.1);
-    transition: transform 0.3s ease;
-  }
-
 }
-
-

@@ -1,5 +1,6 @@
 /* Autora: Giovanna Lorena Delgado Mendoza*/
 /*Componente de las tarjetas superiores de estadísticas de los agentes en ventana de calificación */
+
 import { useState, useEffect } from 'react';
 import Card from 'react-bootstrap/Card';
 import StarRating from './StarRating';

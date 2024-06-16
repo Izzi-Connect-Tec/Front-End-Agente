@@ -12,14 +12,18 @@
     width: 80%;
   }
 
-
 @media (min-width: 1200px) and (orientation: landscape) {
     .figure-caption{
       margin-top: 5%;
       margin-bottom: -10%;
     }
 }
-
+@media (min-width: 768px) and (max-width: 1200px) and (orientation: landscape) {
+  .figure-caption{
+    margin-top: 5%;
+    margin-bottom: -5%;
+  }
+}
 @media  (orientation: portrait) {
   .figure-caption{
     margin-top: 5%;
@@ -27,9 +31,7 @@
     width: 100%;
     text-align: center;
   }
-
-
-
+  
   .profile-container {
     display: flex;
     flex-direction: column;
