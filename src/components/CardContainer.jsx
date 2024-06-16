@@ -1,4 +1,3 @@
-import React from 'react';
 import CardComponent from './CardComponent';
 import '../styles/calificacion.css';
 
@@ -46,5 +45,3 @@ const CardContainer = () => {
 };
 
 export default CardContainer;
-
-
