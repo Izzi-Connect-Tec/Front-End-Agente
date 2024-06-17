@@ -370,7 +370,7 @@ const formatDuration = (duration) => {
 
   useEffect(() => {
     console.log("USE EFFECT 3");
-    if (call.IdLlamada!=null && call.IdLlamada!=null && duration!=null){
+    if (!stateCall && call.IdLlamada!=null && duration!=null){
       console.log("Actualice la llamada finalizada");
 
       //QUITAR
