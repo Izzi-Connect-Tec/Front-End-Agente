@@ -110,7 +110,6 @@ const Charts = () => {
         />
       </div>
       <div className="chart-wrapper">
-        <p>{agent.IdEmpleado}</p>
         <BarChart
           dataset={agentData}
           xAxis={[{ scaleType: 'band', dataKey: 'agente', tick: { angle: -45, textAnchor: 'end' } }]}

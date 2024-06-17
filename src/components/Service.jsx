@@ -19,14 +19,15 @@ import { useLogInContext } from "../Providers/LogInContext";
 const Service = (props) => {
 
   const [call,,] = useLlamadaContext();
-  const [agent,,] = useLogInContext(); 
+
+  let agent = JSON.parse(window.localStorage.getItem('Agent'));
 
   const emergencia = useCallback( async () => {
     try{
       const datos = {
         id: call.IdLlamada,
-        nombre: "Javier",
-        apellido: "Garcia"
+        nombre: agent.Nombre,
+        apellido: agent.ApellidoP
       }
       let config = {
         method: 'POST',

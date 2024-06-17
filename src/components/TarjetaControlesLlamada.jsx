@@ -85,7 +85,7 @@ to {
 
   const [mute, setMute] = useState(false);
 
-  const [llamadaEntrante, cambiarLlamadaEntrando,,cambiarEsLlamada, controlLlamada, activarControlLlamada, cerrarContacto, controlarCerrarContacto] = useControlLlamadaContext();
+  const [llamadaEntrante, cambiarLlamadaEntrando,esLlamada,cambiarEsLlamada, controlLlamada, activarControlLlamada, cerrarContacto, controlarCerrarContacto] = useControlLlamadaContext();
 
   const [animar, setaAnimar] = useState("");
 
@@ -338,12 +338,17 @@ return(
       cambiarEsLlamada()
     };
 
+    const decline = () => {
+      clearCall()
+      controlarCerrarContacto() 
+    }
+
     return(
       <div className='callcontrollers'>
 
       <Timer/>
 
-      <Button className="block" variant="outlined" onClick={finalizarContacto}
+      <Button className="block" variant="outlined" onClick={esLlamada ? finalizarContacto : decline}
       startIcon={<lord-icon src="https://cdn.lordicon.com/ysopsmtv.json" trigger="hover" target=".block" class="current-color"/>}
       sx={{color: "black",
       "&:hover": {
