@@ -43,7 +43,15 @@ const Charts = () => {
       console.log(agent)
       console.log(agent.IdEmpleado)
       try{
-        const res = await fetch(`http://44.209.22.101:8080/empleado/duracionPromMeses/${agent.IdEmpleado}`)
+        let config = {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+          },
+          Authorization: `Bearer ${agent.Token}`,
+        }
+        const res = await fetch(`http://44.209.22.101:8080/empleado/duracionPromMeses/${agent.IdEmpleado}`, config)
         if (!res.ok) {
           throw new Error('Network response was not ok');
         }
@@ -67,7 +75,15 @@ const Charts = () => {
 
     const fetchAgentData = async () => {
       try {
-        const response = await fetch(`http://44.209.22.101:8080/empleado/getCalifPromDiaAgentes/${formattedDate}`);
+        let config = {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+          },
+          Authorization: `Bearer ${agent.Token}`,
+        }
+        const response = await fetch(`http://44.209.22.101:8080/empleado/getCalifPromDiaAgentes/${formattedDate}`, config);
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }

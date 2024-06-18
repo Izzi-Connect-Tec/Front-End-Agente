@@ -24,8 +24,15 @@ const Chatbox = (props) => {
 
   useEffect(() => {
     const fetchMessages = () => {
-      fetch(`http://44.209.22.101:8080/connect/sentiment/${props.id}`, 
-        {headers: { "Authorization" : `Bearer ${agent.Token}`}})
+    let config = {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+          },
+          Authorization: `Bearer ${agent.Token}`,
+        }
+      fetch(`http://44.209.22.101:8080/connect/sentiment/${props.id}`, config)
         .then(console.log("TOKEN", agent.Token))
         .then((response) => response.json())
         .then((data) => {

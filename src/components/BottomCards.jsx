@@ -12,9 +12,19 @@ const BottomCards = () => {
   const [agentWithBestRating, setAgentWithBestRating] = useState('Cargando...');
   const [agentWithMostCalls, setAgentWithMostCalls] = useState('Cargando...');
   const [loading, setLoading] = useState(true);
+  let agent = JSON.parse(window.localStorage.getItem('Agent'));
+
 
   useEffect(() => {
-    fetch(`${baseUrl}/empleado/getAgenteMejorCalifMes/${formattedDate}`)
+    let config = {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      },
+      Authorization: `Bearer ${agent.Token}`
+    }
+    fetch(`${baseUrl}/empleado/getAgenteMejorCalifMes/${formattedDate}`, config)
       .then(response => response.json())
       .then(data => {
         console.log(data);
@@ -26,7 +36,7 @@ const BottomCards = () => {
         setLoading(false);
       });
 
-    fetch(`${baseUrl}/empleado/getAgenteMasLlamadasDia/${formattedDate}`)
+    fetch(`${baseUrl}/empleado/getAgenteMasLlamadasDia/${formattedDate}`, config)
       .then(response => response.json())
       .then(data => {
         console.log(data);

@@ -16,12 +16,22 @@ const Solutions = () => {
   const [solutionsData, setSolutionsData] = useState([]); // Estado para los datos de las soluciones
   const [currentIndex, setCurrentIndex] = useState(0);
   const [blockedSolutions, setBlockedSolutions] = useState({});
+  let agent = JSON.parse(window.localStorage.getItem('Agent'));
+
 
   // Función para obtener las soluciones
   const fetchSolutions = async () => {
     try {
+      let config = {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        Authorization: `Bearer ${agent.Token}`,
+      }
       // El api puede ser internet, telefonia o television
-      const response = await axios.get(`http://44.209.22.101:8080/llamada/consultarSolucion/${call.TipoLlamada}`); // Hacer la petición al API
+      const response = await axios.get(`http://44.209.22.101:8080/llamada/consultarSolucion/${call.TipoLlamada}`, config); // Hacer la petición al API
       setSolutionsData(response.data); // Guardar los datos en el estado
     } catch (error) {
       console.error("Error al obtener datos del API:", error); // Mostrar error en consola

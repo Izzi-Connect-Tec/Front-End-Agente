@@ -197,7 +197,15 @@ export default function TemporaryDrawer() {
 
     // Inicialmente cargar datos
     console.log("Cargando notificaciones...");
-    fetch(`http://44.209.22.101:8080/notificacion/getNotificacionAgente/${agent.IdEmpleado}`)
+    let config = { 
+      method: 'GET',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${agent.Token}`
+      }
+    }
+    fetch(`http://44.209.22.101:8080/notificacion/getNotificacionAgente/${agent.IdEmpleado}`, config)
       .then((response) => response.json())
       .then((data) => {
         console.log(data);
@@ -237,11 +245,16 @@ export default function TemporaryDrawer() {
 
   // Función para manejar el borrado de notificaciones
   const handleDelete = (index, IdNotificacion) => {
-    fetch(  
-      `http://44.209.22.101:8080/notificacion/eliminarNotificacion/${IdNotificacion}/${agent.IdEmpleado}`,
-      {
-        method: "DELETE",
+    let config = { 
+      method: 'DELETE',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${agent.Token}`
       }
+    }
+    fetch(  
+      `http://44.209.22.101:8080/notificacion/eliminarNotificacion/${IdNotificacion}/${agent.IdEmpleado}`, config
     )
       .then((response) => {
         if (response.ok) {

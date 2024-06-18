@@ -6,9 +6,18 @@ import '../styles/calificacion.css';
 const CardComponent = ({ title, dataUrl, rankUrl, color }) => {
   const [value, setValue] = useState(null);
   const [rank, setRank] = useState(null);
-
+  let agent = JSON.parse(window.localStorage.getItem('Agent'));
+  
+  let config = {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json'
+    },
+    Authorization: `Bearer ${agent.Token}`
+  }
   useEffect(() => {
-    fetch(dataUrl)
+    fetch(dataUrl, config)
       .then((response) => response.json())
       .then((data) => {
         console.log(data);
@@ -20,7 +29,7 @@ const CardComponent = ({ title, dataUrl, rankUrl, color }) => {
   useEffect(() => {
     const fetchRank = async () => {
       try {
-        const response = await fetch(rankUrl);
+        const response = await fetch(rankUrl, config);
         if (!response.ok) {
           throw new Error(`Error al obtener ranking para ${title}`);
         }
