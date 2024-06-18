@@ -22,7 +22,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 export default function IncidenceForm() {
 
-  const [agent,,] = useLogInContext();
+  let agent = JSON.parse(window.localStorage.getItem('Agent'));
 
   const [cliente,,] = useUserContext();
 

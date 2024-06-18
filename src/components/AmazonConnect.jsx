@@ -20,7 +20,9 @@ import { useControlLlamadaContext } from "../Providers/ControlLlamadaContext";
 
 const EmbedConnect = (props) => {
 
-  const [,cambiarLlamadaEntrando,] = useControlLlamadaContext();
+  const [,cambiarLlamadaEntrando,,,,,cerrarContacto,controlarCerrarContacto] = useControlLlamadaContext();
+
+
 
   // function clearCall(){
 
@@ -199,7 +201,7 @@ const formatDuration = (duration) => {
 };
 
   //Agent
-  const [agent,,] = useLogInContext(); 
+  let agent = JSON.parse(window.localStorage.getItem('Agent'));
 
   //Call
   const [call, callData, restartCall] = useLlamadaContext();
@@ -332,8 +334,16 @@ const formatDuration = (duration) => {
 
       contact.onEnded(function(contact) { 
         setcallEndTime(new Date().getTime());
-        setStateCall(false)
        });
+
+
+      contact.onDestroy(function(contact) { 
+      setStateCall(false)
+      });
+
+      contact.onMissed(function(contact) { 
+        controlarCerrarContacto();
+      });
       
     });
 
@@ -360,7 +370,7 @@ const formatDuration = (duration) => {
 
   useEffect(() => {
     console.log("USE EFFECT 3");
-    if (call.IdLlamada!=null && call.IdLlamada!=null && duration!=null){
+    if (!stateCall && call.IdLlamada!=null && duration!=null){
       console.log("Actualice la llamada finalizada");
 
       //QUITAR

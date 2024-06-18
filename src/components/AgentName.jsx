@@ -1,23 +1,16 @@
+/* Autora: Giovanna Lorena Delgado Mendoza*/
+/*Nombre del agente en ventana de estadísticas/calificación*/ 
+import { useLogInContext } from '../Providers/LogInContext';
+import '../styles/agentName.css';
 import { useState, useEffect } from 'react';
 
 const AgentName = ({ defaultName }) => {
+
+  let agent = JSON.parse(window.localStorage.getItem('Agent'));
   const [agentName, setAgentName] = useState(defaultName);
 
   useEffect(() => {
-    const fetchAgentName = async () => {
-      try {
-        const response = await fetch('urllllllll');
-        if (!response.ok) {
-          throw new Error('Error al obtener el nombre del agente');
-        }
-        const data = await response.json();
-        setAgentName(data.name);
-      } catch (error) {
-        console.error('Error fetching agent name:', error);
-      }
-    };
-
-    fetchAgentName();
+    setAgentName(agent.Nombre + " " + agent.ApellidoP + " " + agent.ApellidoM);
   }, []);
 
   return <>{agentName}</>;

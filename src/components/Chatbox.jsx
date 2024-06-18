@@ -11,7 +11,8 @@ const Chatbox = (props) => {
   const [,,,cambiarSentimientoLlamada] = useLlamadaContext();
 
   const endRef = useRef(null)
-  const [agent,,] = useLogInContext(); 
+
+  let agent = JSON.parse(window.localStorage.getItem('Agent'));
 
   const [messages, setMessages] = useState([]);
 

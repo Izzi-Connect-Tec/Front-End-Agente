@@ -25,7 +25,7 @@ const Client = (props) => {
 
   const [urlReportes, setUrlReportes] = useState(null); // Valor inicial para url
 
-  const [agent, ,] = useLogInContext();
+  let agent = JSON.parse(window.localStorage.getItem('Agent'));
 
 const descargarDatosCliente = useCallback(async () => {
     try {

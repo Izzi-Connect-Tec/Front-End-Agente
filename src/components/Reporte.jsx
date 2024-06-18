@@ -17,7 +17,7 @@ import BasicSelectIncidencia from "./IdIncidencia";
 
 export default function FormDialog() {
 
-  const [agent,,] = useLogInContext();
+  let agent = JSON.parse(window.localStorage.getItem('Agent'));
 
   const [descripcion, setDescripcion] = React.useState("");
   const [prioridad, setPrioridad] = React.useState("");

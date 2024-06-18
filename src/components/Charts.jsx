@@ -8,7 +8,7 @@ import { useLogInContext } from '../Providers/LogInContext';
 
 const Charts = () => {
 
-  const [agent,,] = useLogInContext();
+  let agent = JSON.parse(window.localStorage.getItem('Agent'));
 
   const date = new Date();
 
@@ -40,8 +40,10 @@ const Charts = () => {
 
   useEffect(() => {
     const fetchDurationData = async () => {
+      console.log(agent)
+      console.log(agent.IdEmpleado)
       try{
-        const res = await fetch(`http://localhost:8080/empleado/duracionPromMeses/${agent.IdEmpleado}`)
+        const res = await fetch(`http://44.209.22.101:8080/empleado/duracionPromMeses/${agent.IdEmpleado}`)
         if (!res.ok) {
           throw new Error('Network response was not ok');
         }
@@ -53,7 +55,10 @@ const Charts = () => {
           AvgDuration: parseFloat(item.AvgDuration) / 60 // Convertir a minutos
         }));
 
+        console.log("Agent duration: ", formattedData)
+
         setDurationData(formattedData);
+
       } catch (error){
         console.error('Error fetching agent data for agent data:', error);
       }
@@ -62,7 +67,7 @@ const Charts = () => {
 
     const fetchAgentData = async () => {
       try {
-        const response = await fetch(`http://localhost:8080/empleado/getCalifPromDiaAgentes/${formattedDate}`);
+        const response = await fetch(`http://44.209.22.101:8080/empleado/getCalifPromDiaAgentes/${formattedDate}`);
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }

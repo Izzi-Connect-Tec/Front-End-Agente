@@ -8,7 +8,8 @@ export const EmergenciaSupervisor = () => {
 
 
     const [call,,] = useLlamadaContext();
-    const [agent,,] = useLogInContext();
+    
+    let agent = JSON.parse(window.localStorage.getItem('Agent'));
 
     const emergencia = useCallback( async () => {
         try{

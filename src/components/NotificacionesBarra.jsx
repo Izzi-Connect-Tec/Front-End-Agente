@@ -171,7 +171,8 @@ export default function TemporaryDrawer() {
   const [notifications, setNotifications] = useState([]); // Estado para las notificaciones
   const [open, setOpen] = useState(false); // Estado para abrir y cerrar el drawer
   const [notificationsLoaded, setNotificationsLoaded] = useState(false); // Estado para saber si las notificaciones ya se cargaron
-  const [agente] = useLogInContext();
+  
+  let agent = JSON.parse(window.localStorage.getItem('Agent'));
 
   const notify = useCallback(() => {
     if (notificationsLoaded && actualizacion) {
@@ -196,7 +197,7 @@ export default function TemporaryDrawer() {
 
     // Inicialmente cargar datos
     console.log("Cargando notificaciones...");
-    fetch(`http://44.209.22.101:8080/notificacion/getNotificacionAgente/${agente.IdEmpleado}`)
+    fetch(`http://44.209.22.101:8080/notificacion/getNotificacionAgente/${agent.IdEmpleado}`)
       .then((response) => response.json())
       .then((data) => {
         console.log(data);
@@ -205,7 +206,7 @@ export default function TemporaryDrawer() {
       .catch((error) => console.error("Error fetching data: ", error));
 
     // Soket 
-    socket.on(`notificacion_empleado_${agente.IdEmpleado}`, (notificacionEmpleado) => {
+    socket.on(`notificacion_empleado_${agent.IdEmpleado}`, (notificacionEmpleado) => {
       console.log("Notificaciones recibidas:", notificacionEmpleado);
       setActualizacion(true);
       setNotifications(notificacionEmpleado);
@@ -213,10 +214,10 @@ export default function TemporaryDrawer() {
 
     // Limpiar el socket al desmontar el componente
     return () => {
-      socket.off(`notificacion_empleado_${agente.IdEmpleado}`);
+      socket.off(`notificacion_empleado_${agent.IdEmpleado}`);
       console.log("Socket limpiado");
     };
-  }, [agente.IdEmpleado]);
+  }, [agent.IdEmpleado]);
 
   // Función para manejar el clic en el badge
   const handleBadgeClick = () => {
@@ -237,7 +238,7 @@ export default function TemporaryDrawer() {
   // Función para manejar el borrado de notificaciones
   const handleDelete = (index, IdNotificacion) => {
     fetch(  
-      `http://44.209.22.101:8080/notificacion/eliminarNotificacion/${IdNotificacion}/${agente.IdEmpleado}`,
+      `http://44.209.22.101:8080/notificacion/eliminarNotificacion/${IdNotificacion}/${agent.IdEmpleado}`,
       {
         method: "DELETE",
       }
@@ -259,7 +260,7 @@ export default function TemporaryDrawer() {
   const DrawerList = (
     <Box sx={{ width: 400 }} role="presentation">
       <div className="bdia-agente">
-        <p>¡Buen día {agente.Nombre} {agente.ApellidoP} {agente.ApellidoM}!</p>
+        <p>¡Buen día {agent.Nombre} {agent.ApellidoP} {agent.ApellidoM}!</p>
       </div>
 
       <Divider />
