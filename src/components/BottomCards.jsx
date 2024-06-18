@@ -68,11 +68,7 @@ const BottomCards = () => {
     <div className="customContainer">
       <div className="customRow">
         <div className="customCol2">
-          <div>
-            <div>
               <CallControlsCard />
-            </div>
-          </div>
         </div>
         <div className="customCol">
           <div className="customCard cardPrimary">

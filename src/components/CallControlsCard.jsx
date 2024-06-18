@@ -427,7 +427,7 @@ to {
           direction={{ xs: "column", s: "row", md: "row" }}
           useFlexGap="wrap"
           spacing={{ xs: 3, s: 3, md: 3 }}
-          className={IncomingCall ? "incomingContent" : null}
+          className={incomingCall ? "incomingContent" : null}
         >
           <DemoPaper>
             {incomingCall ? (
