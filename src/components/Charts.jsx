@@ -1,3 +1,6 @@
+/* Author: Giovanna Lorena Delgado Mendoza*/
+/*Rating window graphs showing agent statistics*/
+
 import { useState, useEffect } from "react";
 import { BarChart } from "@mui/x-charts/BarChart";
 import { LineChart } from "@mui/x-charts/LineChart";
@@ -38,56 +41,18 @@ const Charts = () => {
 
   useEffect(() => {
     const fetchDurationData = async () => {
-      try {
-
-        let config = {
-          method: 'GET',
-          headers: {
-            'Content-Type': 'application/json',
-            'Accept': 'application/json',
-            Authorization: `Bearer ${agent.Token}`,
-          }
-        }
-
-        const res = await fetch(
-          `http://44.209.22.101:8080/empleado/duracionPromMeses/${agent.IdEmpleado}`, config
-        );
-        if (!res.ok) {
-          throw new Error("Network response was not ok");
-        }
-        const data = await res.json();
-
-        // Convert AvgDuration from milliseconds to minutes
-        const formattedData = data.map((item) => ({
-          ...item,
-          AvgDuration: parseFloat(item.AvgDuration) / 60, // Convert to minutes
-        }));
-
-        setDurationData(formattedData);
-      } catch (error) {
-        console.error("Error fetching agent data for agent data:", error);
-      }
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      setDurationData(defaultDurationData);
     };
 
     const fetchAgentData = async () => {
-      try {
-        const response = await fetch(
-          `http://44.209.22.101:8080/empleado/getCalifPromDiaAgentes/${formattedDate}`
-        );
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
-        }
-        const data = await response.json();
-        console.log("Agent data:", data);
-        setAgentData(data); // Asign formated data to the API
-      } catch (error) {
-        console.error("Error fetching agent data for agent data:", error);
-      }
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      setAgentData(defaultAgentData); 
     };
 
-    fetchAgentData();
     fetchDurationData();
-  }, [agent.IdEmpleado, formattedDate]);
+    fetchAgentData();
+  }, []);
 
   const colors = {
     tertiary: "rgba(255, 206, 0, 0.8)",
@@ -115,7 +80,7 @@ const Charts = () => {
       <div className="chartWrapper">
         <LineChart
           dataset={durationData}
-          xAxis={[{ scaleType: "band", dataKey: "Month" }]}
+          xAxis={[{ scaleType: "band", dataKey: "month" }]}
           {...durationChartSetting}
         />
       </div>

@@ -1,15 +1,27 @@
+/* Author: Giovanna Lorena Delgado Mendoza*/
+/* General grading window styles*/
+
 :root {
   --color-primary: #00bcb4;
   --color-secondary: #d7006d;
   --color-tertiary: #ffce00;
   --color-quaternary: #ec6907;
-  --font-family: "exo", sans-serif;
+  --font-family: "Century Gothic", "Futura";
   --font-size-title: 18px;
   --font-size-value: 20px;
   --font-size-rank: 14px;
   --font-size-title-small: 16px;
   --font-size-value-small: 30px;
   --font-size-star-rating: 30px;
+}
+
+/* ANIMATIONS */
+.customCard,
+.profileContainer img,
+.chartContainer {
+  animation-name: slideIn;
+  animation-duration: 0.5s;
+  animation-timing-function: ease;
 }
 
 @keyframes slideIn {
@@ -37,13 +49,6 @@
   margin-top: -1%;
 }
 
-.profileContainer img,
-.chartContainer {
-  animation-name: slideIn;
-  animation-duration: 0.5s;
-  animation-timing-function: ease;
-}
-
 @media (orientation: landscape) {
   .statsContent {
     margin-left: -4%;
@@ -54,13 +59,16 @@
   .statsContent {
     margin-left: -4%;
   }
+
+  .starRating {
+    font-size: var(--font-size-star-rating);
+  }
 }
 
 @media (orientation: portrait) {
   .statsContent {
     margin-left: -2%;
   }
-
   .profileContainer {
     margin-top: 10%;
     align-items: center;
@@ -71,9 +79,9 @@
   }
 
   .profileContainer img {
-    width: 150%; 
-    height: auto; 
-    margin-left: 0; 
+    width: 150%;
+    height: auto;
+    margin-left: 0;
   }
 
   .profileContainer img:hover {
@@ -81,9 +89,64 @@
     transition: transform 0.3s ease;
   }
 
-  .orangeCardContainer {
-    width: 90%;
+  .figureCaption {
+    font-size: var(--font-size-value);
+    text-align: center;
+    margin-top: 10px;
+  }
+
+  .cardContainer {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 5%;
+    gap: 20px;
+  }
+
+  .card {
+    width: 80%;
+    max-width: 80%;
+    margin-right: 0;
+    border-radius: 10px;
+    height: auto;
+    min-width: 60%;
+  }
+
+  .cardContent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+  }
+
+  .cardTitle {
+    font-size: var(--font-size-title-small);
+    text-align: center;
+    margin-bottom: 5px;
+    margin-left: 5%;
+    margin-right: 5%;
+    margin-top: -5%;
+  }
+
+  .cardValue {
+    font-size: var(--font-size-value-small);
+    text-align: center;
+    margin-top: 1px;
+  }
+
+  .cardRank {
+    font-size: var(--font-size-rank);
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    align-self: center;
+    margin-top: 1%;
+  }
+}
+
+@media (max-width: 1000px) {
+  .header {
+    height: 52px;
   }
 }

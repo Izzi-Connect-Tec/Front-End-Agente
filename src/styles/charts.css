@@ -3,7 +3,7 @@
   top: calc(30% + 25px);
   width: calc(85% - 40%);
   left: 50%;
-
+  font-family: "Century Gothic", "Futura";
 }
 
 .chartWrapper {

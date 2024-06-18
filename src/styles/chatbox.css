@@ -21,8 +21,8 @@
 
 .chatboxCenter {
   padding: 20px;
-  flex: 1; /* Make this element grow and take available space */
-  overflow-y: auto; /* Ensure vertical scrolling */
+  flex: 1;
+  overflow-y: auto;
   display: flex;
   flex-direction: column;
   gap: 20px;

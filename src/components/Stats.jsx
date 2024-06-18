@@ -1,3 +1,6 @@
+/* Author: Giovanna Lorena Delgado Mendoza*/
+/*Rating window that shows the agents' statistics and/or KPIs*/
+
 import '../styles/stats.css';
 import ProfilePhoto from './ProfilePhoto';
 import profilePicture from '../assets/profilePic.jpeg';

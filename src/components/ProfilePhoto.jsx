@@ -1,3 +1,6 @@
+/* Author: Giovanna Lorena Delgado Mendoza*/
+/*Profile photo of the agents in the qualification window*/
+
 import '../styles/profilePhoto.css';
 import profilePic from '../assets/profilePic.jpeg';
 

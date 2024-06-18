@@ -1,3 +1,6 @@
+/* Author: Giovanna Lorena Delgado Mendoza */
+/*Container and APIs for the top cards of the rating window*/
+
 import CardComponent from "./CardComponent";
 import "../styles/cardContainer.css";
 
