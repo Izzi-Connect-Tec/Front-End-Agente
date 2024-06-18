@@ -41,18 +41,56 @@ const Charts = () => {
 
   useEffect(() => {
     const fetchDurationData = async () => {
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      setDurationData(defaultDurationData);
+      try {
+
+        let config = {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            Authorization: `Bearer ${agent.Token}`,
+          }
+        }
+
+        const res = await fetch(
+          `http://44.209.22.101:8080/empleado/duracionPromMeses/${agent.IdEmpleado}`, config
+        );
+        if (!res.ok) {
+          throw new Error("Network response was not ok");
+        }
+        const data = await res.json();
+
+        // Convert AvgDuration from milliseconds to minutes
+        const formattedData = data.map((item) => ({
+          ...item,
+          AvgDuration: parseFloat(item.AvgDuration) / 60, // Convert to minutes
+        }));
+
+        setDurationData(formattedData);
+      } catch (error) {
+        console.error("Error fetching agent data for agent data:", error);
+      }
     };
 
     const fetchAgentData = async () => {
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      setAgentData(defaultAgentData); 
+      try {
+        const response = await fetch(
+          `http://44.209.22.101:8080/empleado/getCalifPromDiaAgentes/${formattedDate}`
+        );
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        const data = await response.json();
+        console.log("Agent data:", data);
+        setAgentData(data); // Asign formated data to the API
+      } catch (error) {
+        console.error("Error fetching agent data for agent data:", error);
+      }
     };
 
-    fetchDurationData();
     fetchAgentData();
-  }, []);
+    fetchDurationData();
+  }, [agent.IdEmpleado, formattedDate]);
 
   const colors = {
     tertiary: "rgba(255, 206, 0, 0.8)",
@@ -80,7 +118,7 @@ const Charts = () => {
       <div className="chartWrapper">
         <LineChart
           dataset={durationData}
-          xAxis={[{ scaleType: "band", dataKey: "month" }]}
+          xAxis={[{ scaleType: "band", dataKey: "Month" }]}
           {...durationChartSetting}
         />
       </div>
