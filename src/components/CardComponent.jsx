@@ -6,15 +6,16 @@ import '../styles/calificacion.css';
 const CardComponent = ({ title, dataUrl, rankUrl, color }) => {
   const [value, setValue] = useState(null);
   const [rank, setRank] = useState(null);
+
   let agent = JSON.parse(window.localStorage.getItem('Agent'));
   
   let config = {
     method: 'GET',
     headers: {
-      'Content-Type': 'application/json',
-      'Accept': 'application/json'
-    },
-    Authorization: `Bearer ${agent.Token}`
+      'Accept': 'application/json',
+      'Content-Type': 'application/json', 
+      Authorization: `Bearer ${agent.Token}`
+    }
   }
   useEffect(() => {
     fetch(dataUrl, config)

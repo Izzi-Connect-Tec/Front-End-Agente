@@ -47,9 +47,9 @@ const Charts = () => {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
-            'Accept': 'application/json'
-          },
-          Authorization: `Bearer ${agent.Token}`,
+            'Accept': 'application/json',
+            Authorization: `Bearer ${agent.Token}`,
+          }
         }
         const res = await fetch(`http://44.209.22.101:8080/empleado/duracionPromMeses/${agent.IdEmpleado}`, config)
         if (!res.ok) {
@@ -79,9 +79,9 @@ const Charts = () => {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
-            'Accept': 'application/json'
-          },
-          Authorization: `Bearer ${agent.Token}`,
+            'Accept': 'application/json',
+            Authorization: `Bearer ${agent.Token}`,
+          }
         }
         const response = await fetch(`http://44.209.22.101:8080/empleado/getCalifPromDiaAgentes/${formattedDate}`, config);
         if (!response.ok) {

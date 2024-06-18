@@ -20,10 +20,11 @@ const BottomCards = () => {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
-        'Accept': 'application/json'
-      },
-      Authorization: `Bearer ${agent.Token}`
+        'Accept': 'application/json',
+        Authorization: `Bearer ${agent.Token}`
+      }
     }
+    
     fetch(`${baseUrl}/empleado/getAgenteMejorCalifMes/${formattedDate}`, config)
       .then(response => response.json())
       .then(data => {
