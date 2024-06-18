@@ -1,3 +1,6 @@
+// Author: Joahan Garcia, Giovanna Lorena Delgado Mendoza
+// Incidence form component
+
 import * as React from "react";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";

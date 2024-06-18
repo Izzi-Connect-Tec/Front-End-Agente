@@ -35,7 +35,7 @@ const Solutions = () => {
     catch (error){
       console.error("Error getting data from API: ", error);
     }
-  },[call.TipoLlamada]);
+  },[call.TipoLlamada, agent.Token]);
 
   // Get solutions depending of the call type.
   useEffect(() => {

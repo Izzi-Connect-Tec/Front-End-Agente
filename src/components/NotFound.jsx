@@ -1,3 +1,6 @@
+// Author: Maximiliano Lecona
+// Display the error page
+
 import '../styles/notFound.css';
 
 const NotFound = () => {

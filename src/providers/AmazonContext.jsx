@@ -1,3 +1,6 @@
+// Author: Joahan Garcia
+// Context for the client data
+
 import { createContext, useContext, useState } from "react";
 
 const UserContext = createContext();

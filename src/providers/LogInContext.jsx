@@ -1,3 +1,6 @@
+// Karla Cruz, Benjamin Cruz
+// Create a context provider for the login details
+
 import { createContext, useContext, useState, useEffect } from "react";
 
 const LogInContext = createContext();

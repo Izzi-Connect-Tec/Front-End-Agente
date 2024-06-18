@@ -1,3 +1,6 @@
+// Author: Joahan Garcia, Maximiliano Lecona, Giovanna Lorena Delgado Mendoza
+// Context for the call control
+
 import { createContext, useContext, useState } from "react";
 
 const CallControlContext = createContext();

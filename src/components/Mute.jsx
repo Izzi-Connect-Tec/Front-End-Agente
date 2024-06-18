@@ -1,3 +1,6 @@
+// Author: Joahan Garcia 
+// Mute component
+
 import { useSpring, animated } from "react-spring";
 import { CiMicrophoneOn } from "react-icons/ci";
 import "../styles/mute.css";

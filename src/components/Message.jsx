@@ -1,3 +1,6 @@
+// Author: Maximiliano Lecona, Joahan Garcia
+// Display the messages in the chatbox
+
 import "../styles/message.css";
 
 import { CiFaceSmile, CiFaceFrown, CiFaceMeh } from "react-icons/ci";

@@ -1,3 +1,6 @@
+//Author: Maximiliano Lecona, Karla Cruz
+//Notification bar component
+
 import React, { useCallback, useEffect, useState } from "react";
 import Box from "@mui/material/Box";
 import Drawer from "@mui/material/Drawer";

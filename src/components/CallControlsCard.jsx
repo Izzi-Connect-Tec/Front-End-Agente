@@ -1,3 +1,6 @@
+// Author: Joahan García 
+// Depending on the state of the call, it will display the call controls component
+
 import Stack from "@mui/material/Stack";
 import Paper from "@mui/material/Paper";
 import { styled } from "@mui/material/styles";

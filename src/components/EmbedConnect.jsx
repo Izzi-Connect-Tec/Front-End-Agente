@@ -1,3 +1,6 @@
+// Author: Joahan Garcia, Maximiliano Lecona, Karla Cruz, Giovanna Lorena Delgado Mendoza
+// Embed the Amazon Connect CCP
+
 import "amazon-connect-streams";
 import { useEffect, React, useState, useCallback } from "react";
 import { useUserContext } from "../providers/AmazonContext";

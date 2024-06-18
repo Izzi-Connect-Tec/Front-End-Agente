@@ -1,3 +1,6 @@
+// Author: Joahan Garcia, Karla Cruz, Maximiliano Lecona, Giovanna Lorena Delgado Mendoza
+// Display the transcript component and update the sentiment of the call at the database
+
 import Message from "./Message";
 import { useState, useEffect, useCallback, useRef } from "react";
 import { v4 as uuidv4 } from "uuid";

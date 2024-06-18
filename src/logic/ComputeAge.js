@@ -1,3 +1,6 @@
+// Author: Karla Cruz
+// Compute the age of a person based on their birthdate
+
 export function ComputeAge(fechaNac) {
   // Convert the birthdate into a Date object
   let birthDate = new Date(fechaNac);

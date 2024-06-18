@@ -1,3 +1,6 @@
+// Author: Karla Cruz
+// Display the chat details in a card
+
 import * as React from "react";
 import Stack from "@mui/material/Stack";
 import Paper from "@mui/material/Paper";

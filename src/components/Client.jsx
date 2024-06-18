@@ -1,3 +1,6 @@
+// Author: Joahan Garcia
+// Display the client details 
+
 import { useUserContext } from "../providers/AmazonContext";
 import "../styles/client.css";
 import ClientHistory from "./ClientHistory";

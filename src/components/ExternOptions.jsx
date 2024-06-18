@@ -1,3 +1,6 @@
+// Author: Karla Cruz, Maximiliano Lecona
+// Display the options for incidencidences, reports and supervisor help
+
 import Box from "@mui/material/Box";
 import SpeedDial from "@mui/material/SpeedDial";
 import SpeedDialIcon from "@mui/material/SpeedDialIcon";

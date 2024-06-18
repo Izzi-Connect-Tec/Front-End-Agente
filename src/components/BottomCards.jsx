@@ -58,7 +58,7 @@ const BottomCards = () => {
         );
         setLoading(false);
       });
-  }, [baseUrl, formattedDate]);
+  }, [baseUrl, formattedDate, agent.Token]);
 
   if (loading) {
     return <p>Cargando...</p>;

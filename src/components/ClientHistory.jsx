@@ -1,3 +1,6 @@
+// Author: Maximiliano Lecona
+// Display the client history in a list
+
 import * as React from "react";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";

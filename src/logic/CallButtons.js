@@ -1,3 +1,6 @@
+// Author: Joahan Garcia, Maximiliano Lecona
+// Logic for the call buttons
+
 import "amazon-connect-streams";
 
 export function acceptCall() {

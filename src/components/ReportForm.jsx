@@ -12,7 +12,6 @@ import DialogTitle from "@mui/material/DialogTitle";
 import FlagIcon from "@mui/icons-material/Flag";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { useAlertToggleContext } from "../providers/AlertContext";
 import { useUserContext } from "../providers/AmazonContext";
 import ReportPriority from "./ReportPriority";
 import ReportType from "./ReportType";
@@ -26,7 +25,6 @@ export default function FormDialog() {
   const [idIncidence, setIdIncidence] = React.useState("");
 
   const [user, ,] = useUserContext();
-  const toggleAlert = useAlertToggleContext();
 
   const [open, setOpen] = React.useState(false);
 
@@ -171,7 +169,6 @@ export default function FormDialog() {
                 color: "#EC6907",
               },
             }}
-            onClick={() => toggleAlert(true)}
             type="submit"
           >
             Send

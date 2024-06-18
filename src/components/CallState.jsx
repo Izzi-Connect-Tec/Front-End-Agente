@@ -1,3 +1,6 @@
+// Author: Maximiliano Lecona
+// Display the call state details
+
 import "../styles/callState.css";
 import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
 import EditNoteOutlinedIcon from "@mui/icons-material/EditNoteOutlined";

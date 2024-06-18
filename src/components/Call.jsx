@@ -1,3 +1,6 @@
+// Author: Joahan Garcia
+// Display call cards components or stats component depending on the state of the call
+
 import "../styles/call.css";
 import { CallCard } from "./CallCard";
 import { ClientCard } from "./ClientCard";

@@ -1,3 +1,6 @@
+// Author: Karla Cruz
+// Create a context provider for the call details
+
 import { createContext, useContext, useState } from "react";
 
 const CallContext = createContext();
