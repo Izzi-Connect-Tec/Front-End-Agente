@@ -1,80 +1,70 @@
-/*Bottom Cards*/
+.customContainer {
+  width: 70%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(10px, 1fr));
+  gap: 10px;
+  margin-top: 2%;
+  margin-left: 7.5%;
+}
 
-.custom-container {
-    width: 70%;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(10px, 1fr));
-    gap: 10px;
-    margin-top: 2%;
-    margin-left: 7.5%;
-  }
-  
-  .custom-row {
-    display: flex;
-  }
-  
-  .custom-col {
-    flex: 1;
-  }
+.customRow {
+  display: flex;
+}
 
-  .custom-col2 {
-    flex: 0.4;
-    margin-right: 10px;
-  }
-  
-  .custom-card {
-    border-radius: 10px;
-    overflow: hidden;
-    margin-top: 0%;
-  }
-  
-  .custom-card-title {
-    font-size: 18px;
-    margin-bottom: 10px;
-    margin-top: 0;
-  }
-  
-  .custom-card-header {
-    color: #fff;
-    padding: 5px;
-    text-align: center;
-  }
-  
-  .custom-card-title,
-  .custom-card-text {
-    color: #000;
-  }
-  
-  .custom-card-body {
-    padding: 10px;
-  }
-  
-  .custom-card-title {
-    font-size: 18px;
-    margin-bottom: 10px;
-  }
-  
-  .custom-card-text {
-    font-size: 14px;
-  }
-  
-  .card-primary {
-    border: 1px solid var(--color-primary);
-  }
-  
-  .card-secondary {
-    border: 1px solid var(--color-secondary);
-  }
-  
-  
-  .card-primary .custom-card-header {
-    background-color: var(--color-primary);
-    border-bottom: 2px solid var(--color-primary);
-  }
-  
-  .card-secondary .custom-card-header {
-    background-color: var(--color-secondary);
-    border-bottom: 2px solid var(--color-secondary);
-  }
-  
-  /*Bottom Card fin*/
+.customCol {
+  flex: 1;
+}
+
+.customCol2 {
+  flex: 0.4;
+  margin-right: 10px;
+}
+
+.customCard {
+  border-radius: 10px;
+  overflow: hidden;
+  margin-top: 0%;
+}
+
+.customCardTitle {
+  font-size: 18px;
+  margin-bottom: 10px;
+  margin-top: 0;
+}
+
+.customCardHeader {
+  color: #fff;
+  padding: 5px;
+  text-align: center;
+}
+
+.customCardTitle,
+.customCardText {
+  color: #000;
+}
+
+.customCardBody {
+  padding: 10px;
+}
+
+.custom-card-text {
+  font-size: 14px;
+}
+
+.card-primary {
+  border: 1px solid var(--color-primary);
+}
+
+.card-secondary {
+  border: 1px solid var(--color-secondary);
+}
+
+.card-primary .custom-card-header {
+  background-color: var(--color-primary);
+  border-bottom: 2px solid var(--color-primary);
+}
+
+.card-secondary .custom-card-header {
+  background-color: var(--color-secondary);
+  border-bottom: 2px solid var(--color-secondary);
+}

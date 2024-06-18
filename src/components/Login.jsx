@@ -1,132 +1,133 @@
+// Authors: Karla Cruz and Joahan García
+// Component for the log in page.
+
+import "../styles/logIn.css";
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import "../styles/login.css";
-import giphy from "../elements/pinkdots.gif";
-import logo from "../elements/izziN.png";
-import { useLogInContext } from "../Providers/LogInContext";
+import openingGif from "../assets/pinkDots.gif";
+import logo from "../assets/izziN.png";
+import { useLogInContext } from "../providers/LogInContext";
 
-const Login = () => {
-
+const LogIn = () => {
   const [agent, agentData,] = useLogInContext();
-
-
   const navigate = useNavigate();
-  const [showLogin, setShowLogin] = useState(false);
+  const [showLogIn, setShowLogIn] = useState(false);
   const [gifLoaded, setGifLoaded] = useState(false);
-
-  //Posiblemente cambiar estos
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [errorAut, setErrorAut] = useState(false);
 
-  const [errorAut, setErrorAut] = useState(false)
-
-
+  // Setting timeout to show the login form.
   useEffect(() => {
     setTimeout(() => {
-      setShowLogin(true);
+      setShowLogIn(true);
     }, 2000);
   }, []);
 
+  // Initial gif loading - opening for login.
   useEffect(() => {
     const img = new Image();
     img.onload = () => {
       setGifLoaded(true);
     };
-    img.src = giphy;
+    img.src = openingGif;
   }, []);
 
-  useEffect( () => {
-    // Aquí va lo de verificación
-    if (agent.Nombre){
+  // Navigating to window when the agent's name is available.
+  useEffect(() => {
+    if (agent.Nombre) {
       navigate("/window");
     }
-  }, [agent.Nombre])
+  }, [agent.Nombre, navigate]);
 
-  const handleLogin = async (e) => {
-    e.preventDefault();
+  // Asyncrhonous function to handle the log in request creating a credentials object.
+  const handleLogIn = async (event) => {
+    event.preventDefault();
     try {
-      console.log("INCIANDO SESION");
-      const datos = {
+      console.log("Logging in");
+      const credentials = {
         email: username,
         password: password,
-      }
+      };
       let config = {
-        method: 'POST',
+        method: "POST",
         headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json'
+          'Accept': "application/json",
+          'Content-Type': "application/json",
         },
-        body: JSON.stringify(datos)
-      }
-      // let res = await fetch("http://localhost:8080/auth/signin", config)
-      let res = await fetch("http://44.209.22.101:8080/auth/signin", config)
+        body: JSON.stringify(credentials),
+      };
+      let res = await fetch("http://44.209.22.101:8080/auth/signin", config);
 
       if (!res.ok) {
-        setErrorAut(true)
-        throw new Error('La solicitud no pudo completarse con éxito');
-        
+        setErrorAut(true);
+        throw new Error("Log In request could not be completed. :(");
       }
 
-      const data = await res.json();
-      console.log(data)
-      console.log(data.token.AccessToken)
-      agentData({IdEmpleado: data.user.IdEmpleado, Nombre: data.user.Nombre, ApellidoP: data.user.ApellidoP, ApellidoM: data.user.ApellidoM, Token: data.token.AccessToken});
+      const employeeData = await res.json();
+      console.log(employeeData);
+      console.log(employeeData.token.AccessToken);
+      agentData({
+        IdEmpleado: employeeData.user.IdEmpleado,
+        Nombre: employeeData.user.Nombre,
+        ApellidoP: employeeData.user.ApellidoP,
+        ApellidoM: employeeData.user.apellidoM,
+        Token: employeeData.token.AccessToken,
+      });
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
   };
 
   return (
-    <div className="login-container">
+    <div className="logInContainer">
       <img
-        src={giphy}
-        alt="Gif de fondo"
-        className={`background-gif ${gifLoaded ? "visible" : ""}`}
+        src={openingGif}
+        alt="Log In Gif"
+        className={`backgroundGif ${gifLoaded ? "visible" : ""}`}
       />
       <div
-        className={`background-overlay ${
-          showLogin && gifLoaded ? "blurred" : ""
+        className={`backgroundOverlay ${
+          showLogIn && gifLoaded ? "blurred" : ""
         }`}
-      ></div>
-      <div className={`login-form ${showLogin && gifLoaded ? "visible" : ""}`}>
-        <h2 className="title">Bienvenido</h2>
+      />
+      <div className={`logInForm ${showLogIn && gifLoaded ? "visible" : ""}`}>
+        <h2 className="logInTitle">Welcome</h2>
         <div>
-          <img className="logo" src={logo} alt="logoIzziConnect"></img>
+          <img className="logo" src={logo} alt="IzziConnect logo" />
         </div>
-        <p className="txt">Ingrese sus credenciales para accesar.</p>
-        {errorAut && <p className="error">Usuario o contraseña incorrectos</p>}
-        <div className="formdiv">
-          <form className="form" align="center" onSubmit={handleLogin}>
+        <p className="logInText">Enter your credentials to access.</p>
+        {errorAut && <p className="logInError">Wrong user or password.</p>}
+        <div className="formLogInDiv">
+          <form className="formLogIn" align="center" onSubmit={handleLogIn}>
             <input
               className="input"
               type="email"
-              placeholder="Usuario"
+              placeholder="User"
               value={username}
-              onChange={(e) => setUsername(e.target.value)}
-              disabled={!showLogin || !gifLoaded}
+              onChange={(event) => setUsername(event.target.value)}
+              disabled={!showLogIn || !gifLoaded}
             />
             <input
               className="input"
               type="password"
-              placeholder="Contraseña"
+              placeholder="Password"
               value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              disabled={!showLogin || !gifLoaded}
+              onChange={(event) => setPassword(event.target.value)}
+              disabled={!showLogIn || !gifLoaded}
             />
             <button
               className="button"
               type="submit"
-              disabled={!showLogin || !gifLoaded}
+              disabled={!showLogIn || !gifLoaded}
             >
-              Iniciar Sesión
+              Log In
             </button>
           </form>
         </div>
       </div>
-
-
     </div>
   );
 };
 
-export default Login;
+export default LogIn;

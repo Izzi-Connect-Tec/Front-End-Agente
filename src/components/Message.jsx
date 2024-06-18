@@ -1,5 +1,4 @@
-// import "../styles/chatbox.css";
-import "../styles/sentiment.css"
+import "../styles/message.css";
 
 import { CiFaceSmile, CiFaceFrown, CiFaceMeh } from "react-icons/ci";
 
@@ -22,22 +21,17 @@ const Message = ({ emotion, name, time, content, title }) => {
       icon = <CiFaceMeh className="icon" />;
   }
 
-  //AREGLAR EL DE AGENTE
-
   return (
     <section>
-    <p className={titleClass}>{name + " " + time}</p>
-    <div className={messageClass}>
-      {icon}
-      <div className="texts">
-        <p>{content}</p>
-      </div>
+      <p className={titleClass}>{name + " " + time}</p>
+      <div className={messageClass}>
+        {icon}
+        <div className="texts">
+          <p>{content}</p>
+        </div>
       </div>
     </section>
   );
 };
 
-
-
 export default Message;
-

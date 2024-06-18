@@ -1,8 +1,8 @@
-// Autor: Karla Cruz
-// Proveedor de contexto de las notificaciones
+// Author: Karla Cruz
+// Context provider for notifications.
 
-import { createContext } from 'react';
+import { createContext } from "react";
 
-const NotificationContext = createContext(); // Crear el contexto
+const NotificationContext = createContext();
 
 export default NotificationContext;

@@ -1,46 +1,41 @@
 import Message from "./Message";
 import { useState, useEffect, useCallback, useRef } from "react";
-import { v4 as uuidv4 } from 'uuid';
-import "../styles/sentiment.css"
-import { useLogInContext } from "../Providers/LogInContext";
-import { useLlamadaContext } from "../Providers/LlamadaContext";
-
+import { v4 as uuidv4 } from "uuid";
+import "../styles/chatbox.css";
+import { useLogInContext } from "../providers/LogInContext";
+import { useCallContext } from "../providers/CallContext";
 
 const Chatbox = (props) => {
+  const [, , , changeCallSentiment] = useCallContext();
 
-  const [,,,cambiarSentimientoLlamada] = useLlamadaContext();
-
-  const endRef = useRef(null)
-
-  let agent = JSON.parse(window.localStorage.getItem('Agent'));
+  const endRef = useRef(null);
+  const [agent, ,] = useLogInContext();
 
   const [messages, setMessages] = useState([]);
 
   useEffect(() => {
-      endRef.current?.scrollIntoView({behavior: "smooth"})
-  }, [messages])
+    endRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [messages]);
 
   const [lastCustomerSentiment, setLastCustomerSentiment] = useState(null);
 
   useEffect(() => {
     const fetchMessages = () => {
-    let config = {
-          method: 'GET',
-          headers: {
-            'Content-Type': 'application/json',
-            'Accept': 'application/json'
-          },
-          Authorization: `Bearer ${agent.Token}`,
-        }
-      fetch(`http://44.209.22.101:8080/connect/sentiment/${props.id}`, config)
+      fetch(`http://44.209.22.101:8080/connect/sentiment/${props.id}`, {
+        headers: { Authorization: `Bearer ${agent.Token}` },
+      })
         .then(console.log("TOKEN", agent.Token))
         .then((response) => response.json())
         .then((data) => {
           console.log(data);
           setMessages(data);
-          const lastCustomerMessage = [...data].reverse().find((msg) => msg.role === "CUSTOMER");
+          const lastCustomerMessage = [...data]
+            .reverse()
+            .find((msg) => msg.role === "CUSTOMER");
           if (lastCustomerMessage) {
-            cambiarSentimientoLlamada({SentimientoLlamada: lastCustomerMessage.sentiment });
+            changeCallSentiment({
+              SentimientoLlamada: lastCustomerMessage.sentiment,
+            });
             setLastCustomerSentiment(lastCustomerMessage.sentiment);
           }
         })
@@ -50,47 +45,47 @@ const Chatbox = (props) => {
 
     fetchMessages();
 
-    const intervalId = setInterval(fetchMessages, 2500  );
+    const intervalId = setInterval(fetchMessages, 2500);
 
     return () => clearInterval(intervalId);
-  }, []);
+  }, [agent.Token, changeCallSentiment, messages, props.id]);
 
-  const updateSentiment = useCallback( async () => {
-    if (lastCustomerSentiment){
-      try{
+  const updateSentiment = useCallback(async () => {
+    if (lastCustomerSentiment) {
+      try {
         const datos = {
           id: props.id,
-          sentiment: lastCustomerSentiment
-        }
+          sentiment: lastCustomerSentiment,
+        };
         let config = {
-          method: 'PUT',
+          method: "PUT",
           headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
+            Accept: "application/json",
+            "Content-Type": "application/json",
             Authorization: `Bearer ${agent.Token}`,
           },
-          body: JSON.stringify(datos)
-        }
-        let res = await fetch("http://44.209.22.101:8080/llamada/cambiarSentiment", config) 
+          body: JSON.stringify(datos),
+        };
+        let res = await fetch(
+          "http://44.209.22.101:8080/llamada/cambiarSentiment",
+          config
+        );
         if (!res.ok) {
-          throw new Error('La solicitud no pudo completarse con éxito');
+          throw new Error("The request could not be completed successfully");
         }
-      } catch (error){
-        console.log(error)
+      } catch (error) {
+        console.log(error);
       }
     }
-  }, [lastCustomerSentiment])
+  }, [lastCustomerSentiment, agent.Token, props.id]);
 
   useEffect(() => {
     updateSentiment();
-  }, [updateSentiment])
-
+  }, [updateSentiment]);
 
   return (
     <div className="container">
-      <div className="titulo-transcripcion">
-          Transcript
-      </div>
+      <div className="transcriptionTitle">Transcript</div>
       <div className="center">
         {messages.map((mensaje) => (
           <Message
@@ -102,7 +97,7 @@ const Chatbox = (props) => {
             title={mensaje.role}
           />
         ))}
-        <div ref={endRef}></div>   
+        <div ref={endRef}></div>
       </div>
     </div>
   );

@@ -1,53 +1,40 @@
-import { createContext, useContext, useEffect, useState } from "react";
-
+import { createContext, useContext, useState } from "react";
 
 const LogInContext = createContext();
 
 export const useLogInContext = () => {
-    return useContext(LogInContext);
-}
+  return useContext(LogInContext);
+};
 
-export const LogInProvider = ({children}) => {
+export const LogInProvider = ({ children }) => {
+  const defaultAgent = {
+    IdEmpleado: null,
+    Nombre: null,
+    ApellidoP: null,
+    ApellidoM: null,
+    Token: null,
+  };
 
-    const defaultAgent = {
-        IdEmpleado: null,
-        Nombre: null,
-        ApellidoP: null,
-        ApellidoM: null,
-        Token: null,
-        //usuario?
-    }
+  const [agent, setAgent] = useState(defaultAgent);
 
-    const [agent, setAgent] = useState(defaultAgent);
+  const agentData = ({ IdEmpleado, Nombre, ApellidoP, ApellidoM, Token }) => {
+    setAgent((prevAgent) => ({
+      ...prevAgent,
+      IdEmpleado: IdEmpleado,
+      Nombre: Nombre,
+      ApellidoP: ApellidoP,
+      ApellidoM: ApellidoM,
+      Token: Token,
+    }));
+  };
 
-    const agentData = ({IdEmpleado, Nombre, ApellidoP, ApellidoM, Token}) => {
-        setAgent(prevAgent => ({
-            ...prevAgent,
-            IdEmpleado: IdEmpleado,
-            Nombre: Nombre,
-            ApellidoP: ApellidoP,
-            ApellidoM: ApellidoM,
-            Token: Token,
-        }));
+  const restartAgent = () => {
+    setAgent(defaultAgent);
+  };
 
-    }
-
-    useEffect(() => {
-        if(agent.IdEmpleado!=null){
-            window.localStorage.setItem('Agent', JSON.stringify(agent));
-        }
-    }, [agent])
-
-    const restartAgent = () => {
-        setAgent(defaultAgent);
-    };
-
-    return (
-        <LogInContext.Provider value={[agent, agentData, restartAgent]}>
-            {children}
-        </LogInContext.Provider>
-
-    )
-
-
-}
+  return (
+    <LogInContext.Provider value={[agent, agentData, restartAgent]}>
+      {children}
+    </LogInContext.Provider>
+  );
+};

@@ -1,6 +1,8 @@
+// Author: Lorena Delgado
+
 import '../styles/bottomCards.css';
 import { useState, useEffect } from 'react';
-import TarjetaControlesLlamada from './TarjetaControlesLlamada';
+import CallControlsCard from './CallControlsCard';
 
 const BottomCards = () => {
   const baseUrl = process.env.REACT_APP_API_BASE_URL;
@@ -12,20 +14,9 @@ const BottomCards = () => {
   const [agentWithBestRating, setAgentWithBestRating] = useState('Cargando...');
   const [agentWithMostCalls, setAgentWithMostCalls] = useState('Cargando...');
   const [loading, setLoading] = useState(true);
-  let agent = JSON.parse(window.localStorage.getItem('Agent'));
-
 
   useEffect(() => {
-    let config = {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json',
-        Authorization: `Bearer ${agent.Token}`
-      }
-    }
-    
-    fetch(`${baseUrl}/empleado/getAgenteMejorCalifMes/${formattedDate}`, config)
+    fetch(`${baseUrl}/empleado/getAgenteMejorCalifMes/${formattedDate}`)
       .then(response => response.json())
       .then(data => {
         console.log(data);
@@ -33,11 +24,11 @@ const BottomCards = () => {
         setLoading(false);
       })
       .catch(error => {
-        console.error('Error fetching from agente mejor calif:', error);
+        console.error('Error fetching best rated agent:', error);
         setLoading(false);
       });
 
-    fetch(`${baseUrl}/empleado/getAgenteMasLlamadasDia/${formattedDate}`, config)
+    fetch(`${baseUrl}/empleado/getAgenteMasLlamadasDia/${formattedDate}`)
       .then(response => response.json())
       .then(data => {
         console.log(data);
@@ -45,38 +36,38 @@ const BottomCards = () => {
         setLoading(false);
       })
       .catch(error => {
-        console.error('Error fetching from agente mas llamadas:', error);
+        console.error('Error fetching agent with more calls in the day:', error);
         setLoading(false);
       });
-  }, []);
+  }, [baseUrl, formattedDate]);
 
   if (loading) {
     return <p>Cargando...</p>;
   }
 
   return (
-    <div className="custom-container">
-      <div className="custom-row">
-      <div className="custom-col2">
+    <div className="customContainer">
+      <div className="customRow">
+      <div className="customCol2">
             <div>
               <div>
-              <TarjetaControlesLlamada/>
+              <CallControlsCard/>
               </div>
             </div>
           </div>
-        <div className="custom-col">
-          <div className="custom-card card-primary">
-            <div className="custom-card-header">Agente con mejor calificación al mes</div>
-            <div className="custom-card-body">
-              <h5 className="custom-card-title">{agentWithBestRating}</h5>
+        <div className="customCol">
+          <div className="customCard cardPrimary">
+            <div className="customCardHeader">Best rated agent</div>
+            <div className="customCardBody">
+              <h5 className="customCardTitle">{agentWithBestRating}</h5>
             </div>
           </div>
         </div>
-        <div className="custom-col">
-          <div className="custom-card card-secondary">
-            <div className="custom-card-header">Agente con más llamadas al día</div>
-            <div className="custom-card-body">
-              <h5 className="custom-card-title">{agentWithMostCalls}</h5>
+        <div className="customCol">
+          <div className="customCard cardSecondary">
+            <div className="customCardHeader">Agent with more calls</div>
+            <div className="customCardBody">
+              <h5 className="customCardTitle">{agentWithMostCalls}</h5>
             </div>
           </div>
         </div>

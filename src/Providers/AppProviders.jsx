@@ -1,19 +1,16 @@
-import React from 'react';
-import { UserProvider } from './AmazonContext';
-import { AlertProvider } from './AlertContext';
-import { LlamadaProvider } from './LlamadaContext';
-
+import React from "react";
+import { UserProvider } from "./AmazonContext";
+import { CallProvider } from "./CallContext";
+import { AlertProvider } from "./AlertContext";
 
 const AppProviders = ({ children }) => {
-    return (
-        <UserProvider>
-            <LlamadaProvider>
-                <AlertProvider>
-                        {children}
-                </AlertProvider>
-            </LlamadaProvider>
-        </UserProvider>
-    );
+  return (
+    <UserProvider>
+      <CallProvider>
+        <AlertProvider>{children}</AlertProvider>
+      </CallProvider>
+    </UserProvider>
+  );
 };
 
 export default AppProviders;

@@ -1,10 +1,9 @@
 import CardComponent from "./CardComponent";
-import "../styles/calificacion.css";
-
+import "../styles/cardContainer.css";
+import { useLogInContext } from "../providers/LogInContext";
 
 const CardContainer = () => {
-  let agent = JSON.parse(window.localStorage.getItem('Agent'));
-
+  const [agente] = useLogInContext();
   const baseUrl = process.env.REACT_APP_API_BASE_URL;
 
   const date = new Date();
@@ -17,33 +16,33 @@ const CardContainer = () => {
 
   const cardsData = [
     {
-      title: "Calificación promedio del agente",
-      dataUrl: `${baseUrl}/empleado/califPromDia/${agent.IdEmpleado}/calificaciones/${formattedDate}`,
-      rankUrl: `${baseUrl}/empleado//leaderboardCalificacionesDia/${formattedDate}/${agent.IdEmpleado}`,
+      title: "Rating today",
+      dataUrl: `${baseUrl}/empleado/califPromDia/${agente.IdEmpleado}/calificaciones/${formattedDate}`,
+      rankUrl: `${baseUrl}/empleado//leaderboardCalificacionesDia/${formattedDate}/${agente.IdEmpleado}`,
       color: "#00BCB4",
     },
     {
-      title: "Cantidad de llamadas en el día",
-      dataUrl: `${baseUrl}/empleado/llamadasDiaHoyEmpleado/${agent.IdEmpleado}/${formattedDate}`,
-      rankUrl: `${baseUrl}/empleado//leaderboardLlamadasDia/${formattedDate}/${agent.IdEmpleado}`,
+      title: "Call count today",
+      dataUrl: `${baseUrl}/empleado/llamadasDiaHoyEmpleado/${agente.IdEmpleado}/${formattedDate}`,
+      rankUrl: `${baseUrl}/empleado//leaderboardLlamadasDia/${formattedDate}/${agente.IdEmpleado}`,
       color: "#D7006D",
     },
     {
-      title: "Moda de sentiminento de llamadas",
-      dataUrl: `${baseUrl}/empleado/modaDeSentimientoEmpleado/${agent.IdEmpleado}`,
-      rankUrl: "urllll",
+      title: "Call Feeling Fashion",
+      dataUrl: `${baseUrl}/empleado/modaDeSentimientoEmpleado/${agente.IdEmpleado}`,
+      rankUrl: null,
       color: "#FFCE00",
     },
     {
-      title: "Promedio de tiempo en llamada",
-      dataUrl: `${baseUrl}/empleado/getPromedioTiempoLlamada/${agent.IdEmpleado}`,
-      rankUrl: "urllll",
+      title: "Average call duration",
+      dataUrl: `${baseUrl}/empleado/getPromedioTiempoLlamada/${agente.IdEmpleado}`,
+      rankUrl: null,
       color: "#EC6907",
     },
   ];
 
   return (
-    <div className="card-container">
+    <div className="cardContainer">
       {cardsData.map((cardData, index) => (
         <CardComponent
           key={index}
