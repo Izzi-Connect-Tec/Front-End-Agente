@@ -93,9 +93,9 @@ const Chatbox = (props) => {
   }, [updateSentiment]);
 
   return (
-    <div className="container">
+    <div className="chatboxContainer">
       <div className="transcriptionTitle">Transcript</div>
-      <div className="center">
+      <div className="chatboxCenter">
         {messages.map((mensaje) => (
           <Message
             key={uuidv4()}

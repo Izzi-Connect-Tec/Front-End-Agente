@@ -2,14 +2,11 @@
   font-weight: bold;
   font-size: 2rem;
   display: flex;
-  margin-bottom: 3px;
-  padding: 0;
   box-sizing: border-box;
   font-family: "Century Gothic", "Futura";
 }
 
-.dataClient {
-  overflow-y: scroll;
+.callRow .dataClient {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -31,20 +28,22 @@
   width: 100%;
 }
 
-.icon {
+.dataClient .icon {
   background-color: rgb(233, 237, 243);
   height: 40px;
   width: 40px;
   border-radius: 5px;
   display: flex;
+  flex-direction: row;
   justify-content: center;
   align-items: center;
 }
 
 .dataClient svg {
-  width: 30px;
-  height: 30px;
+  width: 32px;
+  height: 32px;
   margin-right: 10px;
+  margin-left: 10px;
 }
 
 .callLabel {
@@ -58,8 +57,6 @@
 .callRow {
   display: flex;
   flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: space-between;
 }
 
 #e1,

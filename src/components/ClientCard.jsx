@@ -14,6 +14,7 @@ const DemoPaper = styled(Paper)(({ theme }) => ({
   elevation: 15,
   ...theme.typography.body2,
   textAlign: "center",
+  overflowY: "auto",
 }));
 
 export const ClientCard = () => {
