@@ -1,103 +1,106 @@
-// Autor: Karla Cruz
-// Componente que muestra los pasos para la solución seleccionada; es una ventana modal y se despliega al dar clic en una solución
+// Author: Karla Cruz
+// Component that displays the steps for the selected solution; it is a modal window and is displayed when clicking on a solution
 
+import "../styles/stepsCard.css";
 import { useState, useEffect } from "react";
 import { IoClose } from "react-icons/io5";
 import { PiSmileyBold } from "react-icons/pi";
 import { PiSmileySadBold } from "react-icons/pi";
 import { FaArrowRight } from "react-icons/fa";
 import { FaArrowLeft } from "react-icons/fa";
-import "../styles/stepsCard.css";
-import { useLlamadaContext } from "../Providers/LlamadaContext";
+import { useCallContext } from "../providers/CallContext";
 
 const StepsCard = (props) => {
-  const [call,,] = useLlamadaContext();
+  let agent = JSON.parse(window.localStorage.getItem('Agent'));
+  const [call, ,] = useCallContext();
   const { solution } = props;
-  const [currentStepIndex, setCurrentStepIndex] = useState(0); // Estado para el índice del paso actual
-  const [showFeedback, setShowFeedback] = useState(false); // Estado para mostrar el feedback
+  const [currentStepIndex, setCurrentStepIndex] = useState(0);
+  const [showFeedback, setShowFeedback] = useState(false);
 
-
-  const actualizarSolucionLlamada = async () => {
-    
-    const data = {
+  // 
+  const updateSolutionCall = async () => {
+    const solData = {
       IdLlamada: call.IdLlamada,
       IdSolucion: props.solutionId,
-    }
-
+    };
 
     try {
       let config = {
         method: "PUT",
         headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json',
+          Accept: "application/json",
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${agent.Token}`
         },
-        body: JSON.stringify(data),
+        body: JSON.stringify(solData),
       };
-      let res = await fetch('http://44.209.22.101:8080/llamada/solucionLlamada' , config)
-      console.log(res)
-      if (!res.ok){
-        console.log(res)
+      let res = await fetch(
+        "http://44.209.22.101:8080/llamada/solucionLlamada",
+        config
+      );
+      console.log(res);
+      if (!res.ok) {
+        console.log(res);
       }
-    } catch (error){
-      console.error("Error al enviar el reporte:", error);
+    } catch (error) {
+      console.error("Error sending report:", error);
     }
-  }
+  };
 
-  // Reiniciar el índice del paso actual y el feedback al abrir el modal
+  // Restart the current step index and feedback when opening the modal
   useEffect(() => {
     if (props.show && solution) {
-      setCurrentStepIndex(0); // Reiniciar el índice del paso actual
-      setShowFeedback(false); // Reiniciar el feedback
+      setCurrentStepIndex(0);
+      setShowFeedback(false);
     }
-  }, [props.show, solution]); // Dependencias
+  }, [props.show, solution]);
 
-  if (!solution) return null; // Si no hay solución, no mostrar nada
+  if (!solution) return null; // If there is no solution, return null
 
-  const steps = solution.Pasos; // Pasos de la solución
-  const totalSteps = steps.length; // Número total de pasos
+  const steps = solution.Pasos; // Steps for the solution
+  const totalSteps = steps.length; // Number of steps
 
-  // Funciones para manejar los pasos
-  // Avanzar al siguiente paso
+  // Functions for handling the steps
+  // Go to the next step
   const handleNext = () => {
-    if (currentStepIndex < totalSteps - 1) { // Si no es el último paso
-      setCurrentStepIndex(currentStepIndex + 1); // Avanzar al siguiente paso
-    } else { // Si es el último paso
-      setShowFeedback(true); // Mostrar el feedback
+    if (currentStepIndex < totalSteps - 1) {
+      setCurrentStepIndex(currentStepIndex + 1);
+    } else {
+      setShowFeedback(true);
     }
   };
 
-  // Retroceder al paso anterior
+  // Go to the previous step
   const handlePrevious = () => {
-    if (currentStepIndex > 0) { // Si no es el primer paso
-      setCurrentStepIndex(currentStepIndex - 1); // Retroceder al paso anterior
+    if (currentStepIndex > 0) {
+      setCurrentStepIndex(currentStepIndex - 1);
     }
   };
 
-  // Función para manejar el feedback (sí/no)
+  // Function to handle the feedback (yes/no)
   const handleFeedback = (response) => {
     console.log(`User response: ${response}`);
-    if (response === "no") { // Si la respuesta es "No"
-      props.block(); // Bloquear la solución si la respuesta es "No"
+    if (response === "no") {
+      props.block();
     }
     if (response === "yes") {
-      actualizarSolucionLlamada();
+      updateSolutionCall();
     }
-    props.close(); // Cerrar el modal
+    props.close();
   };
 
   return (
     <>
       {props.show ? (
-        <div className="modalContainer" onClick={props.close}> 
+        <div className="modalContainer" onClick={props.close}>
           <div className="modal" onClick={(e) => e.stopPropagation()}>
-            <header className="modal_header">
-              <h3 className="modal_header-title">{solution.Nombre}</h3>
+            <header className="modalHeader">
+              <h3 className="modalHeaderTitle">{solution.Nombre}</h3>
               <button className="close" onClick={props.close}>
                 <IoClose alt="close" />
               </button>
             </header>
-            <main className="modal_content">
+            <main className="modalContent">
               {showFeedback ? (
                 <div>
                   <p className="question">Did this solution work?</p>
@@ -116,35 +119,35 @@ const StepsCard = (props) => {
                 </div>
               ) : (
                 <div>
-                  <div className="paso">
+                  <div className="step">
                     <p>Step {currentStepIndex + 1}</p>
                   </div>
-                  <div className="step-description">
+                  <div className="stepDescription">
                     <p>{steps[currentStepIndex].Descripcion}</p>
                   </div>
                 </div>
               )}
             </main>
-            <footer className="modal_footer">
-              <button className="modal-close" onClick={props.close}>
+            <footer className="modalFooter">
+              <button className="modalClose" onClick={props.close}>
                 Cancel
               </button>
               {!showFeedback && (
                 <>
                   <button
-                    className={`step-button ${
+                    className={`stepButton ${
                       currentStepIndex === 0 ? "disabled" : ""
                     }`}
                     onClick={handlePrevious}
                     disabled={currentStepIndex === 0}
                   >
-                    <FaArrowLeft className="sim-flecha" />
+                    <FaArrowLeft className="arrowSymbol" />
                   </button>
-                  <button className="step-button" onClick={handleNext}>
+                  <button className="stepButton" onClick={handleNext}>
                     {currentStepIndex === totalSteps - 1 ? (
-                      "Finalizar"
+                      "End"
                     ) : (
-                      <FaArrowRight className="sim-flecha" />
+                      <FaArrowRight className="arrowSymbol" />
                     )}
                   </button>
                 </>

@@ -7,12 +7,12 @@
   width: 100%;
 }
 
-.solutions-div {
+.solutionsDiv {
   display: flex;
   align-items: center;
 }
 
-.titulo-soluciones {
+.solutionsTitle {
   font-weight: bold;
   font-size: 2rem;
   display: flex;
@@ -20,26 +20,14 @@
   font-family: "Century Gothic", "Futura";
 }
 
-/* .possible-solutions {
-
-     flex: 9;
-    flex-direction: column;
-    padding: 0px;
-    border-radius: 20px;
-    border: 3px solid #FFCE00;
-    align-items: center;
-    overflow-y: auto;
-    display: flex;  
-} */
-
-.carousel-container {
+.carouselContainer {
   display: flex;
   justify-content: center;
   align-items: center;
   width: 100%;
 }
 
-.carousel-button {
+.carouselButton {
   background-color: #ffce00;
   border: none;
   color: white;
@@ -54,13 +42,13 @@
   font-family: "Century Gothic", "Futura";
 }
 
-.solution-card {
+.solutionCard {
   flex: 0 0 auto;
   margin: 5px;
   transition: transform 0.3s ease, opacity 0.3s ease;
 }
 
-.botones-solutions {
+.solutionsButtons{
   flex: 1;
   display: flex;
   flex-direction: column;

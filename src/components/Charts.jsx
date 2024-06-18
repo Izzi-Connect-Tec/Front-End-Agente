@@ -1,10 +1,11 @@
-/* Autora: Giovanna Lorena Delgado Mendoza*/
-/*Gráficas de la ventana de calificación que muestra estadísticas de los agentes*/
-import { useState, useEffect } from 'react';
-import { BarChart } from '@mui/x-charts/BarChart';
-import { LineChart } from '@mui/x-charts/LineChart';
-import '../styles/charts.css';
-import { useLogInContext } from '../Providers/LogInContext';
+/* Author: Giovanna Lorena Delgado Mendoza*/
+/*Rating window graphs showing agent statistics*/
+
+import { useState, useEffect } from "react";
+import { BarChart } from "@mui/x-charts/BarChart";
+import { LineChart } from "@mui/x-charts/LineChart";
+import "../styles/charts.css";
+
 
 const Charts = () => {
 
@@ -20,19 +21,19 @@ const Charts = () => {
 
   //Dummies
   const defaultDurationData = [
-    { month: 'Enero', duration: 5 },
-    { month: 'Febrero', duration: 6 },
-    { month: 'Marzo', duration: 7 },
-    { month: 'Abril', duration: 5 },
-    { month: 'Mayo', duration: 6 },
+    { month: "January", duration: 5 },
+    { month: "February", duration: 6 },
+    { month: "March", duration: 7 },
+    { month: "April", duration: 5 },
+    { month: "May", duration: 6 },
   ];
 
   const defaultAgentData = [
-    { agente: 'Agustín Ríos', value: 4.5 },
-    { agente: 'Lara Díaz', value: 3.8 },
-    { agente: 'Juan Ortíz', value: 4.2 },
-    { agente: 'Karla Lara', value: 4.9 },
-    { agente: 'Diana Fuentes', value: 4.1 },
+    { agente: "Agustín Ríos", value: 4.5 },
+    { agente: "Lara Díaz", value: 3.8 },
+    { agente: "Juan Ortíz", value: 4.2 },
+    { agente: "Karla Lara", value: 4.9 },
+    { agente: "Diana Fuentes", value: 4.1 },
   ];
 
   const [durationData, setDurationData] = useState(defaultDurationData);
@@ -40,9 +41,8 @@ const Charts = () => {
 
   useEffect(() => {
     const fetchDurationData = async () => {
-      console.log(agent)
-      console.log(agent.IdEmpleado)
-      try{
+      try {
+
         let config = {
           method: 'GET',
           headers: {
@@ -51,84 +51,87 @@ const Charts = () => {
             Authorization: `Bearer ${agent.Token}`,
           }
         }
-        const res = await fetch(`http://44.209.22.101:8080/empleado/duracionPromMeses/${agent.IdEmpleado}`, config)
+
+        const res = await fetch(
+          `http://44.209.22.101:8080/empleado/duracionPromMeses/${agent.IdEmpleado}`, config
+        );
         if (!res.ok) {
-          throw new Error('Network response was not ok');
+          throw new Error("Network response was not ok");
         }
         const data = await res.json();
 
-         // Convertir AvgDuration de milisegundos a minutos
-         const formattedData = data.map(item => ({
+        // Convert AvgDuration from milliseconds to minutes
+        const formattedData = data.map((item) => ({
           ...item,
-          AvgDuration: parseFloat(item.AvgDuration) / 60 // Convertir a minutos
+          AvgDuration: parseFloat(item.AvgDuration) / 60, // Convert to minutes
         }));
 
-        console.log("Agent duration: ", formattedData)
-
         setDurationData(formattedData);
-
-      } catch (error){
-        console.error('Error fetching agent data for agent data:', error);
+      } catch (error) {
+        console.error("Error fetching agent data for agent data:", error);
       }
-
     };
 
     const fetchAgentData = async () => {
       try {
-        let config = {
-          method: 'GET',
-          headers: {
-            'Content-Type': 'application/json',
-            'Accept': 'application/json',
-            Authorization: `Bearer ${agent.Token}`,
-          }
-        }
-        const response = await fetch(`http://44.209.22.101:8080/empleado/getCalifPromDiaAgentes/${formattedDate}`, config);
+        const response = await fetch(
+          `http://44.209.22.101:8080/empleado/getCalifPromDiaAgentes/${formattedDate}`
+        );
         if (!response.ok) {
-          throw new Error('Network response was not ok');
+          throw new Error("Network response was not ok");
         }
         const data = await response.json();
-        console.log('Agent data:', data);
-        setAgentData(data); // Asigna los datos formateados de la API
+        console.log("Agent data:", data);
+        setAgentData(data); // Asign formated data to the API
       } catch (error) {
-        console.error('Error fetching agent data for agent data:', error);
+        console.error("Error fetching agent data for agent data:", error);
       }
     };
 
     fetchAgentData();
     fetchDurationData();
-  }, []);
+  }, [agent.IdEmpleado, formattedDate, agent.Token]);
 
   const colors = {
-    tertiary: 'rgba(255, 206, 0, 0.8)',
-    quaternary: 'rgba(236, 105, 7, 0.8)',
+    tertiary: "rgba(255, 206, 0, 0.8)",
+    quaternary: "rgba(236, 105, 7, 0.8)",
   };
 
   const agentChartSetting = {
-    yAxis: [{ label: 'Calificación Promedio' }],
-    series: [{ dataKey: 'value', label: 'Calificación', color: colors.quaternary }],
+    yAxis: [{ label: "Average Rating" }],
+    series: [
+      { dataKey: "value", label: "Calificación", color: colors.quaternary },
+    ],
     height: 300,
   };
 
   const durationChartSetting = {
-    yAxis: [{ label: 'Average duration in call (minutes)' }],
-    series: [{ dataKey: 'AvgDuration', label: 'Duration', color: colors.tertiary }],
-    height: 300
+    yAxis: [{ label: "Average duration in call (minutes)" }],
+    series: [
+      { dataKey: "AvgDuration", label: "Duration", color: colors.tertiary },
+    ],
+    height: 300,
   };
 
   return (
-    <div className="charts-container">
-      <div className="chart-wrapper">
+    <div className="chartsContainer">
+      <div className="chartWrapper">
         <LineChart
           dataset={durationData}
-          xAxis={[{ scaleType: 'band', dataKey: 'Month' }]}
+          xAxis={[{ scaleType: "band", dataKey: "Month" }]}
           {...durationChartSetting}
         />
       </div>
-      <div className="chart-wrapper">
+      <div className="chartWrapper">
         <BarChart
           dataset={agentData}
-          xAxis={[{ scaleType: 'band', dataKey: 'agente', tick: { angle: -45, textAnchor: 'end' } }]}
+          xAxis={[
+            {
+              scaleType: "band",
+              dataKey: "agente",
+              tick: { angle: -45, textAnchor: "end" },
+            },
+          ]}
           margin={{ top: 20, right: 30, left: 20, bottom: 50 }}
           {...agentChartSetting}
         />

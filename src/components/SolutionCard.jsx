@@ -1,5 +1,5 @@
-// Autor: Karla Cruz
-// Componente de la tarjeta de solución individual, es una tarjeta por solución
+// Author: Karla Cruz
+// Component of the individual solution card, it is a card per solution
 
 import "../styles/solutionCard.css";
 import { useState } from "react";
@@ -7,31 +7,30 @@ import StepsCard from "./StepsCard";
 
 const SolutionCard = (props) => {
   
-  const [steps, setSteps] = useState(false); // Estado para mostrar los pasos
-  //const [blocked, setBlocked] = useState(false); // Estado para bloquear la solución
+  const [steps, setSteps] = useState(false);
 
-  // Función para mostrar los pasos
+  // Function for showing the steps
   const Toggle = () => {
-    if (!props.isBlocked) { // Si la solución no está bloqueada
-      setSteps(!steps); // Mostrar los pasos
+    if (!props.isBlocked) { 
+      setSteps(!steps);
     }
   };
 
-  const solution = props.solution; // Usar la solución pasada por props
+  const solution = props.solution;
 
-  // Función para bloquear la solución
+  // Function for blocking the solution 
   const handleBlock = () => {
-    props.blockSolution(); // Función para bloquear la solución
-    setSteps(false); // Cerrar el modal
+    props.blockSolution();
+    setSteps(false);
   };
 
   return (
     <>
       <div
-        className={`solution-card ${props.isBlocked ? "blocked" : ""} ${props.isActive ? "active" : "inactive"}`}
+        className={`solutionCard ${props.isBlocked ? "blocked" : ""} ${props.isActive ? "active" : "inactive"}`}
         onClick={Toggle}
       >
-        <p className="text-solution">{props.tituloSolucion}</p>
+        <p className="textSolution">{props.solutionTitle}</p>
       </div>
       <StepsCard
         solutionId={props.solutionId}

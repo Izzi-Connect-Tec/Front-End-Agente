@@ -1,4 +1,6 @@
-//Para las estrellas de la calificación promedio del agente
+/* Author: Giovanna Lorena Delgado Mendoza*/
+/*For average agent rating stars*/
+
 import { faStar, faStarHalfAlt } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import '../styles/starRating.css';
@@ -18,7 +20,7 @@ const StarRating = ({ rating, marginTop }) => {
     }
   }
 
-  return <div className="star-rating" style={{ marginTop: marginTop }}>{stars}</div>;
+  return <div className="starRating" style={{ marginTop: marginTop }}>{stars}</div>;
 };
 
 export default StarRating;

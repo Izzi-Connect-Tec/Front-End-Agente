@@ -1,10 +1,12 @@
-import CardComponent from "./CardComponent";
-import "../styles/calificacion.css";
+/* Author: Giovanna Lorena Delgado Mendoza */
+/*Container and APIs for the top cards of the rating window*/
 
+import CardComponent from "./CardComponent";
+import "../styles/cardContainer.css";
 
 const CardContainer = () => {
-  let agent = JSON.parse(window.localStorage.getItem('Agent'));
 
+  let agent = JSON.parse(window.localStorage.getItem('Agent'));
   const baseUrl = process.env.REACT_APP_API_BASE_URL;
 
   const date = new Date();
@@ -17,33 +19,33 @@ const CardContainer = () => {
 
   const cardsData = [
     {
-      title: "Calificación promedio del agente",
+      title: "Rating today",
       dataUrl: `${baseUrl}/empleado/califPromDia/${agent.IdEmpleado}/calificaciones/${formattedDate}`,
       rankUrl: `${baseUrl}/empleado//leaderboardCalificacionesDia/${formattedDate}/${agent.IdEmpleado}`,
       color: "#00BCB4",
     },
     {
-      title: "Cantidad de llamadas en el día",
+      title: "Call count today",
       dataUrl: `${baseUrl}/empleado/llamadasDiaHoyEmpleado/${agent.IdEmpleado}/${formattedDate}`,
       rankUrl: `${baseUrl}/empleado//leaderboardLlamadasDia/${formattedDate}/${agent.IdEmpleado}`,
       color: "#D7006D",
     },
     {
-      title: "Moda de sentiminento de llamadas",
+      title: "Call Feeling Fashion",
       dataUrl: `${baseUrl}/empleado/modaDeSentimientoEmpleado/${agent.IdEmpleado}`,
-      rankUrl: "urllll",
+      rankUrl: null,
       color: "#FFCE00",
     },
     {
-      title: "Promedio de tiempo en llamada",
+      title: "Average call duration",
       dataUrl: `${baseUrl}/empleado/getPromedioTiempoLlamada/${agent.IdEmpleado}`,
-      rankUrl: "urllll",
+      rankUrl: null,
       color: "#EC6907",
     },
   ];
 
   return (
-    <div className="card-container">
+    <div className="cardContainer">
       {cardsData.map((cardData, index) => (
         <CardComponent
           key={index}

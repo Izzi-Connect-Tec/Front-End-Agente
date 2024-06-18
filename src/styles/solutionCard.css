@@ -1,4 +1,4 @@
-.solution-card {
+.solutionCard {
   display: flex;
   flex-direction: column; 
   border-radius: 5px;
@@ -7,41 +7,43 @@
   font-size: 12px;
   font-weight: normal;
   font-style: normal;
-  height: 55px;
-  width: 100px;
+  height: 90px;
+  width: 150px;
   margin: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   transition: background-color 0.3s, box-shadow 0.3s, opacity 0.3s;
 }
 
-.solution-card:hover {
+.solutionCard:hover {
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
   cursor: pointer;
 }
 
-.solution-card.active {
+.solutionCard.active {
   transform: scale(1.2);
   opacity: 1;
 }
 
-.solution-card.inactive {
+.solutionCard.inactive {
   transform: scale(1);
   opacity: 0.5;
 }
 
-.solution-card.blocked {
+.solutionCard.blocked {
   background-color: #fac8e1;
   border-color: #fac8e1;
   cursor: not-allowed;
 }
 
-.solution-card.blocked:hover {
+.solutionCard.blocked:hover {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.text-solution{
+.textSolution{
   font-family: 'Century Gothic', 'Futura';
-  font-size: 10px;
+  font-size: 12px;
   text-align: center;
   margin: auto;
+  margin-left: 5px;
+  margin-right: 5px;
 }

@@ -1,0 +1,240 @@
+/* Author: Giovanna Lorena Delgado Mendoza*/
+/*Styles of the top stat cards in the rating window*/
+
+.cardContainer {
+  margin-left: 45%;
+  display: flex;
+  gap: 20px;
+  flex: 1 1 auto;
+  margin-right: 0;
+  margin-top: -23%;
+}
+.card {
+  width: 100%;
+  max-width: 100%;
+  margin-right: 5%;
+  border-radius: 10%;
+  height: 13vw;
+  min-width: 15vw;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+.loadingText {
+  font-size: 2vw;
+}
+
+.cardContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.cardTitle {
+  padding-top: 8%;
+  font-family: var(--font-family);
+  font-size: var(--font-size-title);
+  color: rgb(37, 35, 35);
+  text-align: center;
+  margin-left: 5%;
+  margin-right: 5%;
+}
+
+.cardValue {
+  margin-top: 20px;
+  font-size: var(--font-size-value);
+  font-family: var(--font-family);
+  color: black;
+  text-align: center;
+}
+
+.cardRank {
+  font-size: var(--font-size-rank);
+  font-family: var(--font-family);
+  color: white;
+  font-weight: bold;
+  text-align: center;
+}
+
+@media (orientation: landscape) {
+  .cardContainer {
+    grid-template-columns: repeat(3, 1fr);
+    width: 70%;
+    margin-top: -2%;
+    margin-top: -23%;
+  }
+
+  .card {
+    flex: 1;
+  }
+
+  .cardValue {
+    font-size: 45px;
+  }
+  .header {
+    height: 40px;
+  }
+  .cardTitle {
+    padding-top: 3%;
+    font-family: var(--font-family);
+    font-size: 1.1rem;
+    color: rgb(37, 35, 35);
+    text-align: center;
+    margin-bottom: -5%;
+  }
+  .loadingText,
+  .loadingRank {
+    font-size:0.9rem;
+  }
+}
+@media (min-width: 750px) and (max-width: 768px) and (orientation: landscape) {
+  .cardTitle {
+    padding-top: 0%;
+    font-family: var(--font-family);
+    font-size: 0.6rem;
+    color: rgb(37, 35, 35);
+    text-align: center;
+    margin-bottom: -25%;
+  }
+  .loadingText,
+  .loadingRank {
+    font-size:0.5rem;
+  }
+  .header {
+    height: 40px;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1200px) and (orientation: landscape) {
+  .cardContainer {
+    margin-left: 45%;
+    display: flex;
+    gap: 20px;
+    flex: 1 1 auto;
+    margin-right: 0;
+    margin-top: -27%;
+  }
+  .card {
+    width: 100%;
+    max-width: 100%;
+    margin-right: 5%;
+    border-radius: 10%;
+    height: 13vw;
+    min-width: 15vw;
+    border-radius: 10px;
+    margin-bottom: 20px;
+  }
+  .cardTitle {
+    padding-top: 0%;
+    font-family: var(--font-family);
+    font-size: 0.7rem;
+    color: rgb(37, 35, 35);
+    text-align: center;
+    margin-bottom: -15%;
+  }
+  .loadingText,
+  .loadingRank {
+    font-size: 1.5vh;
+  }
+
+  .header {
+    height: 40px;
+  }
+}
+
+@media (min-width: 1200px) and (orientation: landscape) {
+  .cardRank {
+    font-size: var(--font-size-rank);
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    align-self: center;
+    margin-top: 8%;
+    margin-bottom: 5%;
+  }
+}
+
+@media (orientation: portrait) {
+  .cardContainer {
+    flex-direction: column;
+    margin-top: 10%;
+    margin-left: -55%;
+    max-width: 300px;
+  }
+
+  .card {
+    height: 120%;
+  }
+
+  .cardContent {
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .cardTitle {
+    font-size: var(--font-size-title-small);
+    text-align: center;
+    margin-bottom: 5px;
+    margin-left: 5%;
+    margin-right: 5%;
+    margin-top: -5%;
+  }
+
+  .card-Value {
+    font-size: var(--font-size-value-small);
+    text-align: center;
+    margin-top: 1px;
+  }
+
+  .cardRank {
+    font-size: var(--font-size-rank);
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    align-self: center;
+    margin-top: 8%;
+  }
+}
+@media (max-width: 690px) and (orientation: portrait) {
+  .cardContainer {
+    flex-direction: column;
+    margin-top: 10%;
+    margin-left: -45%;
+    max-width: 180px;
+  }
+
+  .card {
+    height: 100%;
+  }
+
+  .cardContent {
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .cardTitle {
+    font-size: var(--font-size-title-small);
+    text-align: center;
+    margin-bottom: 5px;
+    margin-left: 5%;
+    margin-right: 5%;
+    margin-top: -5%;
+  }
+
+  .cardValue {
+    font-size: var(--font-size-value-small);
+    text-align: center;
+    margin-top: 1px;
+  }
+
+  .cardRank {
+    font-size: var(--font-size-rank);
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    align-self: center;
+    margin-top: 8%;
+  }
+}

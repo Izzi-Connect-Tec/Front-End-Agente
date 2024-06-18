@@ -1,28 +1,82 @@
-/* .charts-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
+.chartContainer {
+  position: absolute;
+  top: calc(30% + 25px);
+  width: calc(85% - 40%);
+  left: 50%;
+  font-family: "Century Gothic", "Futura";
 }
 
-.chart {
-  width: 100%;
-  max-width: 600px;
-  margin: 20px auto;
+.chartWrapper {
+  flex: 1;
+  margin: 10px; 
+  min-width: 0; 
+  max-width: 100%; 
+  box-sizing: border-box; 
 }
 
 @media (orientation: landscape) {
-  .charts-container {
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: flex-start;
+  .chartsContainer {
+    display: flex;
+    justify-content: center;
     width: 100%;
+    padding: 0 5%;
   }
-  
-  .chart {
-    width: calc(33.33% - 20px);
+  .chartContainer {
+    position: absolute;
+    top: calc(55% + 25px);
+    width: calc(70% - 40%);
+    left: 20%;
   }
-} */
+  .chartWrapper {
+    flex: 1 1 calc(50% - 20px); 
+    margin: 10px; 
+  }
+}
 
+@media (min-width: 700px) and (max-width: 850px) and (orientation: landscape) {
 
+  .chartsContainer {
+    width: 200%; 
+    margin-top: -70%;
+  }
 
+  .chartWrapper {
+    flex: 1 1 calc(40% - 20px); 
+    margin: 10px; 
+  }
+}
+@media (min-width: 851px) and (max-width: 1200px) and (orientation: landscape) {
+
+  .chartsContainer {
+    width: 200%; 
+    margin-top: -30%;
+  }
+
+  .chartWrapper {
+    flex: 1 1 calc(40% - 20px); 
+    margin: 10px; 
+  }
+}
+
+@media (min-width: 1200px) and (max-width: 1500px)and (orientation: landscape) {
+  .chartsContainer {
+    width: 200%; 
+    margin-top: -35%;
+  }
+
+  .chartWrapper {
+    flex: 1 1 calc(33.33% - 20px); 
+    margin: 10px; 
+  }
+}
+@media (min-width: 1500px) and (orientation: landscape) {
+  .chartsContainer {
+    width: 200%; 
+    margin-top: -10%;
+  }
+
+  .chartWrapper {
+    flex: 1 1 calc(33.33% - 20px); 
+    margin: 10px; 
+  }
+}

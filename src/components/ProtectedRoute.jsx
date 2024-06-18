@@ -1,10 +1,12 @@
-import {Navigate, Outlet} from 'react-router-dom'
+// Author: Joahan García
+// Component to protect a route so anyone can access it unless it's already verified
 
-export const ProtectedRoute = ({isAllowed, children, redirectTo = "/"}) => {
+import { Navigate, Outlet } from "react-router-dom";
 
-    if (!isAllowed) {
-        return <Navigate to={redirectTo}/>
-    }
+export const ProtectedRoute = ({ isAllowed, children, redirectTo = "/" }) => {
+  if (!isAllowed) {
+    return <Navigate to={redirectTo} />;
+  }
 
-    return children ? children : <Outlet/> 
-}
+  return children ? children : <Outlet />;
+};

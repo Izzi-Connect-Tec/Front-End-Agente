@@ -1,0 +1,58 @@
+:root {
+  --color-primary: #00bcb4;
+  --color-secondary: #d7006d;
+  --color-tertiary: #ffce00;
+  --color-quaternary: #ec6907;
+  --font-family: "Century Gothic", "Futura";
+  --font-size-title: 18px;
+  --font-size-value: 20px;
+  --font-size-rank: 14px;
+  --font-size-title-small: 16px;
+  --font-size-value-small: 30px;
+  --font-size-star-rating: 30px;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (orientation: portrait) {
+  .cardContent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+  }
+
+  .cardTitle {
+    font-size: var(--font-size-title-small);
+    text-align: center;
+    margin-bottom: 5px;
+    margin-left: 5%;
+    margin-right: 5%;
+    margin-top: -5%;
+  }
+
+  .cardValue {
+    font-size: var(--font-size-value-small);
+    text-align: center;
+    margin-top: 1px;
+  }
+
+  .cardRank {
+    font-size: var(--font-size-rank);
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    align-self: center;
+    margin-top: 1%;
+  }
+}

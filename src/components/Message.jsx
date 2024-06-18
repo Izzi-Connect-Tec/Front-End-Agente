@@ -1,12 +1,14 @@
-// import "../styles/chatbox.css";
-import "../styles/sentiment.css"
+// Author: Maximiliano Lecona, Joahan Garcia
+// Display the messages in the chatbox
+
+import "../styles/message.css";
 
 import { CiFaceSmile, CiFaceFrown, CiFaceMeh } from "react-icons/ci";
 
 const Message = ({ emotion, name, time, content, title }) => {
   let icon;
   let messageClass = title === "AGENT" ? "message own" : "message";
-  let titleClass = title === "AGENT" ? "titlee-agent" : "titlee";
+  let titleClass = title === "AGENT" ? "agentTitle" : "messageTitle";
 
   switch (emotion) {
     case "POSITIVE":
@@ -22,22 +24,17 @@ const Message = ({ emotion, name, time, content, title }) => {
       icon = <CiFaceMeh className="icon" />;
   }
 
-  //AREGLAR EL DE AGENTE
-
   return (
     <section>
-    <p className={titleClass}>{name + " " + time}</p>
-    <div className={messageClass}>
-      {icon}
-      <div className="texts">
-        <p>{content}</p>
-      </div>
+      <p className={titleClass}>{name + " " + time}</p>
+      <div className={messageClass}>
+        {icon}
+        <div className="texts">
+          <p>{content}</p>
+        </div>
       </div>
     </section>
   );
 };
 
-
-
 export default Message;
-

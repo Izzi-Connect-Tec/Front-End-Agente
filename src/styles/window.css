@@ -1,16 +1,9 @@
-.window{
-    display: flex;
-    flex-direction: row;
-    height: 100%;
-}
-
-
 body{
-    background-color: #FFF;
-    color: #FFF;
+  background-color: white;
 }
 
-.window > div {
-    flex: 1; 
-    margin: 0px;
+.windowHeader {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }

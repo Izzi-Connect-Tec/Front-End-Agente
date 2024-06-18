@@ -1,80 +1,241 @@
-/*Bottom Cards*/
+.customContainer {
+  width: 70%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(10px, 1fr));
+  gap: 10px;
+  margin-top: 2%;
+  margin-left: 7.5%;
+}
 
-.custom-container {
-    width: 70%;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(10px, 1fr));
-    gap: 10px;
-    margin-top: 2%;
-    margin-left: 7.5%;
-  }
-  
-  .custom-row {
-    display: flex;
-  }
-  
-  .custom-col {
-    flex: 1;
-  }
+.customRow {
+  display: flex;
+}
 
-  .custom-col2 {
-    flex: 0.4;
-    margin-right: 10px;
+.customCol {
+  flex: 1;
+}
+
+.customCol2 {
+  flex: 0.4;
+  margin-right: 10px;
+}
+
+.customCard {
+  border-radius: 10px;
+  overflow: hidden;
+  margin-top: 0%;
+}
+
+.customCardTitle {
+  font-size: 18px;
+  margin-bottom: 10px;
+  margin-top: 0;
+}
+
+.customCardHeader {
+  color: #fff;
+  padding: 5px;
+  text-align: center;
+}
+
+.customCardTitle,
+.customCardText {
+  color: #000;
+}
+
+.customCardBody {
+  padding: 10px;
+}
+
+.customCardText {
+  font-size: 14px;
+}
+
+.cardPrimary {
+  border: 1px solid var(--color-primary);
+}
+
+.cardSecondary {
+  border: 1px solid var(--color-secondary);
+}
+
+.cardPrimary .customCardHeader {
+  background-color: var(--color-primary);
+  border-bottom: 2px solid var(--color-primary);
+}
+
+.cardSecondary .customCardHeader {
+  background-color: var(--color-secondary);
+  border-bottom: 2px solid var(--color-secondary);
+}
+
+
+/* Author: Giovanna Lorena Delgado Mendoza*/
+/*Styles for the lower stat cards of the agent rating window*/
+
+.customContainer {
+  width: 60%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(10px, 1fr));
+  gap: 10px;
+  margin-top: 20%;
+  margin-left: 38%;
+  margin-bottom: 2%;
+}
+
+.customRow {
+  display: flex;
+}
+
+.customCol {
+  flex: 1;
+}
+
+.customCard {
+  border-radius: 10px;
+  overflow: hidden;
+  margin-top: 0%;
+}
+
+.customCardTitle {
+  font-size: 18px;
+  margin-bottom: 10px;
+  margin-top: 0;
+}
+
+.customCardHeader {
+  color: #fff;
+  padding: 5px;
+  text-align: center;
+}
+
+.customCardTitle,
+.customCardText {
+  color: #000;
+}
+
+.customCardBody {
+  padding: 10px;
+}
+
+.customCardTitle {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.customCardText {
+  font-size: 14px;
+}
+
+.cardPrimary {
+  border: 1px solid var(--color-primary);
+}
+
+.cardSecondary {
+  border: 1px solid var(--color-secondary);
+}
+
+.cardPrimary .customCardHeader {
+  background-color: var(--color-primary);
+  border-bottom: 2px solid var(--color-primary);
+}
+
+.cardSecondary .customCardHeader {
+  background-color: var(--color-secondary);
+  border-bottom: 2px solid var(--color-secondary);
+}
+
+@media (orientation: landscape) {
+  .customCard:hover {
+    transform: scale(1.1);
+    transition: all 0.3s ease;
   }
-  
-  .custom-card {
+  .customCard {
+    width: 85%;
     border-radius: 10px;
     overflow: hidden;
     margin-top: 0%;
+    margin-left: -5%;
   }
-  
-  .custom-card-title {
-    font-size: 18px;
-    margin-bottom: 10px;
-    margin-top: 0;
+  .blueCard:hover,
+  .pinkCard:hover,
+  .yellowCard:hover,
+  .orangeCard:hover {
+    width: 101%;
+    height: auto;
+    transform: scale(1.1);
+    transition: all 0.3s ease;
   }
-  
-  .custom-card-header {
-    color: #fff;
-    padding: 5px;
-    text-align: center;
+}
+
+@media (min-width: 1200px) and (orientation: landscape) {
+  .cardContainer {
+    grid-template-columns: repeat(3, 1fr);
+    width: 70%;
   }
-  
-  .custom-card-title,
-  .custom-card-text {
-    color: #000;
+
+  .card {
+    flex: 1;
   }
-  
-  .custom-card-body {
-    padding: 10px;
+
+  .cardValue {
+    font-size: 45px;
   }
-  
-  .custom-card-title {
-    font-size: 18px;
-    margin-bottom: 10px;
+  .blueCard:hover,
+  .pinkCard:hover,
+  .yellowCard:hover,
+  .orangeCard:hover {
+    width: 100.5%;
+    height: auto;
+    transform: scale(1.1);
+    transition: all 0.3s ease;
   }
-  
-  .custom-card-text {
-    font-size: 14px;
+  .customCard {
+    width: 90%;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-top: 0%;
+    margin-left: -5%;
   }
-  
-  .card-primary {
-    border: 1px solid var(--color-primary);
+  .pinkCard .cardCalue,
+  .yellowCard .cardValue {
+    margin-top: 10%;
   }
-  
-  .card-secondary {
-    border: 1px solid var(--color-secondary);
+}
+
+@media (min-width: 768px) and (max-width: 1100px) and (orientation: landscape) {
+  .customContainer {
+    width: 60%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(10px, 1fr));
+    gap: 10px;
+    margin-top: 40%;
+    margin-left: 42%;
   }
-  
-  
-  .card-primary .custom-card-header {
-    background-color: var(--color-primary);
-    border-bottom: 2px solid var(--color-primary);
+}
+@media (min-width: 1100px) and (max-width: 1200px) and (orientation: landscape) {
+  .customContainer {
+    width: 45%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(10px, 1fr));
+    gap: 5px;
+    margin-top: 25%;
+    margin-left: 42%;
   }
-  
-  .card-secondary .custom-card-header {
-    background-color: var(--color-secondary);
-    border-bottom: 2px solid var(--color-secondary);
+}
+@media (orientation: portrait) {
+  .customContainer {
+    width: 80%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(10px, 1fr));
+    gap: 10px;
+    margin-top: 0%;
+    margin-left: 10%;
   }
-  
-  /*Bottom Card fin*/
+  .customCard {
+    width: 85%;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-left: 0%;
+  }
+}

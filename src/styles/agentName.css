@@ -1,15 +1,44 @@
-.agent-name-card {
-    width: 80%;
-    border-radius: 10px;
-    /* box-shadow: var(--box-shadow); */
-    margin-bottom: 20px;
+/* Author: Giovanna Lorena Delgado Mendoza*/
+/*Style to display the agent name in the rating window*/
+
+.agentName {
+  font-family: "Century Gothic", "Futura";
+  font-size: 1.2rem;
+  font-weight: bold;
+  text-align: center;
+  color: black;
+  margin: 15px 0;
+  display: none;
+  width: 80%;
+}
+@media (min-width: 1200px) and (orientation: landscape) {
+  .figureCaption{
+    margin-top: 5%;
+    margin-bottom: -10%;
   }
-  
-  .agent-name-title {
-    font-family: var(--font-family);
-    font-size: 1.5rem;
-    /* font-weight: bold; */
-    color: #333;
-    text-align: center;
-    margin-top: -5%;
-  }
+}
+@media (min-width: 768px) and (max-width: 1200px) and (orientation: landscape) {
+.figureCaption{
+  margin-top: 5%;
+  margin-bottom: -5%;
+}
+}
+
+@media  (orientation: portrait) {
+.figureCaption{
+  margin-top: 5%;
+  margin-left: -20%;
+  width: 100%;
+  text-align: center;
+}
+
+.profileContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.header {
+  height: 40px;
+}
+}
