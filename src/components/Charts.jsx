@@ -2,10 +2,11 @@ import { useState, useEffect } from "react";
 import { BarChart } from "@mui/x-charts/BarChart";
 import { LineChart } from "@mui/x-charts/LineChart";
 import "../styles/charts.css";
-import { useLogInContext } from "../providers/LogInContext";
+
 
 const Charts = () => {
-  const [agent, ,] = useLogInContext();
+
+  let agent = JSON.parse(window.localStorage.getItem('Agent'));
 
   const date = new Date();
 
@@ -38,8 +39,18 @@ const Charts = () => {
   useEffect(() => {
     const fetchDurationData = async () => {
       try {
+
+        let config = {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            Authorization: `Bearer ${agent.Token}`,
+          }
+        }
+
         const res = await fetch(
-          `http://localhost:8080/empleado/duracionPromMeses/${agent.IdEmpleado}`
+          `http://44.209.22.101:8080/empleado/duracionPromMeses/${agent.IdEmpleado}`, config
         );
         if (!res.ok) {
           throw new Error("Network response was not ok");
@@ -61,7 +72,7 @@ const Charts = () => {
     const fetchAgentData = async () => {
       try {
         const response = await fetch(
-          `http://localhost:8080/empleado/getCalifPromDiaAgentes/${formattedDate}`
+          `http://44.209.22.101:8080/empleado/getCalifPromDiaAgentes/${formattedDate}`
         );
         if (!response.ok) {
           throw new Error("Network response was not ok");

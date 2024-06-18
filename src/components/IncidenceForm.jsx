@@ -13,13 +13,12 @@ import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import { TimePicker } from "@mui/x-date-pickers/TimePicker";
 import HomeRepairServiceIcon from '@mui/icons-material/HomeRepairService';
-import { useLogInContext } from "../providers/LogInContext";
 import { useUserContext } from "../providers/AmazonContext";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 export default function IncidenceForm() {
-  const [agent,,] = useLogInContext();
+  let agent = JSON.parse(window.localStorage.getItem('Agent'));
   const [user,,] = useUserContext();
   const [description, setDescription] = React.useState("");
   const [open, setOpen] = React.useState(false);

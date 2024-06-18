@@ -11,12 +11,12 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useAlertToggleContext } from "../providers/AlertContext";
 import { useUserContext } from "../providers/AmazonContext";
-import { useLogInContext } from "../providers/LogInContext";
 import ReportPriority from "./ReportPriority";
 import ReportType from "./ReportType";
 
 export default function FormDialog() {
-  const [agent, ,] = useLogInContext();
+  
+  let agent = JSON.parse(window.localStorage.getItem('Agent'));
 
   const [description, setDescription] = React.useState("");
   const [priority, setPriority] = React.useState("");

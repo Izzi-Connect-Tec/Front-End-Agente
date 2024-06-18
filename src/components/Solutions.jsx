@@ -8,6 +8,8 @@ import { FaArrowRight } from "react-icons/fa";
 import { FaArrowLeft } from "react-icons/fa";
 
 const Solutions = () => {
+
+  let agent = JSON.parse(window.localStorage.getItem('Agent'));
   const [call, ,] = useCallContext();
   const [solutionsData, setSolutionsData] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -16,7 +18,15 @@ const Solutions = () => {
   // Obtain the solutions from the API for current call type
   const fetchSolutions = useCallback( async () => {
     try {
-      const response = await axios.get(`http://44.209.22.101:8080/llamada/consultarSolucion/${call.TipoLlamada}`);
+      let config = {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+          Authorization: `Bearer ${agent.Token}`
+        },  
+      }
+      const response = await axios.get(`http://44.209.22.101:8080/llamada/consultarSolucion/${call.TipoLlamada}`, config);
       setSolutionsData(response.data);
     }
     catch (error){

@@ -1,10 +1,9 @@
-import { useLogInContext } from '../providers/LogInContext';
 import { useCallContext } from '../providers/CallContext';
 import WarningAmberIcon from '@mui/icons-material/WarningAmber';
 
 export const SupervisorEmergency = () => {
     const [call,,] = useCallContext();
-    const [agent,,] = useLogInContext();
+    let agent = JSON.parse(window.localStorage.getItem('Agent'));
 
     const emergency = async () => {
         try{

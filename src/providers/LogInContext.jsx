@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useState, useEffect } from "react";
 
 const LogInContext = createContext();
 
@@ -27,6 +27,12 @@ export const LogInProvider = ({ children }) => {
       Token: Token,
     }));
   };
+
+  useEffect(() => {
+    if(agent.IdEmpleado!=null){
+        window.localStorage.setItem('Agent', JSON.stringify(agent));
+    }
+}, [agent])
 
   const restartAgent = () => {
     setAgent(defaultAgent);

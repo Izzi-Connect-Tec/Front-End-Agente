@@ -2,13 +2,12 @@ import "amazon-connect-streams";
 import { useEffect, React, useState, useCallback } from "react";
 import { useUserContext } from "../providers/AmazonContext";
 import { useCallContext } from "../providers/CallContext";
-import { useLogInContext } from "../providers/LogInContext";
 import lottie from "lottie-web";
 import { defineElement } from "@lordicon/element";
 import { useCallControlContext } from "../providers/CallControlContext";
 
 const EmbedConnect = (props) => {
-  const [, changeStateIncomingCall] = useCallControlContext();
+  const [, changeStateIncomingCall,,,,,,controlCloseContact] = useCallControlContext();
 
   // Initialize times of call.
   const [callStartTime, setcallStartTime] = useState(null);
@@ -34,7 +33,7 @@ const EmbedConnect = (props) => {
   };
 
   //Agent
-  const [agent, ,] = useLogInContext();
+  let agent = JSON.parse(window.localStorage.getItem('Agent'));
 
   //Call
   const [call, callData, restartCall] = useCallContext();
@@ -156,8 +155,17 @@ const EmbedConnect = (props) => {
 
       contact.onEnded(function (contact) {
         setcallEndTime(new Date().getTime());
-        setStateCall(false);
       });
+
+      contact.onDestroy(function(contact) { 
+        setStateCall(false)
+        });
+
+        contact.onMissed(function(contact) { 
+          controlCloseContact()
+        });
+
+
     });
 
     // Global connect. 
@@ -176,7 +184,7 @@ const EmbedConnect = (props) => {
   }, [call, updateCall]);
 
   useEffect(() => {
-    if (call.IdLlamada != null && call.IdLlamada != null && duration != null) {
+    if (!stateCall && call.IdLlamada != null && duration != null) {
       console.log("Udated ended call");
       updateEndedCall();
       restartUser();

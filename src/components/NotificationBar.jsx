@@ -10,7 +10,6 @@ import NotificationContext from "../providers/NotificationContext";
 import io from "socket.io-client";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { useLogInContext } from "../providers/LogInContext";
 
 const socket = io("http://44.209.22.101:8080");
 
@@ -19,7 +18,8 @@ export default function TemporaryDrawer() {
   const [notifications, setNotifications] = useState([]); // State to open notifications
   const [open, setOpen] = useState(false); // Estate to open and close drawer
   const [notificationsLoaded, setNotificationsLoaded] = useState(false); // State to load notifications
-  const [agente] = useLogInContext();
+
+  let agent = JSON.parse(window.localStorage.getItem('Agent'));
 
   const notify = useCallback(() => {
     if (notificationsLoaded && update) {
@@ -44,8 +44,16 @@ export default function TemporaryDrawer() {
   useEffect(() => {
     // Fetch notifications
     console.log("Fetching notifications...");
+    let config = { 
+      method: 'GET',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${agent.Token}`
+      }
+    }
     fetch(
-      `http://44.209.22.101:8080/notificacion/getNotificacionAgente/${agente.IdEmpleado}`
+      `http://44.209.22.101:8080/notificacion/getNotificacionAgente/${agent.IdEmpleado}`, config
     )
       .then((response) => response.json())
       .then((data) => {
@@ -56,7 +64,7 @@ export default function TemporaryDrawer() {
 
     // Socket
     socket.on(
-      `notificacion_empleado_${agente.IdEmpleado}`,
+      `notificacion_empleado_${agent.IdEmpleado}`,
       (employeeNotifications) => {
         console.log("Received notifications:", employeeNotifications);
         setUpdate(true);
@@ -66,10 +74,10 @@ export default function TemporaryDrawer() {
 
     // Clean socket
     return () => {
-      socket.off(`notificacion_empleado_${agente.IdEmpleado}`);
+      socket.off(`notificacion_empleado_${agent.IdEmpleado}`);
       console.log("Socket cleaned up");
     };
-  }, [agente.IdEmpleado]);
+  }, [agent.IdEmpleado]);
 
   // Function to handle badge click
   const handleBadgeClick = () => {
@@ -88,11 +96,16 @@ export default function TemporaryDrawer() {
 
   // Function to handle notification delete
   const handleDelete = (index, IdNotificacion) => {
-    fetch(
-      `http://44.209.22.101:8080/notificacion/eliminarNotificacion/${IdNotificacion}/${agente.IdEmpleado}`,
-      {
-        method: "DELETE",
+    let config = { 
+      method: 'DELETE',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${agent.Token}`
       }
+    }
+    fetch(
+      `http://44.209.22.101:8080/notificacion/eliminarNotificacion/${IdNotificacion}/${agent.IdEmpleado}`, config
     )
       .then((response) => {
         if (response.ok) {
@@ -112,7 +125,7 @@ export default function TemporaryDrawer() {
     <Box sx={{ width: 400 }} role="presentation">
       <div className="gdayAgent">
         <p>
-          Nice day {agente.Nombre} {agente.ApellidoP} {agente.ApellidoM}!
+          Nice day {agent.Nombre} {agent.ApellidoP} {agent.ApellidoM}!
         </p>
       </div>
 

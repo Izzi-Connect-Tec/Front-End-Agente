@@ -2,14 +2,15 @@ import Message from "./Message";
 import { useState, useEffect, useCallback, useRef } from "react";
 import { v4 as uuidv4 } from "uuid";
 import "../styles/chatbox.css";
-import { useLogInContext } from "../providers/LogInContext";
 import { useCallContext } from "../providers/CallContext";
 
 const Chatbox = (props) => {
+
+  let agent = JSON.parse(window.localStorage.getItem('Agent'));
+
   const [, , , changeCallSentiment] = useCallContext();
 
   const endRef = useRef(null);
-  const [agent, ,] = useLogInContext();
 
   const [messages, setMessages] = useState([]);
 
@@ -21,9 +22,17 @@ const Chatbox = (props) => {
 
   useEffect(() => {
     const fetchMessages = () => {
-      fetch(`http://44.209.22.101:8080/connect/sentiment/${props.id}`, {
-        headers: { Authorization: `Bearer ${agent.Token}` },
-      })
+
+      let config = {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+          Authorization: `Bearer ${agent.Token}`
+        }, 
+      }
+
+      fetch(`http://44.209.22.101:8080/connect/sentiment/${props.id}`, config)
         .then(console.log("TOKEN", agent.Token))
         .then((response) => response.json())
         .then((data) => {
@@ -84,9 +93,9 @@ const Chatbox = (props) => {
   }, [updateSentiment]);
 
   return (
-    <div className="chatboxContainer">
+    <div className="container">
       <div className="transcriptionTitle">Transcript</div>
-      <div className="chatboxCenter">
+      <div className="center">
         {messages.map((mensaje) => (
           <Message
             key={uuidv4()}

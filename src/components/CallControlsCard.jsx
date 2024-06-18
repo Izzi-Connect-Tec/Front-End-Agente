@@ -85,7 +85,7 @@ to {
   const [
     incomingCall,
     changeStateIncomingCall,
-    ,
+    isCall,
     changeStateIsCall,
     callControl,
     activeCallControl,
@@ -373,6 +373,12 @@ to {
   };
 
   const CloseContact = () => {
+
+    const decline = () => {
+      clearCall()
+      controlCloseContact();
+    }
+
     const endContact = () => {
       clearCall();
       controlCloseContact();
@@ -386,7 +392,7 @@ to {
         <Button
           className="block"
           variant="outlined"
-          onClick={endContact}
+          onClick={isCall ? endContact : decline}
           startIcon={
             <lord-icon
               src="https://cdn.lordicon.com/ysopsmtv.json"

@@ -2,7 +2,6 @@ import { useUserContext } from "../providers/AmazonContext";
 import "../styles/client.css";
 import ClientHistory from "./ClientHistory";
 import { ComputeAge } from "../logic/ComputeAge";
-import { useLogInContext } from "../providers/LogInContext";
 import { useState, useCallback, useEffect } from "react";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import CallIcon from "@mui/icons-material/Call";
@@ -16,7 +15,7 @@ const Client = (props) => {
   const [user, , userData, ,] = useUserContext();
   const [dataUrl, setDataUrl] = useState(null);
   const [reportsUrl, setReportsUrl] = useState(null);
-  const [agent, ,] = useLogInContext();
+  let agent = JSON.parse(window.localStorage.getItem('Agent'));
 
   const downloadClientData = useCallback(async () => {
     try {

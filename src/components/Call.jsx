@@ -6,10 +6,11 @@ import { SolutionsCard } from "./SolutionsCard";
 import CallControlsCard from "./CallControlsCard.jsx";
 import Stats from "./Stats";
 import { motion, AnimatePresence } from "framer-motion";
-import { useCallControlContext } from "../providers/CallControlContext";
+import { useCallControlContext } from "../providers/CallControlContext.jsx";
 
 export const Call = () => {
-  const [, , isCall, , , , ,] = useCallControlContext();
+  
+  const [,,isCall,,,,] = useCallControlContext();
 
   return (
     <div>

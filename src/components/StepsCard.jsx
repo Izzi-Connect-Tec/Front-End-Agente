@@ -11,6 +11,7 @@ import { FaArrowLeft } from "react-icons/fa";
 import { useCallContext } from "../providers/CallContext";
 
 const StepsCard = (props) => {
+  let agent = JSON.parse(window.localStorage.getItem('Agent'));
   const [call, ,] = useCallContext();
   const { solution } = props;
   const [currentStepIndex, setCurrentStepIndex] = useState(0);
@@ -28,6 +29,7 @@ const StepsCard = (props) => {
         headers: {
           Accept: "application/json",
           "Content-Type": "application/json",
+          Authorization: `Bearer ${agent.Token}`
         },
         body: JSON.stringify(solData),
       };
