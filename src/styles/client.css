@@ -1,0 +1,49 @@
+.completeClient{
+  font-family: "Century Gothic", "Futura";
+}
+
+.client {
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto; 
+  color: black;
+}
+
+.dataClient {
+  display: flex;
+  flex-direction: row;
+  align-items: center; 
+  gap: 5px;
+  margin-top: 20px;
+}
+
+.dataClient p {
+  margin: 0;
+  margin-right: auto;
+  margin-top: 3px;
+}
+
+.labelName {
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+
+.info{
+  color: rgb(101, 99, 99);
+}
+
+.label {
+  font-weight: bold;
+}
+
+.clientTitle {
+  font-weight: bold;
+  font-size: 2rem;
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  margin-bottom: 15px;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Century Gothic", "Futura"; 
+}

@@ -1,0 +1,90 @@
+.callTitle {
+  font-weight: bold;
+  font-size: 2rem;
+  display: flex;
+  margin-bottom: 3px;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Century Gothic", "Futura";
+}
+
+.dataClient {
+  overflow-y: scroll;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 3px;
+  margin-top: 8px;
+  font-family: "Century Gothic", "Futura";
+  font-size: 10px;
+}
+
+.dataClient p {
+  margin: 0;
+  margin-right: auto;
+  margin-top: 3px;
+}
+
+.client {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.icon {
+  background-color: rgb(233, 237, 243);
+  height: 40px;
+  width: 40px;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.dataClient svg {
+  width: 30px;
+  height: 30px;
+  margin-right: 10px;
+}
+
+.callLabel {
+  font-weight: bold;
+}
+
+.callInfo {
+  color: rgb(101, 99, 99);
+}
+
+.callRow {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+#e1,
+#e2 {
+  flex: 1 1 50%;
+  box-sizing: border-box;
+  padding: 10px;
+}
+
+#e3,
+#e4 {
+  flex: 1 1 50%;
+  box-sizing: border-box;
+  padding: 10px;
+}
+
+#e5 {
+  flex: 1 100%;
+  box-sizing: border-box;
+  padding: 10px;
+}
+
+@media (max-width: 600px) {
+  #e1,
+  #e2 {
+    flex: 1 1 100%;
+  }
+}

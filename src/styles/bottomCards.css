@@ -1,0 +1,70 @@
+.customContainer {
+  width: 70%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(10px, 1fr));
+  gap: 10px;
+  margin-top: 2%;
+  margin-left: 7.5%;
+}
+
+.customRow {
+  display: flex;
+}
+
+.customCol {
+  flex: 1;
+}
+
+.customCol2 {
+  flex: 0.4;
+  margin-right: 10px;
+}
+
+.customCard {
+  border-radius: 10px;
+  overflow: hidden;
+  margin-top: 0%;
+}
+
+.customCardTitle {
+  font-size: 18px;
+  margin-bottom: 10px;
+  margin-top: 0;
+}
+
+.customCardHeader {
+  color: #fff;
+  padding: 5px;
+  text-align: center;
+}
+
+.customCardTitle,
+.customCardText {
+  color: #000;
+}
+
+.customCardBody {
+  padding: 10px;
+}
+
+.customCardText {
+  font-size: 14px;
+}
+
+.cardPrimary {
+  border: 1px solid var(--color-primary);
+}
+
+.cardSecondary {
+  border: 1px solid var(--color-secondary);
+}
+
+.cardPrimary .customCardHeader {
+  background-color: var(--color-primary);
+  border-bottom: 2px solid var(--color-primary);
+}
+
+.cardSecondary .customCardHeader {
+  background-color: var(--color-secondary);
+  border-bottom: 2px solid var(--color-secondary);
+}
