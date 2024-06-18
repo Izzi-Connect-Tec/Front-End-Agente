@@ -119,8 +119,8 @@ const EmbedConnect = (props) => {
       softphone: {
         allowFramedSoftphone: true,
         disableRingtone: false,
-        ringtoneUrl:
-          "https://joahanbucket.s3.amazonaws.com/Li%CC%81nea+del+Perreo-Uzielito+Mix%2C+Yeri+Mua+%2C+El+Jordan+23%2C+DJ+Kiire(Video+Oficial)+(320)+(mp3cut.net).mp3", // optional, defaults to CCP’s default ringtone if a falsy value is set
+        ringtoneUrl: false,
+          // "https://joahanbucket.s3.amazonaws.com/Li%CC%81nea+del+Perreo-Uzielito+Mix%2C+Yeri+Mua+%2C+El+Jordan+23%2C+DJ+Kiire(Video+Oficial)+(320)+(mp3cut.net).mp3", optional, defaults to CCP’s default ringtone if a falsy value is set
       },
       pageOptions: {
         enableAudioDeviceSettings: true,
