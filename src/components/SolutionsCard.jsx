@@ -1,3 +1,7 @@
+// Authors: Joahan García and Maximiliano Lecona
+// Component designed to act as the container of solutions but with animations
+// and specific organization in the window
+
 import * as React from "react";
 import Stack from "@mui/material/Stack";
 import Paper from "@mui/material/Paper";

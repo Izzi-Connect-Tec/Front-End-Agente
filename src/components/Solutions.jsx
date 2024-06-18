@@ -1,3 +1,6 @@
+// Authors: Karla Cruz
+// Solutions div for showing posible solutions to the clients problem
+
 import "../styles/solutions.css";
 import React, { useCallback } from "react";
 import { useEffect, useState } from "react";

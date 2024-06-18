@@ -1,3 +1,6 @@
+// Author: Joahan García
+// Component that acts like a simple select component to choose the priority of a report
+
 import * as React from "react";
 import Box from "@mui/material/Box";
 import InputLabel from "@mui/material/InputLabel";

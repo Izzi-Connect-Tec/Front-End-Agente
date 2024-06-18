@@ -6,6 +6,8 @@ import { useState, useEffect } from "react";
 
 const AgentName = ({ defaultName }) => {
   const [agentName, setAgentName] = useState(defaultName);
+
+  // Fetching the agent name from the API
   useEffect(() => {
     const fetchAgentName = async () => {
       try {

@@ -1,3 +1,6 @@
+// Author: Karla Cruz and Maximiliano Lecona
+// Component for generating a call to the supervisor when the agent is presenting a trouble with the client
+
 import { useCallContext } from '../providers/CallContext';
 import WarningAmberIcon from '@mui/icons-material/WarningAmber';
 
@@ -5,6 +8,7 @@ export const SupervisorEmergency = () => {
     const [call,,] = useCallContext();
     let agent = JSON.parse(window.localStorage.getItem('Agent'));
 
+    // Emergency API sending
     const emergency = async () => {
         try{
           const emergencyData = {
@@ -31,11 +35,9 @@ export const SupervisorEmergency = () => {
         }
       };
 
-
     const handleClickOpen = () => {
         emergency();
       };
-
 
     return(
         <WarningAmberIcon onClick={handleClickOpen}/>

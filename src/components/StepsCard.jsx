@@ -17,6 +17,7 @@ const StepsCard = (props) => {
   const [currentStepIndex, setCurrentStepIndex] = useState(0);
   const [showFeedback, setShowFeedback] = useState(false);
 
+  // 
   const updateSolutionCall = async () => {
     const solData = {
       IdLlamada: call.IdLlamada,
@@ -42,7 +43,7 @@ const StepsCard = (props) => {
         console.log(res);
       }
     } catch (error) {
-      console.error("Error al enviar el reporte:", error);
+      console.error("Error sending report:", error);
     }
   };
 

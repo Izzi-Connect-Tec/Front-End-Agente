@@ -70,6 +70,7 @@ to {
 
   const [hold, setHold] = useState(false);
 
+  // Set the hold state of the call.
   const holdLlamada = () => {
     if (hold) {
       resumeCall();
@@ -95,6 +96,7 @@ to {
 
   const [animate, setAnimate] = useState("");
 
+  // Set the animation of the call controls.
   useEffect(() => {
     if (incomingCall === false) {
       setAnimate("noActiveCall");
@@ -120,6 +122,7 @@ to {
     closeActiveContact: { opacity: 1, width: "100%" },
   };
 
+  // Hold function for handling call.
   function HoldFunction() {
     return (
       <AnimatePresence>
@@ -158,6 +161,7 @@ to {
     );
   }
 
+  // Resume call function.
   const ResumeFunction = () => {
     return (
       <AnimatePresence>
@@ -196,6 +200,7 @@ to {
     );
   };
 
+  // Function for incoming call.
   const IncomingCall = () => {
     const acceptCallFun = () => {
       acceptCall();
@@ -287,6 +292,7 @@ to {
     );
   };
 
+  // Function to managing what's happening during the call.
   const DuringCall = () => {
     const endCall = () => {
       hangUpCall();
@@ -372,8 +378,8 @@ to {
     );
   };
 
+  // Function for closing contact.
   const CloseContact = () => {
-
     const decline = () => {
       clearCall()
       controlCloseContact();

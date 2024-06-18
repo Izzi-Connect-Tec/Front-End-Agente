@@ -20,6 +20,7 @@ const Header = (props) => {
   };
 
 
+  // Function to delete authentication cookies.
   const deleteAuthCookies = () => {
     const cookies = document.cookie.split(";");
   
@@ -33,8 +34,6 @@ const Header = (props) => {
       }
     }
   };
-
-  
 
   // Function to log out
   const handleLogOut = (event) => {

@@ -1,3 +1,6 @@
+// Authors: Karla Cruz and Maximiliano Lecona
+// Component to generate a report for a selected zone in case of a problem.
+
 import * as React from "react";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";

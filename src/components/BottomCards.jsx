@@ -17,6 +17,8 @@ const BottomCards = () => {
   const [loading, setLoading] = useState(true);
   let agent = JSON.parse(window.localStorage.getItem("Agent"));
 
+  // Obtaining the best rated agent and the agent with more calls in the day
+  // for the cards in the bottom of the stats component
   useEffect(() => {
     let config = {
       method: "GET",

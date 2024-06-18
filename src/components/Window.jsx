@@ -1,3 +1,6 @@
+// Authors: Joahan García, Karla Cruz and Maximiliano Lecona
+// Component who contains everything displayed in the window
+
 import "../styles/window.css";
 import Header from "./Header";
 import AppProviders from "../providers/AppProviders";
