@@ -1,5 +1,6 @@
-/* Autora: Giovanna Lorena Delgado Mendoza*/
-/*Ventana calificación que muestra las estadísticas y/o KPIs de los agentes*/
+/* Author: Giovanna Lorena Delgado Mendoza*/
+/*Rating window that shows the agents' statistics and/or KPIs*/
+
 import '../styles/calificacion.css';
 import ProfilePhoto from './ProfilePicture';
 import izziImage from '../elements/izzi.jpeg';

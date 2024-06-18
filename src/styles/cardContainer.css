@@ -1,5 +1,5 @@
-/* Autora: Giovanna Lorena Delgado Mendoza*/
-/*Estilos de las tarjetas estadísticas superiores de la ventana de calificaicón*/
+/* Author: Giovanna Lorena Delgado Mendoza*/
+/*Styles of the top stat cards in the rating window*/
 
 .card-container {
   margin-left: 45%;
@@ -73,6 +73,38 @@
   .card-value {
     font-size: 45px;
   }
+  .header {
+    height: 40px;
+  }
+  .card-title {
+    padding-top: 3%;
+    font-family: var(--font-family);
+    font-size: 1.1rem;
+    color: rgb(37, 35, 35);
+    text-align: center;
+    margin-bottom: -5%;
+  }
+  .loading-text,
+  .loading-rank {
+    font-size:0.9rem;
+  }
+}
+@media (min-width: 750px) and (max-width: 768px) and (orientation: landscape) {
+  .card-title {
+    padding-top: 0%;
+    font-family: var(--font-family);
+    font-size: 0.6rem;
+    color: rgb(37, 35, 35);
+    text-align: center;
+    margin-bottom: -25%;
+  }
+  .loading-text,
+  .loading-rank {
+    font-size:0.5rem;
+  }
+  .header {
+    height: 40px;
+  }
 }
 
 @media (min-width: 768px) and (max-width: 1200px) and (orientation: landscape) {
@@ -97,9 +129,10 @@
   .card-title {
     padding-top: 0%;
     font-family: var(--font-family);
-    font-size: 2vh;
+    font-size: 0.7rem;
     color: rgb(37, 35, 35);
     text-align: center;
+    margin-bottom: -15%;
   }
   .loading-text,
   .loading-rank {
@@ -127,12 +160,53 @@
   .card-container {
     flex-direction: column;
     margin-top: 10%;
-    margin-left: -45%;
-    max-width: fit-content;
+    margin-left: -55%;
+    max-width: 300px;
   }
 
   .card {
     height: 120%;
+  }
+
+  .card-content {
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .card-title {
+    font-size: var(--font-size-title-small);
+    text-align: center;
+    margin-bottom: 5px;
+    margin-left: 5%;
+    margin-right: 5%;
+    margin-top: -5%;
+  }
+
+  .card-value {
+    font-size: var(--font-size-value-small);
+    text-align: center;
+    margin-top: 1px;
+  }
+
+  .card-rank {
+    font-size: var(--font-size-rank);
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    align-self: center;
+    margin-top: 8%;
+  }
+}
+@media (max-width: 690px) and (orientation: portrait) {
+  .card-container {
+    flex-direction: column;
+    margin-top: 10%;
+    margin-left: -45%;
+    max-width: 180px;
+  }
+
+  .card {
+    height: 100%;
   }
 
   .card-content {

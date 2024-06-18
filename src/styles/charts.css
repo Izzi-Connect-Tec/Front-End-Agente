@@ -1,5 +1,5 @@
-/* Autora: Giovanna Lorena Delgado Mendoza*/
-/*Estilos de las gráficas estadísticas en la ventana de calificación de agentes*/
+/* Author: Giovanna Lorena Delgado Mendoza*/
+/*Styles of the statistical graphs in the agent rating window*/
 
 .chart-container {
   position: absolute;
@@ -30,25 +30,29 @@
     width: calc(70% - 40%);
     left: 20%;
   }
-
-  .charts-container {
-    display: flex;
-    flex-wrap: wrap; 
-    justify-content: center; 
-    margin-top: -15%;
-  }
-
   .chart-wrapper {
     flex: 1 1 calc(50% - 20px); 
     margin: 10px; 
   }
 }
 
-@media (min-width: 768px) and (max-width: 1200px) and (orientation: landscape) {
+@media (min-width: 700px) and (max-width: 850px) and (orientation: landscape) {
 
   .charts-container {
     width: 200%; 
-    margin-top: -20%;
+    margin-top: -70%;
+  }
+
+  .chart-wrapper {
+    flex: 1 1 calc(40% - 20px); 
+    margin: 10px; 
+  }
+}
+@media (min-width: 851px) and (max-width: 1200px) and (orientation: landscape) {
+
+  .charts-container {
+    width: 200%; 
+    margin-top: -30%;
   }
 
   .chart-wrapper {
@@ -57,10 +61,10 @@
   }
 }
 
-@media (min-width: 1200px) and (orientation: landscape) {
+@media (min-width: 1200px) and (max-width: 1500px)and (orientation: landscape) {
   .charts-container {
     width: 200%; 
-    margin-top: -10%;
+    margin-top: -35%;
   }
 
   .chart-wrapper {
@@ -68,9 +72,10 @@
     margin: 10px; 
   }
 }
-@media (min-width: 1200px) and (orientation: landscape) {
+@media (min-width: 1500px) and (orientation: landscape) {
   .charts-container {
-  margin-left: -10%;
+    width: 200%; 
+    margin-top: -10%;
   }
 
   .chart-wrapper {

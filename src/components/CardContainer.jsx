@@ -1,5 +1,5 @@
-/* Autora: Giovanna Lorena Delgado Mendoza*/
-/*Contenedor y APIs de las tarjetas superioes de la ventana de calificación*/
+/* Author: Giovanna Lorena Delgado Mendoza */
+/*Container and APIs for the top cards of the rating window*/
 
 import CardComponent from './CardComponent';
 import '../styles/cardContainer.css';

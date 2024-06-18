@@ -1,7 +1,6 @@
-/* Autora: Giovanna Lorena Delgado Mendoza*/
-/* Estilos generales de la ventana calificación*/
+/* Author: Giovanna Lorena Delgado Mendoza*/
+/* General grading window styles*/
 
-/*Estilos base*/
 :root {
   --color-primary: #00bcb4;
   --color-secondary: #d7006d;
@@ -17,7 +16,7 @@
 }
 
 
-/* ANIMACIONES */
+/* ANIMATIONS */
 .custom-card, 
 .profile-container img,
 .chart-container  {
@@ -73,10 +72,6 @@
 @media (orientation: portrait) {
   .calificacion-content {
     margin-left: -2%;
-  }
-
-  .header {
-  height: 50px;
   }
     .profile-container {
       margin-top: 10%;

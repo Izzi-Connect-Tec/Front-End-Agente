@@ -1,5 +1,6 @@
-/* Autora: Giovanna Lorena Delgado Mendoza*/
-/*Para las estrellas de la calificación promedio del agente*/
+/* Author: Giovanna Lorena Delgado Mendoza*/
+/*For average agent rating stars*/
+
 import { faStar, faStarHalfAlt } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import '../styles/starRating.css';

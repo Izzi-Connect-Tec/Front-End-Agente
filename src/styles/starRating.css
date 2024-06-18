@@ -1,5 +1,6 @@
-/* Autora: Giovanna Lorena Delgado Mendoza*/
-/*Estilo para mostrar las estrellas estadísticas en la ventana de calificación de agentes*/
+/* Author: Giovanna Lorena Delgado Mendoza*/
+/*Style for displaying statistical stars in the agent rating window*/
+
 .star-rating {
     display: flex;
     justify-content: center;
