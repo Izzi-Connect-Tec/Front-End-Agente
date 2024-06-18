@@ -2,7 +2,7 @@
 // Individual component of notification, cards are showed in the notification bar
 
 import React from 'react';
-import '../styles/notification.css';
+import '../styles/notificationCard.css';
 import { TiDelete } from "react-icons/ti";
 
 const NotificationCard = (props) => {

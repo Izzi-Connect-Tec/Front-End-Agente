@@ -1,0 +1,62 @@
+.profileContainer.figure {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-left: -25%;
+  margin-top: 4%;
+}
+
+.profileContainer img {
+  max-width: 45%;
+  height: auto;
+  border-radius: 5%;
+  box-shadow: var(--box-shadow);
+  margin-bottom: -3%;
+}
+
+.figureCaption {
+  font-family: var(--font-family);
+  font-size: var(--font-size-rank);
+  color: black;
+  text-align: center;
+}
+.profileContainer {
+  flex: 1 1 30%;
+  max-width: 70%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  align-items: center;
+  text-align: center;
+}
+
+@media (orientation: landscape) {
+  .profileContainer img:hover {
+    transform: scale(1.05);
+    transition: transform 0.3s ease;
+  }
+}
+
+@media (min-width: 1200px) and (orientation: landscape) {
+  .profileContainer img {
+    width: 90%;
+    margin-right: 0;
+    margin-left: 0%;
+    margin-bottom: -2%;
+    margin-top: -5%;
+  }
+
+  .profileContainer img:hover {
+    transform: scale(1.02);
+    transition: transform 0.3s ease;
+  }
+}
+
+@media (orientation: portrait) {
+  .profileContainer img {
+    min-width: 80%;
+    height: auto;
+    margin-left: -5%;
+    margin-top: -20%;
+  }
+}

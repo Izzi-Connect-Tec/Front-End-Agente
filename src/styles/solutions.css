@@ -1,0 +1,43 @@
+.solutions {
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  color: black;
+  height: 100%;
+  width: 100%;
+}
+
+.solutionsDiv {
+  display: flex;
+  align-items: center;
+}
+
+.solutionsTitle {
+  font-weight: bold;
+  font-size: 2rem;
+  display: flex;
+  box-sizing: border-box;
+  font-family: "Century Gothic", "Futura";
+}
+
+.carouselContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.carouselButton {
+  background-color: #ffce00;
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 12px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 10px;
+  font-family: "Century Gothic", "Futura";
+}

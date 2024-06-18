@@ -17,7 +17,7 @@ const Mute = ({ lineVisible }) => {
       <div className="squareMute" style={{ color: lineVisible ? "red" : "black" }}>
         <div className="muteContainer">
           <CiMicrophoneOn
-            className="image"
+            className="imageMute"
             size={35}
             color={lineVisible ? "red" : "black"}
           />

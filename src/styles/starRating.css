@@ -1,0 +1,32 @@
+.starRating {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 30px;
+  height: 100%;
+  margin-top: 25%;
+
+}
+
+@media (orientation: landscape) {
+  .starRating {
+    font-size: 30px; 
+    margin-top: 15%;
+    margin-bottom: 12%;
+  }
+}
+
+@media (orientation: portrait) {
+  .starRating {
+    font-size: 20px; 
+    margin-top: 10%;
+    margin-bottom: 5%;
+  }
+}
+@media (max-width: 800px) {
+  .starRating {
+    font-size: 20px; 
+    margin-top: 25%;
+    margin-bottom: 20%;
+  }
+}

@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import Card from 'react-bootstrap/Card';
+import StarRating from './StarRating';
 import '../styles/cardComponent.css';
 
 const CardComponent = ({ title, dataUrl, rankUrl, color }) => {
@@ -39,7 +40,7 @@ const CardComponent = ({ title, dataUrl, rankUrl, color }) => {
           <div className="cardTitle">{title}</div>
           {title === 'Average Rating' && value !== null ? (
             <div className="cardValue">
-              {value}
+              <StarRating rating={value} />
             </div>
           ) : (
             <div className="cardValue">

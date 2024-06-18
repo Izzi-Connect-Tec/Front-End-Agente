@@ -1,0 +1,47 @@
+.solutionCard {
+  display: flex;
+  flex-direction: column; 
+  border-radius: 5px;
+  text-align: center;
+  border: 0.5px solid #b2b2b2;
+  font-size: 12px;
+  font-weight: normal;
+  font-style: normal;
+  height: 55px;
+  width: 100px;
+  margin: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s, box-shadow 0.3s, opacity 0.3s;
+}
+
+.solutionCard:hover {
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+}
+
+.solutionCard.active {
+  transform: scale(1.2);
+  opacity: 1;
+}
+
+.solutionCard.inactive {
+  transform: scale(1);
+  opacity: 0.5;
+}
+
+.solutionCard.blocked {
+  background-color: #fac8e1;
+  border-color: #fac8e1;
+  cursor: not-allowed;
+}
+
+.solutionCard.blocked:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.textSolution{
+  font-family: 'Century Gothic', 'Futura';
+  font-size: 10px;
+  text-align: center;
+  margin: auto;
+}

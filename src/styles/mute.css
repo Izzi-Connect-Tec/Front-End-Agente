@@ -1,0 +1,29 @@
+.containerMute {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.squareMute {
+  width: 25px;
+  height: 32px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  position: relative;
+}
+
+.muteContainer {
+  transform: rotate(-45deg);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+}
+
+.imageMute {
+  transform: rotate(45deg);
+  position: absolute;
+}

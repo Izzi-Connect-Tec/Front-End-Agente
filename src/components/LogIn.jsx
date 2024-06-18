@@ -9,7 +9,7 @@ import logo from "../assets/izziN.png";
 import { useLogInContext } from "../providers/LogInContext";
 
 const LogIn = () => {
-  const [agent, agentData,] = useLogInContext();
+  const [agent, agentData] = useLogInContext();
   const navigate = useNavigate();
   const [showLogIn, setShowLogIn] = useState(false);
   const [gifLoaded, setGifLoaded] = useState(false);
@@ -52,8 +52,8 @@ const LogIn = () => {
       let config = {
         method: "POST",
         headers: {
-          'Accept': "application/json",
-          'Content-Type': "application/json",
+          Accept: "application/json",
+          "Content-Type": "application/json",
         },
         body: JSON.stringify(credentials),
       };
@@ -99,7 +99,7 @@ const LogIn = () => {
         <p className="logInText">Enter your credentials to access.</p>
         {errorAut && <p className="logInError">Wrong user or password.</p>}
         <div className="formLogInDiv">
-          <form className="logInForm" align="center" onSubmit={handleLogIn}>
+          <form className="form" align="center" onSubmit={handleLogIn}>
             <input
               className="logInInput"
               type="email"

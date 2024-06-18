@@ -9,7 +9,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useCallControlContext } from "../providers/CallControlContext";
 
 export const Call = () => {
-  const [, , isCall, , , ,] = useCallControlContext();
+  const [, , isCall, , , , ,] = useCallControlContext();
 
   return (
     <div>
