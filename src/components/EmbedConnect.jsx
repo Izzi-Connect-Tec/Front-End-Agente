@@ -174,7 +174,7 @@ const EmbedConnect = (props) => {
       var help = agent.getConfiguration().username;
       console.log(`AGENT : ${help}`);
     });
-  }, [callData, changeStateIncomingCall, userId]);
+  }, [callData, changeStateIncomingCall, userId, controlCloseContact]);
 
   useEffect(() => {
     if (call.IdLlamada) {

@@ -90,7 +90,7 @@ const Charts = () => {
 
     fetchAgentData();
     fetchDurationData();
-  }, [agent.IdEmpleado, formattedDate]);
+  }, [agent.IdEmpleado, formattedDate, agent.Token]);
 
   const colors = {
     tertiary: "rgba(255, 206, 0, 0.8)",

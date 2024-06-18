@@ -72,10 +72,8 @@ const Solutions = () => {
   return (
     <div className="solutions">
       <div className="solutionsTitle">Solutions</div>
-
       { call.IdLlamada &&
       <div className="solutionsDiv">
-        
         <button className="carouselButton" onClick={handlePrev}>
           <FaArrowLeft />
         </button>
